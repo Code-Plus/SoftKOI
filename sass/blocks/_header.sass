@@ -1,0 +1,42 @@
+header
+   position: fixed
+   background: #fff
+   min-width: 80px
+   box-shadow: -4px 0 #E7EAEE inset
+
+
+ul.menu
+   min-height: 100vh
+   display: flex
+   list-style: none
+   flex-direction: column
+   align-items: center
+   justify-content: center
+
+li
+   width: 100%
+   flex: auto
+   display: flex
+   align-items: center
+   justify-content: center
+   border-bottom: 1px solid #E7EAEE
+   transition: all .4s
+
+   &:hover
+      box-shadow: 76px 0 darken(#E7EAEE, .9) inset,
+      80px 0 darken(#E7EAEE, 20) inset
+
+   &:first-child
+      flex: 0 0
+      padding-top: 6px
+      background: #E7EAEE
+      border-bottom: none
+
+   &:first-child:hover
+      box-shadow: none
+      a
+         cursor: default
+
+   a
+      display: block
+      cursor: pointer

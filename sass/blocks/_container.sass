@@ -1,0 +1,73 @@
+html,body
+   height: 100%
+   min-height: 100%
+
+body
+   display: flex
+   //flex-wrap: wrap
+
+.container
+   flex: 0 1 100%
+   background: #EEF3FA
+   margin-left: 80px
+
+
+.navbar
+   width: 100%
+   background: #fff
+   height: 72px
+   border-bottom: 4px solid #E7EAEE
+   display: flex
+
+.icon
+   flex:1 0 10%
+
+.logo
+   flex: 1 1 50%
+   display: flex
+   justify-content: flex-end
+   align-items: center
+   margin-right: 9%
+
+   h1
+      margin-left: 85px
+
+.alerts
+   flex: 1 1 40%
+   height: 72px
+   display: flex
+   justify-content:flex-end
+   margin-right: 70px
+   align-items: center
+
+
+   a img
+      width: 1.7em
+      padding-right: 10px
+      padding-left: 10px
+      padding-top: 4px
+
+   a img.last
+      padding-right: 40px
+
+   a.btn
+      padding-top: 10px
+      padding-bottom: 10px
+      background-color: #1abc9c
+      color: $white
+      letter-spacing: 1.2px
+      font-family: $header-font
+      font-weight: 500
+
+
+   a:hover
+      transform: scale(1.05)
+      filter: blur(0px)
+
+   a:active
+      transform: scale(.95)
+      filter: blur(0px)
+
+.contenido h1
+   text-align: center
+   padding-top: 20px

@@ -1,0 +1,14 @@
+extends templates/template
+
+block head
+   title SoftKOI Prototype
+   
+block container
+   include blocks/container
+
+block scripts
+   script(src="https://code.jquery.com/jquery-1.11.3.min.js")
+   script(src="js/menubar.js")   
+   script(src="js/iconmenu.js")
+   script(type="application/javascript").
+      transformicons.add('.tcon')
