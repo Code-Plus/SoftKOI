@@ -6,8 +6,7 @@
     <meta name="autor" content="Emmanuel Deossa"/>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="../css/styles.css"/>
-    <link rel="stylesheet" href="../css/button.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">    
+    <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">
     <title>SoftKOI Prototype</title>
   </head>
   <body>
@@ -30,7 +29,12 @@
         <div class="icon">
           <button id="iconmenu" type="button" aria-label="toggle menu" class="tcon tcon-menu--xcross"><span aria-hidden="true" class="tcon-menu__lines"></span><span class="tcon-visuallyhidden">Toggle menu</span></button>
         </div>
-        <div class="alerts"><a href="#"><img src="/icons/calendar.svg"/></a><a href="#"><img src="/icons/message.svg" class="lol"/></a><a href="#"><img src="/icons/notifications.svg" class="last"/></a><a class="btn ui button">Perfil</a></div>
+        <div class="alerts">
+           <a href="#"><img src="/icons/calendar.svg" class="first"/></a>
+           <a href="#"><img src="/icons/message.svg" class="second"/></a>
+           <a href="#"><img src="/icons/notifications.svg" class="last"/></a>
+           <a class="btn ui button">Perfil</a>
+        </div>
       </div>
       <div class="contenido">
 
@@ -103,12 +107,12 @@
               <div class="ui positive right labeled icon button">Aceptar
                 <i class="checkmark icon"></i>
               </div>
-            </div> 
+            </div>
           </div>
 
       </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
     <script src="../semantic/dist/semantic.min.js"></script>
     <script src="../js/menubar.js">  </script>
@@ -118,7 +122,7 @@
       $(document).ready(function(){
         $(".ventor").click(function(){
           $('.ui.modal').modal('show');
-        });      
+        });
       });
     </script>
   </body>

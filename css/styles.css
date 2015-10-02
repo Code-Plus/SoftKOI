@@ -54,7 +54,7 @@ body {
 .navbar {
   width: 100%;
   background: #fff;
-  height: 72px;
+  height: 74px;
   border-bottom: 4px solid #E7EAEE;
   display: -webkit-box;
   display: -webkit-flex;
@@ -115,13 +115,21 @@ body {
 }
 
 .alerts a img {
-  width: 1.7em;
   padding-right: 10px;
   padding-left: 10px;
   padding-top: 4px;
 }
 
+.alerts a img.first {
+  width: 3.6em;
+}
+
+.alerts a img.second {
+  width: 4em;
+}
+
 .alerts a img.last {
+  width: 5.5em;
   padding-right: 40px;
 }
 
