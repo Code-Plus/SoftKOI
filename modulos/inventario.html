@@ -37,10 +37,57 @@
         </div>
       </div>
       <div class="contenido">
-
-      <!--AQUI IRÁ TU BONITO CÓDIGO -->
-        <h1>Tu código de inventario va aquí Chemita.</h1>
-
+        <h1>REGISTRAR PRODUCTO</h1>
+        <div class="ui grid">
+          <div class="four wide column"></div>
+          <div class="four wide column">
+            <div class="ui form">
+              <div class="required field">
+                  <label>Nombre</label>
+                  <input type="text" placeholder="Nombre">
+                </div>
+                <div class="required field">
+                  <label>Tipo producto</label>
+                  <select class="ui dropdown">
+                    <option value="">Tipo producto</option>
+                    <option value="1">Prendas</option>
+                    <option value="0">Películas</option>
+                    <option value="0">Consolas</option>
+                  </select>
+                </div>
+                <div class="required field">
+                  <label>Valor</label>
+                  <input type="text" placeholder="Valor">
+                </div>
+            </div>
+          </div>
+          <div class="four wide column">
+            <div class="ui form">
+              <div class="field">
+                <label>Descripción</label>
+                <textarea placeholder="Descripción" rows="2"></textarea>
+              </div>
+              <div class="required field">
+                <label>Categoría</label>
+                <select class="ui dropdown">
+                  <option value="">Categoría</option>
+                  <option value="1">Camisetas</option>
+                  <option value="0">Camisas</option>
+                  <option value="0">Pantalones</option>
+                  <option value="0">Pantalonetas</option>
+                  <option value="0">Gorras</option>
+                  <option value="0">Gafas</option>
+                </select>
+              </div>
+              <div class="ui buttons">
+                <button class="ui button">Cancelar</button>
+                <div class="or"></div>
+                <button class="ui positive button">Registrar</button>
+              </div>
+            </div>
+          </div>
+          <div class="four wide column"></div>
+        </div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
