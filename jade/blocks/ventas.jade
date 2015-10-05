@@ -1,0 +1,157 @@
+extends ../templates/template-mod
+
+block head
+   title SoftKOI | Ventas
+   
+block content
+   .ui.container
+      
+      .ui.clearing.teal.inverted.segment
+         h3.ui.left.floated.header
+            i.tag.icon
+            .content REGISTRO DE VENTA
+         div(class="ui right floated button") N° 0025
+         
+      .ui.stackable.grid
+         .eleven.wide.inverted.column
+            .ui.black.segment
+               .ui.form
+                  .fields
+                     .seven.wide.field
+                        .ui.small.action.input
+                           input(type="text", placeholder="Buscar producto...")
+                           button(class="ui button")
+                              i.search.icon
+                              | Avanzada
+      
+                     .two.wide.field   
+                        .ui.vertical.divider 
+                     
+                     .seven.wide.right.floated.field
+                        .ui.small.action.input
+                           input(type="text", placeholder="Fecha límite de pago..")
+                           button(class="ui icon button")
+                              i.calendar.icon
+                                 
+               table.ui.unstackable.selectable.celled.striped.table
+                  thead
+                     tr
+                        th.one.wide
+                        th ID
+                        th Nombre
+                        th Categoria
+                        th Stock
+                        th Cant.
+                        th Precio
+                  tbody
+                     tr
+                        td: button(class="ui tiny basic icon button"): i.large.trash.outline.black.icon 
+                        td 0056
+                        td Polo Army
+                        td Camiseta
+                        td 5
+                        td 2
+                        td 25.000
+                     tr
+                        td: button(class="ui tiny basic icon button"): i.large.trash.outline.black.icon 
+                        td 0102
+                        td Jean Stark Verde
+                        td Pantalon
+                        td 5
+                        td 1
+                        td 55.000
+                     tr
+                        td: button(class="ui tiny basic icon button"): i.large.trash.outline.black.icon 
+                        td 0010
+                        td The Avengers
+                        td Acción
+                        td 4
+                        td 1
+                        td 7.000
+                     tr
+                        td: button(class="ui tiny basic icon button"): i.large.trash.outline.black.icon 
+                        td 0002
+                        td Oakley Sunshine
+                        td Gafas de sol
+                        td 9
+                        td 3
+                        td 90.000
+                     tr
+                        td: button(class="ui tiny basic icon button"): i.large.trash.outline.black.icon 
+                        td 0089
+                        td Spiderman 3
+                        td Acción
+                        td 10
+                        td 1
+                        td 5.000
+               .ui.divider
+               button(class="ui blue button" )
+                  i.erase.icon
+                  | Limpiar campos
+               button(class="ui red button" )
+                  i.ban.icon
+                  | Cancelar venta
+
+      
+            
+         //- Columna derecha  
+         .five.wide.column
+            .ui.blue.center.aligned.segment
+               
+               .ui.large.buttons
+                  div(class="ui animated fade positive button", tabindex="0")
+                     .visible.content Asociar Cliente
+                     .hidden.content: i.search.icon         
+                  .or(data-text="ó")   
+                  div(class="ui animated fade blue button", tabindex="0")
+                     .visible.content Registrar Cliente
+                     .hidden.content: i.medium.add.user.icon
+                        
+               .ui.divider
+               
+               h4.ui.dividing.center.aligned.header Información del cliente *
+
+               div.ui.center.aligned.relaxed.list
+                  .center.aligned.item
+                     i.user.icon
+                     .content
+                        strong Nombre: &nbsp;    
+                        | Philip Hansen Anselmo                   
+                  .item
+                     i.browser.icon
+                     .content
+                        strong Identificación: &nbsp;    
+                        | 1.037.657.908         
+                  .item 
+                     i.phone.icon
+                     .content
+                        strong Telefono: &nbsp;    
+                        | 332-554-88-22
+                     
+               h4.ui.dividing.center.aligned.header Información de la venta
+
+               div.ui.center.aligned.relaxed.list
+                  .center.aligned.item
+                     i.users.icon
+                     .content 
+                        strong Vendedor: &nbsp;
+                        | Emmanuel Deossa Hincapié
+                  .item
+                     i.browser.icon
+                     .content
+                        strong Cantidad productos: &nbsp;
+                        .ui.mini.red.label 5
+                  .item 
+                     i.phone.icon
+                     .content
+                        strong Valor parcial: &nbsp;
+                        .ui.tiny.black.label $182.000
+                        
+               .ui.divider
+                  
+               button(class="ui fluid right labeled large icon button green")
+                  i.right.arrow.icon 
+                  | INGRESAR PAGO 
+         
+
+               

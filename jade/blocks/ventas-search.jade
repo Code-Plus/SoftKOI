@@ -1,0 +1,36 @@
+extends ../templates/template-mod
+
+block head
+   title SoftKOI | Consultar Venta
+   
+block content
+   .ui.container
+      .ui.clearing.teal.inverted.segment
+         h3.ui.left.floated.header
+            i.tag.icon
+            .content CONSULTAR VENTAS
+         div(class="ui teal right floated button")
+            
+      .ui.stackable.grid
+         .sixteen.wide.inverted.column
+            .ui.black.segment
+               .ui.form
+                  .two.fields
+                     .field
+                        label Buscar por:
+                        .ui.left.action.input
+                           input(type="text", placeholder="Bucar...")
+                        select.ui.fluid.dropdown
+                           option(value="") Filtre por...
+                           option(value="1") Empleado
+                           option(value="2") Cliente
+                           option(value="3") Valor venta
+                           option(value="4") Producto
+
+                     
+                     .field
+                        label Ingresar fecha de venta:
+                        .ui.right.action.input
+                           input(type="text", placeholder="Fecha...") 
+                           button(class="ui icon button"): i.calendar.icon
+                           

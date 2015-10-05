@@ -6,12 +6,12 @@ html(lang="es")
 
       meta(name="autor" content="Emmanuel Deossa")
       meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
-      link(rel="stylesheet", href="css/styles.css")
-      link(rel="stylesheet", href="semantic/dist/semantic.min.css")
+      link(rel="stylesheet", href="../semantic/dist/semantic.min.css")
+      link(rel="stylesheet", href="../css/styles.css")
       block head
 
    body
-      include ../blocks/header
+      include ../blocks/header-mod
       .container
          .navbar
             .icon
@@ -20,15 +20,17 @@ html(lang="es")
                   span(class="tcon-visuallyhidden") Toggle menu
       
             .alerts
-               a(href="#"): img.first(src="/icons/calendar.svg")
-               a(href="#"): img.second(src="/icons/message.svg")
-               a(href="#"): img.last(src="/icons/notifications.svg")     
+               a(href="#"): img.first(src="../icons/calendar.svg")
+               a(href="#"): img.second(src="../icons/message.svg")
+               a(href="#"): img.last(src="../icons/notifications.svg")     
                   
                a.btn(class="ui button") Perfil
                
          block content
          
       script(src="https://code.jquery.com/jquery-1.11.3.min.js")  
-      script(src="js/iconmenu.js")
+      script( src="../semantic/dist/semantic.min.js")
+      script(src="../js/iconmenu.js")
+      script(src="../js/scripts.js")
       script(type="application/javascript").
          transformicons.add('.tcon')

@@ -2,26 +2,26 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8"/>
-    <link rel="icon" href="../icons/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon"/>
     <meta name="autor" content="Emmanuel Deossa"/>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../semantic/dist/semantic.min.css"/>
     <link rel="stylesheet" href="../css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">
-    <title>SoftKOI Prototype</title>
+    <title>SoftKOI | Ventas</title>
   </head>
   <body>
     <header>
-      <ul class="menu">
-         <li><a href=""><img src="../icons/admin.png" alt=""/></a></li>
-         <li><a href="inventario.html"><img src="../icons/1-small.png" alt=""/></a></li>
-         <li><a href="ventas.html"><img src="../icons/2-small.png" alt=""/></a></li>
-         <li><a href="cambios.html"><img src="../icons/3-small.png" alt=""/></a></li>
-         <li><a href="consolas.html"><img src="../icons/4-small.png" alt=""/></a></li>
-         <li><a href="pagos.html"><img src="../icons/5-small.png" alt=""/></a></li>
-         <li><a href="usuarios.html"><img src="../icons/6-small.png" alt=""/></a></li>
-         <li><a href="clientes.html"><img src="../icons/7-small.png" alt=""/></a></li>
-         <li><a href="cartera.html"><img src="../icons/8-small.png" alt=""/></a></li>
-         <li><a href="agenda.html"><img src="../icons/9-small.png" alt=""/></a></li>
+      <ul class="menu">   
+        <li><a href=""><img src="../icons/admin.png" alt=""/></a></li>
+        <li><a href="/modulos/inventario.html"><img src="../icons/1-small.png" alt=""/></a></li>
+        <li><a href="/modulos/ventas.html"><img src="../icons/2-small.png" alt=""/></a></li>
+        <li><a href="/modulos/cambios.html"><img src="../icons/3-small.png" alt=""/></a></li>
+        <li><a href="/modulos/consolas.html"><img src="../icons/4-small.png" alt=""/></a></li>
+        <li><a href="/modulos/pagos.html"><img src="../icons/5-small.png" alt=""/></a></li>
+        <li><a href="/modulos/usuarios.html"><img src="../icons/6-small.png" alt=""/></a></li>
+        <li><a href="/modulos/clientes.html"><img src="../icons/7-small.png" alt=""/></a></li>
+        <li><a href="/modulos/cartera.html"><img src="../icons/8-small.png" alt=""/></a></li>
+        <li><a href="/modulos/agenda.html"><img src="../icons/9-small.png" alt=""/></a></li>
       </ul>
     </header>
     <div class="container">
@@ -29,23 +29,165 @@
         <div class="icon">
           <button id="iconmenu" type="button" aria-label="toggle menu" class="tcon tcon-menu--xcross"><span aria-hidden="true" class="tcon-menu__lines"></span><span class="tcon-visuallyhidden">Toggle menu</span></button>
         </div>
-        <div class="alerts">
-           <a href="#"><img src="../icons/calendar.svg" class="first"/></a>
-           <a href="#"><img src="../icons/message.svg" class="second"/></a>
-           <a href="#"><img src="../icons/notifications.svg" class="last"/></a>
-           <a class="btn ui button">Perfil</a>
+        <div class="alerts"><a href="#"><img src="../icons/calendar.svg" class="first"/></a><a href="#"><img src="../icons/message.svg" class="second"/></a><a href="#"><img src="../icons/notifications.svg" class="last"/></a><a class="btn ui button">Perfil</a></div>
+      </div>
+      <div class="ui container">
+        <div class="ui clearing teal inverted segment">
+          <h3 class="ui left floated header"><i class="tag icon"></i>
+            <div class="content">REGISTRO DE VENTA</div>
+          </h3>
+          <div class="ui right floated button">N° 0025</div>
+        </div>
+        <div class="ui stackable grid">
+          <div class="eleven wide inverted column">
+            <div class="ui black segment">
+              <div class="ui form">
+                <div class="fields">
+                  <div class="seven wide field">
+                    <div class="ui small action input">
+                      <input type="text" placeholder="Buscar producto..."/>
+                      <button class="ui button"><i class="search icon"></i>Avanzada</button>
+                    </div>
+                  </div>
+                  <div class="two wide field">  
+                    <div class="ui vertical divider"> </div>
+                  </div>
+                  <div class="seven wide right floated field">
+                    <div class="ui small action input">
+                      <input type="text" placeholder="Fecha límite de pago.."/>
+                      <button class="ui icon button"><i class="calendar icon"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <table class="ui unstackable selectable celled striped table">
+                <thead>
+                  <tr>
+                    <th class="one wide"></th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Stock</th>
+                    <th>Cant.</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <button class="ui tiny basic icon button"><i class="large trash outline black icon"> </i></button>
+                    </td>
+                    <td>0056</td>
+                    <td>Polo Army</td>
+                    <td>Camiseta</td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>25.000</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button class="ui tiny basic icon button"><i class="large trash outline black icon"> </i></button>
+                    </td>
+                    <td>0102</td>
+                    <td>Jean Stark Verde</td>
+                    <td>Pantalon</td>
+                    <td>5</td>
+                    <td>1</td>
+                    <td>55.000</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button class="ui tiny basic icon button"><i class="large trash outline black icon"> </i></button>
+                    </td>
+                    <td>0010</td>
+                    <td>The Avengers</td>
+                    <td>Acción</td>
+                    <td>4</td>
+                    <td>1</td>
+                    <td>7.000</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button class="ui tiny basic icon button"><i class="large trash outline black icon"> </i></button>
+                    </td>
+                    <td>0002</td>
+                    <td>Oakley Sunshine</td>
+                    <td>Gafas de sol</td>
+                    <td>9</td>
+                    <td>3</td>
+                    <td>90.000</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button class="ui tiny basic icon button"><i class="large trash outline black icon"> </i></button>
+                    </td>
+                    <td>0089</td>
+                    <td>Spiderman 3</td>
+                    <td>Acción</td>
+                    <td>10</td>
+                    <td>1</td>
+                    <td>5.000</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="ui divider"></div>
+              <button class="ui blue button"><i class="erase icon"></i>Limpiar campos</button>
+              <button class="ui red button"><i class="ban icon"></i>Cancelar venta</button>
+            </div>
+          </div>
+          <div class="five wide column">
+            <div class="ui blue center aligned segment">
+              <div class="ui large buttons">
+                <div tabindex="0" class="ui animated fade positive button">
+                  <div class="visible content">Asociar Cliente</div>
+                  <div class="hidden content"><i class="search icon">        </i></div>
+                </div>
+                <div data-text="ó" class="or">  </div>
+                <div tabindex="0" class="ui animated fade blue button">
+                  <div class="visible content">Registrar Cliente</div>
+                  <div class="hidden content"><i class="medium add user icon"></i></div>
+                </div>
+              </div>
+              <div class="ui divider"></div>
+              <h4 class="ui dividing center aligned header">Información del cliente *</h4>
+              <div class="ui center aligned relaxed list">
+                <div class="center aligned item"><i class="user icon"></i>
+                  <div class="content"><strong>Nombre: &nbsp;    </strong>Philip Hansen Anselmo                   </div>
+                </div>
+                <div class="item"><i class="browser icon"></i>
+                  <div class="content"><strong>Identificación: &nbsp;    </strong>1.037.657.908         </div>
+                </div>
+                <div class="item"> <i class="phone icon"></i>
+                  <div class="content"><strong>Telefono: &nbsp;    </strong>332-554-88-22</div>
+                </div>
+              </div>
+              <h4 class="ui dividing center aligned header">Información de la venta</h4>
+              <div class="ui center aligned relaxed list">
+                <div class="center aligned item"><i class="users icon"></i>
+                  <div class="content"> <strong>Vendedor: &nbsp;</strong>Emmanuel Deossa Hincapié</div>
+                </div>
+                <div class="item"><i class="browser icon"></i>
+                  <div class="content"><strong>Cantidad productos: &nbsp;</strong>
+                    <div class="ui mini red label">5</div>
+                  </div>
+                </div>
+                <div class="item"> <i class="phone icon"></i>
+                  <div class="content"><strong>Valor parcial: &nbsp;</strong>
+                    <div class="ui tiny black label">$182.000</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ui divider"></div>
+              <button class="ui fluid right labeled large icon button green"><i class="right arrow icon"> </i>INGRESAR PAGO </button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="contenido">
-
-      <!--AQUI IRÁ TU BONITO CÓDIGO -->
-        <h1>Tu código de ventas va aquí.</h1>
-
-      </div>
     </div>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="../js/menubar.js">  </script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"> </script>
+    <script src="../semantic/dist/semantic.min.js"></script>
     <script src="../js/iconmenu.js"></script>
+    <script src="../js/scripts.js"></script>
     <script type="application/javascript">transformicons.add('.tcon')</script>
   </body>
 </html>
