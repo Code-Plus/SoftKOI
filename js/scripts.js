@@ -1,4 +1,10 @@
-$('.ui.checkbox')
-  .checkbox();
+$(document).ready(function(){
 
-$('select.dropdown').dropdown();
+   $('.ui.checkbox')
+     .checkbox()
+   ;
+   $('select.dropdown')
+  .dropdown()
+;
+
+});
