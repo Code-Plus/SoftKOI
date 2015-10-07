@@ -81,9 +81,9 @@
           </div>
           <div class="sixteen wide column" align="center">
             <div class="ui center aligned buttons ">
-              <button class="ui button">Editar</button>
+              <button class="ui button editar">Editar</button>
               <div class="or" data-text="O"></div>
-              <button class="ui positive button">Finalizar</button>
+              <button class="ui positive button finalizar">Finalizar</button>
             </div>
           </div>
           
@@ -152,29 +152,108 @@
           </div>
         </div>
       </div>
-      <div class="ui modal">
+
+      <div class="ui modal 1">
         <div class="header">Finalizacion de reserva</div>
         <div class="content">
           <p>¿Desea finalizar la reserva?</p>
-          <div class="actions">
-            <div class="ui black deny button">
+          <div class="actions" align="right">
+            <div class="ui black deny button ">
               No
             </div>
-            <div class="ui positive right labeled icon button">
+            <div class="ui positive right labeled icon button si">
               Si
               <i class="checkmark icon"></i>
             </div>
           </div>
         </div>
       </div>
+      
+      <div class="ui modal 2">
+        <div class="header">Finalizacion de reserva</div>
+        <div class="content">
+          <p>El total a pagar por la reserva numero 001 es: $1000</p>
+          <div class="actions" align="right">
+            <div class="ui positive right labeled icon button si">
+              Aceptar
+              <i class="checkmark icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+       <div class="ui modal 3">
+        <div class="header">Edicion de reserva</div>
+        <div class="content">
+          <p>¿Desea editar la reserva?</p>
+          <div class="actions" align="right">
+            <div class="ui black deny button ">
+              No
+            </div>
+            <div class="ui positive right labeled icon button ci">
+              Si
+              <i class="checkmark icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui modal 4">
+        <div class="header">Edicion de reserva</div>
+        <div class="content">
+          <p>La reserva se ha editado con éxito</p>
+          <div class="actions" align="right">
+            <div class="ui positive right labeled icon button ci">
+              Aceptar
+              <i class="checkmark icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="ui modal 5">
+        <div class="header">Edicion de reserva</div>
+        <div class="content">
+          <p>La reserva no se puede editar, ya hay una reserva registrada en ese horario</p>
+          <div class="actions" align="right">
+            <div class="ui positive right labeled icon button ci">
+              Aceptar
+              <i class="checkmark icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../semantic/dist/semantic.min.js"></script>
     <script src="../js/menubar.js">  </script>
     <script src="../js/iconmenu.js"></script>
     <script type="application/javascript">transformicons.add('.tcon')</script>
     <script>
       $(document).ready(function(){
-        $(".ui.positive.button").click(function(){
-          $('.ui.modal').model('show');
+        $(".finalizar").click(function(){
+          $('.1').modal('show');
+        });
+      });
+    </script>
+      <script>
+      $(document).ready(function(){
+        $(".si").click(function(){
+          $('.2').modal('show');
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function(){
+        $(".editar").click(function(){
+          $('.3').modal('show');
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function(){
+        $(".3").click(function(){
+          $('.4').modal('show');
         });
       });
     </script>
