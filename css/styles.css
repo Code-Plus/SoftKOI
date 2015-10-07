@@ -66,6 +66,9 @@ body {
   padding-bottom: 3px;
   background-color: #4CAF50 !important;
 }
+.ui.orange.clearing.inverted.segment{
+  padding-bottom: 3px;
+}
 
 h3.ui.left.floated.header {
   margin-top: 5px;
