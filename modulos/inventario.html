@@ -97,6 +97,100 @@
                </div>
          </div>
         </div>
+        <div class="ui segment">
+          <div class="ui grid">
+            <div class="sixteen wide column">
+              <div style="display: inline-block;" class="field">
+                <label>Buscar por </label>
+                <select class="ui dropdown">
+                  <option value="">Buscar por</option>
+                  <option value="1">Tipo documento</option>
+                  <option value="0">Nombre</option>
+                </select>
+                <div style="display: inline-block;" class="ui search">
+                  <div class="ui icon input">
+                    <input class="prompt" type="text" placeholder="Buscar">
+                    <i class="search icon"></i>
+                  </div>
+                  <div class="results"></div>
+                </div>
+              </div>
+              <table class="ui green compact celled definition table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Referencia</th>
+                    <th>Estado</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="collapsing">
+                      <div class="ui fitted slider checkbox">
+                        <input type="checkbox"> <label></label>
+                      </div>
+                    </td>
+                    <td>001</td>
+                    <td>Disponible</td>
+                    <td>Camisetas azules</td>
+                    <td>20</td>
+                    <td>
+                      <button class="ui icon button">
+                        <i class="zoom icon"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="collapsing">
+                      <div class="ui fitted slider checkbox">
+                        <input type="checkbox"> <label></label>
+                      </div>
+                    </td>
+                    <td>002</td>
+                    <td>Agotado</td>
+                    <td>Películas de terror</td>
+                    <td>2</td>
+                    <td>
+                      <button class="ui icon button">
+                        <i class="zoom icon"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="collapsing">
+                      <div class="ui fitted slider checkbox">
+                        <input type="checkbox"> <label></label>
+                      </div>
+                    </td>
+                    <td>003</td>
+                    <td>Disponible</td>
+                    <td>Consola Play Station</td>
+                    <td>5</td>
+                    <td>
+                      <button class="ui icon button">
+                        <i class="zoom icon"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot class="full-width">
+                  <tr>
+                    <th></th>
+                    <th colspan="4">
+                      <div class="ui green icon small button">
+                        <i class="edit icon"></i>
+                        Editar
+                      </div>
+                    </th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
