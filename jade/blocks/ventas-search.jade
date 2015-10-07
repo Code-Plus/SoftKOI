@@ -18,19 +18,76 @@ block content
                   .two.fields
                      .field
                         label Buscar por:
-                        .ui.left.action.input
-                           input(type="text", placeholder="Bucar...")
-                        select.ui.fluid.dropdown
-                           option(value="") Filtre por...
-                           option(value="1") Empleado
-                           option(value="2") Cliente
-                           option(value="3") Valor venta
-                           option(value="4") Producto
-
+                        .ui.action.input
+                           input(type="text", placeholder="Buscar...")
+                           select.ui.dropdown
+                              option(value="") Filtre por...
+                              option(value="1") Empleado
+                              option(value="2") Cliente
+                              option(value="3") Valor venta
+                              option(value="4") Producto
+                           div(type="submit" class="ui button") Buscar
                      
                      .field
                         label Ingresar fecha de venta:
                         .ui.right.action.input
                            input(type="text", placeholder="Fecha...") 
                            button(class="ui icon button"): i.calendar.icon
-                           
+               .ui.divider      
+               table.ui.unstackable.selectable.celled.striped.table
+                  thead
+                     tr
+                        th.one.wide
+                        th ID Venta
+                        th Empleado
+                        th N° Productos
+                        th Valor
+                        th Pago
+                        th Estado
+                  tbody
+                     tr
+                        td: div(class="ui fitted slider checkbox"): input(type="checkbox")
+                        td 0056
+                        td Jesus Francisco
+                        td 8
+                        td 25.000
+                        td 25.000
+                        td Cancelado
+                     tr
+                        td: div(class="ui fitted slider checkbox"): input(type="checkbox") 
+                        td 0102
+                        td Emmanuel Deossa
+                        td 4
+                        td 55.000
+                        td 50.000
+                        td Deuda
+                     tr
+                        td: div(class="ui fitted slider checkbox"): input(type="checkbox")
+                        td 0010
+                        td Maria Camila
+                        td 5
+                        td 7.000
+                        td 7.000
+                        td Cancelado
+                     tr
+                        td: div(class="ui fitted slider checkbox"): input(type="checkbox")
+                        td 0002
+                        td Esteban Montoya
+                        td 9
+                        td 90.000
+                        td 50.000
+                        td Deuda
+                     tr
+                        td: div(class="ui fitted slider checkbox"): input(type="checkbox") 
+                        td 0089
+                        td Juan David
+                        td 1
+                        td 5.000
+                        td 5.000
+                        td Cancelado
+               .ui.divider
+               div(class="sixteen wide column center aligned" align="center")
+                  button(class="ui red right aligned button")
+                     i.ban.icon
+                     | Cancelar venta
+                              
