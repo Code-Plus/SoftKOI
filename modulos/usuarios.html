@@ -243,54 +243,63 @@
 
       <!--Ventanas modales-->
 
-      <div class="ui modal">
+      <div class="ui modal perfil">
         <i class="close icon"></i>
         <div class="header">
-          Profile Picture
+          Detalles del usuario
         </div>
         <div class="image content">
           <div class="ui medium image">
-            <img src="/images/avatar/large/chris.jpg">
+            <img src="../imagenes/user.jpg">
           </div>
         <div class="description">
-          <div class="ui header">We've auto-chosen a profile image for you.</div>
-          <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-          <p>Is it okay to use this photo?</p>
+          <div class="ui header">INFORMACIÓN</div>
+          <p>Nombre: Camila</p>
+          <p>Apellido: Alzate</p>
+          <p>Tipo de documento: Cédula</p>
+          <p>Número: 21665203</p>
+          <p>Email: camila@mail.com</p>
+          <p>Contraseña: 12345</p>
+          <p>Teléfono: 5714278</p>
+          <p>Celular: 3136345678</p>
+          <p>Cargo: Empleado</p>
+          <p>Permisos: Inventario, ventas</p>
+          <p>Estado: Habilitado</p>
         </div>
       </div>
       <div class="actions">
         <div class="ui black deny button">
-          Nope
+          Salir
         </div>
         <div class="ui positive right labeled icon button">
-          Yep, that's me
+          Aceptar
           <i class="checkmark icon"></i>
         </div>
       </div>
     </div>
 
-    <div class="ui basic modal">
+    <div class="ui basic modal registro">
       <i class="close icon"></i>
       <div class="header">
-        Archive Old Messages
+        Registro de usuario
       </div>
       <div class="image content">
         <div class="image">
-          <i class="archive icon"></i>
+          <i class="add user icon"></i>
         </div>
         <div class="description">
-          <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+          <p>Usuario registrado exitosamente</p>
         </div>
       </div>
       <div class="actions">
         <div class="two fluid ui inverted buttons">
-          <div class="ui red basic inverted button">
+          <div class="ui deny red basic inverted button">
             <i class="remove icon"></i>
-            No
+            Cancelar
           </div>
-          <div class="ui green basic inverted button">
+          <div class="ui positive green basic inverted button">
             <i class="checkmark icon"></i>
-            Yes
+            Aceptar
           </div>
         </div>
       </div>
@@ -305,14 +314,14 @@
   <script>
     $(document).ready(function(){
       $(".win").click(function(){
-        $('.ui.modal')
+        $('.perfil')
           .modal('show');
       });
     });
 
     $(document).ready(function(){
       $(".alert").click(function(){
-        $('.ui.basic.modal')
+        $('.registro')
           .modal('show');
       });
     });

@@ -89,7 +89,7 @@
             </div>
 
                <div class="sixteen wide column" align="center">
-                  <div class="ui center aligned buttons">
+                  <div class="ui center aligned buttons alert">
                      <button class="ui button">Cancelar</button>
                      <div class="or" data-text="O"></div>
                      <button class="ui positive button">Registrar</button>
@@ -180,7 +180,7 @@
                   <tr>
                     <th></th>
                     <th colspan="4">
-                      <div class="ui green icon small button">
+                      <div class="ui green icon small button win">
                         <i class="edit icon"></i>
                         Editar
                       </div>
@@ -192,11 +192,149 @@
           </div>
         </div>
       </div>
+
+      <!--Ventanas modales-->
+
+      <div class="ui modal primera">
+        <div class="header">Confirmar edición</div>
+        <div class="content">
+         <p>¿Desea editar el producto seleccionado?</p>
+         <div class="actions" align="right">
+           <div class="ui black deny button ">
+             No
+           </div>
+           <div class="ui positive right labeled icon button yes">
+             Si
+             <i class="checkmark icon"></i>
+           </div>
+         </div>
+       </div>
+     </div>
+
+     <div class="ui modal segunda">
+       <div class="header">Editar producto</div>
+       <div class="content">
+         <div class="ui grid">
+             <div class="eight wide column">
+               <div class="ui form">
+                 <div class="required field">
+                     <label>Nombre</label>
+                     <input type="text" placeholder="Nombre">
+                   </div>
+                   <div class="required field">
+                     <label>Tipo producto</label>
+                     <select class="ui dropdown">
+                       <option value="">Tipo producto</option>
+                       <option value="1">Prendas</option>
+                       <option value="0">Películas</option>
+                       <option value="0">Consolas</option>
+                     </select>
+                   </div>
+                   <div class="required field">
+                     <label>Valor</label>
+                     <input type="text" placeholder="Valor">
+                   </div>
+               </div>
+             </div>
+
+             <div class="eight wide column">
+               <div class="ui form">
+                 <div class="field">
+                   <label>Descripción</label>
+                   <textarea placeholder="Descripción" style="padding-top: 15px;" rows="5"></textarea>
+                 </div>
+                 <div class="required field">
+                   <label>Categoría</label>
+                   <select class="ui dropdown">
+                     <option value="">Categoría</option>
+                     <option value="1">Camisetas</option>
+                     <option value="0">Camisas</option>
+                     <option value="0">Pantalones</option>
+                     <option value="0">Pantalonetas</option>
+                     <option value="0">Gorras</option>
+                     <option value="0">Gafas</option>
+                   </select>
+                 </div>
+                 <div class="inline fields">
+                   <label>Estado</label>
+                   <div class="field">
+                     <div class="ui radio checkbox">
+                       <input type="radio" name="frequency" checked="checked">
+                       <label>Disponible</label>
+                     </div>
+                  </div>
+                  <div class="field">
+                    <div class="ui radio checkbox">
+                      <input type="radio" name="frequency">
+                      <label>Agotado</label>
+                    </div>
+                  </div>
+                </div>
+               </div>
+             </div>
+         <div class="actions" align="right">
+           <div class="ui positive right labeled icon button ">
+             Aceptar
+             <i class="checkmark icon"></i>
+           </div>
+         </div>
+       </div>
+     </div>
+
+    <div class="ui basic modal">
+      <i class="close icon"></i>
+      <div class="header">
+        Registro producto
+      </div>
+      <div class="image content">
+        <div class="image">
+          <i class="write icon"></i>
+        </div>
+        <div class="description">
+          <p>Producto registrado exitosamente.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="two fluid ui inverted buttons">
+          <div class="ui deny red basic inverted button">
+            <i class="remove icon"></i>
+            No
+          </div>
+          <div class="ui positive right green basic inverted button">
+            <i class="checkmark icon"></i>
+            Yes
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../semantic/dist/semantic.min.js"></script>
     <script src="../js/scripts.js"></script>
     <script src="../js/iconmenu.js"></script>
     <script type="application/javascript">transformicons.add('.tcon')</script>
+    <script>
+      $(document).ready(function(){
+        $(".alert").click(function(){
+          $('.ui.basic.modal')
+            .modal('show');
+        });
+      });
+
+    </script>
+    <script>
+
+    $(document).ready(function(){
+      $(".win").click(function(){
+        $('.primera').modal('show');
+      });
+    });
+
+    $(document).ready(function(){
+      $(".yes").click(function(){
+        $('.segunda').modal('show');
+      });
+    });
+  </script>
   </body>
 </html>
