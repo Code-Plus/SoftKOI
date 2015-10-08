@@ -39,21 +39,46 @@
 
       <!--AQUI IRÁ TU BONITO CÓDIGO -->
         <div class="ui container">
-            <h1 class="ui center aligned header">Cambios</h1>
-            <select class="ui dropdown">
-              <option value="">Seleccionar empleado</option>
-              <option value="0">Juan</option>
-              <option value="1">Pedro</option>
-              <option value="2">Luis</option>
-              <option value="3">Pablo</option>
-            </select>
+          <div class="ui green clearing inverted segment">
+           <h3 class="ui left floated header">
+              <div class="content">CAMBIOS</div>
+           </h3>
+          </div>
+          <h3 class="ui dividing header">Cliente</h3>
+
+          <div class="ui fluid action input">
+          <input type="text" placeholder="Buscar cliente por identificacion">
+            <div class="ui button">Buscar</div>
+          </div>
+          <table class="ui fixed single line celled table">
+            <thead>
+              <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Telefono</th>
+              <th>E-mail</th>
+              <th>Identificacion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <td>Emmanuel</td>
+              <td>Deossa</td>
+              <td>2345421</td>
+              <td>Emmanuel@gmail.com</td>
+              <td>1008119878</td>
+            </tr>
+            </tbody>
+          </table>
+
+            <h3 class="ui dividing header">Venta</h3>
             <table class="ui celled striped table">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Fecha</th>
                 <th>Valor</th>
-                <th></th>
+                <th>Selección</th>
             </tr>
             </thead>
             <tbody>
@@ -61,7 +86,7 @@
                 <td>235312</td>
                 <td>02/05/14</td>
                 <td>25000$ </td>
-                <td><div class="ui radio checkbox">
+                <td class="center aligned"><div class="ui radio checkbox">
                       <input type="radio" name="venta" checked="checked">
                       <label></label>
                 </div></td>
@@ -70,7 +95,7 @@
                 <td>453123</td>
                 <td>12/05/14</td>
                 <td>30000$</td>
-                <td><div class="ui radio checkbox">
+                <td class="center aligned"><div class="ui radio checkbox">
                       <input type="radio" name="venta" checked="checked">
                       <label></label>
                 </div></td>
@@ -79,25 +104,27 @@
                 <td>998332</td>
                 <td>06/11/15</td>
                 <td>55000$</td>
-                <td><div class="ui radio checkbox">
+                <td class="center aligned"><div class="ui radio checkbox">
                       <input type="radio" name="venta" checked="checked">
                       <label></label>
                 </div></td>
             </tr>
             </tbody>
         </table>
-
-        <p>
-
-        </p>
-
-
-        <table class="ui very basic collapsing celled table">
+        <h3 class="ui dividing header">Producto</h3>
+        <table class="ui celled structured table">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Producto</th>
-            <th>Valor</th>
+            <th rowspan="2">ID</th>
+            <th rowspan="2">Producto</th>
+            <th rowspan="2">Valor</th>
+            <th rowspan="2">Selección</th>
+            <th colspan="2">Estado</th>
+
+        </tr>
+        <tr>
+          <th>Bueno</th>
+          <th>Malo</th>
         </tr>
         </thead>
         <tbody>
@@ -105,56 +132,57 @@
             <td>01</td>
             <td>Boxer</td>
             <td>5000$ </td>
-            <td> <div class="ui checkbox">
+            <td class="center aligned"> <div class="ui checkbox">
               <input type="checkbox" name="name">
               <label></label>
+            </div></td>
+            <td class="center aligned"><div class="ui radio checkbox">
+                  <input type="radio" name="estado" checked="checked">
+            </div></td>
+            <td class="center aligned"><div class="ui radio checkbox">
+                  <input type="radio" name="estado" checked="checked">
             </div></td>
         </tr>
         <tr>
             <td>02</td>
             <td>Camiseta</td>
             <td>10000$</td>
-            <td> <div class="ui checkbox">
+            <td class="center aligned"> <div class="ui checkbox">
               <input type="checkbox" name="name">
               <label></label>
+            </div></td>
+            <td class="center aligned"><div class="ui radio checkbox">
+                  <input type="radio" name="estado1" checked="checked">
+            </div></td>
+            <td class="center aligned"><div class="ui radio checkbox">
+                  <input type="radio" name="estado1" checked="checked">
             </div></td>
         </tr>
         <tr>
             <td>03</td>
             <td>Pantaloneta</td>
             <td>10000$</td>
-            <td> <div class="ui checkbox">
+            <td class="center aligned"> <div class="ui checkbox">
               <input type="checkbox" name="name">
               <label></label>
+            </div></td>
+            <td class="center aligned"><div class="ui radio checkbox">
+                  <input type="radio" name="estado2" checked="checked">
+            </div></td>
+            <td class="center aligned"><div class="ui radio checkbox">
+                  <input type="radio" name="estado2" checked="checked">
             </div></td>
         </tr>
         </tbody>
         </table>
         <p>
-
-        </p>
-        <div class="ui form">
-          <div class="inline fields">
-            <div class="field">
-              <div class="ui radio checkbox">
-                    <input type="radio" name="estado" checked="checked">
-                    <label>Bueno</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui radio checkbox">
-                    <input type="radio" name="estado" checked="checked">
-                    <label>Malo</label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p>
+          <div class="sixteen wide column" align="center">
           <div class="ui buttons">
-              <button class="ui button">Cancelar</button>
-          <div class="or"></div>
+              <button class="ui negative button">Cancelar</button>
+          <div class="or" data-text="O"></div>
               <button class="ui positive button">Aceptar</button>
           </div>
+        </div>
         </p>
       </div>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
