@@ -45,7 +45,7 @@
         </div>
         <div class="ui grid">
           <div class="eight wide column">
-            <div class="ui form">
+            <form class="ui form">
               <div class="required field">
                 <label>Responsable</label>
                 <input type="text" value="Miguel">
@@ -58,11 +58,11 @@
                 <label>Hora de finalizacion</label>
                 <input type="time" value="11:30 a.m.">
               </div>
-            </div>
+            </form>
           </div>
 
           <div class="eight wide column">
-            <div class="ui form">
+            <form class="ui form">
               <div class="required field">
                 <label>Consola</label>
                 <select class="ui dropdown">
@@ -77,7 +77,7 @@
                 <input type="time" value="11:00 a.m.">
               </div>
               
-            </div>
+            </form>
           </div>
           <div class="sixteen wide column" align="center">
             <div class="ui center aligned buttons ">
@@ -86,19 +86,22 @@
               <button class="ui positive button finalizar">Finalizar</button>
             </div>
           </div>
-          
+          <div class="eight wide column left aligned">
+            <!--Boton de informe-->
+            <a href="consolas_repo.html"><button class="ui blue button" align="left">GENERAR REPORTE </button></a>
+          </div>
+                  
+          <!--Cuadro de busqueda-->
+          <div class="eight wide column right aligned">
+              <div class="ui icon input">
+                  <input class="prompt" type="text" placeholder="Ingrese algun dato">
+                  <i class="search icon"></i>
+              </div>
+          </div>
 
           <!--Aca inicia la tabla-->
           <div class="sixteen wide column">
             <table class="ui celled table">
-            <!--Cuadro de busqueda-->
-              <div class="ui search" align="right">
-               <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Ingrese algun dato">
-                    <i class="search icon"></i>
-                </div>
-                <div class="results"></div>
-              </div>
               <thead>
                 <tr><th>N°</th>
                 <th>Cliente</th>
@@ -148,11 +151,11 @@
                 </th>
               </tr></tfoot>
             </table>
-
           </div>
         </div>
       </div>
 
+      <!--Modal cuando seleccione Finalizar reserva-->
       <div class="ui modal 1">
         <div class="header">Finalizacion de reserva</div>
         <div class="content">
@@ -168,7 +171,7 @@
           </div>
         </div>
       </div>
-      
+      <!--Modal cuando seleccione si en Finalizar reserva-->
       <div class="ui modal 2">
         <div class="header">Finalizacion de reserva</div>
         <div class="content">
@@ -181,7 +184,7 @@
           </div>
         </div>
       </div>
-      
+      <!--Modal cuando seleccione Editar reserva-->
        <div class="ui modal 3">
         <div class="header">Edicion de reserva</div>
         <div class="content">
@@ -197,7 +200,7 @@
           </div>
         </div>
       </div>
-
+      <!--Modal cuando seleccione si en Editar reserva-->
       <div class="ui modal 4">
         <div class="header">Edicion de reserva</div>
         <div class="content">
@@ -210,7 +213,7 @@
           </div>
         </div>
       </div>
-
+        <!--Modal cuando la reserva no se puede editar-->
         <div class="ui modal 5">
         <div class="header">Edicion de reserva</div>
         <div class="content">
@@ -229,6 +232,7 @@
     <script src="../js/menubar.js">  </script>
     <script src="../js/iconmenu.js"></script>
     <script type="application/javascript">transformicons.add('.tcon')</script>
+    <!--Script del Modal cuando dan en finalizar reserva-->
     <script>
       $(document).ready(function(){
         $(".finalizar").click(function(){
@@ -236,6 +240,7 @@
         });
       });
     </script>
+      <!--Script del Modal cuando dan si en finalizar reserva-->
       <script>
       $(document).ready(function(){
         $(".si").click(function(){
@@ -243,6 +248,7 @@
         });
       });
     </script>
+    <!--Script del Modal cuando dan en editar reserva-->
     <script>
       $(document).ready(function(){
         $(".editar").click(function(){
@@ -250,6 +256,7 @@
         });
       });
     </script>
+    <!--Script del Modal cuando dan en si editar reserva-->
     <script>
       $(document).ready(function(){
         $(".3").click(function(){

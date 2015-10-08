@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" href="../icons/favicon.ico" type="image/x-icon"/>
+    <meta name="autor" content="Emmanuel Deossa"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">
+    <title>SoftKOI Prototype</title>
+  </head>
+  <body>
+    <header>
+      <ul class="menu">
+         <li><a href=""><img src="../icons/admin.png" alt=""/></a></li>
+         <li><a href="inventario.html"><img src="../icons/1-small.png" alt=""/></a></li>
+         <li><a href="ventas.html"><img src="../icons/2-small.png" alt=""/></a></li>
+         <li><a href="cambios.html"><img src="../icons/3-small.png" alt=""/></a></li>
+         <li><a href="consolas.html"><img src="../icons/4-small.png" alt=""/></a></li>
+         <li><a href="pagos.html"><img src="../icons/5-small.png" alt=""/></a></li>
+         <li><a href="usuarios.html"><img src="../icons/6-small.png" alt=""/></a></li>
+         <li><a href="clientes.html"><img src="../icons/7-small.png" alt=""/></a></li>
+         <li><a href="cartera.html"><img src="../icons/8-small.png" alt=""/></a></li>
+         <li><a href="agenda.html"><img src="../icons/9-small.png" alt=""/></a></li>
+      </ul>
+    </header>
+    <div class="container">
+      <div class="navbar">
+        <div class="icon">
+          <button id="iconmenu" type="button" aria-label="toggle menu" class="tcon tcon-menu--xcross"><span aria-hidden="true" class="tcon-menu__lines"></span><span class="tcon-visuallyhidden">Toggle menu</span></button>
+        </div>
+        <div class="alerts">
+           <a href="#"><img src="../icons/calendar.svg" class="first"/></a>
+           <a href="#"><img src="../icons/message.svg" class="second"/></a>
+           <a href="#"><img src="../icons/notifications.svg" class="last"/></a>
+           <a class="btn ui button">Perfil</a>
+        </div>
+      </div>
+      <div class="ui container">
+        <div class="ui orange clearing  inverted segment">
+          <h3  class="ui left floated header"> <i class="game icon"></i>
+            <div class="content">Reportes Consolas</div>
+          </h3>        
+        </div>
+         <div class="sixteen wide inverted column">
+            <div class="ui black segment">
+              <div class="ui form">
+                <div class="three fields">
+                  <div class="field">
+                    <label >Seleccionar Consola</label>
+                    <div class="ui action input">
+                      <select class="ui dropdown">
+                        <option value="0">Filtrar por Consola</option>
+                        <option value="1">PlayStation3</option>
+                        <option value="2">Xbox360</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="required field">
+                    <label >Dia Inicio</label>
+                    <input type="Date">
+                  </div>
+                  <div class="required field">
+                    <label >Dia Final</label>
+                    <input type="Date">
+                  </div>
+                </div>
+              </div>
+              <div class="ui divider"> </div>
+              <div class="ui segments">
+                <div class="ui black segment">
+                  <h3>Reporte N° 3 &nbsp;&nbsp; &nbsp;  -&nbsp; &nbsp;  Consolas&nbsp; &nbsp;  - &nbsp;&nbsp; &nbsp;  Desde:07/10/2015 &nbsp;&nbsp; &nbsp;  -&nbsp; &nbsp; Hasta: 10/10/2015</h3>
+                </div>
+                <div class="ui secondary grey segment">
+                  <table class="ui unstackable selectable celled striped table">
+                     <thead>
+                        <tr><th>N°</th>
+                        <th>Cliente</th>
+                        <th>Consola</th>
+                        <th>Fecha</th>
+                        <th>Valor</th>
+                      </tr></thead>
+                    <tbody>
+                      <tr>
+                        <td>005</td>
+                        <td>Juan</td>
+                        <td>Xbox360</td>
+                        <td>07/10/2015</td>
+                        <td>$2.000</td>
+                      </tr>
+                      <tr>
+                        <td>006</td>
+                        <td>Felipe</td>
+                        <td>PlayStation3</td>
+                        <td>07/10/2015</td>
+                        <td>$3.000</td>
+                      </tr>
+                      <tr>
+                        <td>007</td>
+                        <td>Luis</td>
+                        <td>Xbox360</td>
+                        <td>09/10/2015</td>
+                        <td>$1.000</td>
+                      </tr>
+                      <tr>
+                        <td>008</td>
+                        <td>Juan</td>
+                        <td>PlayStation3</td>
+                        <td>09/10/2015</td>
+                        <td>$2.000</td>
+                      </tr>
+                      <tr>
+                        <td>005</td>
+                        <td>Luisa</td>
+                        <td>Xbox360</td>
+                        <td>10/10/2015</td>
+                        <td>$2.000</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="ui divider"></div>
+                  <div align="center" class="sixteen wide column center aligned">
+                    <button class="ui blue right aligned button"><i class="file pdf outline icon"></i>GENERAR REPORTE </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="../semantic/dist/semantic.min.js"></script>
+    <script src="../js/menubar.js">  </script>
+    <script src="../js/iconmenu.js"></script>
+    <script type="application/javascript">transformicons.add('.tcon')</script>
+  </body>
+</html>  

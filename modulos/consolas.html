@@ -47,7 +47,7 @@
         </div>
         <div class="ui grid">
           <div class="eight wide column">
-            <div class="ui form">
+            <form class="ui form">
               <div class="required field">
                 <label>Responsable</label>
                 <input type="text" placeholder="Nombre">
@@ -59,7 +59,7 @@
                 <div class="required field">
                 <label>Hora de finalizacion</label>
                 <input type="time">
-              </div>
+              </form>
             </div>
           </div>
 
@@ -88,18 +88,21 @@
             </div>
           </div>
           
-
+          <div class="eight wide column left aligned">
+            <!--Boton de informe-->
+            <a href="consolas_repo.html"><button class="ui blue button" align="left">GENERAR REPORTE </button></a>
+          </div>
+                  
+          <!--Cuadro de busqueda-->
+          <div class="eight wide column right aligned">
+              <div class="ui icon input">
+                  <input class="prompt" type="text" placeholder="Ingrese algun dato">
+                  <i class="search icon"></i>
+              </div>
+          </div>
           <!--Aca inicia la tabla-->
           <div class="sixteen wide column">
             <table class="ui celled table">
-            <!--Cuadro de busqueda-->
-              <div class="ui search" align="right">
-               <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Ingrese algun dato">
-                    <i class="search icon"></i>
-                </div>
-                <div class="results"></div>
-              </div>
               <thead>
                 <tr><th>N°</th>
                 <th>Cliente</th>
@@ -157,7 +160,8 @@
         </div>
       </div>
     </div>
-
+          
+          <!-- Modal cuando seleccione registrar-->
          <div class="ui modal 1">
         <div class="header">Registro de reserva</div>
         <div class="content">
@@ -173,7 +177,7 @@
           </div>
         </div>
       </div>
-      
+      <!-- Modal cuando seleccione aceptar el registro-->
       <div class="ui modal 2">
         <div class="header">Registro de reserva</div>
         <div class="content">
@@ -192,6 +196,7 @@
     <script src="../js/menubar.js">  </script>
     <script src="../js/iconmenu.js"></script>
     <script type="application/javascript">transformicons.add('.tcon')</script>
+    <!-- Scipt de Modal cuando seleccione registrar-->
     <script>
       $(document).ready(function(){
         $(".registrar").click(function(){
@@ -199,6 +204,7 @@
         });
       });
     </script>
+      <!--Script de Modal cuando seleccione aceptar el registro-->
       <script>
       $(document).ready(function(){
         $(".si").click(function(){
