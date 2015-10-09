@@ -1,42 +1,102 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon"/>
-    <meta name="autor" content="Emmanuel Deossa"/>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-    <link rel="stylesheet" href="css/styles.css"/>
-    <link rel="stylesheet" href="semantic/dist/semantic.min.css"/>
-    <title>SoftKOI |  Home</title>
-  </head>
-  <body>
-    <header>
-      <ul class="menu">
-        <li><a href=""><img src="icons/admin.png" alt=""/></a></li>
-        <li><a href="modulos/inventario.html"><img src="icons/1-small.png" alt=""/></a></li>
-        <li><a href="modulos/ventas.html"><img src="icons/2-small.png" alt=""/></a></li>
-        <li><a href="modulos/cambios.html"><img src="icons/3-small.png" alt=""/></a></li>
-        <li><a href="modulos/consolas.html"><img src="icons/4-small.png" alt=""/></a></li>
-        <li><a href="modulos/pagos.html"><img src="icons/5-small.png" alt=""/></a></li>
-        <li><a href="modulos/usuarios.html"><img src="icons/6-small.png" alt=""/></a></li>
-        <li><a href="modulos/clientes.html"><img src="icons/7-small.png" alt=""/></a></li>
-        <li><a href="modulos/cartera.html"><img src="icons/8-small.png" alt=""/></a></li>
-        <li><a href="modulos/agenda.html"><img src="icons/9-small.png" alt=""/></a></li>
-      </ul>
-    </header>
-    <div class="container">
-      <div class="navbar">
-        <div class="icon">
-          <button id="iconmenu" type="button" aria-label="toggle menu" class="tcon tcon-menu--xcross"><span aria-hidden="true" class="tcon-menu__lines"></span><span class="tcon-visuallyhidden">Toggle menu</span></button>
-        </div>
-        <div class="alerts"><a href="#"><img src="icons/calendar.svg" class="first"/></a><a href="#"><img src="icons/message.svg" class="second"/></a><a href="#"><img src="icons/notifications.svg" class="last"/></a><a class="btn ui button">Perfil</a></div>
-      </div>
-      <div class="contenido">
-        <h1>Hola, esta es la pagina principál.</h1>
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"> </script>
-    <script src="js/iconmenu.js"></script>
-    <script type="application/javascript">transformicons.add('.tcon')</script>
-  </body>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="autor" content="Miguel Arenas">
+		<title>SoftKoi | Login</title>
+		<link rel="stylesheet" href="css/cssLogin.css">
+		<link rel="stylesheet" href="css/styles.css"/>
+    	<link rel="stylesheet" href="semantic/dist/semantic.min.css"/>
+	</head>
+	<body>
+  		<div class="ui raised very padded text container segment">
+  			<br><br><br>
+		  <h1 class="ui header" align="center">SoftKoi</h1>
+		  	<div class="content_login">
+		  		<div class="ui one column middle aligned very relaxed stackable grid" align="center">
+				  <div class="column">
+				    <div class="ui form">
+				      	<div class="field">
+				        	<label>Username</label>
+				        	<div class="ui left icon input">
+				          		<input type="text" placeholder="Username">
+				          		<i class="user icon"></i>
+				        	</div>
+				      	</div>
+				      	<div class="field">
+				        	<label>Password</label>
+				        	<div class="ui left icon input">
+				          		<input type="password">
+				          		<i class="lock icon"></i>
+				        	</div>
+				      	</div>
+				      	<div class="ui sixteen  wide column">
+				              <a href="index.html" class="ui blue button">Ingresar</a>
+				              <button class="ui red submit button olvidar">Olvide mi contraseña</button>
+				      	</div>
+
+				    </div>
+				  </div>
+				</div>
+		  	</div>
+
+		</div>
+		<!--Aca esta la modal para recuperar contraseña-->
+		<div class="ui modal rescue">
+			<div class="header">Recuperar Constraseña</div>
+	        <div class="content">
+	        	<div class="required field" align="center">
+	          		<label >Ingrese su documento</label> <br>
+	          		<input type="text" placeholder="Documento">
+	          	</div>
+	          	<div class="actions" align="right">
+		            <div class="ui black deny button ">
+		              Cancelar
+		            </div>
+		            <div class="ui positive right labeled icon button aceptar">
+		              Aceptar
+		              <i class="checkmark icon"></i>
+		            </div>
+	          	</div>
+        	</div>
+		</div>
+
+		<div class="ui modal rescue2">
+			<div class="header">Recuperar Constraseña</div>
+	        <div class="content">
+	        	<p align="center"> Su contraseña se ha recuperado con éxito, revise su correo</p>
+	          	<div class="actions" align="right">
+		            <div class="ui black deny button ">
+		              Cancelar
+		            </div>
+		            <div class="ui positive right labeled icon button aceptar">
+		              Aceptar
+		              <i class="checkmark icon"></i>
+		            </div>
+	          	</div>
+        	</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="semantic/dist/semantic.min.js"></script>
+		<script src="js/menubar.js">  </script>
+    	<script src="js/iconmenu.js"></script>
+    	<script type="application/javascript">transformicons.add('.tcon')</script>
+
+		<!--Script para la modal de recuperar contraseña-->
+		<script>
+			$(document).ready(function(){
+       			$(".olvidar").click(function(){
+         			$('.rescue').modal('show');
+        		});
+     		});
+		</script>
+		<script>
+			$(document).ready(function(){
+       			$(".aceptar").click(function(){
+         			$('.rescue2').modal('show');
+        		});
+     		});
+		</script>
+	</body>
 </html>
