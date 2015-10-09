@@ -1,10 +1,13 @@
 $(document).ready(function(){
 
    $('.ui.checkbox')
-     .checkbox()
-   ;
+     .checkbox();
+
    $('select.dropdown')
-  .dropdown()
+   .dropdown();
+
+  $('.ui.inline.dropdown')
+   .dropdown()
 ;
 
 });
