@@ -14,6 +14,10 @@ li {
   font-family: "Titillium Web", Oxygen, "Droid Sans", Arial, Verdana !important;
 }
 
+.ui.left.floated.header .content{
+   text-transform: uppercase;
+}
+
 body {
   background: #fff;
   color: #212121;
@@ -68,6 +72,10 @@ body {
 }
 .ui.orange.clearing.inverted.segment{
   padding-bottom: 3px;
+}
+
+.ui.right.floated.button.orange{
+   background-color: #F2711C !important;
 }
 
 h3.ui.left.floated.header {
