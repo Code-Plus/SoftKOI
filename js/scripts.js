@@ -17,5 +17,17 @@ $(document).ready(function(){
       $('.rescue').modal('show');
    });
 
+   $(".alert").click(function(){
+     $('.ui.basic.modal')
+       .modal('show');
+   });
+
+   $(".win").click(function(){
+     $('.primera').modal('show');
+   });
+
+   $(".yes").click(function(){
+     $('.segunda').modal('show');
+   });
 
 });
