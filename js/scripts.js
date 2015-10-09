@@ -7,7 +7,15 @@ $(document).ready(function(){
    .dropdown();
 
   $('.ui.inline.dropdown')
-   .dropdown()
-;
+   .dropdown();
+
+   $(".aceptar").click(function(){
+      $('.rescue2').modal('show');
+   });
+
+   $(".olvidar").click(function(){
+      $('.rescue').modal('show');
+   });
+
 
 });
