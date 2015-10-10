@@ -45,4 +45,18 @@ $(document).ready(function(){
   $(".aceptar_edicion_alquiler").click(function(){
     $('.editar_alquiler3').modal('show');
   });
+
+  //SCRIPTS DEL MODULO DE USUARIOS
+  //Script para cambiar contraseña del perfil
+  $(".cambiar_pass").click(function(){
+     $('.cambiar_pass2').modal('show');
+  });
+  //Script para consultar un usuario
+  $(".consultar_usuario").click(function(){
+    $('.perfil_usuario').modal('show');
+  });
+  //Script cuando se registra un usuario
+  $(".registro_usuario").click(function(){
+     $('.registro_usuario2').modal('show');
+  });
 });
