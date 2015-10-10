@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
    $('.ui.checkbox')
-     .checkbox();
+   .checkbox();
 
    $('select.dropdown')
    .dropdown();
 
-  $('.ui.inline.dropdown')
+   $('.ui.inline.dropdown')
    .dropdown();
 
    $(".aceptar").click(function(){
