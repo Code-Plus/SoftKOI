@@ -1750,7 +1750,7 @@ body.login-content:before {
 
 .fc-toolbar .ui-button > span {
   position: relative;
-  font-family: 'Material Design Iconic Font';
+  font-family: 'fix';
   font-size: 20px;
   color: #FFF;
   line-height: 100%;
@@ -1852,8 +1852,8 @@ div.fc-row {
 }
 
 .event-tag > span.selected:before {
-  font-family: 'Material Design Iconic Font';
-  content: "\f299";
+  font-family: 'fix';
+  content: "\e802";
   position: absolute;
   text-align: center;
   top: 3px;

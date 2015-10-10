@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fix';
-  src: url('../font/fix.eot?9466857');
-  src: url('../font/fix.eot?9466857#iefix') format('embedded-opentype'),
-       url('../font/fix.woff?9466857') format('woff'),
-       url('../font/fix.ttf?9466857') format('truetype'),
-       url('../font/fix.svg?9466857#fix') format('svg');
+  src: url('../../font/fix.eot');
+  src: url('../../font/fix.eot') format('embedded-opentype'),
+       url('../../font/fix.woff') format('woff'),
+       url('../../font/fix.ttf') format('truetype'),
+       url('../../font/fix.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -18,42 +18,47 @@
   }
 }
 */
- 
+
  [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fix";
   font-style: normal;
   font-weight: normal;
   speak: none;
- 
+
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
- 
+
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
- 
+
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
- 
+
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
- 
+
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
- 
+
   /* Font smoothing. That was taken from TWBS */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
- 
-.icon-angle-left:before { content: '\e800'; } /* '' */
-.icon-angle-right:before { content: '\e801'; } /* '' */
-.icon-ok:before { content: '\e802'; } /* '' */
+
+.ui-icon-circle-triangle-w:before { content: '\e800'; } /* '' */
+.ui-icon-circle-triangle-e:before { content: '\e801'; } /* '' */
+.ui-icon-ok:before { content: '\e802'; } /* '' */
+
+
+.ui-icon-circle-triangle-w { content: '\e800'; } /* '' */
+.ui-icon-circle-triangle-e { content: '\e801'; } /* '' */
+.selected { content: '\e802'; } /* '' */
