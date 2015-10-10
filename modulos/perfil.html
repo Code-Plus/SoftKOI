@@ -62,7 +62,7 @@
 			        		<div class="field">
 			        			<label>Contraseña</label>
 			        			<input type="password" value="123456" readonly="readonly">
-			        			<button class="ui blue button pass">Cambiar </button>
+			        			<button class="ui blue button cambiar_pass">Cambiar </button>
 			        		</div>
 		        		</form>
 
@@ -133,9 +133,9 @@
 		        	</div>
 		        	 <div class="sixteen wide column" align="center">
 			            <div class="ui center aligned buttons ">
-			              <button class="ui button">Editar</button>
+			              <button class="ui habilitar_perfil">Editar</button>
 			              <div class="or" data-text="O"></div>
-			              <button class="ui positive button registrar">Guardar</button>
+			              <button class="ui positive button editar_perfil">Guardar</button>
 			            </div>
 			         </div>
 		        </div>
@@ -173,8 +173,8 @@
   		<script src="../js/scripts.js"></script>
   		<script>
   			$(document).ready(function(){
-        		$(".si").click(function(){
-          			$('.2').modal('show');
+        		$(".cambiar_pass").click(function(){
+          			$('.pass').modal('show');
        			 });
       		});
   		</script>

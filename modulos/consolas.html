@@ -84,7 +84,7 @@
             <div class="ui center aligned buttons ">
               <button class="ui button">Cancelar</button>
               <div class="or" data-text="O"></div>
-              <button class="ui positive button registrar">Registrar</button>
+              <button class="ui positive button registrar_alquiler">Registrar</button>
             </div>
           </div>
 
@@ -162,7 +162,7 @@
     </div>
 
           <!-- Modal cuando seleccione registrar-->
-         <div class="ui modal 1">
+         <div class="ui modal registro_alquiler">
         <div class="header">Registro de reserva</div>
         <div class="content">
           <p>¿Desea registrar la reserva?</p>
@@ -170,7 +170,7 @@
             <div class="ui black deny button ">
               No
             </div>
-            <div class="ui positive right labeled icon button si">
+            <div class="ui positive right labeled icon button aceptar_alquiler">
               Si
               <i class="checkmark icon"></i>
             </div>
@@ -178,7 +178,7 @@
         </div>
       </div>
       <!-- Modal cuando seleccione aceptar el registro-->
-      <div class="ui modal 2">
+      <div class="ui modal registro_alquiler2">
         <div class="header">Registro de reserva</div>
         <div class="content">
           <p>La reserva se ha registrado con exito</p>
@@ -193,24 +193,9 @@
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../semantic/dist/semantic.min.js"></script>
+    <script src="../js/script.js"></script>
     <script src="../js/menubar.js">  </script>
     <script src="../js/iconmenu.js"></script>
-    <script type="application/javascript">transformicons.add('.tcon')</script>
-    <!-- Scipt de Modal cuando seleccione registrar-->
-    <script>
-      $(document).ready(function(){
-        $(".registrar").click(function(){
-          $('.1').modal('show');
-        });
-      });
-    </script>
-      <!--Script de Modal cuando seleccione aceptar el registro-->
-      <script>
-      $(document).ready(function(){
-        $(".si").click(function(){
-          $('.2').modal('show');
-        });
-      });
-    </script>
+    <script type="application/javascript">transformicons.add('.tcon')</script> 
   </body>
 </html>
