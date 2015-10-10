@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="../css/styles.css"/>
     <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">
-    <title>SoftKOI | Inventario</title>
+    <title>SoftKOI Prototype | Tipo producto</title>
   </head>
   <body>
     <header>
@@ -33,62 +33,31 @@
            <a href="#"><img src="../icons/calendar.svg" class="first"/></a>
            <a href="#"><img src="../icons/message.svg" class="second"/></a>
            <a href="#"><img src="../icons/notifications.svg" class="last"/></a>
-           <a href="perfil.html" class="btn ui button">Perfil</a>
+           <a class="btn ui button">Perfil</a>
         </div>
       </div>
       <div class="ui container">
          <div class="ui clearing inverted segment verde">
           <h3 class="ui left floated header"><i class="write icon"></i>
-             <div class="content">REGISTRO DE PRODUCTO</div>
+             <div class="content">REGISTRO TIPO DE PRODUCTO</div>
           </h3>
-          <div class="ui right floated button">REF N° 001</div>
+          <div class="ui right floated button">REF N° 1001</div>
          </div>
       <div class="ui segment">
         <div class="ui grid">
-            <div class="eight wide column">
+            <div class="sixteen wide column">
               <div class="ui form">
                 <div class="required field">
                     <label>Nombre</label>
                     <input type="text" placeholder="Nombre">
-                  </div>
-                  <div class="required field">
-                    <label>Tipo producto</label>
-                    <select class="ui dropdown">
-                      <option value="">Tipo producto</option>
-                      <option value="1">Prendas</option>
-                      <option value="0">Películas</option>
-                      <option value="0">Consolas</option>
-                    </select>
-                  </div>
-                  <div class="required field">
-                    <label>Valor</label>
-                    <input type="text" placeholder="Valor">
-                  </div>
-              </div>
-            </div>
-
-            <div class="eight wide column">
-              <div class="ui form">
+                </div>
                 <div class="field">
                   <label>Descripción</label>
                   <textarea placeholder="Descripción" style="padding-top: 15px;" rows="5"></textarea>
                 </div>
-                <div class="required field">
-                  <label>Categoría</label>
-                  <select class="ui dropdown">
-                    <option value="">Categoría</option>
-                    <option value="1">Camisetas</option>
-                    <option value="0">Camisas</option>
-                    <option value="0">Pantalones</option>
-                    <option value="0">Pantalonetas</option>
-                    <option value="0">Gorras</option>
-                    <option value="0">Gafas</option>
-                  </select>
-                </div>
               </div>
             </div>
-
-               <div class="sixteen wide column" align="center">
+            <div class="sixteen wide column" align="center">
                   <div class="ui center aligned buttons alert">
                      <button class="ui button">Cancelar</button>
                      <div class="or" data-text="O"></div>
@@ -104,7 +73,7 @@
                 <label>Buscar por </label>
                 <select class="ui dropdown">
                   <option value="">Buscar por</option>
-                  <option value="1">Tipo documento</option>
+                  <option value="1">Referencia</option>
                   <option value="0">Nombre</option>
                 </select>
                 <div style="display: inline-block;" class="ui search">
@@ -120,10 +89,8 @@
                   <tr>
                     <th></th>
                     <th>Referencia</th>
-                    <th>Estado</th>
                     <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Detalles</th>
+                    <th>Descripción</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -133,15 +100,9 @@
                         <input type="checkbox"> <label></label>
                       </div>
                     </td>
-                    <td>001</td>
-                    <td>Disponible</td>
-                    <td>Camisetas azules</td>
-                    <td>20</td>
-                    <td>
-                      <button class="ui icon button">
-                        <i class="zoom icon"></i>
-                      </button>
-                    </td>
+                    <td>1001</td>
+                    <td>Prendas</td>
+                    <td>Ropa en general</td>
                   </tr>
                   <tr>
                     <td class="collapsing">
@@ -149,15 +110,9 @@
                         <input type="checkbox"> <label></label>
                       </div>
                     </td>
-                    <td>002</td>
-                    <td>Agotado</td>
-                    <td>Películas de terror</td>
-                    <td>2</td>
-                    <td>
-                      <button class="ui icon button">
-                        <i class="zoom icon"></i>
-                      </button>
-                    </td>
+                    <td>1002</td>
+                    <td>Películas</td>
+                    <td>Películas de géneros variados</td>
                   </tr>
                   <tr>
                     <td class="collapsing">
@@ -165,15 +120,9 @@
                         <input type="checkbox"> <label></label>
                       </div>
                     </td>
-                    <td>003</td>
-                    <td>Disponible</td>
-                    <td>Consola Play Station</td>
-                    <td>5</td>
-                    <td>
-                      <button class="ui icon button">
-                        <i class="zoom icon"></i>
-                      </button>
-                    </td>
+                    <td>1003</td>
+                    <td>Consolas</td>
+                    <td>Consolas para la reserva</td>
                   </tr>
                 </tbody>
                 <tfoot class="full-width">
@@ -198,7 +147,7 @@
       <div class="ui modal primera">
         <div class="header">Confirmar edición</div>
         <div class="content">
-         <p>¿Desea editar el producto seleccionado?</p>
+         <p>¿Desea editar el tipo seleccionado?</p>
          <div class="actions" align="right">
            <div class="ui black deny button ">
              No
@@ -212,61 +161,34 @@
      </div>
 
      <div class="ui modal segunda">
-       <div class="header">Editar producto</div>
+       <div class="header">Editar tipo producto</div>
        <div class="content">
          <div class="ui grid">
-             <div class="eight wide column">
+             <div class="sixteen wide column">
                <div class="ui form">
                  <div class="required field">
                      <label>Nombre</label>
                      <input type="text" placeholder="Nombre">
-                   </div>
-                   <div class="required field">
-                     <label>Tipo producto</label>
-                     <select class="ui dropdown">
-                       <option value="">Tipo producto</option>
-                       <option value="1">Prendas</option>
-                       <option value="0">Películas</option>
-                       <option value="0">Consolas</option>
-                     </select>
-                   </div>
-                   <div class="required field">
-                     <label>Valor</label>
-                     <input type="text" placeholder="Valor">
-                   </div>
-               </div>
-             </div>
-
-             <div class="eight wide column">
-               <div class="ui form">
+                 </div>
                  <div class="field">
                    <label>Descripción</label>
                    <textarea placeholder="Descripción" style="padding-top: 15px;" rows="5"></textarea>
                  </div>
-                 <div class="required field">
-                   <label>Categoría</label>
-                   <select class="ui dropdown">
-                     <option value="">Categoría</option>
-                     <option value="1">Camisetas</option>
-                     <option value="0">Camisas</option>
-                     <option value="0">Pantalones</option>
-                     <option value="0">Pantalonetas</option>
-                     <option value="0">Gorras</option>
-                     <option value="0">Gafas</option>
-                   </select>
-                 </div>
+               </div>
+             <div class="eight wide column">
+               <div class="ui form">
                  <div class="inline fields">
                    <label>Estado</label>
                    <div class="field">
                      <div class="ui radio checkbox">
                        <input type="radio" name="frequency" checked="checked">
-                       <label>Disponible</label>
+                       <label>Habilitado</label>
                      </div>
                   </div>
                   <div class="field">
                     <div class="ui radio checkbox">
                       <input type="radio" name="frequency">
-                      <label>Agotado</label>
+                      <label>Deshabilitado</label>
                     </div>
                   </div>
                 </div>
@@ -284,14 +206,14 @@
     <div class="ui basic modal">
       <i class="close icon"></i>
       <div class="header">
-        Registro producto
+        Registro Tipo de producto
       </div>
       <div class="image content">
         <div class="image">
           <i class="write icon"></i>
         </div>
         <div class="description">
-          <p>Producto registrado exitosamente.</p>
+          <p>Tipo de producto registrado exitosamente.</p>
         </div>
       </div>
       <div class="actions">
@@ -309,5 +231,5 @@
     <script src="../js/scripts.js"></script>
     <script src="../js/iconmenu.js"></script>
     <script type="application/javascript">transformicons.add('.tcon')</script>
-  </body>
+    </body>
 </html>
