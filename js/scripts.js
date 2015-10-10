@@ -9,7 +9,7 @@ $(document).ready(function(){
   $('.ui.inline.dropdown')
    .dropdown();
 
-   
+
 
    //Script de olvidar contraseña
    $(".olvidar").click(function(){
@@ -20,7 +20,7 @@ $(document).ready(function(){
       $('.rescue2').modal('show');
    });
 
-<<<<<<< HEAD
+//SCRIPTS MÓDULO INVENTARIO
    $(".alert").click(function(){
      $('.ui.basic.modal')
        .modal('show');
@@ -33,8 +33,8 @@ $(document).ready(function(){
    $(".yes").click(function(){
      $('.segunda').modal('show');
    });
-=======
-  //SCRIPTS DEL MODULO CONSOLAS 
+
+  //SCRIPTS DEL MODULO CONSOLAS
   //Scipt de Modal cuando seleccione registrar
   $(".registrar_alquiler").click(function(){
     $('.registro_alquiler').modal('show');
@@ -59,7 +59,8 @@ $(document).ready(function(){
   $(".aceptar_edicion_alquiler").click(function(){
     $('.editar_alquiler3').modal('show');
   });
->>>>>>> 0956e3ad8d847770ee2274e2bccb04bbffe78b6e
+
+// 0956e3ad8d847770ee2274e2bccb04bbffe78b6e
 
   //SCRIPTS DEL MODULO DE USUARIOS
   //Script para cambiar contraseña del perfil
