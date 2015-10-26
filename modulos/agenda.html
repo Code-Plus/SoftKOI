@@ -13,10 +13,10 @@
     <link rel="stylesheet" type="text/css" href='../css/calendar/app.min.2.css'/>
     <link rel="stylesheet" type="text/css" href='../css/estilo-calendario.css'/>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-     <script src="../semantic/dist/semantic.min.js"></script>
+    <script src="../semantic/dist/semantic.min.js"></script>
     <script src='../js/moment.min.js'></script>
     <script src='../calendar/fullcalendar.js'></script>
-    <script src='../calendar/lang/es.js'></script>
+
 
     <title>SoftKOI Prototype</title>
 
@@ -32,8 +32,8 @@
          <li><a href="pagos.html"><img src="../icons/5-small.png" alt=""/></a></li>
          <li><a href="usuarios.html"><img src="../icons/6-small.png" alt=""/></a></li>
          <li><a href="clientes.html"><img src="../icons/7-small.png" alt=""/></a></li>
-         <li><a href="cartera.html"><img src="../icons/8-small.png" alt=""/></a></li>
          <li><a href="agenda.html"><img src="../icons/9-small.png" alt=""/></a></li>
+         <li><a href="../index.html"><img src="../icons/8-small.png" alt=""/></a></li>
       </ul>
     </header>
     <div class="container">
@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="contenido">
-      <!--AQUI IRÁ TU BONITO CÓDIGO -->
+
       <div id="calendar" class="fc fc-ltr ui-widget">
 
       </div>
@@ -98,7 +98,6 @@
 
 
 
-
     <script src="../js/menubar.js">  </script>
     <script src="../js/iconmenu.js"></script>
     <script type="application/javascript">transformicons.add('.tcon')</script>
@@ -108,6 +107,10 @@
       $(document).ready(function(){
         $("#dropdownm").click(function(){
           $('ui.dropdown').dropdown();
+        });
+
+        $("#calendar").fullCalendar({
+           lang: 'es'
         });
       });
     </script>

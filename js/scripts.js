@@ -60,7 +60,7 @@ $(document).ready(function(){
     $('.editar_alquiler3').modal('show');
   });
 
-// 0956e3ad8d847770ee2274e2bccb04bbffe78b6e
+
 
   //SCRIPTS DEL MODULO DE USUARIOS
   //Script para cambiar contraseña del perfil

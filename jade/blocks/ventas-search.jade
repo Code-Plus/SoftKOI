@@ -6,10 +6,17 @@ block head
 block content
    .ui.container
       .ui.clearing.teal.inverted.segment
-         h3.ui.left.floated.header
-            i.tag.icon
-            .content CONSULTAR VENTAS
-         div(class="ui teal right floated button")
+        h3.ui.left.floated.header
+          i.tag.icon
+          .content
+            .ui.inline.dropdown
+              .text CONSULTAR VENTAS
+              i.dropdown.icon
+              .menu
+                a.item(href='ventas.html') REGISTRO DE VENTA
+                a.item(href='ventas-report.html') REPORTES VENTAS
+        .ui.teal.right.floated.button
+
             
       .ui.stackable.grid
          .sixteen.wide.inverted.column
