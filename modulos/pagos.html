@@ -63,7 +63,7 @@
         <!--inicio de estadisticas por meses-->
           <div class="row">
             <div class="four wide column centered ">
-              <div class="mini-charts-item bgm-cyan">
+              <div class="mini-charts-item bgm-cyan" id="Mes1">
                   <div class="clearfix">
                     <div class="chart stats-bar"><canvas id="pcanvas" height="45" width="83" style="display: inline-block; width: 83px; height: 45px; vertical-align: top;"></canvas></div>
                         <div class="count">
@@ -74,7 +74,7 @@
               </div>
             </div>
             <div class="four wide column centered">
-              <div class="mini-charts-item bgm-lightgreen">
+              <div class="mini-charts-item bgm-lightgreen" id="Mes2">
                   <div class="clearfix">
                     <div class="chart stats-bar"><canvas id="pcanvas2" height="45" width="83" style="display: inline-block; width: 83px; height: 45px; vertical-align: top;"></canvas></div>
                         <div class="count">
@@ -85,7 +85,7 @@
               </div>
             </div>
             <div class="four wide column centered">
-              <div class="mini-charts-item bgm-orange">
+              <div class="mini-charts-item bgm-orange" id="Mes3">
                   <div class="clearfix">
                     <div class="chart stats-bar"><canvas id="pcanvas3" height="45" width="83" style="display: inline-block; width: 83px; height: 45px; vertical-align: top;"></canvas></div>
                         <div class="count">
@@ -229,7 +229,7 @@
             </div>
 
               <div class="actions">
-                <div class="ui black deny button">Cancelar</div>
+                <div class="ui button">Cancelar</div>
                 <div class="ui positive right labeled icon button">Aceptar
                   <i class="checkmark icon"></i>
                 </div>
@@ -240,7 +240,7 @@
       </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="../js/jquery-1.11.3.min.js" type="text/javascript"></script>
      <script src="../semantic/dist/semantic.min.js"></script>
     <script src="../Chart/Chart.js" type="text/javascript"></script>
     <script src="../js/stadistic.js" type="text/javascript"></script>
@@ -255,6 +255,15 @@
         });
         $("#repo").click(function(){
           $('.ui.modal.2').modal('show');
+        });
+        $("#Mes3").click(function(){
+          window.Linea = new Chart(contexto).Line(Mes3,{showScale: true,responsive : true});
+        });
+        $("#Mes2").click(function(){
+          window.Linea = new Chart(contexto).Line(Mes2,{showScale: true,responsive : true});
+        });
+        $("#Mes1").click(function(){
+          window.Linea = new Chart(contexto).Line(Mes1,{showScale: true,responsive : true});
         });
       });
     </script>

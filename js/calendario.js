@@ -107,7 +107,7 @@
 
                 //Create and ddd Action button with dropdown in Calendar header.
                 var actionMenu ='<ul class="actions actions-alt" id="fc-actions">' +
-                                    '<li class="dropdown">' +
+                                    '<li class="dropdown" id="menucalendario">' +
                                         '<a href="#" id="dropdownm"><i class="ellipsis vertical icon"></i></a>' +
                                         '<div class="ui dropdown">' +
                                         '<ul class="dropdown-menu dropdown-menu-right">' +
