@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="../css/styles.css"/>
     <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">
-    <title>SoftKOI Prototype | Categorías</title>
+    <title>SoftKOI Prototype | Bajas</title>
   </head>
   <body>
     <header>
@@ -41,51 +41,18 @@
           <h3 class="ui left floated header"><i class="write icon"></i>
             <div class="content">
               <div class="ui inline dropdown">
-                <div class="text">REGISTRO CATEGORÍA</div><i class="dropdown icon"></i>
+                <div class="text">REGISTRAR BAJA</div><i class="dropdown icon"></i>
                 <div class="menu">
                   <a href="tipo-producto-inv.html" class="item">REGISTRO TIPO DE PRODUCTO</a>
                   <a href="inventario.html" class="item">REGISTRO DE PRODUCTO</a>
+                  <a href="categoria-inv.html" class="item">REGISTRO CATEGORIA</a>
                   <a href="entrada-inv.html" class="item">REGISTRAR ENTRADA</a>
-                  <a href="bajas-inv.html" class="item">REGISTRAR BAJA</a>
                   <a href="consultarBaja-inv.html" class="item">CONSULTAR BAJA</a>
                 </div>
               </div>
             </div>
           </h3>
-          <div class="ui right floated button">REF N° 0110</div>
          </div>
-      <div class="ui segment">
-        <div class="ui grid">
-            <div class="sixteen wide column">
-              <div class="ui form">
-                <div class="required field">
-                    <label>Nombre</label>
-                    <input type="text" placeholder="Nombre">
-                </div>
-                <div class="field">
-                  <label>Descripción</label>
-                  <textarea placeholder="Descripción" style="padding-top: 15px;" rows="5"></textarea>
-                </div>
-                <div class="required field">
-                  <label>Tipo producto</label>
-                  <select class="ui dropdown">
-                    <option value="">Tipo producto</option>
-                    <option value="1">Prendas</option>
-                    <option value="0">Películas</option>
-                    <option value="0">Consolas</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="sixteen wide column" align="center">
-                  <div class="ui center aligned buttons alert">
-                     <button class="ui button">Cancelar</button>
-                     <div class="or" data-text="O"></div>
-                     <button class="ui positive button">Registrar</button>
-                  </div>
-               </div>
-         </div>
-        </div>
         <div class="ui segment">
           <div class="ui grid">
             <div class="sixteen wide column">
@@ -93,14 +60,14 @@
                 <label>Buscar por </label>
                 <select class="ui dropdown">
                   <option value="">Buscar por</option>
-                  <option value="1">Referencia</option>
+                  <option value="1">Tipo documento</option>
                   <option value="0">Nombre</option>
                 </select>
                 <div style="display: inline-block;" class="ui search">
                   <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="Buscar">
-                    <i class="search icon"></i>
-                  </div>
+  					<input type="text" placeholder="Buscar">
+  					<i class="inverted circular search link icon"></i>
+				  </div>
                   <div class="results"></div>
                 </div>
               </div>
@@ -109,9 +76,10 @@
                   <tr>
                     <th></th>
                     <th>Referencia</th>
+                    <th>Estado</th>
                     <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Tipo de producto</th>
+                    <th>Cantidad</th>
+                    <th>Detalles</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -121,10 +89,15 @@
                         <input type="checkbox"> <label></label>
                       </div>
                     </td>
-                    <td>0110</td>
-                    <td>Camisas</td>
-                    <td>Camisas colores variados</td>
-                    <th>Prendas</th>
+                    <td>001</td>
+                    <td>Disponible</td>
+                    <td>Camisetas azules</td>
+                    <td>20</td>
+                    <td>
+                      <button class="ui icon button">
+                        <i class="zoom icon"></i>
+                      </button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="collapsing">
@@ -132,10 +105,15 @@
                         <input type="checkbox"> <label></label>
                       </div>
                     </td>
-                    <td>0220</td>
-                    <td>Género comedia</td>
-                    <td>Películas categoría comedia</td>
-                    <th>Películas</th>
+                    <td>002</td>
+                    <td>Disponible</td>
+                    <td>Películas de terror</td>
+                    <td>12</td>
+                    <td>
+                      <button class="ui icon button">
+                        <i class="zoom icon"></i>
+                      </button>
+                    </td>
                   </tr>
                   <tr>
                     <td class="collapsing">
@@ -143,19 +121,24 @@
                         <input type="checkbox"> <label></label>
                       </div>
                     </td>
-                    <td>0330</td>
-                    <td>Gafas</td>
-                    <td>Gafas de sol</td>
-                    <th>Prendas</th>
+                    <td>003</td>
+                    <td>Disponible</td>
+                    <td>Consola Play Station</td>
+                    <td>23</td>
+                    <td>
+                      <button class="ui icon button">
+                        <i class="zoom icon"></i>
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
                 <tfoot class="full-width">
                   <tr>
                     <th></th>
-                    <th colspan="4">
+                    <th colspan="5">
                       <div class="ui green icon small button win">
-                        <i class="edit icon"></i>
-                        Editar
+                        <i class="ban icon"></i>
+                        Dar de baja
                       </div>
                     </th>
                   </tr>
@@ -169,9 +152,9 @@
       <!--Ventanas modales-->
 
       <div class="ui modal primera">
-        <div class="header">Confirmar edición</div>
+        <div class="header">Confirmar baja</div>
         <div class="content">
-         <p>¿Desea editar la categoría seleccionada?</p>
+         <p>¿Desea dar de baja el producto seleccionado?</p>
          <div class="actions" align="right">
            <div class="ui black deny button ">
              No
@@ -183,82 +166,6 @@
          </div>
        </div>
      </div>
-
-     <div class="ui modal segunda">
-       <div class="header">Editar categoría</div>
-       <div class="content">
-         <div class="ui grid">
-             <div class="sixteen wide column">
-               <div class="ui form">
-                 <div class="required field">
-                     <label>Nombre</label>
-                     <input type="text" placeholder="Nombre">
-                 </div>
-                 <div class="field">
-                   <label>Descripción</label>
-                   <textarea placeholder="Descripción" style="padding-top: 15px;" rows="5"></textarea>
-                 </div>
-                 <div class="required field">
-                   <label>Tipo producto</label>
-                   <select class="ui dropdown">
-                     <option value="">Tipo producto</option>
-                     <option value="1">Prendas</option>
-                     <option value="0">Películas</option>
-                     <option value="0">Consolas</option>
-                   </select>
-                 </div>
-               </div>
-             <div class="eight wide column">
-               <div class="ui form">
-                 <div class="inline fields">
-                   <label>Estado</label>
-                   <div class="field">
-                     <div class="ui radio checkbox">
-                       <input type="radio" name="frequency" checked="checked">
-                       <label>Habilitado</label>
-                     </div>
-                  </div>
-                  <div class="field">
-                    <div class="ui radio checkbox">
-                      <input type="radio" name="frequency">
-                      <label>Deshabilitado</label>
-                    </div>
-                  </div>
-                </div>
-               </div>
-             </div>
-         <div class="actions" align="right">
-           <div class="ui positive right labeled icon button ">
-             Aceptar
-             <i class="checkmark icon"></i>
-           </div>
-         </div>
-       </div>
-     </div>
-
-    <div class="ui basic modal">
-      <i class="close icon"></i>
-      <div class="header">
-        Registro categoría
-      </div>
-      <div class="image content">
-        <div class="image">
-          <i class="write icon"></i>
-        </div>
-        <div class="description">
-          <p>Categoría registrada exitosamente.</p>
-        </div>
-      </div>
-      <div class="actions">
-        <div class="two fluid ui inverted buttons">
-          <div class="ui positive right green basic inverted button">
-            <i class="checkmark icon"></i>
-            Aceptar
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../semantic/dist/semantic.min.js"></script>
     <script src="../js/scripts.js"></script>
@@ -266,3 +173,4 @@
     <script type="application/javascript">transformicons.add('.tcon')</script>
     </body>
 </html>
+
