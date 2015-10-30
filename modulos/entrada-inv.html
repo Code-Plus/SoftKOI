@@ -24,6 +24,11 @@
          <li><a href="../index.html"><img src="../icons/8-small.png" alt=""/></a></li>
       </ul>
     </header>
+    <style media="screen">
+      .colorui{
+        background: #EBEBE0 !important;
+      };
+    </style>
     <div class="container">
       <div class="navbar">
         <div class="icon">
@@ -64,12 +69,25 @@
                     <option value="1">Peliculas de terror</option>
                     <option value="0">Gorras planas</option>
                     <option value="0">Consola Play Station</option>
-                  </select>                
+                  </select>
               	</div>
               	<div class="required field">
               		<label>Cantidad</label>
               		<input type="number" placeholder="Cantidad">
               	</div>
+                <div class="sixteen wide column" align="center">
+                  <div class="ui segment colorui">
+                    <div class="field">
+                      <div class="field">
+                        <label>¿Cambio?</label>
+                      </div>
+                      <button class="ui active button yes">
+                        <i class="exchange icon"></i>
+                        Ingresar cambio.
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="eight wide column">
@@ -85,7 +103,7 @@
               			<label>Existencias minimas</label>
               			<input type="number" placeholder="Existencias minimas">
               		</div>
-            	</div>	
+            	</div>
             </div>
             <div class="sixteen wide column" align="center">
                   <div class="ui center aligned buttons alert">
@@ -99,6 +117,77 @@
       </div>
 
       <!--Ventanas modales-->
+
+      <div class="ui modal segunda">
+        <div class="header">Ingresar cambio</div>
+        <div class="content">
+          <div class="ui grid">
+              <div class="eight wide column">
+                <div class="ui form">
+                  <div class="required field">
+                    <label>Producto</label>
+                    <select class="ui dropdown">
+                      <option value="">Producto</option>
+                      <option value="1">Peliculas de terror</option>
+                      <option value="0">Gorras planas</option>
+                      <option value="0">Consola Play Station</option>
+                    </select>
+                  </div>
+                  <div class="required field">
+                    <label>Cantidad</label>
+                    <input type="number" placeholder="Cantidad">
+                  </div>
+                  <div class="field">
+                    <label>Observaciones</label>
+                    <textarea placeholder="Observaciones" style="padding-top: 15px;" rows="5"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="eight wide column">
+                <div class="ui form">
+                  <div class="required field">
+              			<label>Fecha</label>
+              			<div class="ui action input">
+                        		<input type="text" placeholder="Fecha de la entrada."/>
+                        		<button class="ui icon button"><i class="calendar icon"></i></button>
+                   		</div>
+              		</div>
+                  <div class="eight wide column">
+                    <div class="required field">
+                      <label>Motivo del cambio</label>
+                    </div>
+                    <div class="ui slider checkbox">
+                      <label>Daño o defecto</label>
+                      <input type="checkbox" tabindex="0" class="hidden">
+                    </div>
+                    <div class="ui slider checkbox"  style="padding-left: 40px;">
+                      <label>Talla</label>
+                      <input type="checkbox" tabindex="0" class="hidden">
+                    </div>
+                    <div class="ui slider checkbox"  style="padding-left: 2px;">
+                      <label>Gusto o preferencia</label>
+                      <input type="checkbox" tabindex="0" class="hidden">
+                    </div>
+                    <div class="ui slider checkbox"  style="padding-left: 12px;">
+                      <label>Otro</label>
+                      <input type="checkbox" tabindex="0" class="hidden">
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <div class="actions" align="right">
+            <div class="ui positive labeled icon button ">
+              Aceptar
+              <i class="checkmark icon"></i>
+            </div>
+            <div class="ui negative labeled icon button ">
+              Cancelar
+              <i class="remove icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <div class="ui basic modal">
       <i class="close icon"></i>
@@ -130,4 +219,3 @@
     <script type="application/javascript">transformicons.add('.tcon')</script>
     </body>
 </html>
-
