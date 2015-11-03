@@ -40,7 +40,7 @@
 		            <div class="content">PERFIL</div>
 		          </h3>
 		        </div>
-		        <div class="ui grid">
+		        <div class="ui grid segment">
 		        	<div class="six wide column">
 		        		<!--Primera columna de los datos-->
 		        		<form class="ui form">
@@ -63,9 +63,10 @@
 			        		<div class="field">
 			        			<label>Contraseña</label>
 			        			<input type="password" value="123456" readonly="readonly">
-			        			<button class="ui blue button cambiar_pass">Cambiar </button>
 			        		</div>
 		        		</form>
+						
+						<button class="ui blue button" id="cambiar-pass1">Cambiar </button>
 
 
 
@@ -134,15 +135,15 @@
 		        	</div>
 		        	 <div class="sixteen wide column" align="center">
 			            <div class="ui center aligned buttons ">
-			              <button class="ui button habilitar_perfil">Editar</button>
-			              <div class="or" data-text="O"></div>
+			              <!-- <button class="ui button habilitar_perfil"></button>
+			              <div class="or" data-text="O"></div> -->
 			              <button class="ui positive button editar_perfil">Guardar</button>
 			            </div>
 			         </div>
 		        </div>
 	     	</div>
 	    </div>
-	    <div class="ui modal cambiar_pass2">
+	    <div class="ui modal cambiar-pass">
 	    	<div class="header">Cambiar Contraseña</div>
        		<div class="content">
 	          <div class="required field" align="center">
@@ -173,5 +174,12 @@
   		<script src="../js/scripts.js"></script>
   		<script src="../js/iconmenu.js"></script>
   		<script src="../js/scripts.js"></script>
+		<script>
+			$(document).ready(function(){
+				$("#cambiar-pass1").click(function(){
+	           $('.cambiar-pass').modal('show');
+	         });
+			});
+		</script>
 	</body>
 </html>

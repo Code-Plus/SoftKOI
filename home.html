@@ -12,18 +12,38 @@
   </head>
   <body>
      <style>
-      .Mestadisticas{
-         width: ;
-         height: ;
+     .Mc1estadisticas{
+        width: 370px;
+        height: 300px;
+        margin-left: 13%;
+        display:inline-block;
 
-      };
+     }
+     .Mc2estadisticas{
+        width: 370px;
+        height: 300px;
+        margin-left: 15%;
+        display:inline-block;
+
+     }
+
+     .mizq{
+        margin-left: 5%;
+     }
 
       .bnaranja{
-         background: #E65C00;
-      };
+         background: grey !important;
+         background-color: #E65C00 !important;
+      }
       .bazul{
-         background: #3399FF;
-      };
+         background: #3399FF !important;
+         background-color: #3399FF !important;
+      }
+      .bverde{
+         background: #4FFF14 !important;
+         background-color: #4FFF14 !important;
+      }
+
      </style>
     <header>
       <ul class="menu">
@@ -46,12 +66,84 @@
         </div>
         <div class="alerts"><a href="#"><img src="icons/calendar.svg" class="first"/></a><a href="#"><img src="icons/message.svg" class="second"/></a><a href="#"><img src="icons/notifications.svg" class="last"/></a><a class="btn ui button">Perfil</a></div>
       </div>
-      <div class="contenido" style="margin-top:200px !important;">
+      <div class="contenido">
+         <div class="ui grid">
+            <div class="row">
+               <canvas class="Mc1estadisticas"></canvas>
+               <canvas class="Mc1estadisticas"></canvas>
+            </div>
+            <div class="row mizq">
+               <div class="five wide column">
+               <table class="ui celled table">
+                  <thead>
+                     <tr>
+                        <th>Cod Venta</th>
+                        <th>N° productos</th>
+                        <th>Valor</th>
+                        <th>Pago</th>
+                     </tr>
+                     <tbody>
+                        <tr>
+                           <td>0001</td>
+                           <td>5</td>
+                           <td>180.000$</td>
+                           <td>70.000$</td>
+                        </tr>
+                        <tr>
+                           <td>0002</td>
+                           <td>1</td>
+                           <td>30.000$</td>
+                           <td>30.000$</td>
+                        </tr>
+                     </tbody>
+                  </thead>
+               </table>
+            </div>
+            <div class="five wide column">
+               <table class="ui celled table">
+                  <thead>
+                     <tr>
+                        <th>Cod Venta</th>
+                        <th>Valor</th>
+                        <th>Abono</th>
+                     </tr>
+                     <tbody>
+                        <tr>
+                           <td>0001</td>
+                           <td>180.000$</td>
+                           <td>70.000$</td>
+                        </tr>
+                        <tr>
+                           <td>0002</td>
+                           <td>30.000$</td>
+                           <td>30.000$</td>
+                        </tr>
+                     </tbody>
+                  </thead>
+               </table>
+            </div>
+            <div class="five wide column">
+               <table class="ui celled table">
+                  <thead>
+                     <tr>
+                        <th>Cod Venta</th>
+                     </tr>
+                     <tbody>
+                        <tr>
+                           <td>Pagar la luz 8:30 am</td>
+                        </tr>
+                        <tr>
+                           <td>Ir al banco a las 3:30 pm</td>
+                        </tr>
+                     </tbody>
+                  </thead>
+               </table>
+            </div>
 
-         <canvas></canvas>
-         <canvas></canvas>
-         <div class=""></div>
-         <div class=""></div>
+            </div>
+         </div>
+
+
         <h1>Página de inicio en mantenimiento.</h1>
         <h2 align="center"> Disculpe las molestias.</h2>
 
