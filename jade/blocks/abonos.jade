@@ -1,0 +1,95 @@
+div(class="ui bottom attached tab segment", data-tab="abonos")
+  .ui.clearing.teal.inverted.segment
+    h3.ui.left.floated.header
+      i.file.icon
+      .content ABONOS 
+    .ui.teal.right.floated.button
+  .ui.stackable.grid
+    .sixteen.wide.inverted.column
+      .ui.black.segment
+        .ui.form
+          .two.fields
+            .field
+              label Buscar por:
+              .ui.action.input
+                input(type='text', placeholder='Buscar...')
+                select.ui.dropdown
+                  option(value='') Filtre por...
+                  option(value='1') Identificación
+                  option(value='2') Nombre
+                  option(value='3') Email
+                  option(value='4') Telefono
+                .ui.button(type='submit') Buscar
+            .field
+              label Ingresar fecha de registro:
+              .ui.right.action.input
+                input(type='text', placeholder='Fecha...')
+                button.ui.icon.button
+                  i.calendar.icon
+        .ui.divider      
+        table.ui.unstackable.selectable.celled.striped.table
+          thead
+            tr
+              th
+              th Identificación
+              th Nombre
+              th Apellido
+              th Telefono
+              th Email
+              th Estado
+          tbody
+            tr
+              td
+                .ui.fitted.slider.checkbox
+                  input(type='checkbox')
+              td 8465468765
+              td Jesus Francisco
+              td Scarpetta Zuñiga
+              td 3256587
+              td yisusfrancis@hotmail.com
+              td Deudor
+            tr
+              td
+                .ui.fitted.slider.checkbox
+                  input(type='checkbox')
+              td 4564845648
+              td Emmanuel
+              td Deossa Hincapié
+              td 3214785
+              td edhgt89@hotmail.com
+              td No deudor
+            tr
+              td
+                .ui.fitted.slider.checkbox
+                  input(type='checkbox')
+              td 9754638745
+              td Maria Camila
+              td Alzate Restrepo
+              td 6254785
+              td camila@hotmail.com
+              td No deudor
+            tr
+              td
+                .ui.fitted.slider.checkbox
+                  input(type='checkbox')
+              td 9786874564
+              td Esteban
+              td Montoya Rivera
+              td 4585215
+              td jhuandha@hotmail.com
+              td Deudor
+            tr
+              td
+                .ui.fitted.slider.checkbox
+                  input(type='checkbox')
+              td 6874563846
+              td Miguel Angel
+              td Arenas Correa
+              td 5254593
+              td miguel89@hotmail.com
+              td Deudor
+        .ui.divider
+        .sixteen.wide.column.center.aligned(align='center')
+          button.ui.green.right.aligned.button
+            i.edit.icon
+            | Editar cliente
