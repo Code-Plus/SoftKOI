@@ -17,10 +17,6 @@ var Mes1={
 			highlightStroke:"rgba(151,147,205,1)",
 			data :[15,18,20,11,24,20,31]
 		}*/
-
-
-
-
 	]
 }
 
@@ -99,37 +95,14 @@ var Meses={
 	]
 }
 
-var inicios1={
-	 labels : ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"],
 
-
-	datasets : [
-		{//primer conjunto de datos
-			fillColor:"rgb(0, 188, 212)",
-			 strokeColor : "rgba(255,255,255,0.8)",
-			//  highlightFill:"rgba(229, 137, 0,0.75)",
-			//  highlightStroke:"rgba(229, 137,0,1)",
-			data :[10,20,30,40,50,40,5]
-		},
-		{//segundo conjunto de datos
-			fillColor:"rgba(151,147,205,0.5)",
-			strokeColor : "rgba(151,147,205,0.8)",
-			highlightFill:"rgba(151,147,205,0.75)",
-			highlightStroke:"rgba(151,147,205,1)",
-			data :[15,18,20,11,24,20,31]
-		}
-
-	]
-}
-
-var inicio1 = document.getElementById("inicio1").getContext("2d");
 var contexto = document.getElementById("canvas").getContext("2d");
 var Meses1 = document.getElementById("pcanvas").getContext("2d");
 var Meses2 = document.getElementById("pcanvas2").getContext("2d");
 var Meses3 = document.getElementById("pcanvas3").getContext("2d");
 
 
-window.Bar = new Chart(inicio1).Bar(inicios1,{showScale: false,responsive : true});
+
 window.Linea = new Chart(contexto).Line(Mes3,{showScale: true,responsive : true});
 window.Bar = new Chart(Meses1).Bar(Meses,{showScale: false,responsive : true});
 window.Bar = new Chart(Meses2).Bar(Meses,{showScale: false,responsive : true});
