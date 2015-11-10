@@ -15,7 +15,7 @@
    <body>
       <header>
          <ul class="menu">
-            <li><a href=""><img src="../icons/admin.png" alt=""/></a></li>
+            <li><a href="../home.html"><img src="../icons/admin.png" alt=""/></a></li>
             <li><a href="inventario.html"><img src="../icons/1-small.png" alt=""/></a></li>
             <li><a href="ventas.html"><img src="../icons/2-small.png" alt=""/></a></li>
             <li><a href="cambios.html"><img src="../icons/3-small.png" alt=""/></a></li>
@@ -34,6 +34,7 @@
                   <span aria-hidden="true" class="tcon-menu__lines"></span>
                   <span class="tcon-visuallyhidden">Toggle menu</span>
                </button>
+
             </div>
             <div class="alerts">
                <a href="#"><img src="../icons/calendar.svg" class="first"/></a>
@@ -72,7 +73,7 @@
                           <canvas id="pcanvas" height="45" width="83" style="display: inline-block; width: 83px; height: 45px; vertical-align: top;"></canvas>
                         </div>
                         <div class="count">
-                           <small>Agosto</small>
+                           <small>Septiembre</small>
                            <h2>987,459$</h2>
                         </div>
                      </div>
@@ -85,7 +86,7 @@
                            <canvas id="pcanvas2" height="45" width="83" style="display: inline-block; width: 83px; height: 45px; vertical-align: top;"></canvas>
                         </div>
                         <div class="count">
-                           <small>Septiembre</small>
+                           <small>Octubre</small>
                            <h2>987,459$</h2>
                         </div>
                      </div>
@@ -98,7 +99,7 @@
                            <canvas id="pcanvas3" height="45" width="83" style="display: inline-block; width: 83px; height: 45px; vertical-align: top;"></canvas>
                         </div>
                         <div class="count">
-                           <small>Octubre</small>
+                           <small>Noviembre</small>
                            <h2>987,459$</h2>
                         </div>
                      </div>
@@ -113,25 +114,73 @@
                      <div class="card-header">
                         <div class="ui grid">
                            <div class="row">
-                              <div class="fourteen wide column ">
+                              <div class="sixteen wide column ">
                                  <div class="ui top attached tabular menu">
-                                    <a class="item active" data-tab="first">Reporte de Pagos</a>
-                                    <a class="item" data-tab="second">Reporte de Ventas</a>
-                                    <a class="item" data-tab="third">Reporte de Bajas</a>
-                                 </div>
-                              </div>
-                              <div class="two wide column ">
-                                 <div id="repo" class="ui positive right labeled icon button">Descargar
-                                    <i class="arrow down icon"></i>
+                                    <a class="item active" data-tab="Pagos-Tap">Reporte de Pagos</a>
+                                    <a class="item" data-tab="Ventas-Tap">Reporte de Ventas</a>
+                                    <a class="item" data-tab="Bajas-Tap">Reporte de Bajas</a>
+                                    <a class="item" data-tab="Alquiler-Tap">Reporte de Alquiler</a>
+                                    <a class="item" data-tab="Cliente-Tap">Reporte de Clientes</a>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
                      <div class="reportes">
-                        <div class="ui bottom attached active tab segment" data-tab="first">
-                           <table class="ui celled table">
-                              <thead>
+                        <div class="ui bottom attached active tab segment" data-tab="Pagos-Tap">
+                           <div class="ui stackable grid">
+                             <div class="sixteen wide inverted column">
+                               <div class="ui green segment">
+                                 <div class="ui form">
+                                   <div class="two fields">
+                                       <div class="field">
+                                          <label>Filtrar por:</label>
+                                          <div class="ui action input">
+                                             <select class="ui dropdown">
+                                                <option value="">Año</option>
+                                                <option value="1">Mes</option>
+                                                <option value="2">Semana</option>
+                                                <option value="3">Dia</option>
+                                             </select>
+                                             <select class="ui dropdown">
+                                                <option value="">2015</option>
+                                                <option value="1">2014</option>
+                                                <option value="2">2013</option>
+                                                <option value="3">2012</option>
+                                                <option value="4">2011</option>
+                                             </select>
+                                             <div type="submit" class="ui button">Buscar</div>
+                                          </div>
+                                        </div>
+                                       <div class="field">
+                                          <label>Ingresar un rango</label>
+                                       <div class="two fields">
+                                          <div class="field">
+                                         <div class="ui action input">
+                                            <input type="text" placeholder="Desde"/>
+                                            <button class="ui icon button"><i class="calendar icon"></i></button>
+                                         </div>
+                                         </div>
+                                       <div class="field">
+
+                                         <div class="ui action input">
+                                               <input type="text" placeholder="Hasta"/>
+                                               <button class="ui icon button"><i class="calendar icon"></i></button>
+                                         </div>
+                                         </div>
+                                       </div>
+
+                                     </div>
+                                   </div>
+                                 </div>
+                                 <div class="ui divider"> </div>
+                                 <div class="ui segments">
+                                   <div class="ui green segment">
+                                     <h3>Reporte N° 23 &nbsp;&nbsp; &nbsp;  -&nbsp; &nbsp;  Pagos&nbsp; &nbsp;  - &nbsp;&nbsp; &nbsp;  07/10/2015</h3>
+                                   </div>
+                                   <div class="ui secondary green segment">
+                                     <table class="ui unstackable selectable celled striped table">
+                                        <thead>
                                  <tr>
                                    <th data-field="id">Nombre</th>
                                    <th data-field="apellido">Apellido</th>
@@ -175,12 +224,21 @@
                                     <td>30.000$</td>
                                  </tr>
                               </tbody>
-                           </table>
+                                     </table>
+                                     <div class="ui divider"></div>
+                                     <div align="center" class="sixteen wide column center aligned">
+                                       <button class="ui blue right aligned button"><i class="file pdf outline icon"></i>GENERAR REPORTE </button>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
                         </div>
-                        <div class="ui bottom attached tab segment" data-tab="second">
+                        <div class="ui bottom attached tab segment" data-tab="Ventas-Tap">
                            <div class="ui stackable grid">
                              <div class="sixteen wide inverted column">
-                               <div class="ui black segment">
+                               <div class="ui green segment">
                                  <div class="ui form">
                                    <div class="two fields">
                                      <div class="field">
@@ -203,20 +261,31 @@
                                        </div>
                                      </div>
                                      <div class="field">
-                                       <label>Ingresar un rango de fechas</label>
-                                       <div class="ui right action input">
-                                         <input type="text" placeholder="12/05/15  -  15/07/15"/>
-                                         <button class="ui icon button"><i class="calendar icon"></i></button>
+                                       <label>Ingresar un rango</label>
+                                       <div class="two fields">
+                                          <div class="field">
+                                         <div class="ui action input">
+                                            <input type="text" placeholder="Desde"/>
+                                            <button class="ui icon button"><i class="calendar icon"></i></button>
+                                         </div>
+                                         </div>
+                                       <div class="field">
+
+                                         <div class="ui action input">
+                                               <input type="text" placeholder="Hasta"/>
+                                               <button class="ui icon button"><i class="calendar icon"></i></button>
+                                         </div>
+                                         </div>
                                        </div>
                                      </div>
                                    </div>
                                  </div>
                                  <div class="ui divider"> </div>
                                  <div class="ui segments">
-                                   <div class="ui black segment">
+                                   <div class="ui green segment">
                                      <h3>Reporte N° 23 &nbsp;&nbsp; &nbsp;  -&nbsp; &nbsp;  Ventas&nbsp; &nbsp;  - &nbsp;&nbsp; &nbsp;  07/10/2015</h3>
                                    </div>
-                                   <div class="ui secondary grey segment">
+                                   <div class="ui secondary green segment">
                                      <table class="ui unstackable selectable celled striped table">
                                        <thead>
                                          <tr>
@@ -281,62 +350,314 @@
                              </div>
                            </div>
                         </div>
-                        <div class="ui bottom attached tab segment" data-tab="third">
-                           <div class="ui segment">
-                               <div class="ui grid">
-                                  <div class="sixteen wide column">
-                                     <div style="display: inline-block;" class="field">
-                                        <label>Desde</label>
-                                        <div class="ui action input">
-                                           <input type="text" placeholder="Desde"/>
-                                           <button class="ui icon button"><i class="calendar icon"></i></button>
+                        <div class="ui bottom attached tab segment" data-tab="Bajas-Tap">
+                           <div class="ui stackable grid">
+                             <div class="sixteen wide inverted column">
+                               <div class="ui green segment">
+                                 <div class="ui form">
+                                   <div class="two fields">
+                                       <div class="field">
+                                          <label>Filtrar por:</label>
+                                          <div class="ui action input">
+                                             <select class="ui dropdown">
+                                                <option value="">Año</option>
+                                                <option value="1">Mes</option>
+                                                <option value="2">Semana</option>
+                                                <option value="3">Dia</option>
+                                             </select>
+                                             <select class="ui dropdown">
+                                                <option value="">2015</option>
+                                                <option value="1">2014</option>
+                                                <option value="2">2013</option>
+                                                <option value="3">2012</option>
+                                                <option value="4">2011</option>
+                                             </select>
+                                             <div type="submit" class="ui button">Buscar</div>
+                                          </div>
                                         </div>
-                                        <label>Hasta</label>
-                                        <div class="ui action input">
-                                              <input type="text" placeholder="Hasta"/>
-                                              <button class="ui icon button"><i class="calendar icon"></i></button>
-                                        </div>
-                                     </div>
-                                 <table class="ui green celled table">
-                                   <thead>
-                                     <tr>
-                                       <th>Referencia</th>
-                                       <th>Fecha</th>
-                                       <th>Estado</th>
-                                       <th>Nombre</th>
-                                     </tr>
-                                   </thead>
-                                   <tbody>
-                                     <tr>
-                                       <td>001</td>
-                                       <td>12/10/2015</td>
-                                       <td>De baja</td>
-                                       <td>Camisetas azules</td>
-                                     </tr>
-                                     <tr>
-                                       <td>002</td>
-                                       <td>13/10/2015</td>
-                                       <td>De baja</td>
-                                       <td>Peliculas de terror</td>
-                                     </tr>
-                                     <tr>
-                                       <td>003</td>
-                                       <td>14/10/2015</td>
-                                       <td>De baja</td>
-                                       <td>Consola Play Station</td>
-                                     </tr>
-                                   </tbody>
-                                   <tfoot class="full-width">
-                                     <tr>
-                                       <th colspan="5">
-                                         <div class="ui green icon small button">
-                                           <i class="file pdf outline icon"></i>
-                                           Reporte!
+                                       <div class="field">
+                                          <label>Ingresar un rango</label>
+                                       <div class="two fields">
+                                          <div class="field">
+                                         <div class="ui action input">
+                                            <input type="text" placeholder="Desde"/>
+                                            <button class="ui icon button"><i class="calendar icon"></i></button>
                                          </div>
-                                       </th>
-                                     </tr>
-                                   </tfoot>
-                                 </table>
+                                         </div>
+                                       <div class="field">
+                                         <div class="ui action input">
+                                               <input type="text" placeholder="Hasta"/>
+                                               <button class="ui icon button"><i class="calendar icon"></i></button>
+                                         </div>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
+                                 <div class="ui divider"> </div>
+                                 <div class="ui segments">
+                                   <div class="ui green segment">
+                                     <h3>Reporte N° 23 &nbsp;&nbsp; &nbsp;  -&nbsp; &nbsp;  Bajas&nbsp; &nbsp;  - &nbsp;&nbsp; &nbsp;  07/10/2015</h3>
+                                   </div>
+                                   <div class="ui secondary green segment">
+                                     <table class="ui unstackable selectable celled striped table">
+                                        <thead>
+                                      <tr>
+                                        <th>Referencia</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Nombre</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>001</td>
+                                        <td>12/10/2015</td>
+                                        <td>De baja</td>
+                                        <td>Camisetas azules</td>
+                                      </tr>
+                                      <tr>
+                                        <td>002</td>
+                                        <td>13/10/2015</td>
+                                        <td>De baja</td>
+                                        <td>Peliculas de terror</td>
+                                      </tr>
+                                      <tr>
+                                        <td>003</td>
+                                        <td>14/10/2015</td>
+                                        <td>De baja</td>
+                                        <td>Consola Play Station</td>
+                                      </tr>
+                                    </tbody>
+                                     </table>
+                                     <div class="ui divider"></div>
+                                     <div align="center" class="sixteen wide column center aligned">
+                                       <button class="ui blue right aligned button"><i class="file pdf outline icon"></i>GENERAR REPORTE </button>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                        </div>
+                        <div class="ui bottom attached tab segment" data-tab="Alquiler-Tap">
+                           <div class="ui stackable grid">
+                             <div class="sixteen wide inverted column">
+                               <div class="ui green segment">
+                                 <div class="ui form">
+                                   <div class="two fields">
+                                       <div class="field">
+                                          <label>Filtrar por:</label>
+                                          <div class="ui action input">
+                                             <select class="ui dropdown">
+                                                <option value="">Año</option>
+                                                <option value="1">Mes</option>
+                                                <option value="2">Semana</option>
+                                                <option value="3">Dia</option>
+                                             </select>
+                                             <select class="ui dropdown">
+                                                <option value="">2015</option>
+                                                <option value="1">2014</option>
+                                                <option value="2">2013</option>
+                                                <option value="3">2012</option>
+                                                <option value="4">2011</option>
+                                             </select>
+                                             <div type="submit" class="ui button">Buscar</div>
+                                          </div>
+                                        </div>
+                                       <div class="field">
+                                          <label>Ingresar un rango</label>
+                                       <div class="two fields">
+                                          <div class="field">
+                                         <div class="ui action input">
+                                            <input type="text" placeholder="Desde"/>
+                                            <button class="ui icon button"><i class="calendar icon"></i></button>
+                                         </div>
+                                         </div>
+                                       <div class="field">
+                                         <div class="ui action input">
+                                               <input type="text" placeholder="Hasta"/>
+                                               <button class="ui icon button"><i class="calendar icon"></i></button>
+                                         </div>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
+                                 <div class="ui divider"> </div>
+                                 <div class="ui segments">
+                                   <div class="ui green segment">
+                                     <h3>Reporte N° 23 &nbsp;&nbsp; &nbsp;  -&nbsp; &nbsp;  Alquiler&nbsp; &nbsp;  - &nbsp;&nbsp; &nbsp;  07/10/2015</h3>
+                                   </div>
+                                   <div class="ui secondary green segment">
+                                     <table class="ui unstackable selectable celled striped table">
+                                        <thead>
+                                           <tr><th>N°</th>
+                                           <th>Cliente</th>
+                                           <th>Consola</th>
+                                           <th>Fecha</th>
+                                           <th>Valor</th>
+                                         </tr></thead>
+                                       <tbody>
+                                         <tr>
+                                           <td>005</td>
+                                           <td>Juan</td>
+                                           <td>Xbox360</td>
+                                           <td>07/10/2015</td>
+                                           <td>$2.000</td>
+                                         </tr>
+                                         <tr>
+                                           <td>006</td>
+                                           <td>Felipe</td>
+                                           <td>PlayStation3</td>
+                                           <td>07/10/2015</td>
+                                           <td>$3.000</td>
+                                         </tr>
+                                         <tr>
+                                           <td>007</td>
+                                           <td>Luis</td>
+                                           <td>Xbox360</td>
+                                           <td>09/10/2015</td>
+                                           <td>$1.000</td>
+                                         </tr>
+                                         <tr>
+                                           <td>008</td>
+                                           <td>Juan</td>
+                                           <td>PlayStation3</td>
+                                           <td>09/10/2015</td>
+                                           <td>$2.000</td>
+                                         </tr>
+                                         <tr>
+                                           <td>005</td>
+                                           <td>Luisa</td>
+                                           <td>Xbox360</td>
+                                           <td>10/10/2015</td>
+                                           <td>$2.000</td>
+                                         </tr>
+                                       </tbody>
+                                     </table>
+                                     <div class="ui divider"></div>
+                                     <div align="center" class="sixteen wide column center aligned">
+                                       <button class="ui blue right aligned button" id="Ralquiler"><i class="file pdf outline icon"></i>GENERAR REPORTE </button>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                        </div>
+                        <div class="ui bottom attached tab segment" data-tab="Cliente-Tap">
+                           <div class="ui stackable grid">
+                             <div class="sixteen wide inverted column">
+                               <div class="ui green segment">
+                                 <div class="ui form">
+                                   <div class="two fields">
+                                       <div class="field">
+                                          <label>Filtrar por:</label>
+                                          <div class="ui action input">
+                                             <select class="ui dropdown">
+                                                <option value="">Año</option>
+                                                <option value="1">Mes</option>
+                                                <option value="2">Semana</option>
+                                                <option value="3">Dia</option>
+                                             </select>
+                                             <select class="ui dropdown">
+                                                <option value="">2015</option>
+                                                <option value="1">2014</option>
+                                                <option value="2">2013</option>
+                                                <option value="3">2012</option>
+                                                <option value="4">2011</option>
+                                             </select>
+                                             <div type="submit" class="ui button">Buscar</div>
+                                          </div>
+                                        </div>
+                                       <div class="field">
+                                          <label>Ingresar un rango</label>
+                                       <div class="two fields">
+                                          <div class="field">
+                                         <div class="ui action input">
+                                            <input type="text" placeholder="Desde"/>
+                                            <button class="ui icon button"><i class="calendar icon"></i></button>
+                                         </div>
+                                         </div>
+                                       <div class="field">
+
+                                         <div class="ui action input">
+                                               <input type="text" placeholder="Hasta"/>
+                                               <button class="ui icon button"><i class="calendar icon"></i></button>
+                                         </div>
+                                         </div>
+                                       </div>
+
+                                     </div>
+                                   </div>
+                                 </div>
+                                 <div class="ui divider"> </div>
+                                 <div class="ui segments">
+                                   <div class="ui green segment">
+                                     <h3>Reporte N° 23 &nbsp;&nbsp; &nbsp;  -&nbsp; &nbsp;  Clientes&nbsp; &nbsp;  - &nbsp;&nbsp; &nbsp;  07/10/2015</h3>
+                                   </div>
+                                   <div class="ui secondary green segment">
+                                     <table class="ui unstackable selectable celled striped table">
+                                        <thead>
+                                          <tr>
+                                            <th>ID Venta</th>
+                                            <th>Empleado</th>
+                                            <th>N° Productos</th>
+                                            <th>Valor</th>
+                                            <th>Pago</th>
+                                            <th>Estado</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td>0056</td>
+                                            <td>Jesus Francisco</td>
+                                            <td>8</td>
+                                            <td>25.000</td>
+                                            <td>25.000</td>
+                                            <td>Cancelado</td>
+                                          </tr>
+                                          <tr>
+                                            <td>0102</td>
+                                            <td>Emmanuel Deossa</td>
+                                            <td>4</td>
+                                            <td>55.000</td>
+                                            <td>50.000</td>
+                                            <td>Deuda</td>
+                                          </tr>
+                                          <tr>
+                                            <td>0010</td>
+                                            <td>Maria Camila</td>
+                                            <td>5</td>
+                                            <td>7.000</td>
+                                            <td>7.000</td>
+                                            <td>Cancelado</td>
+                                          </tr>
+                                          <tr>
+                                            <td>0002</td>
+                                            <td>Esteban Montoya</td>
+                                            <td>9</td>
+                                            <td>90.000</td>
+                                            <td>50.000</td>
+                                            <td>Deuda</td>
+                                          </tr>
+                                          <tr>
+                                            <td>0089</td>
+                                            <td>Juan David</td>
+                                            <td>1</td>
+                                            <td>5.000</td>
+                                            <td>5.000</td>
+                                            <td>Cancelado</td>
+                                          </tr>
+                                        </tbody>
+                                     </table>
+                                     <div class="ui divider"></div>
+                                     <div align="center" class="sixteen wide column center aligned">
+                                       <button class="ui blue right aligned button"><i class="file pdf outline icon"></i>GENERAR REPORTE </button>
+                                     </div>
+                                   </div>
+                                 </div>
                                </div>
                              </div>
                            </div>
@@ -426,7 +747,7 @@
            $(".ventor").click(function(){
              $('.ui.modal.1').modal('show');
            });
-           $("#repo").click(function(){
+           $("#Ralquiler").click(function(){
              $('.ui.modal.2').modal('show');
            });
            $("#Mes3").click(function(){

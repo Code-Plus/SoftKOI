@@ -9,6 +9,9 @@ $(document).ready(function(){
    $('.ui.inline.dropdown')
    .dropdown();
 
+   $('.menu .item')
+   .tab();
+
 
 
    //Script de olvidar contraseña

@@ -1,8 +1,8 @@
 
-<div data-tab="ventas-search" class="ui bottom attached tab segment">
+<div data-tab="abonos" class="ui bottom attached tab segment">
   <div class="ui clearing teal inverted segment">
-    <h3 class="ui left floated header"><i class="tag icon"></i>
-      <div class="content">CONSULTAR VENTAS<a href="ventas.html" class="item">REGISTRO DE VENTA</a><a href="ventas-report.html" class="item">REPORTES VENTAS</a></div>
+    <h3 class="ui left floated header"><i class="users icon"></i>
+      <div class="content">ABONOS</div>
     </h3>
     <div class="ui teal right floated button"></div>
   </div>
@@ -17,16 +17,16 @@
                 <input type="text" placeholder="Buscar..."/>
                 <select class="ui dropdown">
                   <option value="">Filtre por...</option>
-                  <option value="1">Empleado</option>
-                  <option value="2">Cliente</option>
-                  <option value="3">Valor venta</option>
-                  <option value="4">Producto</option>
+                  <option value="1">Identificación</option>
+                  <option value="2">Nombre</option>
+                  <option value="3">Email</option>
+                  <option value="4">Telefono</option>
                 </select>
                 <div type="submit" class="ui button">Buscar</div>
               </div>
             </div>
             <div class="field">
-              <label>Ingresar fecha de venta:</label>
+              <label>Ingresar fecha de registro:</label>
               <div class="ui right action input">
                 <input type="text" placeholder="Fecha..."/>
                 <button class="ui icon button"><i class="calendar icon"></i></button>
@@ -38,12 +38,12 @@
         <table class="ui unstackable selectable celled striped table">
           <thead>
             <tr>
-              <th class="one wide"></th>
-              <th>ID Venta</th>
-              <th>Empleado</th>
-              <th>N° Productos</th>
-              <th>Valor</th>
-              <th>Pago</th>
+              <th></th>
+              <th>Identificación</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Telefono</th>
+              <th>Email</th>
               <th>Estado</th>
             </tr>
           </thead>
@@ -54,12 +54,12 @@
                   <input type="checkbox"/>
                 </div>
               </td>
-              <td>0056</td>
+              <td>8465468765</td>
               <td>Jesus Francisco</td>
-              <td>8</td>
-              <td>25.000</td>
-              <td>25.000</td>
-              <td>Cancelado</td>
+              <td>Scarpetta Zuñiga</td>
+              <td>3256587</td>
+              <td>yisusfrancis@hotmail.com</td>
+              <td>Deudor</td>
             </tr>
             <tr>
               <td>
@@ -67,12 +67,12 @@
                   <input type="checkbox"/>
                 </div>
               </td>
-              <td>0102</td>
-              <td>Emmanuel Deossa</td>
-              <td>4</td>
-              <td>55.000</td>
-              <td>50.000</td>
-              <td>Deuda</td>
+              <td>4564845648</td>
+              <td>Emmanuel</td>
+              <td>Deossa Hincapié</td>
+              <td>3214785</td>
+              <td>edhgt89@hotmail.com</td>
+              <td>No deudor</td>
             </tr>
             <tr>
               <td>
@@ -80,12 +80,12 @@
                   <input type="checkbox"/>
                 </div>
               </td>
-              <td>0010</td>
+              <td>9754638745</td>
               <td>Maria Camila</td>
-              <td>5</td>
-              <td>7.000</td>
-              <td>7.000</td>
-              <td>Cancelado</td>
+              <td>Alzate Restrepo</td>
+              <td>6254785</td>
+              <td>camila@hotmail.com</td>
+              <td>No deudor</td>
             </tr>
             <tr>
               <td>
@@ -93,12 +93,12 @@
                   <input type="checkbox"/>
                 </div>
               </td>
-              <td>0002</td>
-              <td>Esteban Montoya</td>
-              <td>9</td>
-              <td>90.000</td>
-              <td>50.000</td>
-              <td>Deuda</td>
+              <td>9786874564</td>
+              <td>Esteban</td>
+              <td>Montoya Rivera</td>
+              <td>4585215</td>
+              <td>jhuandha@hotmail.com</td>
+              <td>Deudor</td>
             </tr>
             <tr>
               <td>
@@ -106,18 +106,18 @@
                   <input type="checkbox"/>
                 </div>
               </td>
-              <td>0089</td>
-              <td>Juan David</td>
-              <td>1</td>
-              <td>5.000</td>
-              <td>5.000</td>
-              <td>Cancelado</td>
+              <td>6874563846</td>
+              <td>Miguel Angel</td>
+              <td>Arenas Correa</td>
+              <td>5254593</td>
+              <td>miguel89@hotmail.com</td>
+              <td>Deudor</td>
             </tr>
           </tbody>
         </table>
         <div class="ui divider"></div>
         <div align="center" class="sixteen wide column center aligned">
-          <button class="ui red right aligned button"><i class="ban icon"></i>Cancelar venta</button>
+          <button class="ui green right aligned button"><i class="edit icon"></i>Editar cliente</button>
         </div>
       </div>
     </div>
