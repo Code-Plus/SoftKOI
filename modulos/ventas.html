@@ -28,7 +28,7 @@
         <div class="icon">
           <button id="iconmenu" type="button" aria-label="toggle menu" class="tcon tcon-menu--xcross"><span aria-hidden="true" class="tcon-menu__lines"></span><span class="tcon-visuallyhidden">Toggle menu</span></button>
         </div>
-        <div class="alerts"><a href="#"><img src="../icons/calendar.svg" class="first"/></a><a href="#"><img src="../icons/message.svg" class="second"/></a><a href="#"><img src="../icons/notifications.svg" class="last"/></a><a class="btn ui button">Perfil</a></div>
+        <div class="alerts"><a href="#"><img src="../icons/calendar.svg" class="first"/></a><a href="#"><img src="../icons/message.svg" class="second"/></a><a href="#"><img src="../icons/notifications.svg" class="last"/></a><a href="../modulos/perfil.html" class="btn ui button">Perfil</a></div>
       </div>
       <div class="ui container">
         <div class="ui top attached tabular menu"><a data-tab="ventas" class="active item">Registro de Ventas</a><a data-tab="ventas-search" class="item">Consulta de Ventas</a><a data-tab="abonos" class="item">Abonos</a><a data-tab="clientes" class="item">Clientes</a></div>
@@ -471,87 +471,73 @@
                 <table class="ui unstackable selectable celled striped table">
                   <thead>
                     <tr>
-                      <th></th>
                       <th>Identificación</th>
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Telefono</th>
                       <th>Email</th>
                       <th>Estado</th>
+                      <th class="one wide">Editar</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div class="ui fitted slider checkbox">
-                          <input type="checkbox"/>
-                        </div>
-                      </td>
+                    <tr>                   
                       <td>8465468765</td>
                       <td>Jesus Francisco</td>
                       <td>Scarpetta Zuñiga</td>
                       <td>3256587</td>
                       <td>yisusfrancis@hotmail.com</td>
                       <td>Deudor</td>
-                    </tr>
-                    <tr>
                       <td>
-                        <div class="ui fitted slider checkbox">
-                          <input type="checkbox"/>
-                        </div>
+                        <button class="ui tiny basic icon button"><i class="large edit outline black icon"></i></button>
                       </td>
+                    </tr>
+                    <tr>          
                       <td>4564845648</td>
                       <td>Emmanuel</td>
                       <td>Deossa Hincapié</td>
                       <td>3214785</td>
                       <td>edhgt89@hotmail.com</td>
                       <td>No deudor</td>
+                      <td>
+                        <button class="ui tiny basic icon button"><i class="large edit outline black icon">  </i></button>
+                      </td>
                     </tr>
                     <tr>
-                      <td>
-                        <div class="ui fitted slider checkbox">
-                          <input type="checkbox"/>
-                        </div>
-                      </td>
                       <td>9754638745</td>
                       <td>Maria Camila</td>
                       <td>Alzate Restrepo</td>
                       <td>6254785</td>
                       <td>camila@hotmail.com</td>
                       <td>No deudor</td>
-                    </tr>
-                    <tr>
                       <td>
-                        <div class="ui fitted slider checkbox">
-                          <input type="checkbox"/>
-                        </div>
+                        <button class="ui tiny basic icon button"><i class="large edit outline black icon">  </i></button>
                       </td>
+                    </tr>
+                    <tr>             
                       <td>9786874564</td>
                       <td>Esteban</td>
                       <td>Montoya Rivera</td>
                       <td>4585215</td>
                       <td>jhuandha@hotmail.com</td>
                       <td>Deudor</td>
-                    </tr>
-                    <tr>
                       <td>
-                        <div class="ui fitted slider checkbox">
-                          <input type="checkbox"/>
-                        </div>
+                        <button class="ui tiny basic icon button"><i class="large edit outline black icon">           </i></button>
                       </td>
+                    </tr>
+                    <tr>          
                       <td>6874563846</td>
                       <td>Miguel Angel</td>
                       <td>Arenas Correa</td>
                       <td>5254593</td>
                       <td>miguel89@hotmail.com</td>
                       <td>Deudor</td>
+                      <td>
+                        <button class="ui tiny basic icon button"><i class="large edit outline black icon">           </i></button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
-                <div class="ui divider"></div>
-                <div align="center" class="sixteen wide column center aligned">
-                  <button class="ui green right aligned button"><i class="edit icon"></i>Editar cliente</button>
-                </div>
               </div>
             </div>
           </div>
