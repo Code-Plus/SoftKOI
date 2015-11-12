@@ -429,3 +429,32 @@ li.dropdown {
   position: static;
   width: auto;
 }
+.footer{
+   margin: 0rem !important;
+   margin-top: 17px !important;
+   position:absolute;
+   width: 100%;
+   /*bottom: 0;*/
+}
+.footerh{
+   margin: 0rem !important;
+   margin-top: 17px !important;
+   position:absolute;
+   width: 100%;
+   bottom: 0;
+}
+.ui.contenido.segment.home
+{
+   margin: 0rem auto !important;
+   margin-right: 0.26rem !important;
+}
+.Mc1estadisticas{
+   /*width: 465px !important;*/
+   /*height: 300px !important;*/
+}
+.Mc2estadisticas{
+   width: 465px !important;
+   /*height: 300px;*/
+
+
+}

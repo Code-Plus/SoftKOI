@@ -11,44 +11,6 @@
     <title>SoftKOI |  Home</title>
   </head>
   <body>
-     <style>
-     .Mc1estadisticas{
-        width: 465px !important;
-        /*height: 300px !important;*/
-     }
-     .Mc2estadisticas{
-        width: 465px;
-        /*height: 300px;*/
-
-
-     }
-   .ui.contenido.segment
-   {
-      margin: 0rem auto !important;
-      margin-right: 0.26rem !important;
-   }
-     .mizq{
-        margin-left: 5%;
-     }
-
-      .bnaranja{
-         background: grey !important;
-         background-color: #E65C00 !important;
-      }
-      .bazul{
-         background: #3399FF !important;
-         background-color: #3399FF !important;
-      }
-      .bverde{
-         background: #4FFF14 !important;
-         background-color: #4FFF14 !important;
-      }
-      .footer{
-         margin: 0rem !important;
-         margin-top: 17px !important;
-      }
-     </style>
-
     <header>
       <ul class="menu">
         <li><a href="../home.html"><img src="icons/admin.png" alt=""/></a></li>
@@ -69,7 +31,7 @@
         </div>
         <div class="alerts"><a href="#"><img src="icons/calendar.svg" class="first"/></a><a href="#"><img src="icons/message.svg" class="second"/></a><a href="#"><img src="icons/notifications.svg" class="last"/></a><a href="modulos/perfil.html" class="btn ui button">Perfil</a></div>
       </div>
-      <div class="ui contenido segment">
+      <div class="ui contenido segment home">
 <div class="ui container">
          <div class="ui grid ">
             <!-- <div class="row">
@@ -86,10 +48,15 @@
             </div> -->
             <div class="row">
                <div class="ui seven wide column centered segment">
-                  <canvas class="Mc1estadisticas" id="inicioA"></canvas>
+                 <div class="Mc1estadisticas">
+                   <canvas id="inicioA"></canvas>
+                 </div>
                </div>
                <div class="ui seven wide column centered segment">
-                  <canvas class="Mc1estadisticas" id="inicioB"></canvas>
+                 <div>
+                   <canvas id="inicioB"></canvas>
+                 </div>
+
                </div>
             </div>
             <div class="row">
@@ -166,13 +133,13 @@
 
 
       </div>
-      <div class="ui three column grid footer">
+      <div class="ui three column grid footerh">
       <div class="ui row segment">
          <div class="seven wide column">CodePlus ©2015</div>
          <div class="one wide column ">
             <img src="imagenes/softkoifooter.png" alt="">
          </div>
-         <div class="eight wide column right aligned">
+         <div class="seven wide column right aligned">
             <a href="">Acerca de</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="">Mapa de navegación</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="">ayuda</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
