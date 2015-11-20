@@ -23,6 +23,12 @@ a {
   text-decoration: none;
 }
 
+.links{
+   padding: 0px 10px;
+   padding-top: 10px !important;
+   margin-top: 20px !important;
+}
+
 p {
   line-height: 1.5;
   font-size: 1em;
@@ -439,7 +445,7 @@ li.dropdown {
 .footerh{
    margin: 0rem !important;
    margin-top: 17px !important;
-   position:absolute;
+
    width: 100%;
    bottom: 0;
 }
@@ -456,6 +462,7 @@ li.dropdown {
    width: 465px !important;
    /*height: 300px;*/
 }
+
 .contenedorm{
    display: flex;
 
@@ -467,5 +474,10 @@ li.dropdown {
 
 }
 .contenedorm .cuerpom {
+
+}
+
+.menulinks{
+   padding-top: 9px;
 
 }
