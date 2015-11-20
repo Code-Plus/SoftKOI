@@ -455,6 +455,17 @@ li.dropdown {
 .Mc2estadisticas{
    width: 465px !important;
    /*height: 300px;*/
+}
+.contenedorm{
+   display: flex;
 
+}
+.contenedorm .titulom{
+
+}
+.contenedorm .cuerpom{
+
+}
+.contenedorm .cuerpom {
 
 }
