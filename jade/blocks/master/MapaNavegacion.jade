@@ -5,64 +5,66 @@ block head
    
 block content
   .ui.container
-    .ui.grid.segment
-      .ui.row
-        .ui.wide.column.centered.grid
-          h1 Mapa de navegación
-      .ui.row.segment
-        ul
-          li
-            p INVENTARIO
-            li
-              a(href="inventario.html") registro de productos
-            li
-              a(href="tipo-producto-inv.html") registro tipo de productos
-            li
-              a(href="categoria-inv.html") registro categoria
-            li
-              a(href="entrada-inv.html") registrar entrada
-            li
-              a(href="bajas-inv.html") registrar baja
-                      
-          li
-            p VENTAS
-            li
-              a(href="ventas.html") registro de Ventas
-            li
-              a(href="#") Consulta de Ventas
-            li
-              a(href="#") Abonos
-            li
-              a(href="#") Clientes
-          li
-            p CAMBIOS
-            li
-              a(href="cambios.html") Cambios
-          li
-            p ALQUILER
-            li
-              a(href="consolas.html") Registrar alquiler
-              
-          li
-            p REPORTES 
-            li
-              a(href="pagos.html") Reporte de pagos
-            li
-              a(href="#") Reporte de ventas
-            li
-              a(href="#") Reporte de bajas
-            li
-              a(href="#") Reporte de alquiler
-            li
-              a(href="#") reporte de clientes
-          li
-            p USUARIOS
-            li
-              a(href="usuarios.html") registrar usuarios
-          li
-            p AGENDA
-            li
-              a(href="agenda.html") Agenda
-          
+      .ui.segments
+         .ui.teal.segment
+            h2( class="ui center aligned header") Mapa de Navegación
+         .ui.segment
+            br
+            .ui.two.column.centered.grid
+               .four.column.centered.row
+                  .column
+                     .ui.vertical.text.menu
+                        a.item
+                           h4.ui.header INVENTARIO
+                           a(href="inventario.html") Registro de productos
+                           a(href="tipo-producto-inv.html") Registro tipo de productos
+                           a(href="categoria-inv.html") Registro de categorias
+                           a(href="entrada-inv.html") Registro de entradas
+                           a(href="bajas-inv.html") Registro de bajas
+                           
+                  .column
+                     .ui.vertical.text.menu
+                        a.item
+                           h4.ui.header VENTAS
+                           a(href="ventas.html") Registro de Ventas
+                           a(href="ventas.html") Consulta de Ventas
+                           a(href="ventas.html") Abonos
+                           a(href="ventas.html") Clientes
+                           
+                  .column
+                     .ui.vertical.text.menu
+                        a.item
+                           h4.ui.header CAMBIOS
+                           a(href="cambios.html") Cambios
             
+               .four.column.centered.row
+                  .column
+                     .ui.vertical.text.menu
+                        a.item
+                           h4.ui.header GESTION CONSOLAS
+                           a(href="consolas.html") Reservaciones
+                           
+                  .column
+                     .ui.vertical.text.menu
+                        a.item
+                           h4.ui.header ESTATISTICAS Y REPORTES
+                           a(href="pagos.html") Reporte de pagos
+                           a(href="pagos.html") Reporte de ventas
+                           a(href="pagos.html") Reporte de bajas
+                           a(href="pagos.html") Reporte de alquiler
+                           a(href="pagos.html") Reporte de clientes
+                           
+                  .column
+                     .ui.vertical.text.menu
+                        a.item
+                           h4.ui.header GESTION USUARIOS
+                           a(href="usuarios.html") Registro de usuarios
+                           
+               .four.column.centered.row
+                  .column
+                     .ui.vertical.text.menu
+                        a.item
+                           h4.ui.header AGENDA
+                            a(href="agenda.html") Agenda
+         
   include ../importaciones/footer
