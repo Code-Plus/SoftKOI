@@ -277,6 +277,16 @@ li:hover {
   box-shadow: 76px 0 #e4e8ec inset, 80px 0 #abb6c4 inset;
 }
 
+li.navegacion{
+   text-align: left !important;
+   border: none !important;
+   display:inherit;
+}
+
+li.navegacion ul{
+   list-style: none !important;
+}
+
 li:first-child {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0;
