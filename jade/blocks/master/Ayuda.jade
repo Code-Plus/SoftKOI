@@ -4,10 +4,36 @@ block head
    title SoftKOI | Ayuda
    
 block content
-  .ui.container
-   .ui.grid
-     .ui.row.segment
-       .ui.wide.column.centered.grid
-         h1 Ayuda
-           
-  include ../importaciones/footer
+   .ui.container
+      .ui.grid.segment
+         .ui.row
+            .ui.wide.column.centered.grid
+               h1 Ayuda
+         .ui.row
+            .ui.eight.wide.column
+               .ui.items
+                  .item
+                     .image
+                        img(src="../imagenes/user.jpg")
+                     .content
+                        a.header inventario
+                        .meta 
+                           span En este módulo se registran las entradas de los productos en la tienda y clasificarla de acuerdo a su tipo (Prendas, películas y consolas), editar su información y cantidad, además,  consultar todos los productos en existencia, consultar la información de cada uno, y se generará una notificación cuando la cantidad de un producto llegue a su stock mínimo.
+                           .ui.items
+                              .item
+                                 .image
+                                    img(src="../imagenes/user.jpg")
+                                 .content
+                                    a.header inventario
+                                    .meta 
+                                       span En este módulo se registran las entradas de los productos en la tienda y clasificarla de acuerdo a su tipo (Prendas, películas y consolas), editar su información y cantidad, además,  consultar todos los productos en existencia, consultar la información de cada uno, y se generará una notificación cuando la cantidad de un producto llegue a su stock mínimo.
+            .ui.eight.wide.column
+               .ui.items
+                  .item
+                     .image
+                        img(src="../imagenes/user.jpg")
+                     .content
+                        a.header ventas
+                        .meta 
+                           span En este módulo se registrara una venta, se editara la cantidad de artículos que va a comprar, y se podrá consultar los artículos que lleva en el momento la venta con el total hasta el momento, generar un comprobante de pago cuando la venta se realice,  además de aplicar un descuento a las ventas y visualizar la información de la persona que adquirió la compra y agregarle una deuda si no paga el monto total de la misma , además generar una alerta cuando un cliente que esté en mora vaya a comprar otro artículo y cuando el cliente excede el límite del valor del préstamo estipulado; también este módulo tendrá la posibilidad de registrar cambios después de realizada la misma. 
+   include ../importaciones/footer
