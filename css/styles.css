@@ -455,7 +455,7 @@ li.dropdown {
 .footerh{
    margin: 0rem !important;
    margin-top: 17px !important;
-
+  position:absolute;
    width: 100%;
    bottom: 0;
 }
@@ -490,4 +490,15 @@ li.dropdown {
 .menulinks{
    padding-top: 9px;
 
+}
+
+/*-----------------MEDIA QUERYS-------------------*/
+
+@media (min-width: 700px) {
+  .footerh{
+     margin: 0rem !important;
+     margin-top: 17px !important;
+     width: 100%;
+     bottom: 0;
+  }
 }
