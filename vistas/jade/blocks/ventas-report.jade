@@ -1,0 +1,108 @@
+extends ../templates/template-mod
+
+block head
+   title SoftKOI | Reportes
+   
+block content
+   .ui.container
+      .ui.clearing.teal.inverted.segment
+        h3.ui.left.floated.header
+          i.tag.icon
+          .content
+            .ui.inline.dropdown
+              .text REPORTES VENTAS
+              i.dropdown.icon
+              .menu
+                a.item(href='ventas-c.html') CONSULTAR VENTAS
+                a.item(href='ventas.html') REGISTRO DE VENTA 
+        .ui.teal.right.floated.button
+
+            
+      .ui.stackable.grid
+         .sixteen.wide.inverted.column
+            .ui.black.segment
+               .ui.form
+                  .two.fields
+                     .field
+                        label Filtrar por:
+                        .ui.action.input
+                           select.ui.dropdown
+                              option(value="") Año
+                              option(value="1") Mes
+                              option(value="2") Semana
+                              option(value="3") Dia
+                           select.ui.dropdown
+                              option(value="") 2015
+                              option(value="1") 2014
+                              option(value="2") 2013
+                              option(value="3") 2012
+                              option(value="4") 2011
+                           div(type="submit" class="ui button") Buscar
+                     
+                     .field
+                        label Ingresar un rango de fechas
+                        .ui.right.action.input
+                           input(type="text", placeholder="12/05/15  -  15/07/15") 
+                           button(class="ui icon button"): i.calendar.icon
+               .ui.divider 
+               
+               .ui.segments
+                  .ui.black.segment
+                     h3 Reporte N° 23 &nbsp;&nbsp; &nbsp;  -&nbsp; &nbsp;  Ventas&nbsp; &nbsp;  - &nbsp;&nbsp; &nbsp;  07/10/2015
+                  .ui.secondary.grey.segment
+                     table.ui.unstackable.selectable.celled.striped.table
+                        thead
+                           tr
+
+                              th ID Venta
+                              th Empleado
+                              th N° Productos
+                              th Valor
+                              th Pago
+                              th Estado
+                        tbody
+                           tr
+                              
+                              td 0056
+                              td Jesus Francisco
+                              td 8
+                              td 25.000
+                              td 25.000
+                              td Cancelado
+                           tr
+                               
+                              td 0102
+                              td Emmanuel Deossa
+                              td 4
+                              td 55.000
+                              td 50.000
+                              td Deuda
+                           tr
+                              
+                              td 0010
+                              td Maria Camila
+                              td 5
+                              td 7.000
+                              td 7.000
+                              td Cancelado
+                           tr
+                              
+                              td 0002
+                              td Esteban Montoya
+                              td 9
+                              td 90.000
+                              td 50.000
+                              td Deuda
+                           tr
+                               
+                              td 0089
+                              td Juan David
+                              td 1
+                              td 5.000
+                              td 5.000
+                              td Cancelado
+                     .ui.divider
+                     div(class="sixteen wide column center aligned" align="center")
+                        button(class="ui blue right aligned button")
+                           i.file.pdf.outline.icon
+                           | GENERAR REPORTE 

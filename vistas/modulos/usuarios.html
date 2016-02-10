@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" href="../icons/favicon.ico" type="image/x-icon"/>
+    <meta name="autor" content="Emmanuel Deossa"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">
+    <title>SoftKOI | Gestión Usuarios</title>
+  </head>
+  <body>
+    <header>
+      <ul class="menu">
+         <li><a href="../home.html"><img src="../icons/admin.png" alt=""/></a></li>
+         <li><a href="inventario.html"><img src="../icons/1-small.png" alt=""/></a></li>
+         <li><a href="ventas.html"><img src="../icons/2-small.png" alt=""/></a></li>
+         <li><a href="cambios.html"><img src="../icons/3-small.png" alt=""/></a></li>
+         <li><a href="consolas.html"><img src="../icons/4-small.png" alt=""/></a></li>
+         <li><a href="pagos.html"><img src="../icons/5-small.png" alt=""/></a></li>
+         <li><a href="usuarios.html"><img src="../icons/6-small.png" alt=""/></a></li>
+         <li><a href="agenda.html"><img src="../icons/9-small.png" alt=""/></a></li>
+         <li><a href="../index.html"><img src="../icons/8-small.png" alt=""/></a></li>
+      </ul>
+    </header>
+    <div class="container">
+      <div class="navbar">
+        <div class="icon">
+          <button id="iconmenu" type="button" aria-label="toggle menu" class="tcon tcon-menu--xcross"><span aria-hidden="true" class="tcon-menu__lines"></span><span class="tcon-visuallyhidden">Toggle menu</span></button>
+        </div>
+        <div class="alerts">
+           <a href="#"><img src="../icons/calendar.svg" class="first"/></a>
+           <a href="#"><img src="../icons/message.svg" class="second"/></a>
+           <a href="#"><img src="../icons/notifications.svg" class="last"/></a>
+           <a href="perfil.html" class="btn ui button">Perfil</a>
+        </div>
+      </div>
+      <div class="ui container">
+         <div class="ui red clearing inverted segment">
+          <h3 class="ui left floated header"><i class="add user icon"></i>
+             <div class="content">REGISTRAR USUARIO</div>
+          </h3>
+         </div>
+      <div class="ui segment">
+        <div class="ui grid">
+            <div class="eight wide column">
+              <div class="ui form">
+                <div class="required field">
+                    <label>Nombre</label>
+                    <input type="text" placeholder="Nombre">
+                  </div>
+                  <div class="required field">
+                    <label>Tipo documento</label>
+                    <select class="ui dropdown">
+                      <option value="">Tipo documento</option>
+                      <option value="1">Cédula</option>
+                      <option value="0">Tarjeta de identidad</option>
+                    </select>
+                  </div>
+                  <div class="required field">
+                    <label>Email</label>
+                    <input type="email" placeholder="Email">
+                  </div>
+                  <div class="field">
+                    <label>Teléfono</label>
+                    <input type="text" placeholder="Teléfono">
+                  </div>
+                  <div class="required field">
+                    <label>Cargo</label>
+                    <select class="ui dropdown">
+                      <option value="">Cargo</option>
+                      <option value="1">Administrador</option>
+                      <option value="0">Empleado</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+
+            <div class="eight wide column">
+              <div class="ui form">
+                <div class="required field">
+                  <label>Apellido</label>
+                  <input type="text" placeholder="Apellido">
+                </div>
+                <div class="required field">
+                  <label>Número documento</label>
+                  <input type="text" placeholder="Número documento">
+                </div>
+                <div class="required field">
+                  <label>Contraseña</label>
+                  <input type="password" placeholder="Contraseña">
+                </div>
+                <div class="field">
+                  <label>Celular</label>
+                  <input type="text" placeholder="Celular">
+                </div>
+                <div class="required field">
+                  <label>Permisos</label>
+                </div>
+                <div class="eight wide column">
+                  <div class="ui slider checkbox">
+                    <label>Inventario</label>
+                    <input type="checkbox" tabindex="0" class="hidden">
+                  </div>
+                  <div class="ui slider checkbox"  style="padding-left: 10px;">
+                    <label>Ventas</label>
+                    <input type="checkbox" tabindex="0" class="hidden">
+                  </div>
+                  <div class="ui slider checkbox"  style="padding-left: 12px;">
+                    <label>Pagos</label>
+                    <input type="checkbox" tabindex="0" class="hidden">
+                  </div>
+                  <div class="ui slider checkbox"  style="padding-left: 13px;">
+                    <label>Cartera</label>
+                    <input type="checkbox" tabindex="0" class="hidden">
+                  </div>
+                </div>
+
+                <div class="eight wide column"  style="padding-top: 10px;">
+                  <div class="ui slider checkbox">
+                    <label>Cambios</label>
+                    <input type="checkbox" tabindex="0" class="hidden">
+                  </div>
+                  <div class="ui slider checkbox"  style="padding-left: 20px;">
+                    <label>Consolas</label>
+                    <input type="checkbox" tabindex="0" class="hidden">
+                  </div>
+                  <div class="ui slider checkbox">
+                    <label>Clientes</label>
+                    <input type="checkbox" tabindex="0" class="hidden">
+                  </div>
+                  <div class="ui slider checkbox">
+                    <label>Agenda</label>
+                    <input type="checkbox" tabindex="0" class="hidden">
+                  </div>
+                </div>
+            </div>
+         </div>
+               <div class="sixteen wide column" align="center">
+                  <div class="ui center aligned buttons">
+                     <button class="ui button">Cancelar</button>
+                     <div class="or" data-text="O"></div>
+                     <button style="background-color: red;"class="ui positive button registro_usuario">Registrar</button>
+                  </div>
+               </div>
+        </div>
+      </div>
+      <div class="ui segment">
+        <div class="ui grid">
+          <div class="sixteen wide column">
+            <div class="field">
+              <label>Buscar por </label>
+              <select class="ui dropdown">
+                <option value="">Buscar por</option>
+                <option value="1">Tipo documento</option>
+                <option value="0">Nombre</option>
+              </select>
+              <div style="display: inline-block;" class="ui search">
+                <div class="ui icon input">
+                  <input class="prompt" type="text" placeholder="Buscar">
+                  <i class="search icon"></i>
+                </div>
+                <div class="results"></div>
+              </div>
+            </div>
+            <table class="ui red compact celled definition table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Tipo documento</th>
+                  <th>Número</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="collapsing">
+                    <div class="ui fitted slider checkbox">
+                      <input type="checkbox"> <label></label>
+                    </div>
+                  </td>
+                  <td>Cédula</td>
+                  <td>21665203</td>
+                  <td>Camila</td>
+                  <td>Restrepo</td>
+                  <td>
+                    <button class="ui icon button consultar_usuario">
+                      <i class="zoom icon"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="collapsing">
+                    <div class="ui fitted slider checkbox">
+                      <input type="checkbox"> <label></label>
+                    </div>
+                  </td>
+                  <td>Tarjeta de identidad</td>
+                  <td>97103212838</td>
+                  <td>María Alejandra</td>
+                  <td>Jaramillo</td>
+                  <td>
+                    <button class="ui icon button consultar_usuario">
+                      <i class="zoom icon"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="collapsing">
+                    <div class="ui fitted slider checkbox">
+                      <input type="checkbox"> <label></label>
+                    </div>
+                  </td>
+                  <td>Cédula</td>
+                  <td>21665203</td>
+                  <td>Daniel</td>
+                  <td>Gómez</td>
+                  <td>
+                    <button class="ui icon button consultar_usuario">
+                      <i class="zoom icon"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot class="full-width">
+                <tr>
+                  <th></th>
+                  <th colspan="5">
+                    <div class="ui red icon small button">
+                      <i class="edit icon"></i>
+                      Editar
+                    </div>
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!--Ventanas modales-->
+
+      <div class="ui modal perfil_usuario">
+        <i class="close icon"></i>
+        <div class="header">
+          Detalles del usuario
+        </div>
+        <div class="image content">
+          <div class="ui medium image">
+            <img src="../imagenes/user.jpg">
+          </div>
+        <div class="description">
+          <div class="ui header">INFORMACIÓN</div>
+          <p>Nombre: Camila</p>
+          <p>Apellido: Alzate</p>
+          <p>Tipo de documento: Cédula</p>
+          <p>Número: 21665203</p>
+          <p>Email: camila@mail.com</p>
+          <p>Contraseña: 12345</p>
+          <p>Teléfono: 5714278</p>
+          <p>Celular: 3136345678</p>
+          <p>Cargo: Empleado</p>
+          <p>Permisos: Inventario, ventas</p>
+          <p>Estado: Habilitado</p>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="ui black deny button">
+          Salir
+        </div>
+        <div class="ui positive right labeled icon button">
+          Aceptar
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui basic modal registro_usuario2">
+      <i class="close icon"></i>
+      <div class="header">
+        Registro de usuario
+      </div>
+      <div class="image content">
+        <div class="image">
+          <i class="add user icon"></i>
+        </div>
+        <div class="description">
+          <p>Usuario registrado exitosamente</p>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="two fluid ui inverted buttons">
+          <div class="ui deny red basic inverted button">
+            <i class="remove icon"></i>
+            Cancelar
+          </div>
+          <div class="ui positive green basic inverted button">
+            <i class="checkmark icon"></i>
+            Aceptar
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--///////////////////////FOOTER//////////////////////////-->
+    <div class="ui three column grid footer">
+    <div class="ui row segment">
+       <div class="seven wide column">CodePlus ©2015</div>
+       <div class="one wide column ">
+          <img src="../imagenes/softkoifooter.png" alt="">
+       </div>
+       <div class="seven wide column right aligned">
+          <a href="Acerca.html">Acerca de</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="mapaNavegacion.html">Mapa de navegación</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="ayuda.html">ayuda</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       </div>
+    </div>
+    </div>
+</div>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"> </script>
+  <script src="../semantic/dist/semantic.min.js"></script>
+  <script src="../js/scripts.js"></script>
+  <script src="../js/iconmenu.js"></script>
+  <script src="../js/scripts.js"></script>
+  <script type="application/javascript">transformicons.add('.tcon')</script>
+  </body>
+</html>

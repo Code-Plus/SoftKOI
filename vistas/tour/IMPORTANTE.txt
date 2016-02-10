@@ -1,0 +1,7 @@
+Para añadir un nuevo paso solo hay que editar el archivo tourjs que esta en la carpeta js la cual se encuentra en la raiz del proyecto ojo no es la que se encuentra dentro de esta carpeta sino la carpeta js que contiene todos los scripts la ruta seria esta 
+
+/js/tour.js
+
+evita tocar el archivo tour que se encuentra en la carpeta js que esta en este directorio 
+
+/tour/js/tour.js

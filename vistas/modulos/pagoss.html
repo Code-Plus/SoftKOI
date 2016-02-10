@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" href="../icons/favicon.ico" type="image/x-icon"/>
+    <meta name="autor" content="Emmanuel Deossa"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
+    <link rel="stylesheet" href="../css/stadistic/styles.css"/>
+    <link rel="stylesheet" type="text/css" href='../css/stadistic/stadistic.css'/>
+    <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">
+    <title>SoftKOI Prototype</title>
+  </head>
+  <body>
+    <header>
+      <ul class="menu">
+         <li><a href="../home.html"><img src="../icons/admin.png" alt=""/></a></li>
+         <li><a href="inventario.html"><img src="../icons/1-small.png" alt=""/></a></li>
+         <li><a href="ventas.html"><img src="../icons/2-small.png" alt=""/></a></li>
+         <li><a href="cambios.html"><img src="../icons/3-small.png" alt=""/></a></li>
+         <li><a href="consolas.html"><img src="../icons/4-small.png" alt=""/></a></li>
+         <li><a href="pagos.html"><img src="../icons/5-small.png" alt=""/></a></li>
+         <li><a href="usuarios.html"><img src="../icons/6-small.png" alt=""/></a></li>
+         <li><a href="clientes.html"><img src="../icons/7-small.png" alt=""/></a></li>
+         <li><a href="agenda.html"><img src="../icons/9-small.png" alt=""/></a></li>
+         <li><a href="../index.html"><img src="../icons/8-small.png" alt=""/></a></li>
+      </ul>
+    </header>
+    <div class="container">
+      <div class="navbar">
+        <div class="icon">
+          <button id="iconmenu" type="button" aria-label="toggle menu" class="tcon tcon-menu--xcross"><span aria-hidden="true" class="tcon-menu__lines"></span><span class="tcon-visuallyhidden">Toggle menu</span></button>
+        </div>
+        <div class="alerts">
+           <a href="#"><img src="../icons/calendar.svg" class="first"/></a>
+           <a href="#"><img src="../icons/message.svg" class="second"/></a>
+           <a href="#"><img src="../icons/notifications.svg" class="last"/></a>
+           <a class="btn ui button">Perfil</a>
+        </div>
+      </div>
+      <div class="contenido">
+
+      <!--AQUI IR� TU BONITO C�DIGO -->
+      <div class="ui grid">
+        <div class="row">
+        <div class=" wide column centered">
+          <div class="ui segment">
+            <div class="eight wide column">
+          		<div class="card-header">
+          			<h1>Ganacias semanales</h1>
+          		</div>
+          		<div class="card-body">
+          			<div class="chart">
+          				<div class="flotar-chart">
+          					<canvas id="canvas" class="flotar-bases"style="direction: ltr;left: 0px;top: 0px;width: 1158px;height: 200px;"></canvas>
+          				</div>
+          			</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!--inicio de estadisticas por meses-->
+          <div class="row">
+            <div class="four wide column centered ">
+              <div class="mini-charts-item bgm-cyan" id="Mes1">
+                  <div class="clearfix">
+                    <div class="chart stats-bar"><canvas id="pcanvas" height="45" width="83" style="display: inline-block; width: 83px; height: 45px; vertical-align: top;"></canvas></div>
+                        <div class="count">
+                          <small>Agosto</small>
+                              <h2>987,459$</h2>
+                        </div>
+                      </div>
+              </div>
+            </div>
+            <div class="four wide column centered">
+              <div class="mini-charts-item bgm-lightgreen" id="Mes2">
+                  <div class="clearfix">
+                    <div class="chart stats-bar"><canvas id="pcanvas2" height="45" width="83" style="display: inline-block; width: 83px; height: 45px; vertical-align: top;"></canvas></div>
+                        <div class="count">
+                          <small>Septiembre</small>
+                              <h2>987,459$</h2>
+                        </div>
+                      </div>
+              </div>
+            </div>
+            <div class="four wide column centered">
+              <div class="mini-charts-item bgm-orange" id="Mes3">
+                  <div class="clearfix">
+                    <div class="chart stats-bar"><canvas id="pcanvas3" height="45" width="83" style="display: inline-block; width: 83px; height: 45px; vertical-align: top;"></canvas></div>
+                        <div class="count">
+                          <small>Octubre</small>
+                              <h2>987,459$</h2>
+                        </div>
+                      </div>
+              </div>
+            </div>
+          </div>
+        <!--Fin de estadisticas por meses-->
+
+    	<!--Estadisticas-->
+      <div class="row">
+        <div class="column">
+          <div class="card">
+
+              <div class="card-header">
+                <div class="ui grid">
+                  <div class="row">
+                <div class="fourteen wide column ">
+
+                </div>
+                <div class="two wide column ">
+                <div id="repo" class="ui positive right labeled icon button">Descargar
+                  <i class="arrow down icon"></i>
+                </div>
+                </div>
+                </div>
+</div>
+              </div>
+
+
+          <div class="reportes">
+            <table class="ui celled table">
+              <thead>
+                <tr>
+                    <th data-field="id">Nombre</th>
+                    <th data-field="apellido">Apellido</th>
+                    <th data-field="venta">N� venta</th>
+                    <th data-field="vendedor">Vendedor</th>
+                    <th data-field="vendedor">Fecha de venta</th>
+                    <th data-field="v_venta">Valor total de venta</th>
+                    <th data-field="v_pago">Valor pagado</th>
+                    <th data-field="v_restante">Valor Restante</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Emmanuel</td>
+                  <td>Deossa</td>
+                  <td><a href="#">#0003</a></td>
+                  <td><a href="#" class="ventor">TheJocker</a></td>
+                  <td>1/Oct/2015</td>
+                  <td>80.600$</td>
+                  <td>55.500$</td>
+                  <td>25.100$</td>
+                </tr>
+                <tr>
+                  <td>Esteban</td>
+                  <td>Montoya</td>
+                  <td><a href="#">#0002</a></td>
+                  <td><a href="#" class="ventor">Dragonizado</a></td>
+                  <td>1/Oct/2015</td>
+                  <td>50.000$</td>
+                  <td>30.000$</td>
+                  <td>20.000$</td>
+                </tr>
+                <tr>
+                  <td>Camila</td>
+                  <td>Alzate</td>
+                  <td><a href="#">#0001</a></td>
+                  <td><a href="#" class="ventor">Dragonizado</a></td>
+                  <td>30/Sep/2015</td>
+                  <td>100.000$</td>
+                  <td>70.000$</td>
+                  <td>30.000$</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+        </div>
+</div>
+
+
+
+
+        <!--foto del vendedor-->
+          <div class="ui modal 1">
+             <i class="close icon"></i>
+            <div class="header">Nombre del vendedor</div>
+            <div class="image content">
+              <div class="ui medium image">
+                <img src="../imagenes/perfil.jpg">
+              </div>
+              <div class="description">
+                <div class="ui header">N� de la venta seleccionada.</div>
+                <p>Aqui se pondra una breve descripcion del perfil del vendedor u otra informacion puede ser relacionada con la venta que hizo.</p>
+                <p>aqui pondriamos no se las redes sociales o de contectos o no se XD  pues poner algo de relleno aqui</p>
+              </div>
+            </div>
+            <div class="actions">
+              <div class="ui black deny button">Cancelar</div>
+              <div class="ui positive right labeled icon button">Aceptar
+                <i class="checkmark icon"></i>
+              </div>
+            </div>
+          </div>
+
+          <!--modal de descargas-->
+          <div class="ui modal 2">
+            <i class="close icon"></i>
+            <div class="header">Descargar informes</div>
+            <div class="content">
+              <div class="ui grid">
+                <div class="two column row ">
+                  <div class="column">
+                    <center><p>Descargar</p></center><br>
+                    <br>
+                    <center><div class="ui large buttons">
+                      <button class="ui black button">Ultimos 100</button>
+                      <div data-text="�" class="or"></div>
+                      <button class="ui green button">Por Clientes</button>
+                    </div></center>
+                  </div>
+                  <div class="ui vertical divider">
+                    O
+                  </div>
+                  <div class="column">
+                    <center><p>Por Fechas</p></center><br>
+                    <br>
+
+                    <center><a href="pagos-report.html"><div class="ui right labeled icon button">Descargar
+                    <i class="calendar icon"></i>
+                  </div></a></center>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <div class="actions">
+                <div class="ui button">Cancelar</div>
+                <div class="ui positive right labeled icon button">Aceptar
+                  <i class="checkmark icon"></i>
+                </div>
+              </div>
+
+          </div>
+
+      </div>
+    </div>
+
+    <script src="../js/jquery-1.11.3.min.js" type="text/javascript"></script>
+     <script src="../semantic/dist/semantic.min.js"></script>
+    <script src="../Chart/Chart.js" type="text/javascript"></script>
+    <script src="../js/stadistic.js" type="text/javascript"></script>
+    <script src="../js/charts.js" type="text/javascript"></script>
+    <script src="../js/menubar.js">  </script>
+    <script src="../js/iconmenu.js"></script>
+    <script type="application/javascript">transformicons.add('.tcon')</script>
+    <script>
+      $(document).ready(function(){
+        $(".ventor").click(function(){
+          $('.ui.modal.1').modal('show');
+        });
+        $("#repo").click(function(){
+          $('.ui.modal.2').modal('show');
+        });
+        $("#Mes3").click(function(){
+          window.Linea = new Chart(contexto).Line(Mes3,{showScale: true,responsive : true});
+        });
+        $("#Mes2").click(function(){
+          window.Linea = new Chart(contexto).Line(Mes2,{showScale: true,responsive : true});
+        });
+        $("#Mes1").click(function(){
+          window.Linea = new Chart(contexto).Line(Mes1,{showScale: true,responsive : true});
+        });
+      });
+    </script>
+  </body>
+</html>
