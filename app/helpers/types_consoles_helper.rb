@@ -1,0 +1,2 @@
+module TypesConsolesHelper
+end

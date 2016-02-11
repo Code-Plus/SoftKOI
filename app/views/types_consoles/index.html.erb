@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Types Consoles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @types_consoles.each do |types_console| %>
+      <tr>
+        <td><%= types_console.name %></td>
+        <td><%= link_to 'Show', types_console %></td>
+        <td><%= link_to 'Edit', edit_types_console_path(types_console) %></td>
+        <td><%= link_to 'Destroy', types_console, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Types console', new_types_console_path %>
