@@ -11,53 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211135245) do
+ActiveRecord::Schema.define(version: 20160212143335) do
 
-  create_table "clothings", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.integer  "price"
-    t.string   "description"
-    t.integer  "min_stock"
-    t.integer  "stock"
+    t.text     "description"
     t.string   "state"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "type_products_id"
+  end
+
+  add_index "categories", ["type_products_id"], name: "index_categories_on_type_products_id"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "price"
+    t.string   "state"
+    t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "consoles", force: :cascade do |t|
-    t.string   "name"
-    t.string   "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "products", ["category_id"], name: "index_products_on_category_id"
 
-  create_table "genres", force: :cascade do |t|
+  create_table "type_products", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "movies", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "stock"
-    t.integer  "min_stock"
-    t.string   "description"
-    t.integer  "price"
+    t.text     "description"
     t.string   "state"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "types_clothings", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "types_consoles", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

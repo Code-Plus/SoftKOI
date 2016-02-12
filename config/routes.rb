@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :movies
-  resources :clothings
-  resources :consoles
-  resources :genres
-  resources :types_consoles
-  resources :types_clothings
+  resources :products
+  resources :categories
+  resources :type_products
   	root 'welcome#index'
    devise_for :users
   	get 'welcome/index'
