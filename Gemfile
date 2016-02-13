@@ -17,7 +17,7 @@ gem 'prawn', '~> 2.0', '>= 2.0.2' 			# Generar PDF
 gem 'aasm', '~> 4.8' 						# Maquina de estados
 gem 'slim', '~> 3.0', '>= 3.0.6'			# Template engine
 gem 'cancancan', '~> 1.13', '>= 1.13.1'		# Permisos de usuarios
-#gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 group :development, :test do
   gem 'byebug'
