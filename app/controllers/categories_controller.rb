@@ -15,6 +15,8 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    #Traemos la informacion de la tabla TypeProducts
+    @type_products = TypeProduct.all 
   end
 
   # GET /categories/1/edit
@@ -69,6 +71,7 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :description, :state)
+      #Se le mandan como parametros los campos de la base de datos de la tabla Category
+      params.require(:category).permit(:name, :description, :state, :type_products_id)
     end
 end
