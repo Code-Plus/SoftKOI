@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
-	#Inclumos para gema AASM para los estados
+	#Inclumos la gema AASM para los estados
 	include AASM
+	
 	#Aca iran las conexiones entre tablas
 	belongs_to :type_product
 	has_many :products
@@ -26,10 +27,9 @@ class Category < ActiveRecord::Base
 	end
 
 	#Aca van las validaciones
-	validates :name, presence:true
-	validates :description, presence:true, length:{in: 8..80}
-	validates :state, presence:true
-	validates :type_products_id, presence:true
-
+	validates :name, presence: true
+	validates :description, presence: true, length: { in: 8..80 }
+	validates :state, presence: true
+	validates :type_product_id, presence: true
 
 end

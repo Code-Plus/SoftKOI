@@ -1,19 +1,24 @@
 <%= simple_form_for(@category) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <label>Tipo de producto: </label>
-    <select name="category[type_products_id]">
-    	<!--Recorreremos los datos de la tabla TypeProducts-->
-    	<% @type_products.each do | type_product| %>
-    		<option value="<%= type_product.id %>" id="<%= type_product.id %>"><%= type_product.name %></option>
-    	<%end%>
-    </select>
-  </div>
+	<% if @category.errors.any? %>
+    	<div id="error_explanation">
+      		<h3><%= pluralize(@category.errors.count, "errore") %> al intentar guardar: </h3>
+            <ul>
+      			<% @category.errors.full_messages.each do |message| %>
+        			<li><%= message %></li>
+      			<% end %>
+      		</ul>
+    	</div>
+    <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+	<div class="form-inputs">
+		<%= f.input :name, label: 'Nombre: ' %>
+		<%= f.input :description, label: 'Descripcion: ' %>
+		<!--El metodo association crea una etiqueta select con los registros de la tabla asociada-->
+		<%= f.association :type_product, collection: TypeProduct.all, prompt: "Seleccione una opción...", label: 'Tipo de producto: ' %>
+	</div>
+
+	<div class="form-actions">
+		<%= f.button :submit %>
+	</div>
 <% end %>

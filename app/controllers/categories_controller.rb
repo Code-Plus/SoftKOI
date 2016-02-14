@@ -72,6 +72,6 @@ class CategoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       #Se le mandan como parametros los campos de la base de datos de la tabla Category
-      params.require(:category).permit(:name, :description, :state, :type_products_id)
+      params.require(:category).permit(:name, :description, :type_product_id)
     end
 end

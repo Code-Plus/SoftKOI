@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20160212143335) do
     t.string   "name"
     t.text     "description"
     t.string   "state"
-    t.integer  "type_product_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "type_products_id"
   end
 
-  add_index "categories", ["type_product_id"], name: "index_categories_on_type_product_id"
+  add_index "categories", ["type_products_id"], name: "index_categories_on_type_products_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
