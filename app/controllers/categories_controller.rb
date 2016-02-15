@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :noDisponible, :disponible]
 
   # GET /categories
   # GET /categories.json
@@ -18,6 +18,18 @@ class CategoriesController < ApplicationController
     #Traemos la informacion de la tabla TypeProducts
     @type_products = TypeProduct.all 
   end
+
+  #En este metodo cambiaremos el estado a disponible de las categorias
+  def disponible
+    @category.disponible!
+    redirect_to @category
+  end
+  #En este metodo se cambia el estado a noDisponible de las categorias
+  def noDisponible
+    @category.noDisponible!
+    redirect_to @category
+  end
+
 
   # GET /categories/1/edit
   def edit
