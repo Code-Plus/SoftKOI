@@ -9,20 +9,20 @@ class Category < ActiveRecord::Base
 	#Le designamos a la columna "state" unos estados
 	aasm column: "state" do
 		#Creamos un estado disponible que va a ser el default
-		state :Disponible, :initial => true
+		state :disponible, :initial => true
 		#Creamos un estado NoDisponible
-		state :NoDisponible
+		state :noDisponible
 
 		#Cremos un evento de movimiento para el estado Diponible
-		event :Disponible do
+		event :disponible do
 			#La transicion de este estado es a NoDisponible
-			transitions from: :NoDisponible, to: :Disponible
+			transitions from: :noDisponible, to: :disponible
 		end
 
 		#Cremos un evento de movimiento para el estado NoDiponible
-		event :NoDisponible do
+		event :noDisponible do
 			#La transicion de este estado es a Disponible
-			transitions from: :Disponible, to: :NoDisponible
+			transitions from: :disponible, to: :noDisponible
 		end
 	end
 
