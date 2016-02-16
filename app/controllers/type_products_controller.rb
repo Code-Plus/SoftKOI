@@ -1,5 +1,5 @@
 class TypeProductsController < ApplicationController
-  before_action :set_type_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_type_product, only: [:show, :edit, :update, :destroy, :noDisponible, :disponible]
 
   # GET /type_products
   # GET /type_products.json
@@ -15,6 +15,17 @@ class TypeProductsController < ApplicationController
   # GET /type_products/new
   def new
     @type_product = TypeProduct.new
+  end
+
+  #Métodos  para el cambio de estado.
+  def disponible
+    @type_product.disponible!
+    redirect_to @type_product
+  end
+
+  def noDisponible
+    @type_product.noDisponible!
+    redirect_to @type_product
   end
 
   # GET /type_products/1/edit

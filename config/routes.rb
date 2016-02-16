@@ -14,8 +14,14 @@ Rails.application.routes.draw do
 	resources :categories
 	resources :type_products
 
+	#Busca en el controlador el método disponible
+	put "/type_product/:id/habilitar", to: "type_product#disponible"
+	#Busca en el controlador el método noDisponible.
+	put "/type_product/:id/inhabilitar", to: "type_product#noDisponible"
+
 	#Esta ruta pondra las categorias disponibles, buscara en el controlador de categories el metodo disponible
 	put "/categories/:id/habilitar", to: "categories#disponible"
 	#Esta ruta pondra las categorias en noDisponibles, buscara en el controlador de categories el metodo noDisponible
-	put "/categories/:id/inhabilitar", to: "categories#noDisponible"	
+	put "/categories/:id/inhabilitar", to: "categories#noDisponible"
+
 end
