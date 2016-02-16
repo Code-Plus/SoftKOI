@@ -8,16 +8,16 @@ class TypeProduct < ActiveRecord::Base
 
 	aasm column: "state" do 
 		#Estado por default
-		state :Disponible, :initial => true
-		state :NoDisponible
+		state :disponible, :initial => true
+		state :noDisponible
 
 		#Eventos de movimiento o transiciones para los estados.
-		event :Disponible do
-			transitions from: :NoDisponible, to: :Disponible
+		event :disponible do
+			transitions from: :noDisponible, to: :disponible
 		end
 
-		event :NoDisponible do
-			transitions from: :Disponible, to: :NoDisponible
+		event :noDisponible do
+			transitions from: :disponible, to: :noDisponible
 		end
 	end
 
