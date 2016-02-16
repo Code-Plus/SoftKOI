@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
     @product = Product.new
     #Se traen todas las categorias para mostralas en la vista new.
     @categories = Category.all
+    @type_products = TypeProduct.all
   end
 
   # GET /products/1/edit
