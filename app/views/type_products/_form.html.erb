@@ -1,5 +1,16 @@
 <%= form_for(@type_product) do |f| %>
 
+	<% if @type_product.errors.any? %>
+    	<div id="error_explanation">
+      		<h3><%= pluralize(@type_product.errors.count, "errore") %> al intentar guardar: </h3>
+            <ul>
+      			<% @type_product.errors.full_messages.each do |message| %>
+        			<li><%= message %></li>
+      			<% end %>
+      		</ul>
+    	</div>
+    <% end %>
+
   <div class="form-inputs">
   	<%= f.label :name, "Nombre"%>
     <%= f.text_field :name %>
@@ -8,7 +19,7 @@
   </div>
 
   <div class="form-actions">
-  	<%= f.button :submit %>
+  	<%= f.submit "Registrar" %>
   </div>
 
 <% end %>
