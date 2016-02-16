@@ -1,9 +1,12 @@
-<%= simple_form_for(@type_product) do |f| %>
+<%= simple_form_for(@product) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.input :state%>
+    <%= f.association :category %>
   </div>
 
   <div class="form-actions">
