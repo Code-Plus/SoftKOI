@@ -1,5 +1,4 @@
 class TypeProduct < ActiveRecord::Base
-<<<<<<< HEAD
 
 	#Gema para los estados.
 	include AASM
@@ -26,7 +25,4 @@ class TypeProduct < ActiveRecord::Base
 	validates :name, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
 
-=======
-	has_many :categories
->>>>>>> 884edbdb2cbe89dfc79e9988aee4c8c0faca1520
 end

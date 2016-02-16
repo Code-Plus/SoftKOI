@@ -1,7 +1,7 @@
 .ui.center.aligned.grid
 	.column
 		= image_tag("softkoi.png", class: "image")
-		= simple_form_for resource, as: resource_name, url: session_path(resource_name), defaults: { input_html: { class: 'default_class' } }  do |f|
+		= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
 			.ui.segments
 				.ui.black.segment
 					h4 INICIAR SESIÓN
@@ -9,14 +9,14 @@
 					.field
 						.ui.left.icon.input
 							i.user.icon
-							= f.input :document, label: false, required: false, autofocus: true
+							= f.text_field :document, required: false, autofocus: true
 
 					.field
 						.ui.left.icon.input
 							i.lock.icon
-							= f.input :password, label: false, required: false
+							= f.text_field :password, required: false
 
-					= f.button :submit, "INGRESAR", class: "ui fluid large submit button" 	
+					= f.submit "INGRESAR", class: "ui fluid large submit button" 	
 
 			/.ui.error.message
 		/ .ui.modal.rescue
