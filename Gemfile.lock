@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     aasm (4.8.0)
     actionmailer (4.2.4)
