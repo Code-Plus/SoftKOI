@@ -1,9 +1,10 @@
-<%= simple_form_for(@type_product) do |f| %>
-  <%= f.error_notification %>
+<%= form_for(@type_product) do |f| %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
+  	<%= f.label :name, "Nombre"%>
+    <%= f.text_field :name %>
+    <%= f.label :description, "Descripcion "%>
+    <%= f.text_area :description %>
   </div>
 
   <div class="form-actions">
