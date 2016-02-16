@@ -1,13 +1,16 @@
 <%= form_for(@type_product) do |f| %>
 
+
   <div class="form-inputs">
-  	<%= f.label :name, "Nombre"%>
     <%= f.text_field :name %>
-    <%= f.label :description, "Descripcion "%>
-    <%= f.text_area :description %>
+    <%= f.text_field :description %>
+    <%= f.text_field :state %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
+    <%= link_to %>
   </div>
 <% end %>
+
+<%= link_to 'New Category', new_category_path %>
