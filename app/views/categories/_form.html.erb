@@ -17,12 +17,10 @@
 		<br>
 		<%= f.label :description, "Descripcion" %>
 		<%= f.text_area :description %>
-		<br>
-		<!--El metodo association crea una etiqueta select con los registros de la tabla asociada-->
+
+		<!--El metodo collection_select crea una etiqueta select con los registros de la tabla asociada-->
 		<%= f.label "Tipo de Producto"%>
-		<%= collection_select(:category, :type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion..."}) %>
-		<br>
-		<!--%= f.association :type_product, collection: TypeProduct.all, prompt: "Seleccione una opción...", label: 'Tipo de producto: ' %>-->
+		<%= collection_select(:category,:type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}) %>
 	</div>
 
 	<div class="form-actions">
