@@ -6,18 +6,19 @@ class Product < ActiveRecord::Base
   validates :description, presence: true
   validates :price, presence: true
 
+  scope :activos, ->{where (state: "disponible")}
 
   aasm column: "state" do
 
-    state :Disponible, :initial => true
+    state :disponible, :initial => true
 
-    state :NoDisponible
+    state :noDisponible
 
-    event :Disponible do
-      transitions from: :NoDisponible, to: :Diponible
+    event :disponible do
+      transitions from: :noDisponible, to: :diponible
     end
-    event :NoDisponible do
-      transitions from: :Disponible, to: :NoDisponible
+    event :noDisponible do
+      transitions from: :disponible, to: :noDisponible
     end
   end
 

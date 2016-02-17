@@ -1,0 +1,30 @@
+<%= form_for(@input_product) do |f| %>
+  <% if @input_product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@input_product.errors.count, "error") %> prohibited this input_product from being saved:</h2>
+
+      <ul>
+      <% @input_product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :stock %><br>
+    <%= f.number_field :stock %>
+  </div>
+  <div class="field">
+    <%= f.label :stock_min %><br>
+    <%= f.number_field :stock_min %>
+  </div>
+  <div class="field">
+    <%= f.label :product_id %><br>
+    <!--Treamos la informacion de los productos que esten activos(estado en "disponible")-->
+    <%= collection_select (:input_product,:product_id,Product.activos,:id,:name{prompt: "Seleccione un producto"}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

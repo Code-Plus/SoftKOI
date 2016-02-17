@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Input Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stock</th>
+      <th>Stock min</th>
+      <th>Product</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @input_products.each do |input_product| %>
+      <tr>
+        <td><%= input_product.stock %></td>
+        <td><%= input_product.stock_min %></td>
+        <td><%= input_product.product %></td>
+        <td><%= link_to 'Show', input_product %></td>
+        <td><%= link_to 'Edit', edit_input_product_path(input_product) %></td>
+        <td><%= link_to 'Destroy', input_product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Input product', new_input_product_path %>
