@@ -6,7 +6,8 @@ class Product < ActiveRecord::Base
   validates :description, presence: true
   validates :price, presence: true
 
-  scope :activos, ->{where (state: "disponible")}
+  #El scope verifica y nos trae los productos que tengan estado disponible
+  scope :activos, ->{ where(state: "disponible")}
 
   aasm column: "state" do
 

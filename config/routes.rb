@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 	resources :products
 	resources :categories
 	resources :type_products
+	resources :input_products
 
 	#Busca en el controlador el método disponible
 	put "/type_product/:id/habilitar", to: "type_product#disponible"
