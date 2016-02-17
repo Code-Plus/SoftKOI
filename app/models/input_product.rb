@@ -3,6 +3,5 @@ class InputProduct < ActiveRecord::Base
 
   validates :product_id, presence: true
   validates :stock, presence: true
-  validates :stock_min, presence: true
-  validates :update_at, presence: true
+  validates :create_at, presence: true
 end

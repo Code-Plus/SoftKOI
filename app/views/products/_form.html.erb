@@ -12,9 +12,14 @@
     <% end %>
 
   <div class="form-inputs">
+    <%= f.label :name, "Nombre"%>    
     <%= f.text_field :name %>
+    <%= f.label :name, "Descripción"%>
     <%= f.text_area :description %>
-    <%= f.text_field :price %>
+    <%= f.label :price, "Precio"%>    
+    <%= f.number_field :price %>
+    <%= f.label :stock_min, "Cantidad Minima"%>
+    <%= f.number_field :stock_min%>
   </div>
 
   <div class="form-actions">
