@@ -14,11 +14,14 @@
 	<div class="form-inputs">
 		<%= f.label :name, "Nombre"%>
 		<%= f.text_field :name %>
+		<br>
 		<%= f.label :description, "Descripcion" %>
 		<%= f.text_area :description %>
+		<br>
 		<!--El metodo association crea una etiqueta select con los registros de la tabla asociada-->
 		<%= f.label "Tipo de Producto"%>
-		<%= collection_select(:category,:type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}) %>
+		<%= collection_select(:category, :type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion..."}) %>
+		<br>
 		<!--%= f.association :type_product, collection: TypeProduct.all, prompt: "Seleccione una opción...", label: 'Tipo de producto: ' %>-->
 	</div>
 
