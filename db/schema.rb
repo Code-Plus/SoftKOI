@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20160217024903) do
 
   create_table "input_products", force: :cascade do |t|
     t.integer  "stock"
-    t.integer  "stock_min"
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160217024903) do
     t.text     "description"
     t.integer  "price"
     t.string   "state"
+    t.integer  "stock_min"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -60,11 +60,8 @@ ActiveRecord::Schema.define(version: 20160217024903) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
     t.string   "firstname"
     t.string   "lastname"
     t.string   "email"
