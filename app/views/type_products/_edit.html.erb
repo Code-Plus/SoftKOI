@@ -9,7 +9,14 @@
   </div>
 
   <div class="form-actions">
-  	<%= f.submit "Editar" %>
+      <%= f.submit "Editar" %>
+      <!--Se Valida el estado en que se encuentra el tipo producto-->
+      <% if @type_product.may_disponible? %>
+        <% link_to "Habilitar", "/type_product/#{@type_product.id}/habilitar", method: :put %>  
+      <% else %>
+        <% link_to "Inhabilitar", "/type_product/#{@type_product.id}/habilitar", method: :put %>  
+      <% end %>
+      end
   </div>
 
 <% end %>
