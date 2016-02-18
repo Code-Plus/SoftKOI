@@ -1,14 +1,26 @@
-<%= simple_form_for(@product) do |f| %>
+<%=form_for(@product) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :state%>
+    <%= f.label :name, "Nombre"%>    
+    <%= f.text_field :name %>
+    <%= f.label :name, "Descripción"%>
+    <%= f.text_area :description %>
+    <%= f.label :price, "Precio"%>    
+    <%= f.number_field :price %>
+    <%= f.label :stock_min, "Cantidad Minima"%>
+    <%= f.number_field :stock_min%>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
+    <!--Revisaremos si el producto esta dispinible-->
+    <% if @category.may_disponible?%>
+      <!--Si esta en no disponible tendremos la opcion de habilitarlo-->
+      <%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put %>
+    <% else %>
+      <!--Si esta disponible tendremos la opcion de inhabilitarlo-->
+      <%= link_to "Inhabilitar", "/product/#{@product.id}/inhabilitar", method: :put %>
+    <% end %>
   </div>
 <% end %>

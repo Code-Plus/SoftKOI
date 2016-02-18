@@ -24,6 +24,17 @@ class ProductsController < ApplicationController
   def edit
   end
 
+  #En este metodo cambiaremos el estado a disponible de las categorias
+  def disponible
+    @product.disponible!
+    redirect_to @product
+  end
+  #En este metodo se cambia el estado a noDisponible de las categorias
+  def noDisponible
+    @product.noDisponible!
+    redirect_to @product
+  end
+
   # POST /products
   # POST /products.json
   def create
