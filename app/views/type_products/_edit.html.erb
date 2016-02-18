@@ -5,18 +5,23 @@
     <%= f.text_field :name %>
     <%= f.label :description, "Descripcion "%>
     <%= f.text_area :description %>
+    <%= f.label :state,"Estado"%>
     <%= f.text_field :state %>
   </div>
 
   <div class="form-actions">
-      <%= f.submit "Editar" %>
-      <!--Se Valida el estado en que se encuentra el tipo producto-->
-      <% if @type_product.may_disponible? %>
-        <% link_to "Habilitar", "/type_product/#{@type_product.id}/habilitar", method: :put %>  
+    <!--Se Valida el estado en que se encuentra el tipo producto-->
+      <% if @type_product.may_disponible?%>
+        <%= link_to "Habilitar", "/type_product/#{@type_product.id}/habilitar", method: :put %>  
       <% else %>
-        <% link_to "Inhabilitar", "/type_product/#{@type_product.id}/habilitar", method: :put %>  
+        <%= link_to "Inhabilitar", "/type_product/#{@type_product.id}/inhabilitar", method: :put %>  
       <% end %>
-      end
   </div>
 
+  <div class="form-actions">
+      <%= f.submit "Editar" %>   
+  </div>
+  
 <% end %>
+
+<%= link_to 'New Type product', new_type_product_path %>
