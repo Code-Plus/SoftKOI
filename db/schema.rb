@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160217024903) do
     t.integer  "price"
     t.string   "state"
     t.integer  "stock_min"
+    t.integer  "stock"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
