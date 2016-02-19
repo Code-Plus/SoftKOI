@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get '/output_products/index'
+  get '/output_products/new'
+  get '/output_products/show'
+
   resources :input_products
 	# root_path (/) configurado para el login
 	devise_scope :user do

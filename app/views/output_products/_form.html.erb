@@ -1,0 +1,23 @@
+<%= form_for (@output_product)  do |f| %>
+
+	<% if @output_product.errors.any? %>
+    	<div id="error_explanation">
+      		<h3><%= pluralize(@output_product.errors.count, "errore") %> al intentar guardar: </h3>
+            <ul>
+      			<% @output_product.errors.full_messages.each do |message| %>
+        			<li><%= message %></li>
+      			<% end %>
+      		</ul>
+    	</div>
+    <% end %>
+
+	<div class="form-inputs">
+		<!--El metodo collection_select crea una etiqueta select con los registros de la tabla asociada-->
+		<%= f.label "Productos"%>
+		<%= collection_select(:output_product,:product_id, Product.all, :id, :name, {prompt: "Seleccione una opción"}) %>
+	</div>
+
+	<div class="form-actions">
+		<%= f.submit "Dar de baja" %>
+	</div>
+<% end %>

@@ -1,0 +1,2 @@
+module OutputProductsHelper
+end
