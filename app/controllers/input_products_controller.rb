@@ -71,6 +71,7 @@ class InputProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def input_product_params
-      params.require(:input_product).permit(:stock, :stock_min, :product_id)
+      params.require(:input_product).permit(:stock, :product_id)
     end
+
 end
