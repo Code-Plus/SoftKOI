@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
     @product = Product.new
     #Se traen todas las categorias para mostralas en la vista new.
     @categories = Category.all
+    #Se traen todos los tipos de producto para mostrarla en la vista enw
     @type_products = TypeProduct.all
   end
 
@@ -83,6 +84,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :price, :state, :category_id)
+      params.require(:product).permit(:name, :description, :price, :state, :category_id, :stock_min)
     end
 end
