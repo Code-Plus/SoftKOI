@@ -39,7 +39,7 @@ class TypeProductsController < ApplicationController
 
     respond_to do |format|
       if @type_product.save
-        format.html { redirect_to @type_product, notice: 'Type product was successfully created.' }
+        format.html { redirect_to @type_product, notice: 'Tipo de producto creado correctamente.' }
         format.json { render :show, status: :created, location: @type_product }
       else
         format.html { render :new }

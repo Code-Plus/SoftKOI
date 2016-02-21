@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="login-box">
+		<div>
+			<div class="login-form row">
+				<div class="col-sm-12 text-center login-header">
+					<!--Logo SoftKOI-->
+					<i class="login-logo fa fa-users fa-5x"></i>
+					<h4 class="login-title">SOFTKOI APP</h4>
+				</div>
+
+				<div class="col-sm-12">
+					<div class="login-body">
+
+					   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+							<!--Documento-->
+							<div class="control">
+								<%= f.text_field :document, required: true, placeholder: 'Documento', class: 'form-control' %>
+							</div>
+							<!--Contraseña-->
+							<div class="control">
+								<%= f.password_field :password, required: true, placeholder:'Contraseña', class:'form-control' %>
+							</div>
+							<!--Boton-->
+							<div class="login-button text-center">
+								<%= f.submit "INICIAR SESION", class: 'btn btn-primary' %>
+							</div>
+						<% end %>
+					</div>
+
+					<div class="login-footer">
+						<span class="text-right">
+							<%= link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name), class:'color-white' %>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

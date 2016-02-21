@@ -5,12 +5,9 @@
  *= require_self
 */
 
-@import "semantic-ui";
+@import 'semantic-ui';
+@import 'notice.scss';
 
 body{
  	font-family: 'Helvetica', 'Hack' !important;
 }
-
-
-
-
