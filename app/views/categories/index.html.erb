@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Description</th>
       <th>State</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
+        <td><%= category.id %></td>
         <td><%= category.name %></td>
         <td><%= category.description %></td>
         <td><%= category.state %></td>
@@ -23,7 +25,7 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
+<%= will_paginate @categories %>
+<br>
 <%= link_to 'New Category', new_category_path %>
