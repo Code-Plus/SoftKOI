@@ -1,4 +1,7 @@
 class Product < ActiveRecord::Base
+
+  after_initialize :init
+
   include AASM
   belongs_to :category
   has_many :output_product
@@ -10,6 +13,8 @@ class Product < ActiveRecord::Base
   validates :stock_min, presence: true
   validates :state, presence: true
   validates :category_id, presence: true
+
+
 
   #El scope verifica y nos trae los productos que tengan estado disponible
   scope :activos, ->{ where(state: "disponible")}
@@ -27,5 +32,10 @@ class Product < ActiveRecord::Base
       transitions from: :disponible, to: :noDisponible
     end
   end
+
+  private
+   def init
+      self.stock ||= 0        
+    end
 
 end
