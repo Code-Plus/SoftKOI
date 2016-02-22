@@ -4,8 +4,7 @@ html {
 body {
   padding-top: 0px;
   height: 100%;
-  position: relative;
-  font-size: 13px; }
+  position: relative;}
 
 * {
   outline: none; }
@@ -584,7 +583,7 @@ body.login-page {
     width: 100%;
     max-width: 320px;
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0; }
