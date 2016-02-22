@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :price
       t.string :state
       t.integer :stock_min
-      t.integer :stock
+      t.integer :stock, :default => 0 
       t.references :category, index: true, foreign_key: true
 
       t.timestamps null: false

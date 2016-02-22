@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(version: 20160219181704) do
     t.integer  "price"
     t.string   "state"
     t.integer  "stock_min"
-    t.integer  "stock"
+    t.integer  "stock",       default: 0
     t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
