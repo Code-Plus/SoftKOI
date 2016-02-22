@@ -4,13 +4,10 @@
 </p>
 
 <p>
-  <strong>Stock min:</strong>
-  <%= @input_product.stock_min %>
-</p>
 
 <p>
   <strong>Product:</strong>
-  <%= @input_product.product %>
+  <%= @input_product.product.name %>
 </p>
 
 <%= link_to 'Edit', edit_input_product_path(@input_product) %> |
