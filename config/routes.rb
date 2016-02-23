@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 	#Esta ruta pondra las categorias en noDisponibles, buscara en el controlador de categories el metodo noDisponible
 	put "/product/:id/inhabilitar", to: "products#noDisponible"
 
+	put "/output_product/:id/deBaja", to: "output_products#deBaja"
+
 	#Busca en el controlador el método disponible
 	put "/type_product/:id/habilitar", to: "type_products#disponible"
 	#Busca en el controlador el método noDisponible.

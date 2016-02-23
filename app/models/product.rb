@@ -24,12 +24,19 @@ class Product < ActiveRecord::Base
 
     state :noDisponible
 
+    state :deBaja
+
     event :disponible do
       transitions from: :noDisponible, to: :diponible
     end
     event :noDisponible do
       transitions from: :disponible, to: :noDisponible
     end
+
+    event :deBaja do
+      transitions from: :disponible, to: :deBaja
+    end
+
   end
 
 

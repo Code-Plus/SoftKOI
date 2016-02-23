@@ -2,7 +2,7 @@ class OutputProductsController < ApplicationController
   before_action :set_output_product, only: [:show]
 
   def index
-  	@output_products = OutputProduct.all 
+  	@products = Product.all 
   end
 
   def show
@@ -11,6 +11,17 @@ class OutputProductsController < ApplicationController
 
   def new
     @output_product = OutputProduct.new
+    @products = Product.all 
+  end
+
+  def disponible
+    @product.disponible!
+    redirect_to @product
+  end
+
+  def deBaja
+    @product.deBaja!
+    redirect_to @output_product
   end
 
   def create

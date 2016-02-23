@@ -1,23 +1,34 @@
-<%= form_for (@output_product)  do |f| %>
+<h1>Dar de baja un producto</h1>
 
-	<% if @output_product.errors.any? %>
-    	<div id="error_explanation">
-      		<h3><%= pluralize(@output_product.errors.count, "errore") %> al intentar guardar: </h3>
-            <ul>
-      			<% @output_product.errors.full_messages.each do |message| %>
-        			<li><%= message %></li>
-      			<% end %>
-      		</ul>
-    	</div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>State</th>
+      <th>Stock mínimo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><%= product.state %></td>
+        <td><%= product.stock_min %></td>
+        <% if @product.may_disponible?%>
+      	<%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put %>
+    	<% else %>
+      	<%= link_to "DarDeBaja", "/output_product/#{@product.id}/deBaja", method: :put %>
+    	<% end %>
+        <td><%= link_to 'Show', product %></td>
+      </tr>
     <% end %>
+  </tbody>
+</table>
 
-	<div class="form-inputs">
-		<!--El metodo collection_select crea una etiqueta select con los registros de la tabla asociada-->
-		<%= f.label "Productos"%>
-		<%= collection_select(:output_product,:product_id, Product.all, :id, :name, {prompt: "Seleccione una opción"}) %>
-	</div>
-
-	<div class="form-actions">
-		<%= f.submit "Dar de baja" %>
-	</div>
-<% end %>
+<br>

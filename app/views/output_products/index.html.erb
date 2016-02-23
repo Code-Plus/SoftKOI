@@ -1,1 +1,29 @@
-<h1>Dar de baja a un producto</h1>
+<h1>Dar de baja un producto</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>State</th>
+      <th>Stock mínimo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><%= product.state %></td>
+        <td><%= product.stock_min %></td>
+        <td><%= link_to 'Show', product %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
