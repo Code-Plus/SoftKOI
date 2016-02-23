@@ -1,11 +1,10 @@
 class Product < ActiveRecord::Base
 
-  after_initialize :init
 
   include AASM
   belongs_to :category
-  has_many :output_product
-  has_many :input_product
+  has_many :output_products
+  has_many :input_products
 
   validates :name, presence: true
   validates :description, presence: true
@@ -33,9 +32,5 @@ class Product < ActiveRecord::Base
     end
   end
 
-  private
-   def init
-      self.stock ||= 0        
-    end
 
 end

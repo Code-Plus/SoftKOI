@@ -3,13 +3,17 @@ class InputProduct < ActiveRecord::Base
 
   validates :product_id, presence: true
   validates :stock, presence: true
-
   before_create :update_stock
 
 
+  def product=(value)
+  	@product=value
+  end
 
-  #Tengo un error en este metodo
+  private
+  #Metodo para actualizar el stock del producto al que se le hace la entrada
   def update_stock
-    @products.update(stock_min: @products.stock + self.stock)
+  	stock_product= product.stock
+    product.update(stock: stock_product + self.stock)
   end
 end

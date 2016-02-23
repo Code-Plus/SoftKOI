@@ -13,7 +13,7 @@
     <% @input_products.each do |input_product| %>
       <tr>
         <td><%= input_product.stock %></td> 
-        <td><%= input_product.product %></td>
+        <td><%= input_product.product.name %></td>
         <td><%= link_to 'Show', input_product %></td>
         <td><%= link_to 'Edit', edit_input_product_path(input_product) %></td>
         <td><%= link_to 'Destroy', input_product, method: :delete, data: { confirm: 'Are you sure?' } %></td>

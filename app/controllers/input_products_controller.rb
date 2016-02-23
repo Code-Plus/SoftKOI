@@ -16,7 +16,7 @@ class InputProductsController < ApplicationController
   def new
     @input_product = InputProduct.new
     #Traemos todo los productos que tengan estado "disponible"
-    @products=Product.activos
+    @product=Product.activos
   end
 
   # GET /input_products/1/edit
@@ -27,7 +27,7 @@ class InputProductsController < ApplicationController
   # POST /input_products.json
   def create
     @input_product = InputProduct.new(input_product_params)
-
+    @input_product.product = params[:stock]
     respond_to do |format|
       if @input_product.save
         format.html { redirect_to @input_product, notice: 'Input product was successfully created.' }
