@@ -6,6 +6,7 @@ class InputProduct < ActiveRecord::Base
   before_create :update_stock
 
 
+
   def product=(value)
   	@product=value
   end
@@ -16,4 +17,8 @@ class InputProduct < ActiveRecord::Base
   	stock_product= product.stock
     product.update(stock: stock_product + self.stock)
   end
+
+  
+
+
 end

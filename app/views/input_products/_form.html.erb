@@ -12,13 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :stock %><br>
+    <%= f.label :stock, "Cantidad" %><br>
     <%= f.number_field :stock %>
   </div>
   <div class="field">
-    <%= f.label :product_id %><br>
+    <%= f.label :product_id, "Producto" %><br>
     <!--Treamos la informacion de los productos que esten activos(estado en disponible)-->
     <%= collection_select(:input_product, :product_id, Product.activos, :id, :name, {prompt: "Seleccione un producto"}) %>
+  </div>
+  <div>
+    <!--Se trae la informacion del precio del produto en un select-->
+    <%= f.label "Precio" %><br> 
+    <%= collection_select(:input_product, :product_id, Product.precios, :id, :price, {prompt: "Seleccione un Precio"}) %>
+  </div>
+  <div>
+    
   </div>
   <div class="actions">
     <%= f.submit %>

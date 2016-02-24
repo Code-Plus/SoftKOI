@@ -16,7 +16,10 @@ class InputProductsController < ApplicationController
   def new
     @input_product = InputProduct.new
     #Traemos todo los productos que tengan estado "disponible"
-    @product=Product.activos
+    @product=Product.activos.precios
+
+
+    #@precios = Product.by_name(params[:product][:name]).prices
   end
 
   # GET /input_products/1/edit

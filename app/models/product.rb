@@ -18,6 +18,17 @@ class Product < ActiveRecord::Base
   #El scope verifica y nos trae los productos que tengan estado disponible
   scope :activos, ->{ where(state: "disponible")}
 
+  #El scope obtiene los precios de los registros de la tabla product cuyo name sea Pantalon
+  scope :precios, -> { where(:name => 'Pantalon').select(:id,:price)}
+
+
+
+  ######
+  #scope :by_name, -> (name) { where(name: name) }
+  #scope :prices, -> { select(:prices) }
+  #####
+
+
   aasm column: "state" do
 
     state :disponible, :initial => true
