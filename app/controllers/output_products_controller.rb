@@ -5,7 +5,7 @@ class OutputProductsController < ApplicationController
   # GET /output_products.json
   def index
     @output_products = OutputProduct.all
-    @product = Product.activos_cantidad_stock_min
+    @product = Product.activos_y_cantidad
   end
 
   # GET /output_products/1
