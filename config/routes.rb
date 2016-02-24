@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :output_products
   get '/output_products/index'
   get '/output_products/new'
   get '/output_products/show'
