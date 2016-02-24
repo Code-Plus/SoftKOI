@@ -18,7 +18,50 @@
 		<% end %>   
 	</div> 
 
-	<%= yield %>
+	<header>
+		<!-- Barra superior -->
+		<div class="menusuperior normal">
+			<!-- Menu hamburguesa -->
+			<div class="controlmenu">
+				<div class="icon">
+					<button id="iconmenu" type="button" aria-label="toggle menu" class="tcon tcon-menu--xcross">
+						<span aria-hidden="true" class="tcon-menu__lines"></span>
+						<span class="tcon-visuallyhidden">Menu expandible</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Centro de la barra superior -->
+			<div class="centro">
+				<!-- Espacio para futuros logos o assets -->
+			</div>
+
+			<!-- Notificaciones y boton de perfil -->
+			<div  class="alerts">
+				<div class="imgsize">
+					<a class="ALETCalendario"href="#"><%= image_tag("calendar.svg") %></a>
+				</div>
+
+				<div class="imgsize">
+					<a class="ALETMensajes" href="#"><%= image_tag("message.svg") %></a>
+				</div>
+
+				<div>
+					<a class="ALETNotificacion"href="#"><%= image_tag("notifications.svg", class: 'last') %></a>
+				</div>
+				<a href="modulos/perfil.html" class="btn ui button">Perfil</a>
+			</div>
+		</div>
+	</header>
+
+	<%= render "partials/lateral" %>
+
+	<div class="container normal">
+		<!-- AQUI TU BONITO CÓDIGO -->
+		<%= yield %>
+	</div>
+
+	<%= javascript_tag "transformicons.add('.tcon')" %>
 
 </body>
 </html>
