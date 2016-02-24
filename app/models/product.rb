@@ -8,12 +8,10 @@ class Product < ActiveRecord::Base
 
   validates :name, presence: true
   validates :description, presence: true
-  validates :price, presence: true  
+  validates :price, presence: true
   validates :stock_min, presence: true
   validates :state, presence: true
   validates :category_id, presence: true
-
-
 
   #El scope verifica y nos trae los productos que tengan estado disponible
   scope :activos, ->{ where(state: "disponible")}
@@ -21,7 +19,11 @@ class Product < ActiveRecord::Base
   #El scope obtiene los precios de los registros de la tabla product cuyo name sea Pantalon
   scope :precios, -> { where(:name => 'Pantalon').select(:id,:price)}
 
+  #Productos activos cuya cantidad sea mayor a cero.
+  scope :activos_y_cantidad, ->{ activos.where("stock > 0")}
 
+  #Productos activos cuya cantidad sea menor al stock mínimo.
+  scope :activos_cantidad_stock_min, ->{ activos_y_cantidad.where("stock < stock_min")}
 
   ######
   #scope :by_name, -> (name) { where(name: name) }

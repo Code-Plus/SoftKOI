@@ -1,11 +1,11 @@
 class OutputProductsController < ApplicationController
-  before_action :set_output_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_output_product, only: [:show]
 
   # GET /output_products
   # GET /output_products.json
   def index
     @output_products = OutputProduct.all
-    @product = Product.activos
+    @product = Product.activos_cantidad_stock_min
   end
 
   # GET /output_products/1
@@ -17,10 +17,6 @@ class OutputProductsController < ApplicationController
   def new
     @output_product = OutputProduct.new
     @product = Product.activos
-  end
-
-  # GET /output_products/1/edit
-  def edit
   end
 
   # POST /output_products
@@ -36,30 +32,6 @@ class OutputProductsController < ApplicationController
         format.html { render :new }
         format.json { render json: @output_product.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /output_products/1
-  # PATCH/PUT /output_products/1.json
-  def update
-    respond_to do |format|
-      if @output_product.update(output_product_params)
-        format.html { redirect_to @output_product, notice: 'Output product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @output_product }
-      else
-        format.html { render :edit }
-        format.json { render json: @output_product.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /output_products/1
-  # DELETE /output_products/1.json
-  def destroy
-    @output_product.destroy
-    respond_to do |format|
-      format.html { redirect_to output_products_url, notice: 'Output product was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
