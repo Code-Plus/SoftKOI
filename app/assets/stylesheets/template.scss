@@ -13,7 +13,7 @@ header{
   display: flex !important;
 }
 li.Mnormal{
-  transition: all 0.4s ease 0s;
+  transition: box-shadow 0.4s ease 0s;
 }
 li.Mnormal:hover {
     box-shadow: 78px 0 #e4e8ec inset, 84px 0 #abb6c4 inset;
@@ -25,7 +25,7 @@ ul.menu.normal{
     flex-direction: column;
     list-style: outside none none;
     min-height: 100%;
-    transition: all 0.4s ease 0s;
+
 }
 ul.menu.normal li.Mnormal{
   background-color: white;
@@ -45,6 +45,9 @@ padding-left: 35%;
 }
 ul.menu.normal li.Mnormal span{
   display: none;
+}
+.menulateral ul.menu.normal li.Mnormal:last-child{
+/*transition: all 0.4s ease 0s;*/
 }
 
 .HomeM.Hnormal a img{
@@ -169,12 +172,13 @@ ul.menu.desplegado li.Mdesplegado{
 
   height: 48px;
 }
-ul.menu.desplegado li.Mdesplegado a{
+ul.menu.desplegado li.Mdesplegado a.Modulos{
   position: fixed;
   width: 257px;
   height:48px;
   padding-left: 1%;
   padding-top: 10px;
+
 }
 ul.menu.desplegado li.Mdesplegado a span{
   position: absolute;
@@ -189,9 +193,15 @@ ul.menu.desplegado li.Mdesplegado a span{
   width: 252px;
   height:72px;
   background-color: white;
-  padding-left: 43%;
-  padding-top: 9%;
   bottom: 1px;
+  transition: all 0.4s ease 0s;
+}
+.menulateral ul.menu.desplegado li.Mdesplegado:last-child a.Salir{
+  position: fixed;
+  width: 252px;
+  height:72px;
+  padding-top: 1.6%;
+  padding-left: 9%;
 
 }
 /*--------------------clases------------------*/
@@ -348,6 +358,7 @@ ul.menu.desplegado{
   position: static;
   width: auto;
 }
+
 
 /* Alerts */
 #notice_wrapper {
