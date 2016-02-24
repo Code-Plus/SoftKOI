@@ -21,13 +21,14 @@ li.Mnormal:hover {
 /*-----------------------------etiquetas con clases---------------------*/
 ul.menu.normal{
     align-items: center;
-    display: flex ;
+    display: flex;
     flex-direction: column;
     list-style: outside none none;
     min-height: 100%;
 
 }
 ul.menu.normal li.Mnormal{
+  position: relative; 
   background-color: white;
   flex-grow: 1;
   width: 100%;
@@ -37,8 +38,14 @@ ul.menu.normal li.Mnormal{
 
 }
 ul.menu.normal li.Mnormal a{
+position: absolute;
 width: 100%;
 height: 100%;
+display: -moz-box;
+display: -webkit-flexbox;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: -moz-flex;
 display: flex;
 align-items:  center;
 padding-left: 35%;
@@ -157,7 +164,9 @@ div.menusuperior div.alerts a.ALETNotificacion {
   margin-right: 15px;
 }
 .controlmenu{
-
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
 }
 /*--------------------------IDS--------------------------*/
 
@@ -223,11 +232,6 @@ ul.menu.desplegado{
 
 
 /*--------------boton de accion para el menu------------*/
-
-.icon{
-  margin-top: 21%;
-  margin-left: 40%;
-}
 
 .tcon {
   -webkit-appearance: none;
