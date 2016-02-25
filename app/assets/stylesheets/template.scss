@@ -9,14 +9,14 @@ header{
   margin-left: 82px;
   width: 100%;
   position: fixed;
-  border-bottom: 3px solid #e7eaee;
+  border-bottom: 4px solid #e7eaee;
   display: flex !important;
 }
 li.Mnormal{
   transition: box-shadow 0.4s ease 0s;
 }
 li.Mnormal:hover {
-    box-shadow: 78px 0 #e4e8ec inset, 84px 0 #abb6c4 inset;
+    box-shadow: 78px 0 #e4e8ec inset, 82px 0 #abb6c4 inset;
 }
 /*-----------------------------etiquetas con clases---------------------*/
 ul.menu.normal{
@@ -133,7 +133,7 @@ div.menusuperior div.alerts a.ALETNotificacion {
   position: fixed;
   width: 84px;
   height: 92vh;
-  margin-top: 72px;
+  margin-top: 74px;
   transition: all 0.4s ease 0s;
 }
 .container.normal{
@@ -219,7 +219,7 @@ ul.menu.desplegado li.Mdesplegado a span{
   position: fixed;
   background-color: white;
   border-right: 4px solid #e7eaee;
-  width: 256px;
+  width: 254px;
   height: 92vh;
   margin-top: 72px;
   transition: all 0.4s ease 0s;
