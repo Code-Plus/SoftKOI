@@ -35,5 +35,4 @@ Rails.application.routes.draw do
 	put "/category/:id/habilitar", to: "categories#disponible"
 	#Esta ruta pondra las categorias en noDisponibles, buscara en el controlador de categories el metodo noDisponible
 	put "/category/:id/inhabilitar", to: "categories#noDisponible"
-
 end

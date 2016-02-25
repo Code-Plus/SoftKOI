@@ -15,12 +15,13 @@ class InputProductsController < ApplicationController
   # GET /input_products/new
   def new
     @input_product = InputProduct.new
+    #Se obtiene el producto que se selecciono para la entrada
+    @productx = Product.find(params[:product_id])
     #Traemos todo los productos que tengan estado "disponible"
-    @product=Product.activos.precios
-
-
-    #@precios = Product.by_name(params[:product][:name]).prices
+    @product=Product.activos_y_cantidad
   end
+
+
 
   # GET /input_products/1/edit
   def edit
@@ -31,6 +32,10 @@ class InputProductsController < ApplicationController
   def create
     @input_product = InputProduct.new(input_product_params)
     @input_product.product = params[:stock]
+###########################
+    @input_product.product = params[:name]
+    @input_product.product = params[:price]
+###########################
     respond_to do |format|
       if @input_product.save
         format.html { redirect_to @input_product, notice: 'Input product was successfully created.' }
@@ -74,7 +79,7 @@ class InputProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def input_product_params
-      params.require(:input_product).permit(:stock, :product_id)
+      params.require(:input_product).permit(:stock, :product_id )
     end
 
 end

@@ -13,6 +13,8 @@ class Product < ActiveRecord::Base
   validates :state, presence: true
   validates :category_id, presence: true
 
+
+
   #El scope verifica y nos trae los productos que tengan estado disponible
   scope :activos, ->{ where(state: "disponible")}
 
@@ -21,12 +23,6 @@ class Product < ActiveRecord::Base
 
   #Productos activos cuya cantidad sea mayor a cero.
   scope :activos_y_cantidad, ->{ activos.where("stock >= stock_min")}
-
-  ######
-  #scope :by_name, -> (name) { where(name: name) }
-  #scope :prices, -> { select(:prices) }
-  #####
-
 
   aasm column: "state" do
 
@@ -48,6 +44,9 @@ class Product < ActiveRecord::Base
     end
 
   end
-
-
+#########################
+  def nombre
+    @nombre = self.name
+  end
+############################
 end
