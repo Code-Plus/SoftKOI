@@ -32,6 +32,8 @@
               <i class="edit icon"></i>
               Editar
             <% end %></td>
+            <!--Se le envia el id del producto a "input_product/new"-->
+            <td><%= link_to 'entrada',new_input_product_path(product_id: product.id) %></td>
           </tr>
         <% end %>
       </tbody>
