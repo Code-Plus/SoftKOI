@@ -1,6 +1,5 @@
 <%=form_for(@product) do |f| %>
 
-
   <div class="form-inputs">
     <%= f.label :name, "Nombre"%>    
     <%= f.text_field :name %>
@@ -15,7 +14,7 @@
   <div class="form-actions">
     <%= f.button :submit %>
     <!--Revisaremos si el producto esta dispinible-->
-    <% if @category.may_disponible?%>
+    <% if @product.may_disponible?%>
       <!--Si esta en no disponible tendremos la opcion de habilitarlo-->
       <%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put %>
     <% else %>
@@ -23,4 +22,5 @@
       <%= link_to "Inhabilitar", "/product/#{@product.id}/inhabilitar", method: :put %>
     <% end %>
   </div>
+
 <% end %>

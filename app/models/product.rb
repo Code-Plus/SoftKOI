@@ -20,10 +20,7 @@ class Product < ActiveRecord::Base
   scope :precios, -> { where(:name => 'Pantalon').select(:id,:price)}
 
   #Productos activos cuya cantidad sea mayor a cero.
-  scope :activos_y_cantidad, ->{ activos.where("stock > 0")}
-
-  #Productos activos cuya cantidad sea menor al stock mínimo.
-  scope :activos_cantidad_stock_min, ->{ activos_y_cantidad.where("stock < stock_min")}
+  scope :activos_y_cantidad, ->{ activos.where("stock >= stock_min")}
 
   ######
   #scope :by_name, -> (name) { where(name: name) }
