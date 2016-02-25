@@ -23,12 +23,12 @@
             <td><%= product.description %></td>
             <td><%= product.price %></td>
             <td><%= product.state %></td>
-            <td><%= link_to product, class: 'ui olive button' do%>
+            <td><%= link_to product, class: 'tiny ui yellow button' do%>
               <i class="unhide icon"></i>
               Detalles
             <% end %>
             
-            <%= link_to edit_product_path(product), class: 'ui blue button' do %>
+            <%= link_to edit_product_path(product), class: 'tiny  ui blue button' do %>
               <i class="edit icon"></i>
               Editar
             <% end %></td>
@@ -36,9 +36,7 @@
         <% end %>
       </tbody>
     </table>
-
-    <br>
-
+    <%= will_paginate @products %>
   
   </div>
 </div>
