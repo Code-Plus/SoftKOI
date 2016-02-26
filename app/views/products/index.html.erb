@@ -12,7 +12,7 @@
           <th>Description</th>
           <th>Price</th>
           <th>State</th>
-          <th width="250">Acciones</th>
+          <th width="142">Acciones</th>
         </tr>
       </thead>
 
@@ -23,17 +23,19 @@
             <td><%= product.description %></td>
             <td><%= product.price %></td>
             <td><%= product.state %></td>
-            <td><%= link_to product, class: 'tiny ui yellow button' do%>
-              <i class="unhide icon"></i>
-              Detalles
+            <td><%= link_to product, class: 'small ui icon yellow button' do%>
+              <i class="unhide tbold icon"></i>
             <% end %>
             
-            <%= link_to edit_product_path(product), class: 'tiny  ui blue button' do %>
-              <i class="edit icon"></i>
-              Editar
-            <% end %></td>
+            <%= link_to edit_product_path(product), class: 'small ui icon blue button' do %>
+              <i class="edit tbold icon"></i>
+            <% end %>
+
             <!--Se le envia el id del producto a "input_product/new"-->
-            <td><%= link_to 'entrada',new_input_product_path(product_id: product.id) %></td>
+            <%= link_to new_input_product_path(product_id: product.id), class: 'small ui icon teal button' do %>
+              <i class="sign in tbold icon"></i>
+            <% end %></td>
+
           </tr>
         <% end %>
       </tbody>
