@@ -4,8 +4,8 @@ class OutputProductsController < ApplicationController
   # GET /output_products
   # GET /output_products.json
   def index
-    @output_products = OutputProduct.all
-    @product = Product.activos_y_cantidad
+    @output_products = OutputProduct.order('created_at DESC').page(params[:page]).per_page(5)
+    @product = Product.activos_y_cantidad.order('created_at DESC').page(params[:page]).per_page(5)
   end
 
   # GET /output_products/1
