@@ -1,29 +1,39 @@
-<h1>Listing Type Products</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>State</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @type_products.each do |type_product| %>
-      <tr>
-        <td><%= type_product.name %></td>
-        <td><%= type_product.description %></td>
-        <td><%= type_product.state %></td>
-        <td><%= link_to 'Show', type_product %></td>
-        <td><%= link_to 'Edit', edit_type_product_path(type_product) %></td>
-        <td><%= link_to 'Destroy', type_product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="ui container">
+  <div class="ui segment">
+    <%= link_to new_type_product_path, class: 'ui right floated green button' do %>
+      <i class="add circle icon"></i>
+      Nuevo Tipo de Producto.
     <% end %>
-  </tbody>
-</table>
+    <br><br>
+    <table class="ui green compact celled unstackable striped table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>State</th>
+          <th width="250">Acciones</th>
+        </tr>
+      </thead>
 
-<br>
+      <tbody>
+        <% @type_products.each do |type_product| %>
+          <tr>
+            <td><%= type_product.name %></td>
+            <td><%= type_product.description %></td>
+            <td><%= type_product.state %></td>
+            <td><%= link_to type_product, class: 'tiny ui yellow button' do%>
+              <i class="unhide icon"></i>
+              Detalles
+            <% end %>
 
-<%= link_to 'New Type product', new_type_product_path %>
+            <%= link_to edit_type_product_path(type_product), class: 'tiny  ui blue button' do %>
+              <i class="edit icon"></i>
+              Editar
+            <% end %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @type_products %>
+  </div>
+</div>
