@@ -1,53 +1,57 @@
-<h1>Salidas de productos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Cantidad de baja</th>
-      <th>Producto</th>
-      <th>Fecha</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @output_products.each do |output_product| %>
-      <tr>
-        <td><%= output_product.stock %></td>
-        <td><%= output_product.product.name %></td>
-        <td><%= output_product.created_at %></td>
-      </tr>
+<div class="ui container">
+  <div class="ui segment">
+    <%= link_to new_output_product_path, class: 'ui right floated green button' do %>
+      <i class="add circle icon"></i>
+      Registrar salida de productos.
     <% end %>
-  </tbody>
-</table>
+    <br><br>
+    <table class="ui green compact celled unstackable striped table">
+      <thead>
+        <tr>
+          <th>Cantidad de baja</th>
+          <th>Producto</th>
+          <th>Fecha</th>
+          <th width="142">Acciones</th>
+        </tr>
+      </thead>
 
-<h1>Productos</h1>
+      <tbody>
+        <% @output_products.each do |output_product| %>
+          <tr>
+            <td><%= output_product.stock %></td>
+            <td><%= output_product.product.name %></td>
+            <td><%= output_product.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @output_products %>
+    
+    <h1>Productos</h1>
+    <table class="ui green compact celled unstackable striped table">
+      <thead>
+        <tr>
+          <th>Cantidad</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th>Cantidad mínima</th>
+          <th width="142">Acciones</th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Cantidad</th>
-      <th>Nombre</th>
-      <th>Precio</th>
-      <th>Estado</th>
-      <th>Cantidad mínima</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @product.each do |product| %>
-      <tr>
-        <td><%= product.stock %></td>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.state %></td>
-        <td><%= product.stock_min %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Dar de baja un producto', new_output_product_path %>
+      <tbody>
+        <% @product.each do |product| %>
+          <tr>
+            <td><%= product.stock %></td>
+            <td><%= product.name %></td>
+            <td><%= product.price %></td>
+            <td><%= product.state %></td>
+            <td><%= product.stock_min %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @product %>
+  </div>
+</div>
