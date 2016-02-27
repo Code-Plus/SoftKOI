@@ -16,7 +16,7 @@ li.Mnormal{
   transition: box-shadow 0.4s ease 0s;
 }
 li.Mnormal:hover {
-    box-shadow: 78px 0 #e4e8ec inset, 82px 0 #abb6c4 inset;
+    box-shadow: 81px 0 #e4e8ec inset, 84px 0 #abb6c4 inset !important;
 }
 /*-----------------------------etiquetas con clases---------------------*/
 ul.menu.normal{
@@ -28,13 +28,15 @@ ul.menu.normal{
 
 }
 ul.menu.normal li.Mnormal{
-  position: relative; 
+  position: relative;
   background-color: white;
   flex-grow: 1;
   width: 100%;
   outline: 1px solid #e7eaee;
-  border-right: 3px solid #e7eaee;
+  box-shadow: -3px 0 #e7eaee inset;
+  /*border-right: 3px solid #e7eaee;*/
   min-height: 62px;
+
 
 }
 ul.menu.normal li.Mnormal a{
@@ -73,7 +75,7 @@ div.menusuperior div.centro{
 
 }
 div.menusuperior div.alerts a img{
-  height: 34px;
+  height: 31px;
 }
 div.menusuperior div.alerts a.ALETCalendario {
   width: 50px;
@@ -155,7 +157,7 @@ div.menusuperior div.alerts a.ALETNotificacion {
   position: fixed;
   background: #e7eaee none repeat scroll 0 0;
   width: 84px;
-  height: 72px;
+  height: 73px;
   transition: all 0.4s ease 0s;
 }
 .HomeM.Hdesplegado{
@@ -180,6 +182,7 @@ li.Mdesplegado{
   transition: all 0.4s ease 0s;
 }
 li.Mdesplegado:hover {
+
     box-shadow: 249px 0 #e4e8ec inset, 256px 0 #abb6c4 inset;
 }
 ul.menu.desplegado li.Mdesplegado{
@@ -215,8 +218,8 @@ ul.menu.desplegado li.Mdesplegado a span{
   width: 252px;
   height:72px;
   padding-top: 1.6%;
-  padding-left: 9%;
-
+  padding-left: 115px;
+  
 }
 /*--------------------clases------------------*/
 .menulateral.desplegado
@@ -227,7 +230,7 @@ ul.menu.desplegado li.Mdesplegado a span{
   width: 254px;
   height: 92vh;
   margin-top: 72px;
-  transition: all 0.4s ease 0s;
+  transition: width 0.4s ease 0s;
 }
 ul.menu.desplegado{
   height: 100%;
@@ -383,9 +386,9 @@ ul.menu.desplegado{
     font-size: 16px !important;
     font-weight: 700;
     letter-spacing: 1px;
-    margin: 0;    
+    margin: 0;
     padding: 20px 0;
-    text-align: center;  
+    text-align: center;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   }
 }
