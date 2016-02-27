@@ -4,7 +4,7 @@ class TypeProductsController < ApplicationController
   # GET /type_products
   # GET /type_products.json
   def index
-    @type_products = TypeProduct.order('created_at DESC').page(params[:page]).per_page(5)
+    @type_products = TypeProduct.order('created_at DESC').page(params[:page]).per_page(8)
   end
 
   # GET /type_products/1

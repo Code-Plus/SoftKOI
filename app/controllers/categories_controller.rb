@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.order('created_at DESC').page(params[:page]).per_page(5)
+    @categories = Category.order('created_at DESC').page(params[:page]).per_page(8)
   end
 
   # GET /categories/1
