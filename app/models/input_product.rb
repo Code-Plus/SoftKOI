@@ -3,28 +3,21 @@ class InputProduct < ActiveRecord::Base
 
   validates :product_id, presence: true
   validates :stock, presence: true
-  before_create :update_stock
-  before_create :datos
+  before_create :update_stock 
 
 
+  #Este metodo nos sirve como getter de los valores de productos. Se esta usando para el stock
   def product=(value)
   	@product=value
   end
 
-
-#####################
-  def datos
-    @id= product.id
-    @price = product.price
-    @name = product.name
-  end
-
-#######################
   private
   #Metodo para actualizar el stock del producto al que se le hace la entrada
   def update_stock
   	stock_product= product.stock
     product.update(stock: stock_product + self.stock)
   end
+
+
 
 end
