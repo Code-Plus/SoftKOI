@@ -1,10 +1,12 @@
 class TypeProduct < ActiveRecord::Base
 
-	#Gema para los estados.
 	include AASM
 
-	#Relaciones entre tablas.
 	has_many :categories
+	
+	#Validaciones 
+	validates :name, presence: true
+	validates :description, presence: true, length: { in: 8..80 }
 
 	aasm column: "state" do 
 		#Estado por default
@@ -20,9 +22,5 @@ class TypeProduct < ActiveRecord::Base
 			transitions from: :disponible, to: :noDisponible
 		end
 	end
-
-	#Validaciones 
-	validates :name, presence: true
-	validates :description, presence: true, length: { in: 8..80 }
 
 end

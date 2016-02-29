@@ -1,8 +1,8 @@
 class OutputProduct < ActiveRecord::Base
+  
   belongs_to :product
 
-  validates :product_id, presence: true
-  validates :stock, presence: true
+  validates :product_id, :stock, presence: true
   before_create :update_stock
 
   def product=(value)
@@ -15,4 +15,5 @@ class OutputProduct < ActiveRecord::Base
   	stock_product= product.stock
     product.update(stock: stock_product - self.stock)
   end
+
 end

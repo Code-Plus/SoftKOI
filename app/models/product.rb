@@ -6,17 +6,17 @@ class Product < ActiveRecord::Base
   has_many :output_products
   has_many :input_products
 
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :price, presence: true
-  validates :stock_min, presence: true
+  validates :name, :description, :price, :stock_min, :state, :category_id, presence: true
+  validates  presence: true
+  validates  presence: true
+  validates  presence: true
   validates :state, presence: true
   validates :category_id, presence: true
 
 
 
   #El scope verifica y nos trae los productos que tengan estado disponible
-  scope :activos, ->{ where(state: "disponible")}
+  scope :activos, -> { where(state: "disponible")}
 
   #El scope obtiene los precios de los registros de la tabla product cuyo name sea Pantalon
   scope :precios, -> { where(:name => 'Pantalon').select(:id,:price)}
@@ -27,9 +27,7 @@ class Product < ActiveRecord::Base
   aasm column: "state" do
 
     state :disponible, :initial => true
-
     state :noDisponible
-
     state :deBaja
 
     event :disponible do
