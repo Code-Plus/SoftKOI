@@ -104,10 +104,14 @@ div.menusuperior div.alerts a.ALETNotificacion {
 }
 
 /*-----------------------------clases solas-------------------------*/
-.tbold{
-  font-weight: 700 !important;
+
+.ui.icon.button{
+  color: #000 !important;
 }
 
+.tiny.icon.button i{
+  font-size: 1.2em !important;
+}
 
 .alerts{
   display: flex;

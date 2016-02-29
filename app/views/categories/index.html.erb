@@ -2,7 +2,7 @@
   <div class="ui segment">
     <%= link_to new_category_path, class: 'ui right floated green button' do %>
       <i class="add circle icon"></i>
-      Nueva Categoría.
+      Nueva Categoría
     <% end %>
     <br><br>
     <table class="ui green compact celled unstackable striped table">
@@ -12,7 +12,7 @@
           <th>Name</th>
           <th>Description</th>
           <th>State</th>
-          <th width="250">Acciones</th>
+          <th width="100">Acciones</th>
         </tr>
       </thead>
 
@@ -23,14 +23,12 @@
             <td><%= category.name %></td>
             <td><%= category.description %></td>
             <td><%= category.state %></td>
-            <td><%= link_to category, class: 'tiny ui yellow button' do%>
+            <td><%= link_to category, class: 'tiny ui icon yellow button' do%>
               <i class="unhide icon"></i>
-              Detalles
             <% end %>
 
-            <%= link_to edit_category_path(category), class: 'tiny  ui blue button' do %>
+            <%= link_to edit_category_path(category), class: 'tiny ui icon blue button' do %>
               <i class="edit icon"></i>
-              Editar
             <% end %></td>
           </tr>
         <% end %>
