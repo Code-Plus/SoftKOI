@@ -23,6 +23,7 @@
             <td><%= product.description %></td>
             <td><%= product.price %></td>
             <td><%= product.state %></td>
+
             <td><%= link_to product, class: 'small ui icon yellow button' do%>
               <i class="unhide tbold icon"></i>
             <% end %>
@@ -31,7 +32,7 @@
               <i class="edit tbold icon"></i>
             <% end %>
 
-            <!--Se le envia el id del producto a "input_product/new"-->
+            <!--Se le envia el id del producto a "input_products/new"-->
             <%= link_to new_input_product_path(product_id: product.id), class: 'tiny ui icon teal button' do %>
               <i class="sign in tbold icon"></i>
             <% end %></td>

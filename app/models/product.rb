@@ -42,11 +42,6 @@ class Product < ActiveRecord::Base
     event :deBaja do
       transitions from: :disponible, to: :deBaja
     end
+  end
 
-  end
-#########################
-  def nombre
-    @nombre = self.name
-  end
-############################
 end

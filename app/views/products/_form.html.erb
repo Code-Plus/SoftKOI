@@ -14,16 +14,21 @@
   <div class="form-inputs">
     <%= f.label :name, "Nombre"%>    
     <%= f.text_field :name %>
+
     <%= f.label :name, "Descripción"%>
     <%= f.text_area :description %>
+
     <%= f.label :price, "Precio"%>    
     <%= f.number_field :price %>
+
     <%= f.label :stock_min, "Cantidad Minima"%>
     <%= f.number_field :stock_min%>
+
     <%= f.label :type_product, "Tipo de producto"%>
-    <%= collection_select(:category,:type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}) %>
+    <%= collection_select(:category, :type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}) %>
+    
     <%= f.label :category_id, "Categoria" %>
-    <%= collection_select(:product,:category_id, Category.all, :id, :name, {prompt: "Seleccione una opcion de categoria"}) %>
+    <%= collection_select(:product, :category_id, Category.all, :id, :name, {prompt: "Seleccione una opcion de categoria"}) %>
   </div>
 
   <div class="form-actions">
