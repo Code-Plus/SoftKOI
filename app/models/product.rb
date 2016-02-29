@@ -7,13 +7,6 @@ class Product < ActiveRecord::Base
   has_many :input_products
 
   validates :name, :description, :price, :stock_min, :state, :category_id, presence: true
-  validates  presence: true
-  validates  presence: true
-  validates  presence: true
-  validates :state, presence: true
-  validates :category_id, presence: true
-
-
 
   #El scope verifica y nos trae los productos que tengan estado disponible
   scope :activos, -> { where(state: "disponible")}
