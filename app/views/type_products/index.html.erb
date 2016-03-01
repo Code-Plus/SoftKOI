@@ -11,7 +11,7 @@
           <th>Name</th>
           <th>Description</th>
           <th>State</th>
-          <th width="250">Acciones</th>
+          <th width="142">Acciones</th>
         </tr>
       </thead>
 
@@ -21,14 +21,12 @@
             <td><%= type_product.name %></td>
             <td><%= type_product.description %></td>
             <td><%= type_product.state %></td>
-            <td><%= link_to type_product, class: 'tiny ui yellow button' do%>
+            <td><%= link_to type_product, class: 'small ui icon yellow button' do%>
               <i class="unhide icon"></i>
-              Detalles
             <% end %>
 
-            <%= link_to edit_type_product_path(type_product), class: 'tiny ui blue button' do %>
+            <%= link_to edit_type_product_path(type_product), class: 'tiny ui icon blue button' do %>
               <i class="edit icon"></i>
-              Editar
             <% end %></td>
           </tr>
         <% end %>
