@@ -1,15 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-5.times do |i|
-  	TypeProduct.create(name: "Type Product ##{i + 1}", description: "A product.", state: "disponible")
-  	Category.create(name: "Category ##{i + 1}", description: "A category", state: "disponible", type_product_id: i + 1)
-end
-
-1.times do |u|
-	User.create(document: "admin#{u}", encrypted_password: "123456789")
-end
+Customer.destroy_all
+ 
+ 
+Customer.create!([
+    {
+    	id: 1, first_name: "John", last_name: "Doe", email: "john@doe.com",
+        street: "Allen St.", city: "Manhattan", zip: "10002"
+     },
+     {
+    	id: 2, first_name: "Jane", last_name: "Roe", email: "jane@roe.com",
+        street: "Boo St.", city: "Kirkland", zip: "98034"
+    },
+    {
+    	id: 3, first_name: "Foo", last_name: "Bar", email: "foo@bar.com",
+        street: "Boo St.", city: "Kirkland", zip: "98034"
+    },
+    {
+    	id: 4, first_name: "Rachid", last_name: "Benkirane", email: "contact@roe.com", 
+        street: "Boo St.", city: "Kirkland",zip: "98034"
+    }
+ ])
+ 
+p "Created #{Customer.count} customers."

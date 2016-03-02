@@ -1,37 +1,28 @@
-<div class="ui container">
-  <div class="ui segment">
-    <%= link_to new_type_product_path, class: 'ui right floated green button' do %>
-      <i class="add circle icon"></i>
-      Nuevo tipo de producto
-    <% end %>
-    <br><br>
-    <table class="ui green compact celled unstackable striped table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>State</th>
-          <th width="142">Acciones</th>
-        </tr>
-      </thead>
+<div class="container">
 
-      <tbody>
-        <% @type_products.each do |type_product| %>
-          <tr>
-            <td><%= type_product.name %></td>
-            <td><%= type_product.description %></td>
-            <td><%= type_product.state %></td>
-            <td><%= link_to type_product, class: 'small ui icon yellow button' do%>
-              <i class="unhide icon"></i>
-            <% end %>
+		<h2>Tipos de productos</h2>
+		<%= link_to new_type_product_path, remote: true, class: 'btn btn-success' do %>
+			<i class="fa fa-plus"></i>
+			Nuevo tipo de producto
+		<% end %>
 
-            <%= link_to edit_type_product_path(type_product), class: 'tiny ui icon blue button' do %>
-              <i class="edit icon"></i>
-            <% end %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= will_paginate @type_products %>
-  </div>
+		<br>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>State</th>
+					<th width="250">Acciones</th>
+				</tr>
+			</thead>
+
+			<tbody id="type_products">
+				<%= render @type_products %>
+			</tbody>
+		</table>
+
+		<%= will_paginate @type_products %>
+		<%= render 'dialog' %>
+
 </div>

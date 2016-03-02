@@ -17,8 +17,8 @@ gem 'aasm', '~> 4.8' 						# Maquina de estados
 gem 'cancancan', '~> 1.13', '>= 1.13.1'		# Permisos de usuarios
 gem 'font-awesome-sass'						# Iconos
 gem 'jquery-datatables-rails'				# jQuery Datatables
-gem 'ajax-datatables-rails'					# Ajax Datatables
 gem 'will_paginate', '~> 3.0.6'				# Paginacion
+gem 'bootstrap-sass'						# Modales :/
 
 
 group :development, :test do

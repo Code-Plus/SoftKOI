@@ -6,6 +6,28 @@
  *= require dataTables/jquery.dataTables
 */
 
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 85%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 @import 'template.scss';
-@import 'semantic-ui';
 

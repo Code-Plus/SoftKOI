@@ -1,0 +1,9 @@
+<tr id="type_product_<%= type_product.id %>">
+	<td><%= type_product.name %></td>
+	<td><%= type_product.description %></td>
+	<td><%= type_product.state %></td>
+  	<td>
+    	<%= link_to 'Editar', edit_type_product_path(type_product), remote: true, :class => 'btn btn-sm btn-info' %>
+    	<%= link_to 'Eliminar', type_product, remote: true, :method => :delete, data: { confirm: "¿Eliminar tipo de producto:  #{type_product.name}? "}, :class => 'btn btn-sm btn-danger' %>
+  	</td>
+	</tr>

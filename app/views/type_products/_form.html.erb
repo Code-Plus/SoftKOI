@@ -1,36 +1,28 @@
-<%= form_for(@type_product) do |f| %>
+<%= form_for(@type_product, remote: true, :html => { :role => "form" })  do |f| %>
 
-	<% if @type_product.errors.any? %>
-    	<div id="error_explanation">
-      		<h3><%= pluralize(@type_product.errors.count, "errore") %> al intentar guardar: </h3>
-            <ul>
-      			<% @type_product.errors.full_messages.each do |message| %>
-        			<li><%= message %></li>
-      			<% end %>
-      		</ul>
-    	</div>
-    <% end %>
-		<div class="ui segment">
-			<div class="ui grid">
-					<div class="sixteen wide column">
-						<div class="ui form">
-							<div class="required field">
-									<label>Nombre</label>
-									<%= f.text_field :name %>
-							</div>
-							<div class="required field">
-								<label>Descripción</label>
-								<%= f.text_area :description %>
-							</div>
-						</div>
-					</div>
-					<div class="sixteen wide column" align="center">
-								<div class="ui center aligned buttons alert">
-									 <%= f.button 'Cancelar', :class => 'ui button' %>
-									 <div class="or" data-text="O"></div>
-									 <%= f.submit "Registrar", :class => 'ui positive button' %>
-								</div>
-						 </div>
-			 </div>
+	<div id="error_explanation" class="bg-danger text-danger"></div>
+
+	<div class="row">
+		<div class="col-sm-12">
+
+			<div class="form-group">
+				<%= f.label :name, "Nombre:", :class => "control-label" %>
+				<%= f.text_field :name, :class => "form-control first_input" %>			
+			</div>			
+
+			<div class="form-group">
+				<%= f.label :description, "Descripcion:", :class => "control-label" %>
+				<%= f.text_area :description, :class => "form-control" %>			
 			</div>
+
+		</div>
+
+		<div class="col-sm-12">
+			<hr style="border: 1; margin-top: 0px; ">
+			<div class="form-group" style="margin-bottom: 0px;">
+				<%= f.submit "Crear tipo de producto", :class => "btn btn-success" %>
+			</div>
+		</div>
+	</div>
+
 <% end %>
