@@ -8,6 +8,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+gem 'jquery-turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '~> 3.5', '>= 3.5.6' 			# Autenticacion de users
@@ -19,6 +20,7 @@ gem 'font-awesome-sass'						# Iconos
 gem 'jquery-datatables-rails'				# jQuery Datatables
 gem 'will_paginate', '~> 3.0.6'				# Paginacion
 gem 'bootstrap-sass'						# Modales :/
+
 
 
 group :development, :test do
