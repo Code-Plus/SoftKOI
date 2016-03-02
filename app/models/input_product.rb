@@ -16,7 +16,4 @@ class InputProduct < ActiveRecord::Base
   	stock_product= product.stock
     product.update(stock: stock_product + self.stock)
   end
-
-
-
 end
