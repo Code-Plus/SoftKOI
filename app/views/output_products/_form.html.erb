@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :product_id %><br>
-    <%= collection_select(:output_product, :product_id, Product.activos, :id, :name, {prompt: "Seleccione un producto..."}) %>
+    <%= collection_select(:output_product, :product_id, Product.activos_con_cantidad, :id, :name, {prompt: "Seleccione un producto..."}) %>
   </div>
   
   <div class="actions">
