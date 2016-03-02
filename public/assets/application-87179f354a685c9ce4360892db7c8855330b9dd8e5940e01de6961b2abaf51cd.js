@@ -13919,6 +13919,75 @@ return jQuery;
 
 
 (function() {
+  $(function() {
+    $.rails.allowAction = function(link) {
+      if (!link.attr('data-confirm')) {
+        return true;
+      }
+      $.rails.showConfirmDialog(link);
+      return false;
+    };
+    $.rails.confirmed = function(link) {
+      link.removeAttr('data-confirm');
+      return link.trigger('click.rails');
+    };
+    return $.rails.showConfirmDialog = function(link) {
+      var html, message;
+      message = link.attr('data-confirm');
+      html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <a class=\"close\" data-dismiss=\"modal\">×</a>\n        <h4><i class=\"glyphicon glyphicon-trash\"></i>  " + message + "</h4>\n      </div>\n      <div class=\"modal-footer\">\n        <a data-dismiss=\"modal\" class=\"btn\">Cancel</a>\n        <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">Ok</a>\n      </div>\n    </div>\n  </div>\n</div>";
+      $(html).modal('show');
+      return $('#confirmationDialog .confirm').on('click', function() {
+        return $.rails.confirmed(link);
+      });
+    };
+  });
+
+}).call(this);
+(function() {
+  $(function() {
+    $.rails.allowAction = function(link) {
+      if (!link.attr('data-confirm')) {
+        return true;
+      }
+      $.rails.showConfirmDialog(link);
+      return false;
+    };
+    $.rails.confirmed = function(link) {
+      link.removeAttr('data-confirm');
+      return link.trigger('click.rails');
+    };
+    return $.rails.showConfirmDialog = function(link) {
+      var html, message;
+      message = link.attr('data-confirm');
+      html = "<div class=\"modal fade\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <a class=\"close\" data-dismiss=\"modal\">×</a>\n        <h4><i class=\"glyphicon glyphicon-trash\"></i> " + message + "</h4>\n      </div>\n      <div class=\"modal-footer\">\n        <a data-dismiss=\"modal\" class=\"btn\">Cancel</a>\n        <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">Ok</a>\n      </div>\n    </div>\n  </div>\n</div>";
+      $(html).modal('show');
+      return $('#confirmationDialog .confirm').on('click', function() {
+        return $.rails.confirmed(link);
+      });
+    };
+  });
+
+}).call(this);
+!function(n,r){"function"==typeof define&&define.amd?define(r):"object"==typeof exports?module.exports=r():n.transformicons=r()}(this||window,function(){"use strict";var n={},r="tcon-transform",t={transform:["click"],revert:["click"]},e=function(n){return"string"==typeof n?Array.prototype.slice.call(document.querySelectorAll(n)):"undefined"==typeof n||n instanceof Array?n:[n]},o=function(n){return"string"==typeof n?n.toLowerCase().split(" "):n},f=function(n,r,f){var c=(f?"remove":"add")+"EventListener",u=e(n),s=u.length,a={};for(var l in t)a[l]=r&&r[l]?o(r[l]):t[l];for(;s--;)for(var d in a)for(var v=a[d].length;v--;)u[s][c](a[d][v],i)},i=function(r){n.toggle(r.currentTarget)};return n.add=function(r,t){return f(r,t),n},n.remove=function(r,t){return f(r,t,!0),n},n.transform=function(t){return e(t).forEach(function(n){n.classList.add(r)}),n},n.revert=function(t){return e(t).forEach(function(n){n.classList.remove(r)}),n},n.toggle=function(t){return e(t).forEach(function(t){n[t.classList.contains(r)?"revert":"transform"](t)}),n},n});
+
+	$("#notice_wrapper").slideDown(400).delay(2000).slideUp(400); 
+
+	$("#iconmenu").on("click",function(){
+	  $(".menusuperior").toggleClass("normal");
+	  $(".menusuperior").toggleClass("desplegado");
+	  $(".menulateral").toggleClass("normal");
+	  $(".menulateral").toggleClass("desplegado");
+	  $(".container").toggleClass("normal");
+	  $(".container").toggleClass("desplegado");
+	  $(".menu").toggleClass("normal");
+	  $(".menu").toggleClass("desplegado");
+	  $("li").toggleClass("Mnormal");
+	  $("li").toggleClass("Mdesplegado");
+	  $(".HomeM").toggleClass("Hnormal");
+	  $(".HomeM").toggleClass("Hdesplegado");
+
+	});
+(function() {
   var CSRFToken, Click, ComponentUrl, EVENTS, Link, ProgressBar, browserIsntBuggy, browserSupportsCustomEvents, browserSupportsPushState, browserSupportsTurbolinks, bypassOnLoadPopstate, cacheCurrentPage, cacheSize, changePage, clone, constrainPageCacheTo, createDocument, crossOriginRedirect, currentState, enableProgressBar, enableTransitionCache, executeScriptTags, extractTitleAndBody, fetch, fetchHistory, fetchReplacement, historyStateIsDefined, initializeTurbolinks, installDocumentReadyPageEventTriggers, installHistoryChangeHandler, installJqueryAjaxSuccessPageUpdateTrigger, loadedAssets, manuallyTriggerHashChangeForFirefox, pageCache, pageChangePrevented, pagesCached, popCookie, processResponse, progressBar, recallScrollPosition, ref, referer, reflectNewUrl, reflectRedirectedUrl, rememberCurrentState, rememberCurrentUrl, rememberReferer, removeNoscriptTags, requestMethodIsSafe, resetScrollPosition, setAutofocusElement, transitionCacheEnabled, transitionCacheFor, triggerEvent, visit, xhr,
     indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
     extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -14698,77 +14767,6 @@ return jQuery;
   };
 
 }).call(this);
-(function() {
-  $(function() {
-    $.rails.allowAction = function(link) {
-      if (!link.attr('data-confirm')) {
-        return true;
-      }
-      $.rails.showConfirmDialog(link);
-      return false;
-    };
-    $.rails.confirmed = function(link) {
-      link.removeAttr('data-confirm');
-      return link.trigger('click.rails');
-    };
-    return $.rails.showConfirmDialog = function(link) {
-      var html, message;
-      message = link.attr('data-confirm');
-      html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <a class=\"close\" data-dismiss=\"modal\">×</a>\n        <h4><i class=\"glyphicon glyphicon-trash\"></i>  " + message + "</h4>\n      </div>\n      <div class=\"modal-footer\">\n        <a data-dismiss=\"modal\" class=\"btn\">Cancel</a>\n        <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">Ok</a>\n      </div>\n    </div>\n  </div>\n</div>";
-      $(html).modal('show');
-      return $('#confirmationDialog .confirm').on('click', function() {
-        return $.rails.confirmed(link);
-      });
-    };
-  });
-
-}).call(this);
-(function() {
-  $(function() {
-    $.rails.allowAction = function(link) {
-      if (!link.attr('data-confirm')) {
-        return true;
-      }
-      $.rails.showConfirmDialog(link);
-      return false;
-    };
-    $.rails.confirmed = function(link) {
-      link.removeAttr('data-confirm');
-      return link.trigger('click.rails');
-    };
-    return $.rails.showConfirmDialog = function(link) {
-      var html, message;
-      message = link.attr('data-confirm');
-      html = "<div class=\"modal fade\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <a class=\"close\" data-dismiss=\"modal\">×</a>\n        <h4><i class=\"glyphicon glyphicon-trash\"></i> " + message + "</h4>\n      </div>\n      <div class=\"modal-footer\">\n        <a data-dismiss=\"modal\" class=\"btn\">Cancel</a>\n        <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">Ok</a>\n      </div>\n    </div>\n  </div>\n</div>";
-      $(html).modal('show');
-      return $('#confirmationDialog .confirm').on('click', function() {
-        return $.rails.confirmed(link);
-      });
-    };
-  });
-
-}).call(this);
-!function(n,r){"function"==typeof define&&define.amd?define(r):"object"==typeof exports?module.exports=r():n.transformicons=r()}(this||window,function(){"use strict";var n={},r="tcon-transform",t={transform:["click"],revert:["click"]},e=function(n){return"string"==typeof n?Array.prototype.slice.call(document.querySelectorAll(n)):"undefined"==typeof n||n instanceof Array?n:[n]},o=function(n){return"string"==typeof n?n.toLowerCase().split(" "):n},f=function(n,r,f){var c=(f?"remove":"add")+"EventListener",u=e(n),s=u.length,a={};for(var l in t)a[l]=r&&r[l]?o(r[l]):t[l];for(;s--;)for(var d in a)for(var v=a[d].length;v--;)u[s][c](a[d][v],i)},i=function(r){n.toggle(r.currentTarget)};return n.add=function(r,t){return f(r,t),n},n.remove=function(r,t){return f(r,t,!0),n},n.transform=function(t){return e(t).forEach(function(n){n.classList.add(r)}),n},n.revert=function(t){return e(t).forEach(function(n){n.classList.remove(r)}),n},n.toggle=function(t){return e(t).forEach(function(t){n[t.classList.contains(r)?"revert":"transform"](t)}),n},n});
-$(document).ready(function() {
-
-    $("#notice_wrapper").slideDown(400).delay(2000).slideUp(400); 
-
-	$("#iconmenu").on("click",function(){
-	  $(".menusuperior").toggleClass("normal");
-	  $(".menusuperior").toggleClass("desplegado");
-	  $(".menulateral").toggleClass("normal");
-	  $(".menulateral").toggleClass("desplegado");
-	  $(".container").toggleClass("normal");
-	  $(".container").toggleClass("desplegado");
-	  $(".menu").toggleClass("normal");
-	  $(".menu").toggleClass("desplegado");
-	  $("li").toggleClass("Mnormal");
-	  $("li").toggleClass("Mdesplegado");
-	  $(".HomeM").toggleClass("Hnormal");
-	  $(".HomeM").toggleClass("Hdesplegado");
-
-	});
-});
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
