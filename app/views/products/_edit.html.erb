@@ -1,54 +1,46 @@
 <%= form_for(@product, remote: true, :html => { :role => "form" })  do |f| %>
-  
-  <div class="row">
-    <div class="col-sm-12">
-      <div id="error_explanation" class="bg-danger text-danger"></div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-12">
+<div id="error_explanation" class="bg-danger text-danger"></div>
+
+<div class="row">
+   <div class="col-sm-12">
 
       <div class="form-group">
-        <%= f.label :name, "Nombre:", :class => "control-label" %>
-        <%= f.text_field :name, :class => "form-control first_input" %>     
-      </div>      
-
-      <div class="form-group">
-        <%= f.label :description, "Descripcion:", :class => "control-label" %>
-        <%= f.text_area :description, :class => "form-control" %>     
+         <%= f.label :name, "Nombre:", :class => "control-label" %>
+         <%= f.text_field :name, :class => "form-control first_input" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :price, "Precio", :class => "control-label" %>    
-        <%= f.number_field :price, :class => "form-control"  %>
+         <%= f.label :description, "Descripcion:", :class => "control-label" %>
+         <%= f.text_area :description, :class => "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :stock_min, "Cantidad Minima", :class => "control-label" %>
-        <%= f.number_field :stock_min, :class => "form-control" %>
+         <%= f.label :price, "Precio", :class => "control-label" %>
+         <%= f.number_field :price, :class => "form-control"  %>
       </div>
 
       <div class="form-group">
-        <% if @product.may_disponible?%>
-          <!--Si esta en no disponible tendremos la opcion de habilitarlo-->
-          <%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put %>
-        <% else %>
-
-          <!--Si esta disponible tendremos la opcion de inhabilitarlo-->
-          <%= link_to "Inhabilitar", "/product/#{@product.id}/inhabilitar", method: :put %>
-        <% end %>
+         <%= f.label :stock_min, "Cantidad Minima", :class => "control-label" %>
+         <%= f.number_field :stock_min, :class => "form-control" %>
       </div>
 
-    </div>
+      <div class="form-group">
+         <% if @product.may_disponible?%>
+            <%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put %>
+         <% else %>
+            <%= link_to "Inhabilitar", "/product/#{@product.id}/inhabilitar", method: :put %>
+         <% end %>
+      </div>
 
-    <div class="col-sm-12">
+   </div>
+
+   <div class="col-sm-12">
       <hr style="border: 1; margin-top: 0px; ">
       <div class="form-group" style="margin-bottom: 0px;">
-        <%= f.submit "Editar producto", :class => "btn btn-success" %>
+         <%= f.submit "Editar producto", :class => "btn btn-success" %>
       </div>
-    </div>
-  </div>
+   </div>
+</div>
 
 <% end %>
-

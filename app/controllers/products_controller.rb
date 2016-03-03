@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :entrada]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :disponible, :noDisponible, :bajas ]
 
   def index
     @products = Product.order('created_at DESC').page(params[:page]).per_page(8)
@@ -61,6 +61,11 @@ class ProductsController < ApplicationController
 
   def noDisponible
     @product.noDisponible!
+    redirect_to products_url
+  end
+
+  def bajas
+     @product.bajas!
     redirect_to products_url
   end
 

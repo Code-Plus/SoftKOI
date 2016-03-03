@@ -1,13 +1,15 @@
 class Product < ActiveRecord::Base
 
+   validates :name, presence: true
+   validates :price, presence: true
+   validates :description, presence: true
 
-   include AASM
    belongs_to :category
    has_many :output_products
    has_many :input_products
 
-   validates :name, :description, :price, :stock_min, :state, :category_id, presence: true
-   validates :stock, numericality: {greater_than_or_equal_to: 0}
+
+   include AASM
 
    #El scope verifica y nos trae los productos que tengan estado disponible
    scope :activos, -> { where(state: "disponible")}
@@ -22,6 +24,7 @@ class Product < ActiveRecord::Base
       #Estado por default
       state :disponible, :initial => true
       state :noDisponible
+      state :bajas
 
       #Eventos de movimiento o transiciones para los estados.
       event :disponible do
@@ -30,6 +33,10 @@ class Product < ActiveRecord::Base
 
       event :noDisponible do
          transitions from: :disponible, to: :noDisponible
+      end
+
+      event :bajas do
+         transitions from: :disponible, to: :bajas
       end
    end
 
