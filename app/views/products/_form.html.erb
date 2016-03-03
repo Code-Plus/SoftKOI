@@ -1,5 +1,5 @@
 <%= form_for(@product, remote: true, :html => { :role => "form" })  do |f| %>
-  
+
   <div class="row">
     <div class="col-sm-12">
       <div id="error_explanation" class="bg-danger text-danger"></div>
@@ -11,16 +11,16 @@
 
       <div class="form-group">
         <%= f.label :name, "Nombre:", :class => "control-label" %>
-        <%= f.text_field :name, :class => "form-control first_input" %>     
-      </div>      
-
-      <div class="form-group">
-        <%= f.label :description, "Descripcion:", :class => "control-label" %>
-        <%= f.text_area :description, :class => "form-control" %>     
+        <%= f.text_field :name, :class => "form-control first_input" %>
       </div>
 
       <div class="form-group">
-        <%= f.label :price, "Precio", :class => "control-label" %>    
+        <%= f.label :description, "Descripcion:", :class => "control-label" %>
+        <%= f.text_area :description, :class => "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :price, "Precio", :class => "control-label" %>
         <%= f.number_field :price, :class => "form-control"  %>
       </div>
 
@@ -31,12 +31,12 @@
 
       <div class="form-group">
         <%= f.label :type_product, "Tipo de producto", :class => "control-label" %>
-        <%= collection_select(:category, :type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}, {:class=>'form-control'}) %>
+        <%= collection_select(:category, :type_product_id, TypeProduct.activos, :id, :name, {prompt: "Seleccione una opcion"}, {:class=>'form-control'}) %>
       </div>
 
       <div class="form-group">
         <%= f.label :category_id, "Categoria" %>
-        <%= collection_select(:product, :category_id, Category.all, :id, :name, {prompt: "Seleccione una opcion de categoria"}, {:class=>'form-control'}) %>
+        <%= collection_select(:product, :category_id, Category.activos, :id, :name, {prompt: "Seleccione una opcion de categoria"}, {:class=>'form-control'}) %>
       </div>
 
     </div>
@@ -50,4 +50,3 @@
   </div>
 
 <% end %>
-

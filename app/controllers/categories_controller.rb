@@ -58,13 +58,13 @@ class CategoriesController < ApplicationController
    #Se cambia el estado a disponible de las categorias
    def disponible
       @category.disponible!
-      redirect_to @category
+      redirect_to categories_url
    end
 
    #Se cambia el estado a noDisponible de las categorias
    def noDisponible
       @category.noDisponible!
-      redirect_to @category
+      redirect_to categories_url
    end
 
    private

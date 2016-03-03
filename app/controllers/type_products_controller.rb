@@ -26,7 +26,7 @@ class TypeProductsController < ApplicationController
         format.json { head :no_content }
         format.js
       else
-        format.json { render json: @type_product.errors.full_messages, 
+        format.json { render json: @type_product.errors.full_messages,
                             status: :unprocessable_entity }
       end
     end
@@ -47,7 +47,7 @@ class TypeProductsController < ApplicationController
 
 
   def destroy
-    
+
     @type_product.destroy
     respond_to do |format|
       format.js
@@ -58,12 +58,12 @@ class TypeProductsController < ApplicationController
 
   def disponible
     @type_product.disponible!
-    redirect_to @type_product
+    redirect_to type_products_url
   end
 
   def noDisponible
     @type_product.noDisponible!
-    redirect_to @type_product
+    redirect_to type_products_url
   end
 
   private

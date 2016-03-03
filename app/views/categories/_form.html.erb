@@ -18,7 +18,7 @@
 			<div class="form-group">
 				<!-- Crea una etiqueta select con los registros de la tabla asociada -->
 				<%= f.label "Tipo de Producto", :class => "control-label"%>
-				<%= collection_select(:category,:type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
+				<%= collection_select(:category,:type_product_id, TypeProduct.activos, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
 			</div>
 
 		</div>

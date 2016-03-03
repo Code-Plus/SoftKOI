@@ -12,8 +12,8 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @categories = Category.all
-    @type_products = TypeProduct.all
+    @categories = Category.activos
+    @type_products = TypeProduct.activos
   end
 
 
@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.save
         format.json { head :no_content}
-        format.js 
+        format.js
       else
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
@@ -56,12 +56,12 @@ class ProductsController < ApplicationController
 
   def disponible
     @product.disponible!
-    redirect_to @product
+    redirect_to products_url
   end
 
   def noDisponible
     @product.noDisponible!
-    redirect_to @product
+    redirect_to products_url
   end
 
 
