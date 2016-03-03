@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
 
    def new
       @category = Category.new
-      @type_products = TypeProduct.all
+      @type_products = TypeProduct.activos
    end
 
 
