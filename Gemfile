@@ -19,7 +19,8 @@ gem 'cancancan', '~> 1.13', '>= 1.13.1'		# Permisos de usuarios
 gem 'font-awesome-sass'						# Iconos
 gem 'jquery-datatables-rails'				# jQuery Datatables
 gem 'will_paginate', '~> 3.0.6'				# Paginacion
-gem 'bootstrap-sass'						# Modales :/
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
+gem 'bootstrap-sass'						# Styling
 
 
 

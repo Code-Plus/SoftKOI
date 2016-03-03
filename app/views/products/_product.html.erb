@@ -1,0 +1,13 @@
+<tr id="product_<%= product.id %>">
+    <td><%= product.name %></td>
+    <td><%= product.description %></td>
+    <td><%= product.price %></td>
+    <td><%= product.state %></td>
+  	<td>
+    	<%= link_to 'Editar', edit_product_path(product), remote: true, :class => 'btn btn-sm btn-info' %>
+		<!--Se le envia el id del producto a "input_products/new"-->
+        <%= link_to new_input_product_path(product_id: product.id), class: 'btn btn-sm btn-primary' do %>
+            Entrada
+        <% end %>
+  	</td>
+</tr>

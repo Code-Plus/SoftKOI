@@ -1,28 +1,29 @@
 <div class="container">
 
-		<h2>Tipos de productos</h2>
-		<%= link_to new_type_product_path, remote: true, class: 'btn btn-success' do %>
-			<i class="fa fa-plus"></i>
-			Nuevo tipo de producto
-		<% end %>
+	<h2>Tipos de productos</h2>
+	<%= link_to new_type_product_path, remote: true, class: 'btn btn-success' do %>
+		<i class="fa fa-plus"></i>
+		Nuevo tipo de producto
+	<% end %>
 
-		<br>
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>State</th>
-					<th width="250">Acciones</th>
-				</tr>
-			</thead>
+	<br><br>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>State</th>
+				<th width="250">Acciones</th>
+			</tr>
+		</thead>
 
-			<tbody id="type_products">
-				<%= render @type_products %>
-			</tbody>
-		</table>
+		<tbody id="type_products">
+			<%= render @type_products %>
+		</tbody>
+	</table>
 
-		<%= will_paginate @type_products %>
-		<%= render 'dialog' %>
+	<%= will_paginate @type_products, renderer: BootstrapPagination::Rails %>
+
+	<%= render 'dialog' %>
 
 </div>

@@ -1,48 +1,31 @@
-<div class="ui container">
-  <div class="ui segment">
-    <%= link_to new_product_path, class: 'ui right floated green button' do %>  
-      <i class="add circle icon"></i>
-      Nuevo Producto
-    <% end %>
-    <br><br>  
-    <table class="ui green compact celled unstackable striped table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>State</th>
-          <th width="142">Acciones</th>
-        </tr>
-      </thead>
+<div class="container">
 
-      <tbody>
-        <% @products.each do |product| %>
-          <tr>
-            <td><%= product.name %></td>
-            <td><%= product.description %></td>
-            <td><%= product.price %></td>
-            <td><%= product.state %></td>
+	<h2>Productos</h2>
+	<%= link_to new_product_path, remote: true, class: 'btn btn-success' do %>
+		<i class="fa fa-plus"></i>
+		Nuevo Producto
+	<% end %>
 
-            <td><%= link_to product, class: 'small ui icon yellow button' do%>
-              <i class="unhide tbold icon"></i>
-            <% end %>
-            
-            <%= link_to edit_product_path(product), class: 'tiny ui icon blue button' do %>
-              <i class="edit tbold icon"></i>
-            <% end %>
+	<br><br>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>State</th>
+				<th width="142">Acciones</th>
+			</tr>
+		</thead>
 
-            <!--Se le envia el id del producto a "input_products/new"-->
-            <%= link_to new_input_product_path(product_id: product.id), class: 'tiny ui icon teal button' do %>
-              <i class="sign in tbold icon"></i>
-            <% end %></td>
+		<tbody id="products">
+			<%= render @products %>
+		</tbody>
+	</table>
 
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= will_paginate @products %>
-  
-  </div>
+	<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+
+	<%= render 'dialog' %>
+
 </div>
 
