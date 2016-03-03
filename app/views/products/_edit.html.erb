@@ -14,17 +14,23 @@
          <%= f.label :description, "Descripcion:", :class => "control-label" %>
          <%= f.text_area :description, :class => "form-control" %>
       </div>
+   </div>
 
+   <div class="col-sm-6">
       <div class="form-group">
          <%= f.label :price, "Precio", :class => "control-label" %>
          <%= f.number_field :price, :class => "form-control"  %>
       </div>
+   </div>
 
+   <div class="col-sm-6">
       <div class="form-group">
          <%= f.label :stock_min, "Cantidad Minima", :class => "control-label" %>
          <%= f.number_field :stock_min, :class => "form-control" %>
       </div>
+   </div>
 
+   <div class="col-sm-12">
       <div class="form-group">
          <% if @product.may_disponible?%>
             <%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put %>
@@ -32,7 +38,6 @@
             <%= link_to "Inhabilitar", "/product/#{@product.id}/inhabilitar", method: :put %>
          <% end %>
       </div>
-
    </div>
 
    <div class="col-sm-12">

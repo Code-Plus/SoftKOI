@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
         format.json { head :no_content}
         format.js
       else
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: @product.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
         format.json { head :no_content}
         format.js
       else
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: @product.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end

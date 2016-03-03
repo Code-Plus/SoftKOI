@@ -1,15 +1,14 @@
 class Product < ActiveRecord::Base
 
-   validates :name, presence: true
-   validates :price, presence: true
-   validates :description, presence: true
-
+   include AASM
+   
    belongs_to :category
    has_many :output_products
    has_many :input_products
 
-
-   include AASM
+   validates :name, presence: true
+   validates :price, presence: true
+   validates :description, presence: true
 
    #El scope verifica y nos trae los productos que tengan estado disponible
    scope :activos, -> { where(state: "disponible")}

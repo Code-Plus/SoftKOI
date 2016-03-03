@@ -14,27 +14,34 @@
          <%= f.label :description, "Descripcion:", :class => "control-label" %>
          <%= f.text_area :description, :class => "form-control" %>
       </div>
+   </div>
 
+   <div class="col-sm-6">
       <div class="form-group">
          <%= f.label :price, "Precio", :class => "control-label" %>
          <%= f.number_field :price, :class => "form-control"  %>
       </div>
+   </div>
 
+   <div class="col-sm-6">
       <div class="form-group">
          <%= f.label :stock_min, "Cantidad Minima", :class => "control-label" %>
          <%= f.number_field :stock_min, :class => "form-control" %>
       </div>
+   </div>
 
+   <div class="col-sm-6">
       <div class="form-group">
          <%= f.label :type_product, "Tipo de producto", :class => "control-label" %>
-         <%= collection_select(:category, :type_product_id, TypeProduct.activos, :id, :name, {prompt: "Seleccione una opcion"}, {:class=>'form-control'}) %>
+         <%= collection_select(:category, :type_product_id, TypeProduct.activos, :id, :name, {prompt: "Seleccione un tipo..."}, {:class=>'form-control'}) %>
       </div>
+   </div>
 
+   <div class="col-sm-6">
       <div class="form-group">
          <%= f.label :category_id, "Categoria" %>
-         <%= collection_select(:product, :category_id, Category.activos, :id, :name, {prompt: "Seleccione una opcion de categoria"}, {:class=>'form-control'}) %>
+         <%= collection_select(:product, :category_id, Category.activos, :id, :name, {prompt: "Seleccione una categoria..."}, {:class=>'form-control'}) %>
       </div>
-
    </div>
 
    <div class="col-sm-12">
