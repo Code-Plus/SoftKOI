@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
    validates :name, presence: true
    validates :price, presence: true
    validates :description, presence: true
+   validates :stock, numericality: {greater_than_or_equal_to: 0}
 
    #El scope verifica y nos trae los productos que tengan estado disponible
    scope :activos, -> { where(state: "disponible")}
