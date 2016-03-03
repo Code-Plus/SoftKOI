@@ -1,0 +1,9 @@
+//Desplegar la modal
+$('#dialog').modal('toggle');
+
+//Añadir el registro que acabamos de crear en la tabla
+//Este ID corresponde al de la etiqueta tbody en el index
+$('#categories').append('<%= j render (@category) %>');
+
+//Desplegar alerta
+$('.notice').html("La categoria ha sido creada con éxito");

@@ -1,27 +1,36 @@
-<%= form_for (@category)  do |f| %>
+<%= form_for(@category, remote: true, :html => { :role => "form" })  do |f| %>
 
-	<% if @category.errors.any? %>
-    	<div id="error_explanation">
-      		<h3><%= pluralize(@category.errors.count, "errore") %> al intentar guardar: </h3>
-            <ul>
-      			<% @category.errors.full_messages.each do |message| %>
-        			<li><%= message %></li>
-      			<% end %>
-      		</ul>
-    	</div>
-    <% end %>
 
-	<div class="form-inputs">
-		<%= f.label :name, "Nombre"%>
-		<%= f.text_field :name %>
-		<%= f.label :description, "Descripcion" %>
-		<%= f.text_area :description %>
-		<!--El metodo collection_select crea una etiqueta select con los registros de la tabla asociada-->
-		<%= f.label "Tipo de Producto"%>
-		<%= collection_select(:category,:type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}) %>
+	<div id="error_explanation" class="bg-danger text-danger"></div>
+
+	<div class="row">
+		<div class="col-sm-12">
+
+			<div class="form-group">
+				<%= f.label :name, "Nombre:", :class => "control-label" %>
+				<%= f.text_field :name, :class => "form-control first_input" %>			
+			</div>			
+
+			<div class="form-group">
+				<%= f.label :description, "Descripcion:", :class => "control-label" %>
+				<%= f.text_area :description, :class => "form-control" %>			
+			</div>
+
+			<div>
+				<!--El metodo collection_select crea una etiqueta select con los registros de la tabla asociada-->
+				<%= f.label "Tipo de Producto", :class => "control-label"%>
+				<%= collection_select(:category,:type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
+			</div>
+
+		</div>
+
+		<div class="col-sm-12">
+			<hr style="border: 1; margin-top: 0px; ">
+			<div class="form-group" style="margin-bottom: 0px;">
+				<%= f.submit "Crear Categoria", :class => "btn btn-success" %>
+			</div>
+		</div>
 	</div>
+		
 
-	<div class="form-actions">
-		<%= f.submit "Registrar" %>
-	</div>
 <% end %>

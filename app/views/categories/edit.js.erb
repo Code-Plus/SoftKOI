@@ -1,0 +1,13 @@
+// Add the dialog title
+$('#dialog h4').html("<i class='glyphicon glyphicon-pencil'></i>&nbsp;Editar Categoria");
+ 
+// Render the edit form
+$('.modal-body').html('<%= j render("edit") %>');
+ 
+// Show the dynamic dialog
+$('#dialog').modal("show");
+ 
+// Set focus to the first element
+$('#dialog').on('shown.bs.modal', function () {
+	$('.first_input').focus()
+})
