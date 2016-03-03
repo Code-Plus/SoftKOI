@@ -1,6 +1,5 @@
 <%= form_for(@category, remote: true, :html => { :role => "form" })  do |f| %>
 
-
 	<div id="error_explanation" class="bg-danger text-danger"></div>
 
 	<div class="row">
@@ -8,16 +7,16 @@
 
 			<div class="form-group">
 				<%= f.label :name, "Nombre:", :class => "control-label" %>
-				<%= f.text_field :name, :class => "form-control first_input" %>			
-			</div>			
+				<%= f.text_field :name, :class => "form-control first_input" %>
+			</div>
 
 			<div class="form-group">
 				<%= f.label :description, "Descripcion:", :class => "control-label" %>
-				<%= f.text_area :description, :class => "form-control" %>			
+				<%= f.text_area :description, :class => "form-control" %>
 			</div>
 
-			<div>
-				<!--El metodo collection_select crea una etiqueta select con los registros de la tabla asociada-->
+			<div class="form-group">
+				<!-- Crea una etiqueta select con los registros de la tabla asociada -->
 				<%= f.label "Tipo de Producto", :class => "control-label"%>
 				<%= collection_select(:category,:type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
 			</div>
@@ -27,10 +26,10 @@
 		<div class="col-sm-12">
 			<hr style="border: 1; margin-top: 0px; ">
 			<div class="form-group" style="margin-bottom: 0px;">
-				<%= f.submit "Crear Categoria", :class => "btn btn-success" %>
+				<%= f.submit "Registrar Categoria", :class => "btn btn-success" %>
 			</div>
-		</div>
+      </div>
 	</div>
-		
+
 
 <% end %>

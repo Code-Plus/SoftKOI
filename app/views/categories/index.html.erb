@@ -1,28 +1,28 @@
 <div class="container">
 
-    <h2>Categorias.</h2>
-    <%= link_to new_category_path, remote: true, class: 'btn btn-success' do %>
-      <i class="fa fa-plus"></i>
-      Nueva Categoria
-    <% end %>
+   <h2>Categorias.</h2>
+   <%= link_to new_category_path, remote: true, class: 'btn btn-success' do %>
+   <i class="fa fa-plus"></i>
+   Nueva Categoria
+   <% end %>
 
-    <br>
-    <table class="table table-bordered table-striped">
+   <br>
+   <table class="table table-bordered table-striped">
       <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>State</th>
-          <th width="250">Acciones</th>
-        </tr>
+         <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>State</th>
+            <th width="250">Acciones</th>
+         </tr>
       </thead>
 
       <tbody id="categories">
-        <%= render @categories %>
+         <%= render @categories %>
       </tbody>
-    </table>
+   </table>
 
-    <%= will_paginate @categories %>
-    <%= render 'dialog' %>
+   <%= will_paginate @categories %>
+   <%= render 'dialog' %>
 
 </div>
