@@ -30,13 +30,14 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :type_product, "Tipo de producto", :class => "control-label" %>
-        <%= collection_select(:category, :type_product_id, TypeProduct.all, :id, :name, {prompt: "Seleccione una opcion"}, {:class=>'form-control'}) %>
-      </div>
+        <% if @product.may_disponible?%>
+          <!--Si esta en no disponible tendremos la opcion de habilitarlo-->
+          <%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put %>
+        <% else %>
 
-      <div class="form-group">
-        <%= f.label :category_id, "Categoria" %>
-        <%= collection_select(:product, :category_id, Category.all, :id, :name, {prompt: "Seleccione una opcion de categoria"}, {:class=>'form-control'}) %>
+          <!--Si esta disponible tendremos la opcion de inhabilitarlo-->
+          <%= link_to "Inhabilitar", "/product/#{@product.id}/inhabilitar", method: :put %>
+        <% end %>
       </div>
 
     </div>
@@ -44,7 +45,7 @@
     <div class="col-sm-12">
       <hr style="border: 1; margin-top: 0px; ">
       <div class="form-group" style="margin-bottom: 0px;">
-        <%= f.submit "Registrar producto", :class => "btn btn-success" %>
+        <%= f.submit "Editar producto", :class => "btn btn-success" %>
       </div>
     </div>
   </div>
