@@ -8,6 +8,8 @@ class TypeProduct < ActiveRecord::Base
 	validates :name, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
 
+	scope :activos, -> { where(state: "disponible")}
+
 	aasm column: "state" do 
 		#Estado por default
 		state :disponible, :initial => true

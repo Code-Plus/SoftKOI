@@ -8,11 +8,6 @@ class OutputProductsController < ApplicationController
     @product = Product.activos_con_cantidad.order('created_at DESC').page(params[:page]).per_page(8)
   end
 
-  def noticia
-    self.update_stock
-    format.html { redirect_to @output_product, notice: 'No se pudo registrar la salida.' }
-  end 
-
   # GET /output_products/1
   # GET /output_products/1.json
   def show
