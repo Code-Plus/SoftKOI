@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @categories = Category.activos
+    @categories = Category.activos.order(name: :desc)
     @type_products = TypeProduct.activos
   end
 

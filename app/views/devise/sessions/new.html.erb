@@ -3,26 +3,25 @@
 		<div>
 			<div class="login-form row">
 				<div class="col-sm-12 text-center login-header">
-					<!--Logo SoftKOI-->
 					<%= image_tag('white_logo.png', size: '200x200') %>
 				</div>
 
 				<div class="col-sm-12">
 					<div class="login-body">
 
-					   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-							<!--Documento-->
-							<div class="control">
-								<%= f.text_field :document, required: true, placeholder: 'Documento', class: 'form-control' %>
-							</div>
-							<!--Contraseña-->
-							<div class="control">
-								<%= f.password_field :password, required: true, placeholder:'Contraseña', class:'form-control' %>
-							</div>
-							<!--Boton-->
-							<div class="login-button text-center">
-								<%= f.submit "INICIAR SESION", class: 'btn btn-primary' %>
-							</div>
+						<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+						<!--Documento-->
+						<div class="control">
+							<%= f.text_field :document, required: true, placeholder: 'Documento', class: 'form-control' %>
+						</div>
+						<!--Contraseña-->
+						<div class="control">
+							<%= f.password_field :password, required: true, placeholder:'Contraseña', class:'form-control' %>
+						</div>
+						<!--Boton-->
+						<div class="login-button text-center">
+							<%= f.submit "INICIAR SESION", class: 'btn btn-primary' %>
+						</div>
 						<% end %>
 					</div>
 
