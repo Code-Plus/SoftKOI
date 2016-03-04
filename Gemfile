@@ -14,13 +14,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3.5', '>= 3.5.6' 			# Autenticacion de users
 gem 'cocoon', '~> 1.2', '>= 1.2.7' 			# Nested forms
 gem 'prawn', '~> 2.0', '>= 2.0.2' 			# Generar PDF
-gem 'aasm', '~> 4.8' 						# Maquina de estados
-gem 'cancancan', '~> 1.13', '>= 1.13.1'		# Permisos de usuarios
-gem 'font-awesome-sass'						# Iconos
-gem 'jquery-datatables-rails'				# jQuery Datatables
+gem 'aasm', '~> 4.8' 						   # Maquina de estados
+gem 'cancancan', '~> 1.13', '>= 1.13.1'	# Permisos de usuarios
+gem 'font-awesome-sass'						   # Iconos
+gem 'jquery-datatables-rails' 		      # jQuery Datatables
 gem 'will_paginate', '~> 3.0.6'				# Paginacion
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
-gem 'bootstrap-sass'						# Styling
+gem 'bootstrap-sass'						       # Styling
 
 
 
@@ -33,4 +33,3 @@ group :development do
 
   gem 'spring'
 end
-
