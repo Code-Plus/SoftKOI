@@ -12,6 +12,9 @@
 			<tr>
 				<th>Name</th>
 				<th>Description</th>
+				<th>Categoria</th>
+				<th>Stock</th>
+				<th>Cantidad</th>
 				<th>Price</th>
 				<th>State</th>
 				<th width="142">Acciones</th>
@@ -23,9 +26,6 @@
 		</tbody>
 	</table>
 
-	<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
-
 	<%= render 'dialog' %>
 
 </div>
-

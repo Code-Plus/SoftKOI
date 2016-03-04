@@ -1,20 +1,48 @@
 $(document).ready(function() {
 
+	$('table').DataTable({
+		"language": {
+			"sProcessing":     "Procesando...",
+			"sLengthMenu":     "Mostrar  _MENU_  Registros",
+			"sZeroRecords":    "No se encontraron resultados",
+			"sEmptyTable":     "Ningún dato disponible en esta tabla",
+			"sInfo":           "Total:  _TOTAL_ registros.",
+			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix":    "",
+			"sSearch":         "Buscar:",
+			"sUrl":            "",
+			"sInfoThousands":  ",",
+			"sLoadingRecords": "Cargando...",
+			"oPaginate": {
+				"sFirst":    "Primero",
+				"sLast":     "Último",
+				"sNext":     "Siguiente",
+				"sPrevious": "Anterior"
+			},
+			"oAria": {
+				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+			}
+		}
+	});
+
+
 	$("#notice_wrapper").slideDown(400).delay(2000).slideUp(400);
 
 	$("#iconmenu").on("click",function(){
-	  $(".menusuperior").toggleClass("normal");
-	  $(".menusuperior").toggleClass("desplegado");
-	  $(".menulateral").toggleClass("normal");
-	  $(".menulateral").toggleClass("desplegado");
-	  $(".container1").toggleClass("normal");
-	  $(".container1").toggleClass("desplegado");
-	  $(".menu").toggleClass("normal");
-	  $(".menu").toggleClass("desplegado");
-	  $("li").toggleClass("Mnormal");
-	  $("li").toggleClass("Mdesplegado");
-	  $(".HomeM").toggleClass("Hnormal");
-	  $(".HomeM").toggleClass("Hdesplegado");
+		$(".menusuperior").toggleClass("normal");
+		$(".menusuperior").toggleClass("desplegado");
+		$(".menulateral").toggleClass("normal");
+		$(".menulateral").toggleClass("desplegado");
+		$(".container1").toggleClass("normal");
+		$(".container1").toggleClass("desplegado");
+		$(".menu").toggleClass("normal");
+		$(".menu").toggleClass("desplegado");
+		$("li").toggleClass("Mnormal");
+		$("li").toggleClass("Mdesplegado");
+		$(".HomeM").toggleClass("Hnormal");
+		$(".HomeM").toggleClass("Hdesplegado");
 
 	});
 });
