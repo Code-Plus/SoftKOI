@@ -1,14 +1,15 @@
 class Product < ActiveRecord::Base
 
    include AASM
-   
+
    belongs_to :category
    has_many :output_products
    has_many :input_products
 
    validates :name, presence: true
-   validates :price, presence: true
+   validates :price, presence: true, numericality: {greater_than_or_equal_to: 0}
    validates :description, presence: true
+   validates :stock_min, presence: true, numericality: {greater_than_or_equal_to: 0}
    validates :stock, numericality: {greater_than_or_equal_to: 0}
 
    #El scope verifica y nos trae los productos que tengan estado disponible

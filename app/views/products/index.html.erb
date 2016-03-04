@@ -10,10 +10,13 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Price</th>
-				<th>State</th>
+				<th>Nombre</th>
+				<th>Descripción</th>
+				<th>Categoria</th>
+				<th>Stock</th>
+				<th>Cantidad</th>
+				<th>Precio</th>
+				<th>Estado</th>
 				<th width="142">Acciones</th>
 			</tr>
 		</thead>
@@ -23,9 +26,6 @@
 		</tbody>
 	</table>
 
-	<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
-
 	<%= render 'dialog' %>
 
 </div>
-

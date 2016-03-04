@@ -2,7 +2,7 @@ class TypeProductsController < ApplicationController
   before_action :set_type_product, only: [:show, :edit, :update, :destroy, :noDisponible, :disponible]
 
   def index
-    @type_products = TypeProduct.order('created_at DESC').page(params[:page]).per_page(8)
+    @type_products = TypeProduct.all
   end
 
   def show
