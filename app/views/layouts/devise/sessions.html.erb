@@ -8,14 +8,14 @@
 	<%= csrf_meta_tags %>
 </head>
 
-<body class="flat-blue login-page">	
+<body class="flat-blue login-page">
 
 	<div id="notice_wrapper">
 		<% if notice %>
 			<p class="notice"><%= notice %></p>
-		<% elsif alert %>  
+		<% elsif alert %>
 			<p class="alert"><%= alert %></p>
-		<% end %>   
+		<% end %>
 	</div>
 
 	<%= yield %>
