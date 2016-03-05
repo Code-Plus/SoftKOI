@@ -14,12 +14,11 @@ class OutputProduct < ActiveRecord::Base
   def update_stock
   	stock_product= product.stock
     stock_out=self.stock
-    stock_rest = stock_product - self.stock
     
-    if stock_rest>=0
-      product.update(stock: stock_product - stock_out)
+    if (stock_product-stock_out)<0
+      self.errors.add(:stock ,"--->No hay suficientes productos para dar de baja")      
     else  
-      puts "No hay suficientes productos"
+      product.update(stock: stock_product - stock_out)
     end
   end
 

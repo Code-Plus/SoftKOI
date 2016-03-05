@@ -6,6 +6,14 @@ class OutputProductsController < ApplicationController
   def index
     @output_products = OutputProduct.all
     @product = Product.activos_con_cantidad.all
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@output_products)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
   end
 
   # GET /output_products/1

@@ -1,7 +1,7 @@
 <%= form_for(@output_product) do |f| %>
   <% if @output_product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@output_product.errors.count, "error") %> prohibited this output_product from being saved:</h2>
+      <h2><%= pluralize(@output_product.errors.count, "error") %> no permite que la baja se realice:</h2>
 
       <ul>
       <% @output_product.errors.full_messages.each do |message| %>
@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Cantidad_a_dar_de_baja %><br>
+    <%= f.label :stock, "Cantidad a dar de baja"%><br>
     <%= f.number_field :stock %>
   </div>
 
