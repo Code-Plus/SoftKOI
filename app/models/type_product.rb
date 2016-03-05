@@ -3,14 +3,14 @@ class TypeProduct < ActiveRecord::Base
 	include AASM
 
 	has_many :categories
-	
-	#Validaciones 
+
+	#Validaciones
 	validates :name, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
 
 	scope :activos, -> { where(state: "disponible")}
 
-	aasm column: "state" do 
+	aasm column: "state" do
 		#Estado por default
 		state :disponible, :initial => true
 		state :noDisponible
@@ -24,5 +24,4 @@ class TypeProduct < ActiveRecord::Base
 			transitions from: :disponible, to: :noDisponible
 		end
 	end
-
 end
