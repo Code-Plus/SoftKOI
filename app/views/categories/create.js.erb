@@ -6,4 +6,4 @@ $('#dialog').modal('toggle');
 $('#categories').append('<%= j render (@category) %>');
 
 //Desplegar alerta
-$('.notice').html("La categoria ha sido creada con éxito");
+$("#notice").html("<%= flash[:notice] %>");

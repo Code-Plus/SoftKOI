@@ -1,6 +1,6 @@
 $(document).on 'ready', ->
   $.ajax
-    url: 'products/new'
+    url: '/products/new'
     data: search: $(this).val()
     success: (data) ->
       jQuery ->
