@@ -37,10 +37,11 @@
          </div>
       </div>
 
-   <div class="col-sm-6">
-      <div class="form-group">
-         <%= f.label :category_id, "Categoría:" %>
-         <%= f.grouped_collection_select(:category_id, TypeProduct.activos.order(name: :asc), :categories, :name, :id, :name, {prompt: "Seleccione una categoría..."}, {:class=>'form-control'}) %>
+      <div class="col-sm-6">
+         <div class="form-group">
+            <%= f.label :category_id, "Categoría:" %>
+            <%= f.grouped_collection_select(:category_id, TypeProduct.activos.order(name: :asc), :categories, :name, :id, :name, {prompt: "Seleccione una categoría..."}, {:class=>'form-control'}) %>
+         </div>
       </div>
 
       <div class="col-sm-12">
