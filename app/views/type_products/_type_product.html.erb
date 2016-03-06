@@ -1,9 +1,16 @@
 <tr id="type_product_<%= type_product.id %>">
 	<td><%= type_product.name %></td>
 	<td><%= type_product.description %></td>
-	<td><%= type_product.state %></td>
-  	<td>
-    	<%= link_to 'Editar', edit_type_product_path(type_product), remote: true, :class => 'btn btn-sm btn-info' %>
-    	<%= link_to 'Eliminar', type_product, remote: true, :method => :delete, data: { confirm: "¿Eliminar tipo de producto:  #{type_product.name}? "}, :class => 'btn btn-sm btn-danger' %>
-  	</td>
-	</tr>
+	<td width="120px">
+		<% if type_product.state == "noDisponible" %>
+			<span class="label label-primary span-table">No disponible</span>
+		<% else %>
+			<span class="label label-success span-table"> Disponible </span>
+		<% end %>
+	</td>
+	<td>
+		<%= link_to edit_type_product_path(type_product), remote: true, :class => 'btn btn-sm btn-info bold' do %>
+			<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+		<% end %>
+	</td>
+</tr>

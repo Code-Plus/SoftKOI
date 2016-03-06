@@ -1,16 +1,24 @@
 <tr id="product_<%= product.id %>">
-    <td><%= product.name %></td>
-    <td><%= product.description %></td>
-    <td><%= product.category.name %></td>
-    <td><%= product.stock_min %></td>
-    <td><%= product.stock %></td>
-    <td><%= product.price %></td>
-    <td><%= product.state %></td>
-  	<td>
-    	<%= link_to 'Editar', edit_product_path(product), remote: true, :class => 'btn btn-sm btn-info' %>
-		<!--Se le envia el id del producto a "input_products/new"-->
-        <%= link_to new_input_product_path(product_id: product.id), class: 'btn btn-sm btn-primary' do %>
-            Entrada
-        <% end %>
-  	</td>
+   <td><%= product.name %></td>
+   <td><%= product.description %></td>
+   <td><%= product.category.name %></td>
+   <td width="10px"><%= product.stock_min %></td>
+   <td width="10px"><%= product.stock %></td>
+   <td><%= product.price %></td>
+   <td width="105px">
+      <% if product.state == "noDisponible" %>
+         <span class="label label-primary span-table">No disponible</span>
+      <% else %>
+         <span class="label label-success span-table"> Disponible </span>
+      <% end %>
+   </td>
+   <td width="180px">
+      <%= link_to edit_product_path(product), remote: true, :class => 'btn btn-sm btn-info bold' do %>
+         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+      <% end %>
+      <!--Se le envia el id del producto a "input_products/new"-->
+      <%= link_to new_input_product_path(product_id: product.id), class: 'btn btn-sm btn-primary bold' do %>
+      	<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Entrada
+      <% end %>
+   </td>
 </tr>

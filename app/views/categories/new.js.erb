@@ -1,12 +1,12 @@
 // Add the dialog title
-$('#dialog h4').html("<i class='glyphicon glyphicon-plus'></i>&nbsp; Registrar Tipo de categoria");
- 
+$('#dialog h4').html("<i class='fa fa-plus'></i>&nbsp; Registrar Categoria");
+
 // Render the new form
 $('.modal-body').html('<%= j render("form") %>');
- 
+
 // Show the dynamic dialog
 $('#dialog').modal("show");
- 
+
 // Set focus to the first element
 $('#dialog').on('shown.bs.modal', function () {
 	  $('.first_input').focus()

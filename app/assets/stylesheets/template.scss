@@ -105,6 +105,26 @@ div.menusuperior div.alerts a.ALETNotificacion {
 
 /*-----------------------------clases solas-------------------------*/
 
+.inline{
+   display: inline-block;
+}
+
+.bold{
+   font-weight: bold;
+}
+
+.span-table{
+   font-size: 88% !important;
+}
+
+.modal-errors{
+   margin-top: 10px;
+   margin-left:14.6px;
+   margin-bottom: 20px;
+   font-weight: bolder;
+   font-size: 12.5px;
+}
+
 .ui.icon.button{
   color: #000 !important;
 }

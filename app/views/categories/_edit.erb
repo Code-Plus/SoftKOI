@@ -1,6 +1,6 @@
 <%= form_for(@category, remote: true, :html => { :role => "form" })  do |f| %>
 
-	<div id="error_explanation" class="bg-danger text-danger"></div>
+	<div id="error_explanation" class="text-danger modal-errors"></div>
 
 	<div class="row">
 		<div class="col-sm-12">
@@ -14,28 +14,20 @@
 				<%= f.label :description, "Descripcion:", :class => "control-label" %>
 				<%= f.text_area :description, :class => "form-control" %>
 			</div>
-
-			<div class="form-group">
-            <%= f.label :state,"Estado", :class => "control-label"%>
-            <%= f.text_field :state, :class => "form-control" %>
-         </div>
-
-         <div class="form-group">
-            <% if @category.may_disponible?%>
-               <!--Si esta en no disponible tendremos la opcion de habilitarla-->
-               <%= link_to "Habilitar", "/category/#{@category.id}/habilitar", method: :put %>
-            <% else %>
-               <!--Si esta disponible tendremos la opcion de inhabilitarla-->
-              <%= link_to "Inhabilitar", "/category/#{@category.id}/inhabilitar", method: :put %>
-            <% end %>
-         </div>
-
 		</div>
 
 		<div class="col-sm-12">
 			<hr style="border: 1; margin-top: 0px; ">
-			<div class="form-group" style="margin-bottom: 0px;">
-				<%= f.submit "Editar Categoria", :class => "btn btn-success" %>
+			<div class="inline" style="margin-bottom: 0px;">
+				<%= f.submit "Editar Categoria", :class => "btn btn-success bold" %>
+			</div>
+
+			<div class="inline">
+				<% if @category.may_disponible?%>
+					<%= link_to "Habilitar", "/category/#{@category.id}/habilitar", method: :put, class: 'btn btn-primary bold' %>
+				<% else %>
+				  <%= link_to "Inhabilitar", "/category/#{@category.id}/inhabilitar", method: :put, class: 'btn btn-primary bold' %>
+				<% end %>
 			</div>
       </div>
 	</div>
