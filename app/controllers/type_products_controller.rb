@@ -55,14 +55,14 @@ class TypeProductsController < ApplicationController
     end
   end
 
-  def disponible
+  def disponible  
     @type_product.disponible!
     redirect_to type_products_url
   end
 
   def noDisponible
-    @type_product.noDisponible!
-    redirect_to type_products_url
+         @type_product.noDisponible!
+         redirect_to type_products_url
   end
 
   private

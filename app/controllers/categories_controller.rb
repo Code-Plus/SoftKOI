@@ -63,8 +63,8 @@ class CategoriesController < ApplicationController
 
    #Se cambia el estado a noDisponible de las categorias
    def noDisponible
-      @category.noDisponible!
-      redirect_to categories_url
+         @category.noDisponible!
+         redirect_to categories_url
    end
 
    private

@@ -1,0 +1,9 @@
+//Desplegar la modal
+$('#dialog').modal('toggle');
+
+//Añadir el registro que acabamos de crear en la tabla
+//Este ID corresponde al de la etiqueta tbody en el index
+$('#products').append('<%= j render (@input_product) %>');
+
+//Desplegar alerta
+$('.notice').html("La entrada se ha registrado con éxito");
