@@ -8,6 +8,7 @@ class TypeProduct < ActiveRecord::Base
 	validates :name, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
 
+	#Muestra los tipos de producto con estado "disponible"
 	scope :activos, -> { where(state: "disponible")}
 
 	aasm column: "state" do

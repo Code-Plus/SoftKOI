@@ -9,6 +9,7 @@ class Category < ActiveRecord::Base
 	validates :description, presence: true, length: { in: 8..80 }
 
 	scope :activos, -> { where(state: "disponible")}
+ 
 
 	#Le designamos a la columna "state" unos estados
 	aasm column: "state" do
