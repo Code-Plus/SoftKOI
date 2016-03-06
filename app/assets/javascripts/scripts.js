@@ -17,8 +17,8 @@ $(document).ready(function() {
 			"oPaginate": {
 				"sFirst":    "Primero",
 				"sLast":     "Último",
-				"sNext":     "Siguiente",
-				"sPrevious": "Anterior"
+				"sNext":     "Sigiente &nbsp;<i class='fa fa-angle-right'></i>",
+				"sPrevious": "<i class='fa fa-angle-left'></i>&nbsp; Anterior"
 			},
 			"oAria": {
 				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
