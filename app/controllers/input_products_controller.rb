@@ -27,7 +27,7 @@ class InputProductsController < ApplicationController
             format.json { head :no_content }
             format.js
          else
-            format.json { render json: @category.errors.full_messages,
+            format.json { render json: @input_product.errors.full_messages,
                status: :unprocessable_entity }
          end
       end
