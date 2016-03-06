@@ -1,27 +1,38 @@
 <div class="container">
 
-   <h2>Categorias</h2>
+   <div class="panel panel-default">
+      <div class="panel-body">
+            <h3 class="title-upper bold"> registro de Categorias</h3>
+      </div>
+   </div>
+
    <%= link_to new_category_path, remote: true, class: 'btn btn-success bold' do %>
    <i class="fa fa-plus"></i>
    &nbsp;Nueva Categoria
    <% end %>
 
-   <br>
-   <table class="table table-bordered table-striped">
-      <thead>
-         <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Tipo de Producto</th>
-            <th>Estado</th>
-            <th width="140">Acciones</th>
-         </tr>
-      </thead>
+   <br><br>
+   <div class="panel panel-default">
+      <div class="panel-body">
 
-      <tbody id="categories">
-         <%= render @categories %>
-      </tbody>
-   </table>
+         <table class="table table-bordered table-striped">
+            <thead>
+               <tr>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Tipo de Producto</th>
+                  <th>Estado</th>
+                  <th width="140">Acciones</th>
+               </tr>
+            </thead>
+
+            <tbody id="categories">
+               <%= render @categories %>
+            </tbody>
+         </table>
+
+      </div>
+   </div>
 
    <%= render 'dialog' %>
 

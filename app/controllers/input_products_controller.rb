@@ -1,12 +1,11 @@
 class InputProductsController < ApplicationController
 
-   # GET /input_products
-   # GET /input_products.json
+
    def index
       @input_products = InputProduct.all
    end
 
-   # GET /input_products/new
+
    def new
       #Se obtiene el producto que se selecciono para la entrada
       @productx = Product.find(params[:product_id])
@@ -16,8 +15,6 @@ class InputProductsController < ApplicationController
    end
 
 
-   # POST /input_products
-   # POST /input_products.json
    def create
       @input_product = Product.new
       @input_product = InputProduct.new(input_product_params)
@@ -35,12 +32,7 @@ class InputProductsController < ApplicationController
 
 
    private
-   # Use callbacks to share common setup or constraints between actions.
-   #def set_input_product
-   #   @input_product = InputProduct.find(params[:id])
-   #end
 
-   # Never trust parameters from the scary internet, only allow the white list through.
    def input_product_params
       params.require(:input_product).permit(:stock, :product_id)
    end

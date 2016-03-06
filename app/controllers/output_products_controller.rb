@@ -1,56 +1,51 @@
 class OutputProductsController < ApplicationController
-  before_action :set_output_product, only: [:show]
+   before_action :set_output_product, only: [:show]
 
-  # GET /output_products
-  # GET /output_products.json
-  def index
-    @output_products = OutputProduct.all
-    @product = Product.activos_con_cantidad.all
+   def index
+      @output_products = OutputProduct.all
+      @product = Product.activos_con_cantidad.all
 
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = ReportPdf.new(@output_products)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      respond_to do |format|
+         format.html
+         format.pdf do
+            pdf = ReportPdf.new(@output_products)
+            send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+         end
       end
-    end
-  end
+   end
 
-  # GET /output_products/1
-  # GET /output_products/1.json
-  def show
-  end
 
-  # GET /output_products/new
-  def new
-    @output_product = OutputProduct.new
-    @product = Product.activos
-  end
+   def show
+   end
 
-  # POST /output_products
-  # POST /output_products.json
-  def create
-    @output_product = OutputProduct.new(output_product_params)
-    @output_product.product = params[:stock]
-    respond_to do |format|
-      if @output_product.save
-        format.html { redirect_to @output_product, notice: 'Output product was successfully created.' }
-        format.json { render :show, status: :created, location: @output_product }
-      else
-        format.html { render :new }
-        format.json { render json: @output_product.errors, status: :unprocessable_entity }
+
+   def new
+      @output_product = OutputProduct.new
+      @product = Product.activos
+   end
+
+
+   def create
+      @output_product = OutputProduct.new(output_product_params)
+      @output_product.product = params[:stock]
+      respond_to do |format|
+         if @output_product.save
+            format.html { redirect_to @output_product, notice: 'Output product was successfully created.' }
+            format.json { render :show, status: :created, location: @output_product }
+         else
+            format.html { render :new }
+            format.json { render json: @output_product.errors, status: :unprocessable_entity }
+         end
       end
-    end
-  end
+   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_output_product
+   private
+
+   def set_output_product
       @output_product = OutputProduct.find(params[:id])
-    end
+   end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def output_product_params
+   def output_product_params
       params.require(:output_product).permit(:stock, :product_id)
-    end
+   end
 end

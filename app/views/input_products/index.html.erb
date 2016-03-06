@@ -1,21 +1,29 @@
 <div class="container">
 
-   <h2>Entrada de prodcutos</h2>
-   <br>
-   <table class="table table-bordered table-striped">
-      <thead>
-         <tr>
-            <th>Cantidad</th>
-            <th>Nombre Producto</th>
-            <th>Precio</th>
-         </tr>
-      </thead>
+   <div class="panel panel-default">
+      <div class="panel-body">
+         <h3 class="bold title-upper">Entrada de productos</h3>
+      </div>
+   </div>
 
-      <tbody id="input_products">
-         <%= render @input_products %>
-      </tbody>
-   </table>
+   <div class="panel panel-default">
+      <div class="panel-body">
 
-   <%= render 'dialog' %>
+         <table class="table table-bordered table-hover table-striped">
+            <thead>
+               <tr>
+                  <th>Cantidad</th>
+                  <th>Nombre Producto</th>
+                  <th>Precio</th>
+               </tr>
+            </thead>
+
+            <tbody id="input_products">
+               <%= render @input_products %>
+            </tbody>
+         </table>
+
+      </div>
+   </div>
 
 </div>
