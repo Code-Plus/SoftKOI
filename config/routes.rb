@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :customers
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
@@ -16,23 +15,24 @@ Rails.application.routes.draw do
 	resources :type_products
 	resources :input_products
 
-	#Pone los productos disponiblles
+	#Habilitar producto
 	put "/product/:id/habilitar", to: "products#disponible"
 
-	#Pone los prodcutos en noDisponibles
+	#Inhabilitar producto
 	put "/product/:id/inhabilitar", to: "products#noDisponible"
 
-	put "/output_product/:id/deBaja", to: "output_products#deBaja"
-
-	#Busca en el controlador el método disponible
+	#Habilitar tipo de producto
 	put "/type_product/:id/habilitar", to: "type_products#disponible"
 
-	#Busca en el controlador el método noDisponible.
+	#Inhabilitar tipo de producto
 	put "/type_product/:id/inhabilitar", to: "type_products#noDisponible"
 
-	#Pone las categorias disponibles
+	#Habilitar categoria
 	put "/category/:id/habilitar", to: "categories#disponible"
 
-	#Pone las categorias en noDisponibles
+	#Inhabilitar categoria
 	put "/category/:id/inhabilitar", to: "categories#noDisponible"
+
+   put "/output_product/:id/deBaja", to: "output_products#deBaja"
+
 end
