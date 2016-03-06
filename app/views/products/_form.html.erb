@@ -1,4 +1,4 @@
-<%= form_for(@product, remote: true, :html => { :role => "form", :multipart => true})  do |f| %>
+<%= form_for(@product, remote: true, :html => { :role => "form", :multipart => true, :"data-type" => "json"})  do |f| %>
 
    <div id="error_explanation" class="text-danger modal-errors"></div>
 
@@ -37,11 +37,10 @@
          </div>
       </div>
 
-      <div class="col-sm-6">
-         <div class="form-group">
-            <%= f.label :category_id, "Categoría:" %>
-            <%= grouped_collection_select(:category_id, TypeProduct.activos.order(:name), :category, :name, :id, :name, include_blank: true {prompt: "Seleccione una categoría..."}, {:class=>'form-control'}) %>
-         </div>
+   <div class="col-sm-6">
+      <div class="form-group">
+         <%= f.label :category_id, "Categoría:" %>
+         <%= f.grouped_collection_select(:category_id, TypeProduct.activos.order(name: :asc), :categories, :name, :id, :name, {prompt: "Seleccione una categoría..."}, {:class=>'form-control'}) %>
       </div>
 
       <div class="col-sm-12">
