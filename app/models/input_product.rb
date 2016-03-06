@@ -1,7 +1,8 @@
 class InputProduct < ActiveRecord::Base
   belongs_to :product
 
-  validates :product_id, :stock, presence: true
+  validates :product_id, presence: true
+  validates :stock, presence: true, numericality: {greater_than: 0}
   before_create :update_stock 
 
 

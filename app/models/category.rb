@@ -8,6 +8,7 @@ class Category < ActiveRecord::Base
 	validates :name, :type_product_id, :state, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
 
+	#Muesta las categorias con estado "disponible"
 	scope :activos, -> { where(state: "disponible")}
  
 
