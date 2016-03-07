@@ -45,8 +45,32 @@ en:
     previous_label: "&#8592; Anterior"
     next_label: "Siguiente &#8594;"
     page_gap: "&hellip;"
-    
+
   activerecord:
+    attributes:
+      product:
+        name: "Nombre"
+        description: "Descripción"
+        price: "Precio"
+        state: "Estado"
+        stock_min: "Cantidad mínima"
+        stock: "Cantidad"
+        category_id: "Categoría"
+      category:
+        name: "Nombre"
+        description: "Descripción"
+        state: "Estado"
+        type_product_id: "Tipo de producto"
+      input_product:
+        stock: "Cantidad"
+        product_id: "Producto"
+      output_product:
+        stock: "Cantidad"
+        product_id: "Producto"
+      type_product:
+        name: "Nombre"
+        description: "Descripción"
+        state: "Estado"
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
