@@ -12,9 +12,9 @@
 
 	<div id="notice_wrapper">
 		<% if notice %>
-			<p class="notice"><%= notice %></p>
+		<p class="notice"><%= notice %></p>
 		<% elsif alert %>
-			<p class="alert"><%= alert %></p>
+		<p class="alert"><%= alert %></p>
 		<% end %>
 	</div>
 
@@ -58,25 +58,8 @@
 
 	<div class="container1 normal">
 		<div class="container">
-			<div class="panel panel-default">
-				<div class="panel-body">
-
-					<div class="btn-group">
-						<h3  class="dropdown-toggle title-upper bold" data-toggle="dropdown" aria-expanded="false">
-							<%= yield :title %>
-							<i class="fa fa-caret-down"></i>
-						</h3>
-
-						<ul class="dropdown-menu">
-							<%= yield :menus %>
-						</ul>
-
-					</div>
-				</div>
-			</div>
+			<%= yield %>
 		</div>
-
-		<%= yield %>
 	</div>
 
 	<%= javascript_tag "transformicons.add('.tcon')" %>

@@ -1,10 +1,14 @@
 <div class="container">
 
-   <div class="panel panel-default">
-      <div class="panel-body">
-         <h3 class="bold title-upper">Entrada de productos</h3>
-      </div>
-   </div>
+   <% content_for :title do -%>
+      Entrada de productos
+   <% end -%>
+
+   <% content_for :menus do -%>
+      <li><h5 class="drop-title"><%= link_to "Tipos de productos", type_products_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Catgorias", categories_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Productos", products_path %></h5></li>
+   <% end -%>
 
    <div class="panel panel-default">
       <div class="panel-body">

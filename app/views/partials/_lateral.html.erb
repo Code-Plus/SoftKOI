@@ -1,6 +1,8 @@
 <!-- Imagen del menu -->
 <div class="HomeM Hnormal">
-	<a href="#"><%= image_tag("admin.png") %></a>
+	<%= link_to home_path do %>
+		<%= image_tag("admin.png") %>
+	<% end %>
 </div>
 
 <!-- Barra lateral -->
@@ -14,39 +16,39 @@
 		</li>
 
 		<li id="VentasM" class="Mnormal">
-		<a class="Modulos" href="<%= url_for(controller: 'products',
-        action: 'index') %>">
-			<%= image_tag("2-small.png") %><span>Ventas</span></a>				
+		<a class="Modulos" href="#">
+			<%= image_tag("2-small.png") %><span>Ventas</span></a>
 		</li>
 
 		<li id="CambiosM" class="Mnormal">
-		<a class="Modulos" href="<%= url_for(controller: 'products', action: 'new') %>">
-			<%= image_tag("3-small.png") %><span>Cambios</span></a>				
+		<a class="Modulos" href="#">
+			<%= image_tag("3-small.png") %><span>Cambios</span></a>
 		</li>
 
 		<li id="ConsolasM" class="Mnormal">
-		<a class="Modulos" href="<%= url_for(controller: 'products', action: 'new') %>">
-			<%= image_tag("4-small.png") %><span>Consolas</span></a>					
+		<a class="Modulos" href="#">
+			<%= image_tag("4-small.png") %><span>Consolas</span></a>
 		</li>
 
 		<li id="PagosM" class="Mnormal">
-		<a class="Modulos" href="<%= url_for(controller: 'products', action: 'new') %>">
-			<%= image_tag("5-small.png") %><span>Pagos</span></a>				
+		<a class="Modulos" href="#">
+			<%= image_tag("5-small.png") %><span>Pagos</span></a>
 		</li>
 
 		<li id="UsuariosM" class="Mnormal">
-		<a class="Modulos" href="<%= url_for(controller: 'products', action: 'new') %>">
-			<%= image_tag("6-small.png") %><span>Usuarios</span></a>				
+		<a class="Modulos" href="#">
+			<%= image_tag("6-small.png") %><span>Usuarios</span></a>
 		</li>
 
 		<li id="AgendaM" class="Mnormal">
-		<a class="Modulos" href="<%= url_for(controller: 'products', action: 'new') %>">
+		<a class="Modulos" href="#">
 			<%= image_tag("9-small.png") %><span>Agenda</span></a>
 		</li>
 
 		<li id="SalirM" class="Mnormal">
-		<a class="Salir" href="<%= url_for(controller: 'devise/sessions', action: 'destroy') %>">	
-		<%= image_tag("8-small.png") %></a>
+			<%= link_to destroy_user_session_path, method: :delete, class: "Salir"  do%>
+				<%= image_tag("8-small.png") %>
+			<% end %>
 		</li>
 
 	</ul>

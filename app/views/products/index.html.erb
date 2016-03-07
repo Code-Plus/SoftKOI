@@ -1,11 +1,15 @@
 <div class="container">
 
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<h3 class="bold title-upper">Registro de Productos</h3>
-		</div>
-	</div>
-	
+	<% content_for :title do -%>
+      Registro de productos
+   <% end -%>
+
+   <% content_for :menus do -%>
+		<li><h5 class="drop-title"><%= link_to "Entrada de productos", input_products_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Tipos de productos", type_products_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Categorias", categories_path %></h5></li>
+   <% end -%>
+
 	<%= link_to new_product_path, remote: true, class: 'btn btn-success bold registrar' do %>
 		<i class="fa fa-plus"></i>
 		&nbsp;Nuevo Producto
