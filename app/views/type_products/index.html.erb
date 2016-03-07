@@ -10,14 +10,15 @@
       <li><h5 class="drop-title"><%= link_to "Productos", products_path %></h5></li>
    <% end -%>
 
-	<%= link_to new_type_product_path, remote: true, class: 'btn btn-success bold' do %>
-		<i class="fa fa-plus"></i>
-		&nbsp;Nuevo tipo de producto
-	<% end %>
+	<% content_for :button do -%>
+		<%= link_to new_type_product_path, remote: true, class: 'btn btn-success bold' do %>
+			<i class="fa fa-plus"></i>
+			&nbsp;Nuevo tipo de producto
+		<% end %>
+	<% end -%>
 
-	<br><br>
 	<div class="panel panel-default">
-		<div class="panel-body">
+		<div class="panel-body table">
 
 			<table class="table table-bordered table-striped">
 				<thead>

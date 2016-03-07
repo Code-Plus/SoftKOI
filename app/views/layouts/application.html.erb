@@ -58,10 +58,10 @@
 
 	<div class="container1 normal">
 		<div class="container">
-			<div class="panel panel-default">
+			<div class="panel panel-default" style="margin-top: 10px;">
 				<div class="panel-body">
 
-					<div class="btn-group">
+					<div class="btn-group inline pd">
 						<h3  class="dropdown-toggle title-upper bold" data-toggle="dropdown" aria-expanded="false">
 							<%= yield :title %>
 							<i class="fa fa-caret-down"></i>
@@ -72,6 +72,11 @@
 						</ul>
 
 					</div>
+
+					<div class="inline pull-right">
+						<%= yield :button %>
+					</div>
+
 				</div>
 			</div>
 		</div>

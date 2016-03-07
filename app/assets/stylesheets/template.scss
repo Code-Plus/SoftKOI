@@ -105,6 +105,14 @@ div.menusuperior div.alerts a.ALETNotificacion {
 
 /*-----------------------------clases solas-------------------------*/
 
+table a:not(.btn), .table a:not(.btn) {
+   text-decoration: none;;
+}
+
+.pd{
+   padding-top: 6px;
+}
+
 .dropdown.open .dropdown-menu {
    max-height: 300px;
    opacity: 1;
