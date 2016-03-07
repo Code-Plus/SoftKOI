@@ -12,7 +12,7 @@ Rails.application.routes.draw do
    resources :products
 	resources :output_products
 	resources :categories
-	resources :type_products
+	resources :type_products 
 	resources :input_products
 
 	#Habilitar producto
