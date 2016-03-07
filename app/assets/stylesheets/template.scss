@@ -104,6 +104,11 @@ div.menusuperior div.alerts a.ALETNotificacion {
 }
 
 /*-----------------------------clases solas-------------------------*/
+.form-group.required .control-label:after {
+   color: #d00;
+   content: "*";
+   margin-left: 3px;
+}
 
 table a:not(.btn), .table a:not(.btn) {
    text-decoration: none;;
