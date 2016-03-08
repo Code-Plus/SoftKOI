@@ -2,9 +2,6 @@ class TypeProduct < ActiveRecord::Base
 
 	include AASM
 
-	has_many :categories 
-	after_save :validar_estado
-
 	#Validaciones
 	validate :validar_estado
 	validates :name, presence: true

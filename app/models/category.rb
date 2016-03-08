@@ -1,6 +1,5 @@
 class Category < ActiveRecord::Base
 
-	
 	include AASM
 
 	belongs_to :type_product
@@ -14,16 +13,15 @@ class Category < ActiveRecord::Base
 			products.update_all state: "noDisponible"
 		end
 	end
-
 	validates :name, :type_product_id, :state, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
 
 	#Muesta las categorias con estado "disponible"
 	scope :activos, -> { where(state: "disponible")}
- 	
+
 	#Le designamos a la columna "state" unos estados
 	aasm column: "state" do
-		
+
 		state :disponible, :initial => true
 		state :noDisponible
 
