@@ -2,13 +2,15 @@ class TypeProduct < ActiveRecord::Base
 
 	include AASM
 
-	has_many :categories 
+	has_many :categories
 
+	#Que código mas izi y OP
 	after_save do
 		if self.state == "noDisponible"
 			categories.update_all state: "noDisponible"
 		end
 	end
+
 	#Validaciones
 	validates :name, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
