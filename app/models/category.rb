@@ -6,6 +6,14 @@ class Category < ActiveRecord::Base
 	belongs_to :type_product
 	has_many :products
 
+	#Cambia el estado de los productos a "noDisponible" cuando la categoria que tiene asociada
+	#cambia tambien a "noDisponible"
+	after_create do
+		if self.state == "noDisponible"
+			#Actualiza todos los productos con la categoria asociada a estado "noDisponible"
+			products.update_all state: "noDisponible"
+		end
+	end
 
 	validates :name, :type_product_id, :state, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
