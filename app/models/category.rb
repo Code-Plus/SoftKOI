@@ -5,6 +5,7 @@ class Category < ActiveRecord::Base
 	belongs_to :type_product
 	has_many :products
 
+
 	#Cambia el estado de los productos a "noDisponible" cuando la categoria que tiene asociada
 	#cambia tambien a "noDisponible"
 	after_create do
