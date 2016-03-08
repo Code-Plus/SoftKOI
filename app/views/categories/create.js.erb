@@ -6,4 +6,5 @@ $('#dialog').modal('toggle');
 $('#categories').append('<%= j render (@category) %>');
 
 //Desplegar alerta
-$("#notice").html("<%= flash[:notice] %>");
+
+$("#notice_wrapper").html('<%=j flash[:notice] %>');
