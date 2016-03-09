@@ -1,57 +1,38 @@
 <div class="ui container">
-  <div class="ui segment">
-    <%= link_to new_output_product_path, class: 'ui right floated green button' do %>
-      <i class="add circle icon"></i>
-      Registrar salida de productos
-    <% end %>
-    <br><br>
-    <table class="ui green compact celled unstackable striped table">
-      <thead>
-        <tr>
-          <th>Cantidad de baja</th>
-          <th>Producto</th>
-          <th>Fecha</th>
-          <th width="142">Acciones</th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% @output_products.each do |output_product| %>
-          <tr>
-            <td><%= output_product.stock %></td>
-            <td><%= output_product.product.name %></td>
-            <td><%= output_product.created_at %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <% content_for :title do -%>
+      Salida por baja
+   <% end -%>
 
+   <% content_for :menus do -%>
+    <li><h5 class="drop-title"><%= link_to "Entrada de productos", input_products_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Tipos de productos", type_products_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Categorias", categories_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Productos", products_path %></h5></li>
+   <% end -%>
 
-    <h1>Productos</h1>
-    <table class="ui green compact celled unstackable striped table">
-      <thead>
-        <tr>
-          <th>Cantidad</th>
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Estado</th>
-          <th>Cantidad mínima</th>
-          <th width="142">Acciones</th>
-        </tr>
-      </thead>
+    <div class="panel panel-default">
+       <div class="panel-body table">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Cantidad de baja</th>
+            <th>Producto</th>
+            <th>Fecha</th>
+            <th width="142">Acciones</th>
+            </tr>
+          </thead>
 
-      <tbody>
-        <% @product.each do |product| %>
-          <tr>
-            <td><%= product.stock %></td>
-            <td><%= product.name %></td>
-            <td><%= product.price %></td>
-            <td><%= product.state %></td>
-            <td><%= product.stock_min %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-  </div>
+          <tbody id="output_products">
+            <% @output_products.each do |output_product| %>
+              <tr>
+                <td><%= output_product.stock %></td>
+                <td><%= output_product.product.name %></td>
+                <td><%= output_product.created_at %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+       </div>
+    </div>
 </div>
