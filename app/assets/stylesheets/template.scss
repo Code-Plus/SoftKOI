@@ -11,6 +11,7 @@ header{
   position: fixed;
   border-bottom: 4px solid #e7eaee;
   display: flex !important;
+  z-index: 1;
 }
 li.Mnormal{
   transition: box-shadow 0.4s ease 0s;
@@ -445,11 +446,6 @@ ul.menu.desplegado{
 
 /* Alerts */
 #notice_wrapper {
-  display: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 999;
   .alert { background: rgba(231, 76, 60,1.0) }
   .notice{ background:rgba(26, 188, 156,1.0) }
   .alert, .notice {
@@ -464,12 +460,8 @@ ul.menu.desplegado{
   }
 }
 #notice_wrapper2{
-  display: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  background:rgba(26, 188, 156,1.0); 
+
+  background:rgba(26, 188, 156,1.0);
   color: #fff;
   font-size: 16px !important;
     font-weight: 700;
@@ -480,3 +472,10 @@ ul.menu.desplegado{
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
+.noticias{
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
