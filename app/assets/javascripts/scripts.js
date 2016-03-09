@@ -30,6 +30,12 @@ $(document).ready(function() {
 
 	$("#notice_wrapper").slideDown(400).delay(2000).slideUp(400);
 
+    	/*setTimeout(function() {
+        	$("#notice_wrapper2").slideDown(400).delay(2000).slideUp(400).fadeOut(1500);
+    	});*/
+
+	//$("#notice_wrapper2").slideDown(400).delay(2000).slideUp(400);
+
 	$("#iconmenu").on("click",function(){
 		$(".menusuperior").toggleClass("normal");
 		$(".menusuperior").toggleClass("desplegado");

@@ -10,6 +10,10 @@
 
 <body>
 
+	<div id="notice_wrapper2">
+		<p class="notice"></p>
+	</div>
+
 	<div id="notice_wrapper">
 		<% if notice %>
 			<p class="notice"><%= notice %></p>
@@ -83,7 +87,6 @@
 
 		<%= yield %>
 	</div>
-
 	<%= javascript_tag "transformicons.add('.tcon')" %>
 
 </body>

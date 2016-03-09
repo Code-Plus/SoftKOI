@@ -20,7 +20,7 @@ class TypeProductsController < ApplicationController
     respond_to do |format|
       if @type_product.save
         format.json { head :no_content }
-        format.js { flash[:notice] = "¡Tipo de producto creado satisfactoriamente!" }
+        format.js 
       else
         format.json { render json: @type_product.errors.full_messages,
                             status: :unprocessable_entity }
