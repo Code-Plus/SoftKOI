@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
 
 	#Cambia el estado de los productos a "noDisponible" cuando la categoria que tiene asociada
 	#cambia tambien a "noDisponible"
-	after_create do
+	after_save do
 		if self.state == "noDisponible"
 			#Actualiza todos los productos con la categoria asociada a estado "noDisponible"
 			products.update_all state: "noDisponible"
