@@ -13,6 +13,7 @@ class InputProduct < ActiveRecord::Base
    end
 
    private
+   
    #Actualizar el stock del producto al que se le hace la entrada
    def update_stock
       stock_product= product.stock

@@ -7,10 +7,11 @@ class InputProductsController < ApplicationController
 
 
    def new
-      #Se obtiene el producto que se selecciono para la entrada
+      #Obtener el producto que se selecciono para la entrada
       @productx = Product.find(params[:product_id])
       @input_product = @productx.input_products.build
-      #Traemos todo los productos que tengan estado "disponible"
+
+      #Traer todos los productos con estado disponible
       @product=Product.activos
    end
 
@@ -19,10 +20,11 @@ class InputProductsController < ApplicationController
       @input_product = Product.new
       @input_product = InputProduct.new(input_product_params)
       @input_product.product = params[:stock]
+
       respond_to do |format|
          if @input_product.save
             format.json { head :no_content }
-            format.js
+            format.js {  flash[:notice] = "¡Los productos se han ingresado satisfactoriamente!" }
          else
             format.json { render json: @input_product.errors.full_messages,
                status: :unprocessable_entity }

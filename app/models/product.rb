@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
    validates :stock, numericality: {greater_than_or_equal_to: 0}
    validates :category_id, presence: true
 
-   #El scope verifica y nos trae los productos que tengan estado disponible
+   #Seleccionar productos disponibles
    scope :activos, -> { where(state: "disponible")}
 
    #Productos activos cuya cantidad sea mayor a cero.
@@ -23,7 +23,6 @@ class Product < ActiveRecord::Base
    scope :activos_con_cantidad, ->{activos.where("stock > 0")}
 
    aasm column: "state" do
-      #Estado por default
       state :disponible, :initial => true
       state :noDisponible
       state :bajas
