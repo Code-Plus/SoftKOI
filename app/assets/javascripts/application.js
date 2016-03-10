@@ -21,40 +21,40 @@
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 
-    var errors = JSON.parse(xhr.responseText);
-    var kk ="<ul>";
+   var errors = JSON.parse(xhr.responseText);
+   var kk ="<ul>";
+   
+   for(var i = 0; i < errors.length; i++){
+      var list = errors[i];
+      kk += "<li>"+list+"</li>"
+   }
 
-    for(var i = 0; i < errors.length; i++){
-        var list = errors[i];
-        kk += "<li>"+list+"</li>"
-    }
+   kk +="</ul>"
 
-    kk +="</ul>"
-
-    $("#error_explanation").html(kk);
+   $("#error_explanation").html(kk);
 
 });
 
-  var categoriesI ;
-  categoriesI = $('#product_category_id').html();
+var categoriesI ;
+categoriesI = $('#product_category_id').html();
 
 function miabuela (){
-var categoriesF;
+   var categoriesF;
 
-categoriesF = $('#product_category_id').html();
-$('#product_category_id').parent().show();
-var escaped_type_product, options, type_product;
-type_product = $('#category_type_product_id :selected').text();
-escaped_type_product = type_product.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-options = $(categoriesF).filter("optgroup[label='" + escaped_type_product + "']").html();
-if (options) {
-  $('#product_category_id').html(options);
-  return $('#product_category_id').parent().show();
-} else {
-  $('#product_category_id').empty();
-  $('#product_category_id').html("<option>Error</option>");
-  alert(categoriesI);
-  // return $('#product_category_id').parent().hide();
-}
+   categoriesF = $('#product_category_id').html();
+   $('#product_category_id').parent().show();
+   var escaped_type_product, options, type_product;
+   type_product = $('#category_type_product_id :selected').text();
+   escaped_type_product = type_product.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+   options = $(categoriesF).filter("optgroup[label='" + escaped_type_product + "']").html();
+   if (options) {
+      $('#product_category_id').html(options);
+      return $('#product_category_id').parent().show();
+   } else {
+      $('#product_category_id').empty();
+      $('#product_category_id').html("<option>Error</option>");
+      alert(categoriesI);
+      // return $('#product_category_id').parent().hide();
+   }
 
 }
