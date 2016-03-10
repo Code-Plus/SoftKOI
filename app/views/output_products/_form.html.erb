@@ -24,6 +24,20 @@
               <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
            </div>
 
+           <div class="form-group ">
+              <!--Se trae la información del id del producto-->
+               <%= label_tag "Producto" %>
+               <%= text_field_tag @productx.name, @productx.name, disabled: true, :class => "form-control" %>
+            </div>
+            
+           <div class="form-group">
+               <!--Se trae la información del precio del produto-->
+              <%= label_tag "Precio" %><br>
+              <%= text_field_tag @productx.price, @productx.price, disabled: true, :class => "form-control" %>
+            </div>
+            
+
+
         </div>
 
         <div class="actions">
