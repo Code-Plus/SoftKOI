@@ -23,11 +23,11 @@ class InputProductsController < ApplicationController
 
       respond_to do |format|
          if @input_product.save
-            format.json { head :no_content }
-            format.js {  flash[:notice] = "¡Los productos se han ingresado satisfactoriamente!" }
+            format.html { redirect_to @input_product, notice: 'La entrada se ha registrado correctamente' }
+            format.json { render :index, status: :created, location: @input_product }
          else
-            format.json { render json: @input_product.errors.full_messages,
-               status: :unprocessable_entity }
+             format.html { render :new }
+            format.json { render json: @input_product.errors, status: :unprocessable_entity }
          end
       end
    end

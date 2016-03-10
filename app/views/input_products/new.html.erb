@@ -1,12 +1,14 @@
  <% content_for :title do -%>
-      Nueva Salida de Productos
+      Nueva Entrada de Productos
    <% end -%>
 
    <% content_for :menus do -%>
       <li><h5 class="drop-title"><%= link_to "Tipos de productos", type_products_path %></h5></li>
-      <li><h5 class="drop-title"><%= link_to "Entrada de productos", input_products_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Salida de productos", output_products_path %></h5></li>
       <li><h5 class="drop-title"><%= link_to "Productos", products_path %></h5></li>
       <li><h5 class="drop-title"><%= link_to "Categorias", categories_path %></h5></li>
    <% end -%>
 
 <%= render 'form' %>
+
+

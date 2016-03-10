@@ -3,7 +3,6 @@ class OutputProductsController < ApplicationController
 
    def index
       @output_products = OutputProduct.all
-      @product = Product.activos_con_cantidad.all
 
       respond_to do |format|
          format.html
@@ -15,23 +14,22 @@ class OutputProductsController < ApplicationController
    end
 
 
-   def show
-   end
-
-
    def new
+      #Obtener el producto que se selecciono para la baja
+      @productx = Product.find(params[:product_id])
       @output_product = OutputProduct.new
       @product = Product.activos
    end
 
 
    def create
+      @output_product = Product.new
       @output_product = OutputProduct.new(output_product_params)
       @output_product.product = params[:stock]
       respond_to do |format|
          if @output_product.save
             format.html { redirect_to @output_product, notice: 'Output product was successfully created.' }
-            format.json { render :show, status: :created, location: @output_product }
+            format.json { render :index, status: :created, location: @output_product }
          else
             format.html { render :new }
             format.json { render json: @output_product.errors, status: :unprocessable_entity }
