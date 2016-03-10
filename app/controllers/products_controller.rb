@@ -1,13 +1,10 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :disponible, :noDisponible, :bajas ]
+  before_action :set_product, only: [:edit, :update, :disponible, :noDisponible, :bajas ]
 
   def index
     @products = Product.all
   end
 
-
-  def show
-  end
 
 
   def new
@@ -26,7 +23,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.save
         format.json { head :no_content}
-        format.js
+        format.js  {  flash[:notice] = "Producto ingresado con exito" }
       else
         format.json { render json: @product.errors.full_messages, status: :unprocessable_entity }
       end
@@ -46,13 +43,6 @@ class ProductsController < ApplicationController
   end
 
 
-  def destroy
-    @product.destroy
-    respond_to do |format|
-      format.js
-      format.json { head :no_content }
-    end
-  end
 
   def disponible
     @product.disponible!

@@ -1,13 +1,11 @@
 class CategoriesController < ApplicationController
 
-   before_action :set_category, only: [:show, :edit, :update, :destroy, :noDisponible, :disponible]
+   before_action :set_category, only: [:edit, :update, :noDisponible, :disponible]
 
    def index
       @categories = Category.all
    end
 
-   def show
-   end
 
 
    def new
@@ -44,14 +42,6 @@ class CategoriesController < ApplicationController
             format.json { render json: @category.errors.full_messages,
                status: :unprocessable_entity }
          end
-      end
-   end
-
-   def destroy
-      @category.destroy
-      respond_to do |format|
-         format.html { redirect_to categories_url, notice: 'Categoria eliminada correctamente.' }
-         format.json { head :no_content }
       end
    end
 

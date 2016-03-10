@@ -1,17 +1,12 @@
 class TypeProduct < ActiveRecord::Base
 
 	include AASM
-
-	has_many :categories
-
-	#Que código mas izi y OP
-	after_save do
-		if self.state == "noDisponible"
-			categories.update_all state: "noDisponible"
-		end
-	end
+	
+	has_many :categories 
+ 	after_save :validar_estado
 
 	#Validaciones
+	validate :validar_estado
 	validates :name, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
 
@@ -32,5 +27,16 @@ class TypeProduct < ActiveRecord::Base
 			transitions from: :disponible, to: :noDisponible
 		end
 	end
+	private
+	def validar_estado
+		if self.state == "noDisponible"
+			u = categories.select(:state ).where(state: 'disponible')
+			if u != nil
+				puts "Hay categorias habilitadas"
+				self.errors.add(:state,"--->Hay categorias habilitadas")	
+			end
+		end	
+	end
+
 
 end

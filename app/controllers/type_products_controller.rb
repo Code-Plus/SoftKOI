@@ -1,13 +1,9 @@
 class TypeProductsController < ApplicationController
-  before_action :set_type_product, only: [:show, :edit, :update, :destroy, :noDisponible, :disponible]
+  before_action :set_type_product, only: [:edit, :update, :noDisponible, :disponible]
 
   def index
     @type_products = TypeProduct.all
   end
-
-  def show
-  end
-
 
   def new
     @type_product = TypeProduct.new
@@ -24,7 +20,7 @@ class TypeProductsController < ApplicationController
     respond_to do |format|
       if @type_product.save
         format.json { head :no_content }
-        format.js { flash[:notice] = "¡Tipo de producto creado satisfactoriamente!" }
+        format.js {  flash[:notice] = "Tipo de producto ingresado con exito" }
       else
         format.json { render json: @type_product.errors.full_messages,
                             status: :unprocessable_entity }
@@ -45,15 +41,6 @@ class TypeProductsController < ApplicationController
   end
 
 
-  def destroy
-
-    @type_product.destroy
-    respond_to do |format|
-      format.js
-      format.html { redirect_to type_products_url }
-      format.json { head :no_content }
-    end
-  end
 
   def disponible
     @type_product.disponible!
@@ -61,8 +48,8 @@ class TypeProductsController < ApplicationController
   end
 
   def noDisponible
-         @type_product.noDisponible!
-         redirect_to type_products_url
+    @type_product.noDisponible!
+    redirect_to type_products_url
   end
 
   private
