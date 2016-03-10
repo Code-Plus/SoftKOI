@@ -34,3 +34,29 @@ $(document).ajaxError(function(event,xhr,options,exc) {
     $("#error_explanation").html(kk);
 
 });
+
+function miabuela (){
+var categoriesF ,categoriesI;
+categoriesI = $('#product_category_id').html();
+categoriesF = $('#product_category_id').html();
+$('#product_category_id').parent().show();
+var escaped_type_product, options, type_product;
+type_product = $('#category_type_product_id :selected').text();
+escaped_type_product = type_product.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+options = $(categoriesF).filter("optgroup[label='" + escaped_type_product + "']").html();
+if (options) {
+  $('#product_category_id').html(options);
+  return $('#product_category_id').parent().show();
+} else {
+  // $('#product_category_id').empty();
+  // return $('#product_category_id').parent().hide();
+  categoriesF = categoriesI;
+  alert(categoriesF);
+  alert(categoriesI);
+  // type_product = $('#category_type_product_id :selected').text();
+  // escaped_type_product = type_product.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+  // options = $(categoriesF).filter("optgroup[label='" + escaped_type_product + "']").html();
+
+}
+
+}

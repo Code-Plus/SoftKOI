@@ -1,4 +1,4 @@
-<%= form_for(@product, remote: true, :html => { :role => "form", :multipart => true, :"data-type" => "json"})  do |f| %>
+<%= form_for(@product, remote: true, :html => { :role => "form"})  do |f| %>
 
    <div id="error_explanation" class="text-danger modal-errors"></div>
 
@@ -33,14 +33,14 @@
       <div class="col-sm-6">
          <div class="form-groupv required">
             <%= f.label :type_product, "Tipo de producto", :class => "control-label" %>
-            <%= collection_select(:category, :type_product_id, TypeProduct.activos.order(name: :asc), :id, :name, {prompt: "Seleccione un tipo..."}, {:class=>'form-control'}) %>
+            <%= collection_select(:category, :type_product_id, TypeProduct.activos.order(name: :asc), :id, :name, {prompt: "Seleccione un tipo..."}, {:class=>'form-control type_product_id',:onchange =>"miabuela()"}) %>
          </div>
       </div>
 
       <div class="col-sm-6">
-         <div class="form-groupv required">
+         <div class="form-groupv required" style="display:none;">
             <%= f.label :category_id, "Categoría" %>
-            <%= f.grouped_collection_select(:category_id, TypeProduct.activos.order(name: :asc), :categories, :name, :id, :name, {prompt: "Seleccione una categoría..."}, {:class=>'form-control'}) %>
+            <%= f.grouped_collection_select(:category_id, TypeProduct.activos.order(name: :asc), :categories, :name, :id, :name, {prompt: "Seleccione una categoría..."}, {:class=>'form-control category_id'}) %>
          </div>
       </div>
 
