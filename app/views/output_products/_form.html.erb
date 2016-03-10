@@ -1,7 +1,7 @@
 <%= form_for(@output_product) do |f| %>
   <% if @output_product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@output_product.errors.count, "error") %> no permite que la baja se realice:</h2>
+      <h2><%= pluralize(@output_product.errors.count, "error") %> no permite que la entrada se realice:</h2>
 
       <ul>
       <% @output_product.errors.full_messages.each do |message| %>
@@ -10,18 +10,25 @@
       </ul>
     </div>
   <% end %>
+  <div class="container"> 
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group required">
+            <%= f.label :stock, "Cantidad a dar de baja", :class => "control-label"%><br>
+            <%= f.number_field :stock, :class => "form-control first_input" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :stock, "Cantidad a dar de baja"%><br>
-    <%= f.number_field :stock %>
-  </div>
+          <div class="form-group required">
+              <!--Se trae la información del id del producto-->
+              <%= f.label :product_id, "Código del producto", :class => "control-label" %>
+              <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
+           </div>
 
-  <div class="field">
-    <%= f.label :product_id %><br>
-    <%= collection_select(:output_product, :product_id, Product.activos_con_cantidad, :id, :name, {prompt: "Seleccione un producto..."}) %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Registrar Salida", :class => "btn btn-success bold" %>
+        </div>
+    </div>
   </div>
 <% end %>

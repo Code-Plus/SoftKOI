@@ -1,8 +1,10 @@
 class OutputProduct < ActiveRecord::Base
 
    belongs_to :product
-   validates :product_id, :stock, presence: true
-   before_validation :update_stock
+   validates :product_id, presence: true
+   validates :stock, presence: true, numericality: {greater_than: 0}
+   after_save :update_stock
+   validate :update_stock
 
 
    def product=(value)
@@ -13,12 +15,14 @@ class OutputProduct < ActiveRecord::Base
    private
    def update_stock
       stock_product= product.stock
-      stock_out=self.stock
 
-      if (stock_product-stock_out)<0
+      if self.stock.nil?
+
+      elsif (stock_product-self.stock)<0
          self.errors.add(:stock ,"--->No hay suficientes productos para dar de baja")
       else
-         product.update(stock: stock_product - stock_out)
+         
+         product.update(stock: stock_product - self.stock)
       end
    end
 

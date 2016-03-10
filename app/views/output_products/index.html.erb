@@ -5,7 +5,7 @@
    <% end -%>
 
    <% content_for :menus do -%>
-    <li><h5 class="drop-title"><%= link_to "Entrada de productos", input_products_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Entrada de productos", input_products_path %></h5></li>
       <li><h5 class="drop-title"><%= link_to "Tipos de productos", type_products_path %></h5></li>
       <li><h5 class="drop-title"><%= link_to "Categorias", categories_path %></h5></li>
       <li><h5 class="drop-title"><%= link_to "Productos", products_path %></h5></li>
@@ -16,19 +16,20 @@
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
+              <th>Identificador</th>
               <th>Cantidad de baja</th>
-            <th>Producto</th>
-            <th>Fecha</th>
-            <th width="142">Acciones</th>
+              <th>Producto</th>
+              <th>Precio</th>
             </tr>
           </thead>
 
           <tbody id="output_products">
             <% @output_products.each do |output_product| %>
               <tr>
+                <td><%= output_product.id%></td>
                 <td><%= output_product.stock %></td>
                 <td><%= output_product.product.name %></td>
-                <td><%= output_product.created_at %></td>
+                <td><%= output_product.product.price %></td>
               </tr>
             <% end %>
           </tbody>
