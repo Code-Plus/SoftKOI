@@ -23,7 +23,7 @@ class InputProductsController < ApplicationController
 
       respond_to do |format|
          if @input_product.save
-            format.html { redirect_to @input_product, notice: 'La entrada se ha registrado correctamente' }
+            format.html { redirect_to products_path, notice: 'La entrada se ha registrado correctamente' }
             format.json { render :index, status: :created, location: @input_product }
          else
              format.html { render :new }

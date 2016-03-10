@@ -1,5 +1,4 @@
 class OutputProductsController < ApplicationController
-   before_action :set_output_product, only: [:show]
 
    def index
       @output_products = OutputProduct.all
@@ -17,7 +16,7 @@ class OutputProductsController < ApplicationController
    def new
       #Obtener el producto que se selecciono para la baja
       @productx = Product.find(params[:product_id])
-      @output_product = OutputProduct.new
+      @output_product = @productx.output_products.build
       @product = Product.activos
    end
 
@@ -28,7 +27,7 @@ class OutputProductsController < ApplicationController
       @output_product.product = params[:stock]
       respond_to do |format|
          if @output_product.save
-            format.html { redirect_to @output_product, notice: 'Output product was successfully created.' }
+            format.html { redirect_to products_path, notice: 'La salida se ha registrado correctamente' }
             format.json { render :index, status: :created, location: @output_product }
          else
             format.html { render :new }

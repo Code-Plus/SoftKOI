@@ -3,7 +3,6 @@
    <% if @input_product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@input_product.errors.count, "error") %> no permite que la baja se realice:</h2>
-
       <ul>
       <% @input_product.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -25,19 +24,6 @@
                <%= f.label :product_id, "Código del producto", :class => "control-label" %>
                <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
             </div>
-
-            <div class="form-group">
-               <!--Se trae la informacion del nombre del producto-->
-               <%= label_tag "Producto" %>
-               <%= text_field_tag @productx.name, @productx.name, disabled: true, :class => "form-control" %>
-            </div>
-
-            <div class="form-group">
-               <!--Se trae la información del precio del produto-->
-               <%= label_tag "Precio" %><br>
-               <%= text_field_tag @productx.price, @productx.price, disabled: true, :class => "form-control" %>
-            </div>
-
          </div>
 
          <div class="col-sm-12">

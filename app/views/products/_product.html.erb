@@ -5,6 +5,7 @@
    <td width="10px"><%= product.stock_min %></td>
    <td width="10px"><%= product.stock %></td>
    <td><%= product.price %></td>
+
    <td width="105px">
       <% if product.state == "noDisponible" %>
          <span class="label label-primary span-table">No disponible</span>
@@ -12,13 +13,18 @@
          <span class="label label-success span-table"> Disponible </span>
       <% end %>
    </td>
-   <td width="180px">
+
+   <td width="160px">
       <%= link_to edit_product_path(product), remote: true, :class => 'btn btn-sm btn-info bold' do %>
          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
       <% end %>
       <!--Se le envia el id del producto a "input_products/new"-->
+
       <%= link_to new_input_product_path(product_id: product.id), class: 'btn btn-sm btn-primary bold' do %>
       	<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp; Entrada
+      <% end %>
+      <%= link_to new_output_product_path(product_id: product.id), class: 'btn btn-sm btn-primary bold' do %>
+         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Salida
       <% end %>
    </td>
 </tr>
