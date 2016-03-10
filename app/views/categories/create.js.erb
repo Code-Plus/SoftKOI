@@ -6,5 +6,4 @@ $('#dialog').modal('toggle');
 $('#categories').append('<%= j render (@category) %>');
 
 //Desplegar alerta
-
-$("#notice_wrapper2").html('<%=j flash[:notice] %>').slideDown(400).delay(2000).slideUp(400).fadeOut(1500);
+$("#notice_wrapper2").html('<%= j flash[:notice] %>').slideDown(400).delay(2000).slideUp(400).fadeOut(1500);
