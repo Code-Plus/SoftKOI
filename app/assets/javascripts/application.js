@@ -49,12 +49,10 @@ function miabuela (){
    options = $(categoriesF).filter("optgroup[label='" + escaped_type_product + "']").html();
    if (options) {
       $('#product_category_id').html(options);
+      $('#category_type_product_id').prop("disabled",true);
       return $('#product_category_id').parent().show();
    } else {
-      // $('#product_category_id').empty();
-      // $('#product_category_id').html("<option>Error</option>");
       $('#category_type_product_id').prop("disabled",true);
-      // return $('#product_category_id').parent().hide();
    }
 
 }
