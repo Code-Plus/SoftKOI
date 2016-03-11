@@ -35,12 +35,17 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 
 });
 
-  var categoriesI ;
-  categoriesI = $('#product_category_id').html();
+function joven(){
+  var delay=2000;
+  setTimeout(function(){
+    var categoriesI ;
+    categoriesI = $('#product_category_id').html();
+    alert(categoriesI);
+}, delay);
+};
 
 function miabuela (){
 var categoriesF;
-
 categoriesF = $('#product_category_id').html();
 $('#product_category_id').parent().show();
 var escaped_type_product, options, type_product;
@@ -49,12 +54,13 @@ escaped_type_product = type_product.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, 
 options = $(categoriesF).filter("optgroup[label='" + escaped_type_product + "']").html();
 if (options) {
   $('#product_category_id').html(options);
-  return $('#product_category_id').parent().show();
+  $('#product_category_id').parent().show();
 } else {
   $('#product_category_id').empty();
   $('#product_category_id').html("<option>Error</option>");
-  alert(categoriesI);
+
   // return $('#product_category_id').parent().hide();
+
 }
 
 }
