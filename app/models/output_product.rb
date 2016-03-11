@@ -3,8 +3,7 @@ class OutputProduct < ActiveRecord::Base
    belongs_to :product
    validates :product_id, presence: true
    validates :stock, presence: true, numericality: {greater_than: 0}
-   after_save :update_stock
-   validate :update_stock
+   before_validation :update_stock  
 
 
    def product=(value)
