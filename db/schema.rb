@@ -25,19 +25,19 @@ ActiveRecord::Schema.define(version: 20160223181046) do
   add_index "categories", ["type_product_id"], name: "index_categories_on_type_product_id"
 
   create_table "input_products", force: :cascade do |t|
-    t.integer  "stock"
+    t.integer  "stock",      default: 0
     t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "input_products", ["product_id"], name: "index_input_products_on_product_id"
 
   create_table "output_products", force: :cascade do |t|
-    t.integer  "stock"
+    t.integer  "stock",      default: 0
     t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "output_products", ["product_id"], name: "index_output_products_on_product_id"
