@@ -23,7 +23,7 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 
    var errors = JSON.parse(xhr.responseText);
    var kk ="<ul>";
-   
+
    for(var i = 0; i < errors.length; i++){
       var list = errors[i];
       kk += "<li>"+list+"</li>"
@@ -51,9 +51,9 @@ function miabuela (){
       $('#product_category_id').html(options);
       return $('#product_category_id').parent().show();
    } else {
-      $('#product_category_id').empty();
-      $('#product_category_id').html("<option>Error</option>");
-      alert(categoriesI);
+      // $('#product_category_id').empty();
+      // $('#product_category_id').html("<option>Error</option>");
+      $('#category_type_product_id').prop("disabled",true);
       // return $('#product_category_id').parent().hide();
    }
 
