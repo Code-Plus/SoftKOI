@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
@@ -9,11 +10,12 @@ Rails.application.routes.draw do
 	get '/home', to: 'welcome#index', as: 'home'
 
 	devise_for :users
-   resources :products
+    resources :products
 	resources :output_products
 	resources :categories
 	resources :type_products 
 	resources :input_products
+	resources :customers
 
 	#Habilitar producto
 	put "/product/:id/habilitar", to: "products#disponible"
