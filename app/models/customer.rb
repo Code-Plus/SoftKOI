@@ -6,12 +6,12 @@ class Customer < ActiveRecord::Base
   validates :document, presence: true, uniqueness: true
   validates :fistname, presence: true
   validates :lastname, presence: true
-  validates :phone , length: {maximun: 7} , numericality: { only_integer: true }
-  validates	:cellphone , length: {maximun: 12} , numericality: { only_integer: true }
+  validates :phone , length: {maximum: 7} , numericality: { only_integer: true }
+  validates	:cellphone , length: {maximum: 12} , numericality: { only_integer: true }
   validates_date :birthday, :before => lambda { Date.current } ,presence: true
   validates :email, email: true
   validates :state, presence: true
-  validates :type_document_id, presence true
+  validates :type_document_id, presence: true
 
 
    aasm column: "state" do
