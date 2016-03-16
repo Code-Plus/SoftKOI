@@ -61,6 +61,16 @@ class CustomersController < ApplicationController
     end
   end
 
+  def sinDeuda
+      @customer.sinDeuda!
+      redirect_to customers_url
+   end
+
+   def conDeuda
+      @customer.conDeuda!
+      redirect_to customer_url
+   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer

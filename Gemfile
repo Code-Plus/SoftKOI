@@ -21,6 +21,8 @@ gem 'jquery-datatables-rails' 		      # jQuery Datatables
 gem 'will_paginate', '~> 3.0.6'				# Paginacion
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 gem 'bootstrap-sass'						       # Styling
+gem 'jc-validates_timeliness'               #Validacion de fechas,tiempo..
+gem 'email_validator'						#Validar email
 
 
 
