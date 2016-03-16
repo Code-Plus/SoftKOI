@@ -1,10 +1,5 @@
-User.destroy_all
- 
- 
-User.create!([
-    {
-        document: "admin", encrypted_password: 123456789
-     },
- ])
- 
-p "Created #{User.count} customers."
+TypeDocument.create(description: 'Cédula de Ciudadanía')
+TypeDocument.create(description: 'Tarjeta de Identidad')
+TypeDocument.create(description: 'Cédula de Extranjería')
+
+p "Created #{TypeDocument.count} types."
