@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   
-  resources :sale_details
-  resources :sales
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
