@@ -2,6 +2,7 @@
 	<td><%= category.name %></td>
 	<td><%= category.description %></td>
 	<td><%= category.type_product.name %></td>
+
 	<td width="120px">
 		<% if category.state == "noDisponible" %>
 			<span class="label label-primary span-table">No disponible</span>
@@ -9,6 +10,7 @@
 			<span class="label label-success span-table"> Disponible </span>
 		<% end %>
 	</td>
+
 	<td>
 		<%= link_to edit_category_path(category), remote: true, :class => 'btn btn-sm btn-info bold' do%>
 		<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
