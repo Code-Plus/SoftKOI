@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>State:</strong>
+  <%= @sale.state %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @sale.amount %>
+</p>
+
+<p>
+  <strong>Total amount:</strong>
+  <%= @sale.total_amount %>
+</p>
+
+<p>
+  <strong>Remaining:</strong>
+  <%= @sale.remaining %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @sale.discount %>
+</p>
+
+<p>
+  <strong>Limit date:</strong>
+  <%= @sale.limit_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sale.user %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @sale.comment %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @sale.customer %>
+</p>
+
+<%= link_to 'Edit', edit_sale_path(@sale) %> |
+<%= link_to 'Back', sales_path %>
