@@ -23,8 +23,7 @@ gem 'bootstrap-sass'						      # Styling
 gem 'jc-validates_timeliness'             # Validacion de fechas
 gem 'email_validator'						   # Validacion emails
 gem 'nested_form'                         # Nested forms
-gem 'public_activity'                     # Public notificaitons
-
+gem 'public_activity'                     # Public notifications
 
 
 group :development, :test do
@@ -33,6 +32,5 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
-
   gem 'spring'
 end

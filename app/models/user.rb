@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 			:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
 
 	has_many :sales
+	belongs_to :role
 
 	def email_required?
 		false

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330030931) do
+ActiveRecord::Schema.define(version: 20160330124132) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160330030931) do
     t.datetime "updated_at",      null: false
   end
 
+  add_index "categories", ["type_product_id"], name: "index_categories_on_type_product_id"
 
   create_table "customers", force: :cascade do |t|
     t.string   "document"
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160330030931) do
     t.datetime "updated_at",       null: false
   end
 
+  add_index "customers", ["type_document_id"], name: "index_customers_on_type_document_id"
 
   create_table "input_products", force: :cascade do |t|
     t.integer  "stock",      default: 0
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 20160330030931) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "input_products", ["product_id"], name: "index_input_products_on_product_id"
 
   create_table "items", force: :cascade do |t|
     t.integer  "product_id"
@@ -56,6 +59,8 @@ ActiveRecord::Schema.define(version: 20160330030931) do
     t.datetime "updated_at",                                      null: false
   end
 
+  add_index "items", ["product_id"], name: "index_items_on_product_id"
+  add_index "items", ["sale_id"], name: "index_items_on_sale_id"
 
   create_table "output_products", force: :cascade do |t|
     t.integer  "stock",      default: 0
@@ -64,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160330030931) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "output_products", ["product_id"], name: "index_output_products_on_product_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -77,6 +83,13 @@ ActiveRecord::Schema.define(version: 20160330030931) do
     t.datetime "updated_at",              null: false
   end
 
+  add_index "products", ["category_id"], name: "index_products_on_category_id"
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sales", force: :cascade do |t|
     t.string   "state"
@@ -92,6 +105,8 @@ ActiveRecord::Schema.define(version: 20160330030931) do
     t.datetime "updated_at",                           null: false
   end
 
+  add_index "sales", ["customer_id"], name: "index_sales_on_customer_id"
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
 
   create_table "type_documents", force: :cascade do |t|
     t.string "description", null: false
@@ -123,17 +138,9 @@ ActiveRecord::Schema.define(version: 20160330030931) do
     t.string   "cellphone"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "role_id"
   end
 
-  add_index "categories", ["type_product_id"], name: "index_categories_on_type_product_id"
-  add_index "customers", ["type_document_id"], name: "index_customers_on_type_document_id"
-  add_index "input_products", ["product_id"], name: "index_input_products_on_product_id"
-  add_index "items", ["product_id"], name: "index_items_on_product_id"
-  add_index "items", ["sale_id"], name: "index_items_on_sale_id"
-  add_index "output_products", ["product_id"], name: "index_output_products_on_product_id"
-  add_index "products", ["category_id"], name: "index_products_on_category_id"
-  add_index "sales", ["customer_id"], name: "index_sales_on_customer_id"
-  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
   add_index "users", ["document"], name: "index_users_on_document", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

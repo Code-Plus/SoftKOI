@@ -27,9 +27,9 @@
         <td><%= sale.remaining %></td>
         <td><%= sale.discount %></td>
         <td><%= sale.limit_date %></td>
-        <td><%= sale.user %></td>
+        <td><%= sale.user.document %></td>
         <td><%= sale.comment %></td>
-        <td><%= sale.customer %></td>
+        <td><%= sale.customer.name %></td>
         <td><%= link_to 'Show', sale %></td>
         <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
         <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
