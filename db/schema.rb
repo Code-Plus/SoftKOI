@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328192951) do
+ActiveRecord::Schema.define(version: 20160330030931) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -49,6 +49,19 @@ ActiveRecord::Schema.define(version: 20160328192951) do
 
   add_index "input_products", ["product_id"], name: "index_input_products_on_product_id"
 
+  create_table "items", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "sale_id"
+    t.integer  "quantity",                            default: 1
+    t.decimal  "price",       precision: 8, scale: 2
+    t.decimal  "total_price", precision: 8, scale: 2
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
+
+  add_index "items", ["product_id"], name: "index_items_on_product_id"
+  add_index "items", ["sale_id"], name: "index_items_on_sale_id"
+
   create_table "output_products", force: :cascade do |t|
     t.integer  "stock",      default: 0
     t.integer  "product_id"
@@ -71,6 +84,23 @@ ActiveRecord::Schema.define(version: 20160328192951) do
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
+
+  create_table "sales", force: :cascade do |t|
+    t.string   "state"
+    t.decimal  "amount",       precision: 8, scale: 2
+    t.decimal  "total_amount", precision: 8, scale: 2
+    t.decimal  "discount",     precision: 8, scale: 2
+    t.decimal  "remaining"
+    t.date     "limit_date"
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "customer_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "sales", ["customer_id"], name: "index_sales_on_customer_id"
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
 
   create_table "type_documents", force: :cascade do |t|
     t.string "description", null: false
