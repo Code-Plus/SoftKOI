@@ -24,8 +24,9 @@ gem 'jc-validates_timeliness'             # Validacion de fechas
 gem 'email_validator'						   # Validacion emails
 gem 'nested_form'                         # Nested forms
 gem 'public_activity'                     # Public notifications
-gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.0.1'	#Boostrap DatePicker
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17', '>= 4.17.37'	#Boostrap DataTimePicker
+gem 'bootstrap-datepicker-rails'       	# Boostrap DatePicker
+gem 'bootstrap3-datetimepicker-rails'     # Boostrap DataTimePicker
+gem 'rails-jquery-autocomplete'           # Autocomplete
 
 
 group :development, :test do
