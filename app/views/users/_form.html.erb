@@ -1,73 +1,109 @@
 <%= form_for(@user, url: {action: "new_user"}, remote: true, :html => { :role => "form" })  do |f| %>
 
-	<div id="error_explanation" class="text-danger modal-errors"></div>
+<div id="error_explanation" class="text-danger modal-errors"></div>
 
-	<div class="row">
+<div class="row">
 
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<%= f.label :document, "Documento", :class => "control-label" %>
-					<%= f.text_field :document, :class => "form-control first_input" %>
-				</div>
-			</div>
-
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<%= f.label :password, "Contraseña", :class => "control-label" %>
-					<%= f.password_field :password, :class => "form-control" %>
-				</div>
-			</div>
-
-
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<%= f.label :firstname, "Nombre", :class => "control-label" %>
-					<%= f.text_field :firstname, :class => "form-control first_input" %>
-				</div>
-			</div>
-
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<%= f.label :lastname, "Apellido", :class => "control-label" %>
-					<%= f.text_field :lastname, :class => "form-control first_input" %>
-				</div>
-			</div>
-
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<%= f.label :email, "Email", :class => "control-label" %>
-					<%= f.email_field :email, :class => "form-control first_input" %>
-				</div>
-			</div>
-
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<%= f.label :phone, "Telefono", :class => "control-label" %>
-					<%= f.text_field :phone, :class => "form-control first_input" %>
-				</div>
-			</div>
-
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<%= f.label :cellphone, "Celular", :class => "control-label" %>
-					<%= f.text_field :cellphone, :class => "form-control first_input" %>
-				</div>
-			</div>
-
-			<div class="col-sm-6">
-				<div class="form-group required">
-					<!-- Crea una etiqueta select con los registros de la tabla asociada -->
-					<%= f.label "Rol", :class => "control-label"%>
-					<%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: "Seleccione una opción..."}, :class => "form-control") %>
-				</div>
-			</div>
-
-		<div class="col-sm-12">
-			<hr style="border: 1; margin-top: 0px; ">
-			<div class="form-groupv" style="margin-bottom: 0px;">
-				<%= f.submit "Crear Usuario", :class => "btn btn-success bold" %>
-			</div>
+	<div class="col-sm-4">
+		<div class="form-group required">
+			<%= f.label :document, "Documento", :class => "control-label" %>
+			<%= f.text_field :document, :class => "form-control first_input" %>
 		</div>
 	</div>
+
+	<div class="col-sm-4">
+		<div class="form-group required">
+			<%= f.label :password, "Contraseña", :class => "control-label" %>
+			<%= f.password_field :password, :class => "form-control" %>
+		</div>
+	</div>
+
+
+	<div class="col-sm-4">
+		<div class="form-group required">
+			<%= f.label :firstname, "Nombre", :class => "control-label" %>
+			<%= f.text_field :firstname, :class => "form-control" %>
+		</div>
+	</div>
+
+	<div class="col-sm-4">
+		<div class="form-group required">
+			<%= f.label :lastname, "Apellido", :class => "control-label" %>
+			<%= f.text_field :lastname, :class => "form-control" %>
+		</div>
+	</div>
+
+	<div class="col-sm-4">
+		<div class="form-group required">
+			<%= f.label :email, "Email", :class => "control-label" %>
+			<%= f.email_field :email, :class => "form-control" %>
+		</div>
+	</div>
+
+	<div class="col-sm-4">
+		<div class="form-group required">
+			<%= f.label :phone, "Telefono", :class => "control-label" %>
+			<%= f.text_field :phone, :class => "form-control" %>
+		</div>
+	</div>
+
+	<div class="col-sm-4">
+		<div class="form-group required">
+			<%= f.label :cellphone, "Celular", :class => "control-label" %>
+			<%= f.text_field :cellphone, :class => "form-control" %>
+		</div>
+	</div>
+
+	<div class="col-sm-4">
+		<div class="form-group required">
+			<!-- Crea una etiqueta select con los registros de la tabla asociada -->
+			<%= f.label "Rol", :class => "control-label"%>
+			<%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: "Seleccione una opción..."}, :class => "form-control") %>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<hr style="border: 1; margin-top: 0px; margin-bottom:15px !important;">
+		<label>Permisos:</label>
+	</div>
+	<div style="text-align:center;" class="col-sm-12">
+		<section class="switch">
+			<input class="switch"type="checkbox" id="checkbox1" />
+			<label class="switch" for="checkbox1"></label>
+			<p class="switch">Inventario</p>
+		</section>
+
+		<section class="switch">
+			<input class="switch"type="checkbox" id="checkbox2" />
+			<label class="switch" for="checkbox2"></label>
+			<p class="switch">Ventas</p>
+		</section>
+
+		<section class="switch">
+			<input class="switch"type="checkbox" id="checkbox3" />
+			<label class="switch" for="checkbox3"></label>
+			<p class="switch">Cambios</p>
+		</section>
+
+		<section class="switch">
+			<input class="switch"type="checkbox" id="checkbox4" />
+			<label class="switch" for="checkbox4"></label>
+			<p class="switch">Consolas</p>
+		</section>
+
+		<section class="switch">
+			<input class="switch"type="checkbox" id="checkbox5" />
+			<label class="switch" for="checkbox5"></label>
+			<p class="switch">Clientes</p>
+		</section>
+
+	</div>
+
+	<div class="col-sm-12">
+		<hr style="border: 1; margin-top: 0px; ">
+		<div class="form-groupv" style="margin-bottom: 0px;">
+			<%= f.submit "Crear Usuario", :class => "btn btn-success bold" %>
+		</div>
+	</div>
+</div>
 
 <% end %>

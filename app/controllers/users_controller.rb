@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
 	def disponible
 		@user.disponible!
-		redirect_to users_url 
+		redirect_to users_url
 	end
 
 	def noDisponible
@@ -86,8 +86,6 @@ class UsersController < ApplicationController
 		:can_changes,
 		:can_consoles,
 		:can_customers,
-		:can_diary,
-		:can_payments,
 		:state)
 	end
 
