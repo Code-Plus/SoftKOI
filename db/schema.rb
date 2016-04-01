@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401183157) do
+ActiveRecord::Schema.define(version: 20160401193441) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "state"
     t.integer  "type_product_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "can_change",      default: true
   end
 
   add_index "categories", ["type_product_id"], name: "index_categories_on_type_product_id"
@@ -79,8 +80,9 @@ ActiveRecord::Schema.define(version: 20160401183157) do
     t.integer  "stock_min"
     t.integer  "stock",       default: 0
     t.integer  "category_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "can_change",  default: true
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"

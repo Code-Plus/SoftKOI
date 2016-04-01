@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
    belongs_to :category
    has_many :output_products
    has_many :input_products
+   before_validation :validate_category_change
 
    validates :name, presence: true
    validates :price, presence: true, numericality: {greater_than_or_equal_to: 0}
@@ -38,6 +39,17 @@ class Product < ActiveRecord::Base
 
       event :bajas do
          transitions from: :disponible, to: :bajas
+      end
+   end
+
+   private
+
+   def validate_category_change
+      category_change = category.can_change
+      if category_change == false
+         if self.can_change == true
+            self.errors.add(:base ,"Esta categoria no permite cambios")
+         end
       end
    end
 

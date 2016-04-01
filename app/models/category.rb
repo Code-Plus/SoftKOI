@@ -14,6 +14,13 @@ class Category < ActiveRecord::Base
 		end
 	end
 
+	#Actualizar a "false" el "can_change" de los productos asociados
+	after_save do
+		if self.can_change == false
+			products.update_all can_change: false
+		end
+	end
+
 	validates :name, :type_product_id, :state, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
 
