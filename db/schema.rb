@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330124132) do
+ActiveRecord::Schema.define(version: 20160401042024) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -96,7 +96,6 @@ ActiveRecord::Schema.define(version: 20160330124132) do
     t.decimal  "amount",       precision: 8, scale: 2
     t.decimal  "total_amount", precision: 8, scale: 2
     t.decimal  "discount",     precision: 8, scale: 2
-    t.decimal  "remaining"
     t.date     "limit_date"
     t.text     "comment"
     t.integer  "user_id"
@@ -139,6 +138,14 @@ ActiveRecord::Schema.define(version: 20160330124132) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "role_id"
+    t.boolean  "can_inventory"
+    t.boolean  "can_sales"
+    t.boolean  "can_changes"
+    t.boolean  "can_consoles"
+    t.boolean  "can_customers"
+    t.boolean  "can_diary"
+    t.boolean  "can_payments"
+    t.string   "state"
   end
 
   add_index "users", ["document"], name: "index_users_on_document", unique: true

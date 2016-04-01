@@ -27,6 +27,7 @@ gem 'public_activity'                     # Public notifications
 gem 'bootstrap-datepicker-rails'       	# Boostrap DatePicker
 gem 'bootstrap3-datetimepicker-rails'     # Boostrap DataTimePicker
 gem 'rails-jquery-autocomplete'           # Autocomplete
+gem 'bcrypt-ruby', :require => 'bcrypt'   # Encrypted password
 
 
 group :development, :test do

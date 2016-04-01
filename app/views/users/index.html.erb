@@ -1,0 +1,41 @@
+<div class="container">
+
+	<% content_for :title do -%>
+      Usuarios
+   <% end -%>
+
+	<% content_for :button do -%>
+		<%= link_to new_user_path, remote: true, class: 'btn btn-success bold' do %>
+			<i class="fa fa-plus"></i>
+			&nbsp;Nuevo Usuario
+		<% end %>
+	<% end -%>
+
+	<div class="panel panel-default">
+		<div class="panel-body table">
+
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Documento</th>
+						<th>Nombre</th>
+						<th>Email</th>
+						<th>Telefono</th>
+						<th>Celular</th>
+						<th>Rol</th>
+						<th>Estado</th>
+						<th width="140">Acciones</th>
+					</tr>
+				</thead>
+
+				<tbody id="users">
+					<%= render @users %>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<%= render 'dialog' %>
+
+</div>

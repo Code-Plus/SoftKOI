@@ -1,0 +1,20 @@
+<tr id="user_<%= user.id %>">
+	<td><%= user.document %></td>
+	<td><%= user.name %></td>
+	<td><%= user.email %></td>
+	<td><%= user.phone %></td>
+	<td><%= user.cellphone %></td>
+	<td><%= user.role %></td>
+	<td width="120px">
+		<% if user.state == "noDisponible" %>
+			<span class="label label-primary span-table">No disponible</span>
+		<% else %>
+			<span class="label label-success span-table"> Disponible </span>
+		<% end %>
+	</td>
+	<td>
+		<%= link_to edit_user_path(user), remote: true, :class => 'btn btn-sm btn-info bold' do %>
+			<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+		<% end %>
+	</td>
+</tr>
