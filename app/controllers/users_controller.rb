@@ -29,11 +29,14 @@ class UsersController < ApplicationController
 
 	def new_user
 		@user = User.create(user_params)
-		if @user.save
-			flash[:notice] = "¡Usuario creado satisfactoriamente!"
-			render action: 'create'
-		else
-			format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
+
+		respond_to do |format|
+			if @user.save
+				flash[:notice] = "¡Usuario creado satisfactoriamente!"
+				render action: 'create'
+			else
+				format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
+			end
 		end
 	end
 
