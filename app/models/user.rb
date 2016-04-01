@@ -1,9 +1,7 @@
 class User < ActiveRecord::Base
 
 	devise :database_authenticatable, :registerable,
-			:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
-
-
+	:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
 
 	has_many :sales
 	belongs_to :role
@@ -19,7 +17,5 @@ class User < ActiveRecord::Base
 	def name
 		"#{firstname} #{lastname}"
 	end
-
-
 
 end

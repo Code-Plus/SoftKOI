@@ -17,7 +17,12 @@ Rails.application.routes.draw do
 	resources :type_products
 	resources :input_products
 	resources :customers
-   resources :users
+
+	resources :users do
+    collection do
+      post 'new_user'
+    end
+  end
 
 	#Habilitar producto
 	put "/product/:id/habilitar", to: "products#disponible"

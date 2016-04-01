@@ -4,8 +4,8 @@
 	<td><%= user.email %></td>
 	<td><%= user.phone %></td>
 	<td><%= user.cellphone %></td>
-	<td><%= user.role %></td>
-	<td width="120px">
+	<td><%= user.role.name %></td>
+	<td width="110px">
 		<% if user.state == "noDisponible" %>
 			<span class="label label-primary span-table">No disponible</span>
 		<% else %>
