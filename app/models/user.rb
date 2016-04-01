@@ -6,6 +6,24 @@ class User < ActiveRecord::Base
 	has_many :sales
 	belongs_to :role
 
+	include AASM
+
+	  aasm column: "state" do
+      
+		state :disponible, :initial => true
+		state :noDisponible
+
+
+		event :disponible do
+			transitions from: :noDisponible, to: :disponible
+		end
+
+		event :noDisponible do
+			transitions from: :disponible, to: :noDisponible
+		end
+   end
+
+
 	def email_required?
 		false
 	end

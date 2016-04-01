@@ -61,6 +61,11 @@ class SalesController < ApplicationController
     end
   end
 
+  def pago
+    @sale.pago!
+    redirect_to sales_url
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sale

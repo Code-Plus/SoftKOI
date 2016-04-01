@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	before_action :set_user, only: [:edit, :update]
+	before_action :set_user, only: [:edit, :update, :disponible, :noDisponible]
 
 	def index
 		@users = User.all
@@ -47,6 +47,16 @@ class UsersController < ApplicationController
 				format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
 			end
 		end
+	end
+
+	def disponible
+		@user.disponible!
+		redirect_to users_url 
+	end
+
+	def noDisponible
+		@user.noDisponible!
+		redirect_to users_url
 	end
 
 	private

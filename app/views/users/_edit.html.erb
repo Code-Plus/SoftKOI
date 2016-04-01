@@ -67,6 +67,14 @@
 			<div class="form-groupv" style="margin-bottom: 0px;">
 				<%= f.submit "Actualizar Usuario", :class => "btn btn-success bold" %>
 			</div>
+
+			<div class="inline">
+	            <% if @user.may_disponible?%>
+	               <%= link_to "Habilitar", "/user/#{@user.id}/disponible", method: :put, class:'btn btn-primary bold' %>
+	            <% else %>
+	               <%= link_to "Inhabilitar", "/user/#{@user.id}/inhabilitar", method: :put, class:'btn btn-primary bold' %>
+	            <% end %>
+	         </div>
 		</div>
 	</div>
 

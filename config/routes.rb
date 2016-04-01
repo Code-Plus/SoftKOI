@@ -44,4 +44,9 @@ Rails.application.routes.draw do
 
    put "/output_product/:id/deBaja", to: "output_products#deBaja"
 
+   #Habilitar un usuario
+   put "/user/:id/habilitar", to: "users#disponible"
+
+   #Deshabilitar un usuario
+   put "/user/:id/inhabilitar", to: "users#noDisponible"
 end
