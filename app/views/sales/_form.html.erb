@@ -28,9 +28,10 @@
     <%= f.label :discount %><br>
     <%= f.text_field :discount %>
   </div>
-  <div class="field">
+
+  <div class=ifield">
     <%= f.label :limit_date %><br>
-    <%= f.date_select :limit_date %>
+    <%= f.date_field :limit_date, :class => "datapicker" %>
   </div>
 
   <div class="field">
@@ -44,4 +45,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>

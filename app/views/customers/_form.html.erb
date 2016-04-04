@@ -25,19 +25,19 @@
   </div>
   <div class="field">
     <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+    <%= f.telephone_field :phone%>
   </div>
   <div class="field">
     <%= f.label :cellphone %><br>
-    <%= f.text_field :cellphone %>
+    <%= f.telephone_field :cellphone %>
   </div>
   <div class="field">
     <%= f.label :birthday %><br>
-    <%= f.date_select :birthday %>
+    <%= f.date_field :birthday, :class => "datapicker"%>
   </div>
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
   </div>
   <div class="field">
     <%= f.label :state %><br>

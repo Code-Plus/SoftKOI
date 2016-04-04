@@ -27,6 +27,7 @@ $(document).ready(function() {
 		}
 	});
 
+     $('.datepicker').datepicker();
 
    $("#notice_wrapper").slideDown(400).delay(2000).slideUp("slow");
 

@@ -10,7 +10,7 @@ class Sale < ActiveRecord::Base
   validates :discount, presence: true, numericality: { only_integer: true }
   validates :user_id, presence: true
   validates :customer_id, presence: true
-  validates :limit_date, presence: true, :after => lambda { Date.current }
+  validates_date :limit_date, presence: true, :afer => lambda { Date.current }
 
   before_validation :verificar_estado
 
