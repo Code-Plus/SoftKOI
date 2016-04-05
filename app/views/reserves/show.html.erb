@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @reserf.customer %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @reserf.product_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @reserf.date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @reserf.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @reserf.end_time %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @reserf.state %>
+</p>
+
+<p>
+  <strong>Price reserve:</strong>
+  <%= @reserf.price_reserve_id %>
+</p>
+
+<%= link_to 'Edit', edit_reserf_path(@reserf) %> |
+<%= link_to 'Back', reserves_path %>

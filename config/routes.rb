@@ -17,12 +17,19 @@ Rails.application.routes.draw do
 	resources :type_products
 	resources :input_products
 	resources :customers
+  resources :reserves
 
 	resources :users do
     collection do
       post 'new_user'
     end
   end
+
+  #Estados de la reserva.
+  put "/reserves/:id/activa", to: "reserves#activa"
+  put "/reserves/:id/enProceso", to: "reserves#enProceso"
+  put "/reserves/:id/finalizada", to: "reserves#finalizada"
+  put "/reserves/:id/cancelada", to: "reserves#cancelada"
 
 	#Habilitar producto
 	put "/product/:id/habilitar", to: "products#disponible"

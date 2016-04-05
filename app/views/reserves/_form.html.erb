@@ -1,0 +1,45 @@
+<%= form_for(@reserf) do |f| %>
+  <% if @reserf.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reserf.errors.count, "error") %> prohibited this reserf from being saved:</h2>
+
+      <ul>
+      <% @reserf.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Cliente %><br>
+    <%= f.text_field :customer %>
+  </div>
+  <div class="field">
+    <%= f.label :Consola %><br>
+    <%= f.select(:products, options_for_select(@products.pluck(:name, :id))) %>
+  </div>
+  <div class="field">
+    <%= f.label :Fecha %><br>
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :Hora_inicio %><br>
+    <%= f.time_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :Hora_fin %><br>
+    <%= f.time_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :Estado %><br>
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :Precio %><br>
+    <%= f.number_field :price_reserve_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
