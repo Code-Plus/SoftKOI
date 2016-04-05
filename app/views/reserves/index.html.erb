@@ -25,7 +25,7 @@
         <td><%= reserve.state %></td>
         <td><%= reserve.price_reserve_id %></td>
         <td><%= link_to 'Show', reserve %></td>
-        <td><%= link_to 'Edit', edit_reserve_path(reserve) %></td>
+        <td><%= link_to 'Edit', edit_reserf_path(reserve) %></td>
         <td><%= link_to 'Destroy', reserve, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Reserve', new_reserve_path %>
+<%= link_to 'New Reserve', new_reserf_path %>

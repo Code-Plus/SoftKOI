@@ -22,6 +22,10 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
+//= require jquery2
+//= require bootstrap
+//= require bootstrap3-typeahead.min
+//= require bootstrap3-autocomplete-input.min
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 

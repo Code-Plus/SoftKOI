@@ -16,7 +16,7 @@ class Sale < ActiveRecord::Base
 
   aasm column: "state" do
       state :pago
-      state :sinpagar
+      state :sinpagar, :initial => true
 
       #Eventos de movimiento o transiciones para los estados.
       event :pago do
