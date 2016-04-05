@@ -12,24 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </div>
-  <div class="field">
     <%= f.label :amount %><br>
-    <%= f.text_field :amount %>
+    <%= f.number_field :amount %>
   </div>
   <div class="field">
     <%= f.label :total_amount %><br>
-    <%= f.text_field :total_amount %>
+    <%= f.number_field :total_amount %>
   </div>
 
   <div class="field">
     <%= f.label :discount %><br>
-    <%= f.text_field :discount %>
+    <%= f.number_field :discount %>
   </div>
 
-  <div class=ifield">
+  <div class="field">
     <%= f.label :limit_date %><br>
     <%= f.date_field :limit_date, :class => "datapicker" %>
   </div>

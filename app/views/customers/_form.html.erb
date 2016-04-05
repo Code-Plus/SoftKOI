@@ -45,7 +45,7 @@
   </div>
   <div class="field">
     <%= f.label :type_document_id %><br>
-    <%= f.text_field :type_document_id %>
+    <%= collection_select(:customer, :type_document_id, TypeDocument.all, :id, :description, {prompt: "Seleccione una opcion"})%>
   </div>
   <div class="actions">
     <%= f.submit %>

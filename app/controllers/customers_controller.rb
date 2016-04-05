@@ -15,6 +15,7 @@ class CustomersController < ApplicationController
   # GET /customers/new
   def new
     @customer = Customer.new
+    @type_document = TypeDocument.all
   end
 
   # GET /customers/1/edit
