@@ -1,4 +1,4 @@
-<%= form_for(@sale) do |f| %>
+<%= simple_form_for @sale do |f| %>
   <% if @sale.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
@@ -13,33 +13,33 @@
 
   <div class="field">
     <%= f.label :amount %><br>
-    <%= f.number_field :amount %>
+    <%= f.input_field :amount, as: :decimal %>
   </div>
   <div class="field">
     <%= f.label :total_amount %><br>
-    <%= f.number_field :total_amount %>
+    <%= f.input_field :total_amount, as: :decimal %>
   </div>
 
   <div class="field">
     <%= f.label :discount %><br>
-    <%= f.number_field :discount %>
+    <%= f.input_field :discount, as: :decimal %>
   </div>
 
   <div class="field">
     <%= f.label :limit_date %><br>
-    <%= f.date_field :limit_date, :class => "datapicker" %>
+    <%= f.input_field :limit_date,as: :date , wrapper_html: {class:  'datapicker'} %>
   </div>
 
   <div class="field">
     <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
+    <%= f.input_field :comment, as: :text %>
   </div>
   <div class="field">
     <%= f.label :customer_id %><br>
-    <%= f.text_field :customer_id %>
+    <%= f.input_field :customer_id %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button  :submit%>
   </div>
 
 <% end %>

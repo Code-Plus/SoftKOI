@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+
 gem 'devise', '~> 3.5', '>= 3.5.6' 			# Autenticacion de users
 gem 'prawn', '~> 2.0', '>= 2.0.2' 			# Generar PDF
 gem 'aasm', '~> 4.8' 						   # Maquina de estados
@@ -25,9 +26,12 @@ gem 'email_validator'						   # Validacion emails
 gem 'nested_form'                         # Nested forms
 gem 'public_activity'                     # Public notifications
 gem 'bootstrap-datepicker-rails'       	# Boostrap DatePicker
-gem 'bootstrap3-datetimepicker-rails'     # Boostrap DataTimePicker
-gem 'rails-jquery-autocomplete'           # Autocomplete
+gem 'bootstrap3-datetimepicker-rails'     # Boostrap DataTimePicker      
 gem 'bcrypt-ruby', :require => 'bcrypt'   # Encrypted password
+gem 'simple_form'							# Autocomplete
+gem 'bootstrap3_autocomplete_input'
+gem 'jquery-ui-rails'
+
 
 
 group :development, :test do
