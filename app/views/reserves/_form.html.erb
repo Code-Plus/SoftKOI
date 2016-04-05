@@ -1,10 +1,10 @@
-<%= form_for(@reserf) do |f| %>
-  <% if @reserf.errors.any? %>
+<%= form_for(@reserve) do |f| %>
+  <% if @reserve.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@reserf.errors.count, "error") %> prohibited this reserf from being saved:</h2>
+      <h2><%= pluralize(@reserve.errors.count, "error") %> prohibited this reserve from being saved:</h2>
 
       <ul>
-      <% @reserf.errors.full_messages.each do |message| %>
+      <% @reserve.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

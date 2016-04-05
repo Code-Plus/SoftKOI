@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Reserves</h1>
 
 <table>
@@ -17,18 +15,18 @@
   </thead>
 
   <tbody>
-    <% @reserves.each do |reserf| %>
+    <% @reserves.each do |reserve| %>
       <tr>
-        <td><%= reserf.customer %></td>
-        <td><%= reserf.product_id %></td>
-        <td><%= reserf.date %></td>
-        <td><%= reserf.start_time %></td>
-        <td><%= reserf.end_time %></td>
-        <td><%= reserf.state %></td>
-        <td><%= reserf.price_reserve_id %></td>
-        <td><%= link_to 'Show', reserf %></td>
-        <td><%= link_to 'Edit', edit_reserf_path(reserf) %></td>
-        <td><%= link_to 'Destroy', reserf, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= reserve.customer %></td>
+        <td><%= reserve.product_id %></td>
+        <td><%= reserve.date %></td>
+        <td><%= reserve.start_time %></td>
+        <td><%= reserve.end_time %></td>
+        <td><%= reserve.state %></td>
+        <td><%= reserve.price_reserve_id %></td>
+        <td><%= link_to 'Show', reserve %></td>
+        <td><%= link_to 'Edit', edit_reserve_path(reserve) %></td>
+        <td><%= link_to 'Destroy', reserve, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Reserve', new_reserf_path %>
+<%= link_to 'New Reserve', new_reserve_path %>
