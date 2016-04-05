@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 	resources :categories
 	resources :type_products
 	resources :input_products
-	resources :customers
+	resources :customers do
+		get :autocomplete_customer, :on => :collection
+	end
   resources :reserves
 
 	resources :users do

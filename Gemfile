@@ -28,6 +28,9 @@ gem 'bootstrap-datepicker-rails'       	# Boostrap DatePicker
 gem 'bootstrap3-datetimepicker-rails'     # Boostrap DataTimePicker
 gem 'rails-jquery-autocomplete'           # Autocomplete
 gem 'bcrypt-ruby', :require => 'bcrypt'   # Encrypted password
+gem 'jquery-ui-rails'                     # UI
+gem 'simple_form'                         # Forms
+gem 'bootstrap3_autocomplete_input'       # Autocomplete
 
 
 group :development, :test do
