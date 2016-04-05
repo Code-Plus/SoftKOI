@@ -3,24 +3,30 @@ class Reserve < ActiveRecord::Base
 
   belongs_to :products
 
-  #Se cambia el estado cuando la hora de inicio seleccionada es igual a la hora actual comparando la fecha.
-  after_save do
-    t = Time.now
-    f = Time.new
-    t.strftime("%H:%M")
-    while self.state == "activa"
-      if self.start_time = t && self.date = f
-        reserves.update_all state: "enProceso"
-      end
-    end
-  end
+  after_save :validar_hora
 
   #Validamos la hora fin para cambiar el estado.
-  after_save do
-    t = Time.now
-    t.strftime("%H:%M")
-    if self.state == "enProceso" && self.end_time = t
-      reserves.update_all state: "finalizada"
+  #after_save do
+  #  t = Time.now
+  #  t.strftime("%H:%M")
+  #  if self.state == "enProceso" && self.end_time = t
+  #    reserves.update_all state: "finalizada"
+  #  end
+  #end
+
+  attr_accesor :state
+
+  validates_each :state, on: :create, allow_blank: true, allow_nil: true do |record, attr, value|
+
+  #Método para cambiar el estado "en proceso" mientras se cumplen las horas definidas.
+  def validar_hora
+    fecha = Time.new
+    fecha.strftime("%F")
+    while self.state == "activa"
+      if self.date == fecha
+        validates_time :booked_at, :between => [self.start_time, self.end_time]
+        reserves.update_all state: "enProceso"
+      end
     end
   end
 
