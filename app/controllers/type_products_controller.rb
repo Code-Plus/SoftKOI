@@ -1,5 +1,7 @@
 class TypeProductsController < ApplicationController
+   
    before_action :set_type_product, only: [:edit, :update, :noDisponible, :disponible]
+   load_and_authorize_resource
 
    def index
       @type_products = TypeProduct.all

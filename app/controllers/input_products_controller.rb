@@ -1,5 +1,6 @@
 class InputProductsController < ApplicationController
 
+   load_and_authorize_resource
 
    def index
       @input_products = InputProduct.all
