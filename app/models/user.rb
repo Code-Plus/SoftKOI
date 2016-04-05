@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
 
 	include AASM
 
-	  aasm column: "state" do
-      
+	aasm column: "state" do
+
 		state :disponible, :initial => true
 		state :noDisponible
 
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 		event :noDisponible do
 			transitions from: :disponible, to: :noDisponible
 		end
-   end
+	end
 
 
 	def email_required?
