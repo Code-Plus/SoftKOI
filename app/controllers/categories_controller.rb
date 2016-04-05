@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
 
    before_action :set_category, only: [:edit, :update, :noDisponible, :disponible]
+   load_and_authorize_resource
 
    def index
       @categories = Category.all

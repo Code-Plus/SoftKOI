@@ -41,6 +41,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  unauthorized:
+    manage:
+      all: "No estas autorizado para acceder a este sitio."
+
   will_paginate:
     previous_label: "&#8592; Anterior"
     next_label: "Siguiente &#8594;"
