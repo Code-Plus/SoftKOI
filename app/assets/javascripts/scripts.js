@@ -43,6 +43,6 @@ $(document).ready(function() {
 		$("li").toggleClass("Mdesplegado");
 		$(".HomeM").toggleClass("Hnormal");
 		$(".HomeM").toggleClass("Hdesplegado");
-
 	});
+	
 });

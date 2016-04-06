@@ -30,8 +30,7 @@ class Customer < ActiveRecord::Base
    end
 
    def to_s
-      firstname
-      lastname
+      document
    end
 
    def name

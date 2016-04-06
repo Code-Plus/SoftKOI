@@ -3,7 +3,7 @@ class Reserve < ActiveRecord::Base
 
   belongs_to :products
 
-  after_save :validar_hora
+  #after_save :validar_hora
 
   #Validamos la hora fin para cambiar el estado.
   #after_save do
@@ -14,9 +14,9 @@ class Reserve < ActiveRecord::Base
   #  end
   #end
 
-  attr_accesor :state
+  #attr_accesor :state
 
-  validates_each :state, on: :create, allow_blank: true, allow_nil: true do |record, attr, value|
+  #validates_each :state, on: :create, allow_blank: true, allow_nil: true do |record, attr, value|
 
   #Método para cambiar el estado "en proceso" mientras se cumplen las horas definidas.
   def validar_hora
@@ -52,4 +52,5 @@ class Reserve < ActiveRecord::Base
       transitions from: :activa, to: :cancelada
     end
   end
+
 end
