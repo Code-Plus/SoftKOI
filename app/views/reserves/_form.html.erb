@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= label_tag :interval,"Intervalo" %><br>
-    <%= select_tag(:interval, options_for_select(@reserve_prices.pluck(:time, :id))) %>
+    <%= select_tag(:interval, options_for_select(@reserve_prices.pluck(:time, :id)), prompt: "Selecciona una opción") %>
   </div>
   <div class="field">
     <%= f.label :start_time,"Hora de incio" %><br>
