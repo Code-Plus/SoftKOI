@@ -12,31 +12,35 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Cliente %><br>
+    <%= f.label :customer,"Cliente" %><br>
     <%= f.text_field :customer %>
   </div>
   <div class="field">
-    <%= f.label :Consola %><br>
+    <%= f.label :products,"Consola" %><br>
     <%= f.select(:products, options_for_select(@products.pluck(:name, :id))) %>
   </div>
   <div class="field">
-    <%= f.label :Fecha %><br>
+    <%= f.label :date,"Fecha" %><br>
     <%= f.date_select :date %>
   </div>
   <div class="field">
-    <%= f.label :Hora_inicio %><br>
-    <%= f.time_select :start_time %>
+    <%= label_tag :interval,"Intervalo" %><br>
+    <%= select_tag(:interval, options_for_select(@reserve_prices.pluck(:time, :id))) %>
   </div>
   <div class="field">
-    <%= f.label :Hora_fin %><br>
-    <%= f.time_select :end_time %>
+    <%= f.label :start_time,"Hora de incio" %><br>
+    <%= f.text_field :start_time %>
   </div>
   <div class="field">
-    <%= f.label :Estado %><br>
+    <%= f.label :end_time,"Hora de finalizacion" %><br>
+    <%= f.text_field :end_time,readonly: true %>
+  </div>
+  <div class="field">
+    <%= f.label :state,"Estado" %><br>
     <%= f.text_field :state %>
   </div>
   <div class="field">
-    <%= f.label :Precio %><br>
+    <%= f.label :price_reserve_id," Precio" %><br>
     <%= f.number_field :price_reserve_id %>
   </div>
   <div class="actions">
