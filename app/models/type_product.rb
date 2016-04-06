@@ -12,6 +12,7 @@ class TypeProduct < ActiveRecord::Base
 	#Seleccionar tipos de productos disponibles
 	scope :activos, -> { where(state: "disponible")}
 
+
 	aasm column: "state" do
 		state :disponible, :initial => true
 		state :noDisponible
@@ -31,7 +32,7 @@ class TypeProduct < ActiveRecord::Base
 	def validar_estado
 		if self.state == "noDisponible"
 			u = categories.select(:state ).where(state: 'disponible')
-			u = u.count 
+			u = u.count
 			if u > 0
 				puts "Hay categorias habilitadas"
 				self.errors.add(:state,"--->Hay categorias habilitadas")

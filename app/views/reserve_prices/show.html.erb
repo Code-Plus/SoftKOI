@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @reserve_price.value %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @reserve_price.time %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @reserve_price.product %>
+</p>
+
+<%= link_to 'Edit', edit_reserve_price_path(@reserve_price) %> |
+<%= link_to 'Back', reserve_prices_path %>

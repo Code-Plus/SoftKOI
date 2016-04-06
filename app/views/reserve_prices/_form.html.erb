@@ -1,0 +1,29 @@
+<%= form_for(@reserve_price) do |f| %>
+  <% if @reserve_price.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reserve_price.errors.count, "error") %> prohibited this reserve_price from being saved:</h2>
+
+      <ul>
+      <% @reserve_price.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :value,"Valor" %><br>
+    <%= f.number_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :time,"Intervalo" %><br>
+    <%= f.number_field :time %>
+  </div>
+  <div class="field">
+    <%= f.label :product_id,"Consola" %><br>
+    <%= f.select(:product_id, options_for_select(@products.pluck(:name, :id)))%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
