@@ -56,6 +56,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap3-datetimepicker-rails (4.17.37)
       momentjs-rails (>= 2.8.1)
+    bootstrap3_autocomplete_input (0.1.9)
     builder (3.2.2)
     byebug (8.2.2)
     cancancan (1.13.1)
@@ -102,6 +103,8 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
     json (1.8.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -148,8 +151,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails-jquery-autocomplete (1.0.3)
-      rails (>= 3.2)
     railties (4.2.4)
       actionpack (= 4.2.4)
       activesupport (= 4.2.4)
@@ -170,6 +171,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     spring (1.6.3)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -213,6 +217,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-sass
   bootstrap3-datetimepicker-rails
+  bootstrap3_autocomplete_input
   byebug
   cancancan (~> 1.13, >= 1.13.1)
   coffee-rails (~> 4.1.0)
@@ -224,13 +229,14 @@ DEPENDENCIES
   jquery-datatables-rails
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   nested_form
   prawn (~> 2.0, >= 2.0.2)
   public_activity
   rails (= 4.2.4)
-  rails-jquery-autocomplete
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simple_form
   spring
   sqlite3
   turbolinks

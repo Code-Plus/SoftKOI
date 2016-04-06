@@ -12,6 +12,13 @@ class Item < ActiveRecord::Base
   private
 
   def actualizar_stock
-  	stock = product.stock
+  	stock_product = product.stock
+    if self.quantity.nil?
+
+      elsif (stock_product-self.quantity)<0
+         self.errors.add(:base ,"No hay suficientes productos para vender")
+      else
+         product.update(stock: stock_product - self.quantity)
+      end
   end
 end

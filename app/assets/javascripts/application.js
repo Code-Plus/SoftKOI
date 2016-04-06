@@ -13,11 +13,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require jquery2
+//= require bootstrap
+//= require bootstrap3-typeahead.min
+//= require bootstrap3-autocomplete-input.min
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
+//= require jquery2
+//= require bootstrap
+//= require bootstrap3-typeahead.min
+//= require bootstrap3-autocomplete-input.min
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 
