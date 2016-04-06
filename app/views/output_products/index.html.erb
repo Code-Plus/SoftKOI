@@ -1,4 +1,4 @@
-<div class="ui container">
+<div style="margin: 0px 60px;">
 
   <% content_for :title do -%>
       Salida por baja <i class="fa fa-caret-down"></i>
@@ -7,8 +7,8 @@
    <% content_for :menus do -%>
       <li><h5 class="drop-title"><%= link_to "Entrada de productos", input_products_path %></h5></li>
       <li><h5 class="drop-title"><%= link_to "Tipos de productos", type_products_path %></h5></li>
-      <li><h5 class="drop-title"><%= link_to "Categorías", categories_path %></h5></li>
-      <li><h5 class="drop-title"><%= link_to "Productos", products_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "gestion de Categorías", categories_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "gestion de Productos", products_path %></h5></li>
    <% end -%>
 
     <div class="panel panel-default">

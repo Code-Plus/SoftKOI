@@ -105,6 +105,11 @@ div.menusuperior div.alerts a.ALETNotificacion {
 }
 
 /*-----------------------------clases solas-------------------------*/
+
+#DataTables_Table_0_wrapper .row{
+   margin: 0px;
+}
+
 .form-group.required .control-label:after {
    color: #d00;
    content: "*";
