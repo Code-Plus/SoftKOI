@@ -28,8 +28,9 @@
 		</li>
 
 		<li id="ConsolasM" class="Mnormal">
-		<a class="Modulos" href="#">
-			<%= image_tag("4-small.png") %><span>Consolas</span></a>
+			<%= link_to reserves_path, :class => 'Modulos' do%>
+				<%= image_tag("4-small.png") %><span>Consolas</span></a>
+			<% end %>
 		</li>
 
 		<li id="PagosM" class="Mnormal">

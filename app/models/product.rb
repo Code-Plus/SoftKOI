@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
    has_many :output_products
    has_many :input_products
    has_many :reserves
+   belongs_to :reserve_price
    before_validation :validate_category_change
 
    validates :name, presence: true
