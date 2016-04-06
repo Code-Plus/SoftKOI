@@ -16,6 +16,7 @@ class ReservesController < ApplicationController
   def new
     @reserve = Reserve.new
     @products = Product.consolas
+    @reserve_prices = ReservePrice.all
   end
 
   # GET /reserves/1/edit
