@@ -19,6 +19,7 @@ class CategoriesController < ApplicationController
    end
 
 
+
    def create
       @category = Category.create(category_params)
 
