@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
 
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
-  autocomplete :customer, :firstname
+  autocomplete :customer, :firstname, { :column_name => 'lastname', :display_value => 'name', :full_model=>true }
 
   # GET /customers
   # GET /customers.json

@@ -1,15 +1,4 @@
 <%= simple_form_for @sale do |f| %>
-  <% if @sale.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
-
-      <ul>
-      <% @sale.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :amount %><br>
@@ -28,6 +17,7 @@
   <div class="field">
     <%= f.label :limit_date %><br>
     <%= f.input_field :limit_date,as: :date , wrapper_html: {class:  'datapicker'} %>
+
   </div>
 
   <div class="field">
@@ -35,8 +25,8 @@
     <%= f.input_field :comment, as: :text %>
   </div>
   <div class="field">
-    <%= f.label :customer_id %><br>
-    <%= f.input_field :customer_id %>
+
+    <%= f.input :customer, :as => :autocomplete, :source_query => autocomplete_customer_firstname_customers_url %>
   </div>
   <div class="actions">
     <%= f.button  :submit%>

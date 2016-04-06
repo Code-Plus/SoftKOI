@@ -4,7 +4,7 @@ class Customer < ActiveRecord::Base
    has_many :sales
 
    include AASM
-   
+
    validates :document, presence: true, uniqueness: true
    validates :firstname, presence: true
    validates :lastname, presence: true
@@ -31,6 +31,7 @@ class Customer < ActiveRecord::Base
 
    def to_s
       firstname
+      lastname
    end
 
    def name

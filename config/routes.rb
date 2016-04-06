@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 	resources :type_products
 	resources :input_products
 	resources :customers do
-		get :autocomplete_customer, :on => :collection
+		get :autocomplete_customer_firstname, :on => :collection
 	end
   resources :reserves
 
