@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$('table').DataTable({
 		"language": {
 			"sProcessing":     "Procesando...",
-			"sLengthMenu":     "Mostrar  _MENU_  Registros",
+			"sLengthMenu":     "Mostrar  _MENU_  registros",
 			"sZeroRecords":    "No se encontraron resultados",
 			"sEmptyTable":     "Ningún dato disponible en esta tabla",
 			"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
@@ -44,5 +44,5 @@ $(document).ready(function() {
 		$(".HomeM").toggleClass("Hnormal");
 		$(".HomeM").toggleClass("Hdesplegado");
 	});
-	
+
 });
