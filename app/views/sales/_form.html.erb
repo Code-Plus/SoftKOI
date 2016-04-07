@@ -1,46 +1,65 @@
-<%= simple_form_for @sale do |f| %>
-<% if @sale.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this reserve from being saved:</h2>
+<div style="margin: 0px 60px;">
+   <%= simple_form_for @sale do |f| %>
 
-    <ul>
-    <% @sale.errors.full_messages.each do |message| %>
-     <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+   <% content_for :title do -%>
+      Registrar venta
+   <% end -%>
 
-  <div class="field">
-    <%= f.label :amount %><br>
-    <%= f.input_field :amount, as: :decimal %>
-  </div>
-  <div class="field">
-    <%= f.label :total_amount %><br>
-    <%= f.input_field :total_amount, as: :decimal %>
-  </div>
+   <% content_for :menus do -%>
+      <li><h5 class="drop-title"><%= link_to "Abonos", "http://cdn.memegenerator.es/imagenes/memes/full/1/62/1628946.jpg" %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Clientes", "http://cdn.memegenerator.es/imagenes/memes/full/1/62/1628946.jpg" %></h5></li>
+   <% end -%>
 
-  <div class="field">
-    <%= f.label :discount %><br>
-    <%= f.input_field :discount, as: :decimal %>
-  </div>
+      <div class="row">
+         <div class="col-sm-8">
+            <div class="panel panel-default">
+               <div class="panel-body table">
 
-  <div class="field">
-    <%= f.label :limit_date %><br>
-    <%= f.input_field :limit_date,as: :date , wrapper_html: {class:  'datapicker'} %>
+                  <h5>Aca irá la tabla con los productos de la venta</h5>
+                  <div class="field">
+                     <%= f.label :limit_date %><br>
+                     <%= f.input_field :limit_date,as: :date , wrapper_html: {class:  'datapicker'} %>
+                  </div>
 
-  </div>
+                  <div class="field">
+                     <%= f.label :comment %><br>
+                     <%= f.input_field :comment, as: :text %>
+                  </div>
 
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.input_field :comment, as: :text %>
-  </div>
-  <div class="field">
+               </div>
+            </div>
+         </div>
 
-    <%= f.input :customer, :as => :autocomplete, :source_query => autocomplete_customer_firstname_customers_url %>
-  </div>
-  <div class="actions">
-    <%= f.button  :submit%>
-  </div>
+         <div class="col-sm-4">
+            <div class="panel panel-default">
+               <div class="panel-body table">
 
-<% end %>
+                  <div class="field">
+                     <%= f.input :customer, :as => :autocomplete, :source_query => autocomplete_customer_firstname_customers_url %>
+                  </div>
+
+                  <div class="field">
+                     <%= f.label :amount %><br>
+                     <%= f.input_field :amount, as: :decimal %>
+                  </div>
+                  <div class="field">
+                     <%= f.label :total_amount %><br>
+                     <%= f.input_field :total_amount, as: :decimal %>
+                  </div>
+
+                  <div class="field">
+                     <%= f.label :discount %><br>
+                     <%= f.input_field :discount, as: :decimal %>
+                  </div>
+                  <br><br>
+                  <div class="actions">
+                     <%= f.button  :submit, "Realizar pago", class: 'btn btn-success text-uppercase btn-block bold' %>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+
+      </div>
+   <% end %>
+</div>
