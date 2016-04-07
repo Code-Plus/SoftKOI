@@ -68,6 +68,70 @@ class SalesController < ApplicationController
     redirect_to sales_url
   end
 
+  def create_customer_association
+    set_sale
+
+    unless @sale.blank? || params[:customer_id].blank?
+      @sale.customer_id = params[:customer_id]
+      @sale.save
+    end
+
+    respond_to do |format|
+      format.js { ajax_refresh }
+    end
+  end
+
+  def sale_discount
+    @sale = Sale.find(params[:sale_discount][:sale_id])
+
+    @sale.discount = params[:sale_discount][:discount]
+    @sale.save
+
+    update_totals
+
+    respond_to do |format|
+      format.js { ajax_refresh }
+    end
+  end
+
+  def destroy_item
+    set_sale
+    update_totals
+
+    respond_to do |format|
+      format.js { ajax_refresh }
+    end
+  end
+
+  def update_totals
+    set_sale
+    @sale.amount = 0.00
+
+    for item in @sale.items
+      @sale.amount += item.total_price
+    end
+
+    total_amount = @sale.amount
+
+    if @sale.discount.blank?
+      @sale.total_amount = total_amount
+    else
+      discount_amount = @sale.discount
+      @sale.total_amount = total_amount - discount_amount
+    end
+    @sale.save
+  end
+
+  def add_comment
+    set_sale
+    @sale.comments = params[:sale_comment][:comment]
+    @sale.save
+
+    respond_to do |format|
+      format.js { ajax_refresh }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sale
