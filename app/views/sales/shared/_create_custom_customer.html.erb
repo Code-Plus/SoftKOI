@@ -1,0 +1,3 @@
+<div class="create_an_item">
+	<%= form_for :custom_customer, :url => url_for(:controller => "sales", :action => "create_custom_customer", :sale_id => @sale.id, :format => :js), :method => "get", :remote => true, :html => { :id => 'create_custom_customer' } do |f|%>
+</div>
