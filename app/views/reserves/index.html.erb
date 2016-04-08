@@ -1,37 +1,45 @@
-<h1>Listing Reserves</h1>
+<div style="margin: 0px 60px;">
 
-<table>
-  <thead>
-    <tr>
-      <th>Customer</th>
-      <th>Product</th>
-      <th>Date</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>State</th>
-      <th>Price reserve</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% content_for :title do -%>
+Reservar Consolas <i class="fa fa-caret-down"></i>
+<% end -%>
 
-  <tbody>
-    <% @reserves.each do |reserve| %>
-      <tr>
-        <td><%= reserve.customer %></td>
-        <td><%= reserve.product_id %></td>
-        <td><%= reserve.date %></td>
-        <td><%= reserve.start_time %></td>
-        <td><%= reserve.end_time %></td>
-        <td><%= reserve.state %></td>
-        <td><%= reserve.price_reserve_id %></td>
-        <td><%= link_to 'Show', reserve %></td>
-        <td><%= link_to 'Edit', edit_reserf_path(reserve) %></td>
-        <td><%= link_to 'Destroy', reserve, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% content_for :menus do -%>
+<li><h5 class="drop-title"><%= link_to "Entrada de productos", input_products_path %></h5></li>
+<li><h5 class="drop-title"><%= link_to "Tipos de productos", type_products_path %></h5></li>
+<li><h5 class="drop-title"><%= link_to "", categories_path %></h5></li>
+<li><h5 class="drop-title"><%= link_to "Configurar ", output_products_path %></h5></li>
+<% end -%>
 
+<% content_for :button do -%>
+<%= link_to new_reserf_path, remote: true, class: 'btn btn-success bold registrar' do %>
+<i class="fa fa-plus"></i>
+&nbsp;Registrar Reserva
+<% end %>
+<% end -%>
+
+<div class="panel panel-default">
+  <div class="panel-body table">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Product</th>
+          <th>Date</th>
+          <th>Start time</th>
+          <th>End time</th>
+          <th>State</th>
+          <th>Price reserve</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody id="reserves">
+        <% render @reserves %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <br>
-
-<%= link_to 'New Reserve', new_reserf_path %>
+<%= render 'dialog' %>
+</div>

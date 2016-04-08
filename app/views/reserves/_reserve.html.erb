@@ -1,0 +1,13 @@
+<tr id="reserve_<%= reserve.id%>">
+  <td><%= reserve.customer %></td>
+  <td><%= reserve.product_id %></td>
+  <td><%= reserve.date %></td>
+  <td><%= reserve.start_time %></td>
+  <td><%= reserve.end_time %></td>
+  <td><%= reserve.state %></td>
+  <td><%= reserve.price_reserve_id %></td>
+  <td>
+    <%= link_to 'Show', reserve %>
+    <%= link_to 'Edit', edit_reserf_path(reserve) %>
+</td>
+</tr>
