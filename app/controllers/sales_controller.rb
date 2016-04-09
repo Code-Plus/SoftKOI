@@ -158,8 +158,28 @@ class SalesController < ApplicationController
     end
   end
 
-  def ajax_refresh
-    render(file: 'sales/ajax_reload.js.erb')
+  
+
+  def update_totals
+
+    set_sale
+
+    @sale.amount = 0.00
+
+    for item in @sale.items
+      @sale.amount += item.total_price
+    end
+
+    total_amount = @sale.amount
+
+    if @sale.discount.blank?
+      @sale.total_amount = total_amount
+    else
+      discount_amount = total_amount * @sale.discount
+      @sale.total_amount = total_amount - discount_amount
+    end
+
+    @sale.save
   end
 
   private
@@ -176,6 +196,10 @@ class SalesController < ApplicationController
         @sale = Sale.find(params[:sale_id])
       end
     ends
+    end
+
+    def ajax_refresh
+      render(file: 'sales/ajax_reload.js.erb')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
