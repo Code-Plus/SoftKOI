@@ -20,7 +20,7 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
-
+//= require flipclock.min
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 

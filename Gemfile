@@ -31,7 +31,7 @@ gem 'bcrypt-ruby', :require => 'bcrypt'   # Encrypted password
 gem 'jquery-ui-rails'                     # UI
 gem 'simple_form'                         # Forms
 gem 'bootstrap3_autocomplete_input'       # Autocomplete
-
+gem 'flipclockjs-rails', '~> 0.7.7'
 
 group :development, :test do
   gem 'byebug'
