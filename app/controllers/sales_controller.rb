@@ -175,7 +175,7 @@ class SalesController < ApplicationController
       if @sale.discount.blank?
          @sale.total_amount = total_amount
       else
-         discount_amount = total_amount * @sale.discount
+         discount_amount = @sale.discount
          @sale.total_amount = total_amount - discount_amount
       end
 
