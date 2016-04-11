@@ -1,4 +1,4 @@
-<div class="container">
+<div style="margin: 0px 60px;">
 
 	<% content_for :title do -%>
       Registro de productos <i class="fa fa-caret-down"></i>
@@ -7,13 +7,13 @@
    <% content_for :menus do -%>
 		<li><h5 class="drop-title"><%= link_to "Entrada de productos", input_products_path %></h5></li>
       	<li><h5 class="drop-title"><%= link_to "Tipos de productos", type_products_path %></h5></li>
-     	<li><h5 class="drop-title"><%= link_to "Categorías", categories_path %></h5></li>
+     	<li><h5 class="drop-title"><%= link_to "gestion de Categorías", categories_path %></h5></li>
      	<li><h5 class="drop-title"><%= link_to "Salida de productos", output_products_path %></h5></li>
    <% end -%>
 
 	<% content_for :button do -%>
 		<%= link_to new_product_path, remote: true, class: 'btn btn-success bold registrar' do %>
-			<i class="fa fa-plus" onload="joven()"></i>
+			<i class="fa fa-plus"></i>
 			&nbsp;Nuevo Producto
 		<% end %>
 	<% end -%>

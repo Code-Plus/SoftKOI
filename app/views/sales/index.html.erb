@@ -1,55 +1,66 @@
-<div class="container">
+<div style="margin: 0px 60px;">
+
    <% content_for :title do -%>
       Gestion de ventas <i class="fa fa-caret-down"></i>
    <% end -%>
 
    <% content_for :menus do -%>
-      <li><h5 class="drop-title"><%= link_to "Abonos", "http://cdn.memegenerator.es/imagenes/memes/full/1/62/1628946.jpg" %></h5></li>
-      <li><h5 class="drop-title"><%= link_to "Usuarios", "http://cdn.memegenerator.es/imagenes/memes/full/1/62/1628946.jpg" %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Abonos", "#" %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Clientes", "#" %></h5></li>
    <% end -%>
 
    <% content_for :button do -%>
-      <%= link_to new_sale_path, remote: true, class: 'btn btn-success bold' do %>
+      <%= link_to new_sale_path, class: 'btn btn-success bold' do %>
          <i class="fa fa-plus"></i>
          &nbsp;Nueva venta
       <% end %>
    <% end -%>
 
-</div>
-<h1>Listing Sales</h1>
+   <div class="panel panel-default">
+      <div class="panel-body table">
+         <div class="table-responsive">
 
-<table class="table table-bordered table-hover table-striped">
-  <thead>
-    <tr>
-      <th>State</th>
-      <th>Amount</th>
-      <th>Total amount</th>
-      <th>Discount</th>
-      <th>Limit date</th>
-      <th>User</th>
-      <th>Comment</th>
-      <th>Customer</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+            <table class="table table-bordered table-hover table-striped">
+               <thead>
+                  <tr>
+                     <th>Amount</th>
+                     <th>Total amount</th>
+                     <th>Discount</th>
+                     <th>Limit date</th>
+                     <th>User</th>
+                     <th>Comment</th>
+                     <th>Customer</th>
+                     <th>State</th>
+                     <th>Acciones</th>
+                  </tr>
+               </thead>
 
-  <tbody>
-    <% @sales.each do |sale| %>
-      <tr>
-        <td><%= sale.state %></td>
-        <td><%= sale.amount %></td>
-        <td><%= sale.total_amount %></td>
-        <td><%= sale.discount %></td>
-        <td><%= sale.limit_date %></td>
-        <td><%= sale.user.document %></td>
-        <td><%= sale.comment %></td>
-        <td><%= sale.customer.name %></td>
-        <td><%= link_to 'Show', sale %></td>
-        <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
-        <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+               <tbody>
+                  <% @sales.each do |sale| %>
+                  <tr>
+                     <td><%= sale.amount %></td>
+                     <td><%= sale.total_amount %></td>
+                     <td><%= sale.discount %></td>
+                     <td><%= sale.limit_date %></td>
+                     <td><%= sale.user.document %></td>
+                     <td><%= sale.comment %></td>
+                     <td><%= sale.customer.name %></td>
+                     <td width="120px">
+                        <% if sale.state == "sinpagar" %>
+                        <span class="label label-primary span-table">Pendiente</span>
+                        <% else %>
+                        <span class="label label-success span-table">Cancelada</span>
+                        <% end %>
+                     </td>
+                     <td>
+                        <%= link_to 'Show', sale %>
+                        <%= link_to 'Edit', edit_sale_path(sale) %>
+                     </td>
 
-<br>
+                  </tr>
+                  <% end %>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
