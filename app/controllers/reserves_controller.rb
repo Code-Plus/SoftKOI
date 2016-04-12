@@ -5,17 +5,22 @@ class ReservesController < ApplicationController
   # GET /reserves.json
   def index
     @reserves = Reserve.all
+    @reservesActivas = Reserve.activa
+    @actualizarEstadoProceso = Reserve.validates_hour_start(Reserve.all)
+    @actualizarEstadoFinalizada = Reserve.validates_hour_finish(Reserve.all)
+    #@cancelarReserva = Reserve.cancel_reservation(Reserve.find(params[:reserve_id]))
   end
 
   # GET /reserves/1
   # GET /reserves/1.json
   def show
+    @cancelarReserva = Reserve.cancel_reservation(Reserve.find(params[:reserve_id]))
   end
 
   # GET /reserves/new
   def new
     @reserve = Reserve.new
-    @products = Product.consolas
+    @products = Reserve.validates_date_and_hour(Product.consolas, Reserve.all)
     @reserve_prices = ReservePrice.all
   end
 

@@ -26,7 +26,7 @@ class Product < ActiveRecord::Base
    scope :activos_con_cantidad, ->{activos.where("stock > 0")}
 
    #Productos de tipo y categoría consolas.
-   scope :consolas, ->{joins(category: :type_product).select("products.name").where("type_product_id = 3")}
+   scope :consolas, ->{joins(category: :type_product).select("products.id, products.name").where("type_product_id = 3")}
 
    aasm column: "state" do
       state :disponible, :initial => true

@@ -3,30 +3,59 @@ class Reserve < ActiveRecord::Base
 
   belongs_to :products
 
-  #after_save :validar_hora
+  #Validaciones.
+  validates :customer, presence: true
+  validates :product_id, presence: true
+  validates :end_time, presence: true
+  validates :price_reserve_id, presence: true
 
-  #Validamos la hora fin para cambiar el estado.
-  #after_save do
-  #  t = Time.now
-  #  t.strftime("%H:%M")
-  #  if self.state == "enProceso" && self.end_time = t
-  #    reserves.update_all state: "finalizada"
-  #  end
-  #end
-
-  #attr_accesor :state
-
-  #validates_each :state, on: :create, allow_blank: true, allow_nil: true do |record, attr, value|
-
-  #Método para cambiar el estado "en proceso" mientras se cumplen las horas definidas.
-  def validar_hora
-    fecha = Time.new
-    fecha.strftime("%F")
-    while self.state == "activa"
-      if self.date == fecha
-        validates_time :booked_at, :between => [self.start_time, self.end_time]
-        reserves.update_all state: "enProceso"
+  #Método para validar que solo se reserve la consola en una hora y una fecha dada.
+  def self.validates_date_and_hour(consoles, reserves)
+    consoles.each do |c|
+      reserves.each do |r|
+        if c.id == r.product_id
+          validates_date :date, :after => r.date
+          validates_time :start_time, :after => r.start_time
+          validates_time :start_time, :before => r.start_time
+        end
       end
+    end
+  end
+
+  scope :activa, -> {find_by_sql('SELECT date, start_time, end_time, state FROM reserves WHERE state = "activa"')}
+
+  #Método para pasar al estado "enProceso" de una reserva determinada cuando llegue a la hora registrada.
+  def self.validates_hour_start(search)
+    search = search.where(state: 'activa').select("id, date, start_time, state")
+    search.each do |var|
+      if var.date.strftime("%F") == Time.new.strftime("%F")
+        if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
+          var.update state: "enProceso"
+        end
+      end
+    end
+  end
+
+  #Método para pasar al estado "finalizada" de una reserva determinada cuando llegue a la hora registrada.
+  def self.validates_hour_finish(search)
+    search = search.where(state: 'enProceso').select("id, date, end_time, state")
+    search.each do |var|
+      if var.date.strftime("%F") == Time.new.strftime("%F")
+        if var.end_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
+          var.update state: "finalizada"
+        end
+      end
+    end
+  end
+
+  #Método de cancelar reserva, validando que no esté ni finalizada ni cancelada.
+  def self.cancel_reservation(reserve)
+    if reserve.state == "finalizada"
+      self.errors.add(:base ,"La reserva está finalizada.")
+    elsif reserve.state == "cancelada"
+      self.errors.add(:base ,"La reserva ya se encuentra cancelada.")
+    else
+      self.update state: "cancelada"
     end
   end
 
