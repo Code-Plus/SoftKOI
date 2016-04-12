@@ -15,10 +15,16 @@
 				<%= f.text_area :description, :class => "form-control" %>
 			</div>
 
-			<div class="form-group">
-				<%= f.label :can_change, "¿Se puede cambiar?", :class => "control-label"%>
-				<%= f.check_box :can_change, :class => "form-control"%>
-			</div>
+				<hr style="border: 1; margin-top: 0px; margin-bottom:15px !important;">
+				<label>Permisos:</label>
+				<br>
+
+
+			<section class="switch">
+				<%= f.check_box :can_change, class: 'switch', id: 'checkbox1' %>
+				<label class="switch" for="checkbox1"></label>
+				<p class="switch">¿Se puede cambiar?</p>
+			</section>
 		</div>
 
 		<div class="col-sm-12">

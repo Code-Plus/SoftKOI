@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  resources :reserve_prices
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
@@ -17,10 +16,12 @@ Rails.application.routes.draw do
 	resources :categories
 	resources :type_products
 	resources :input_products
+   resources :reserve_prices
+   resources :reserves
+
 	resources :customers do
 		get :autocomplete_customer_firstname, :on => :collection
 	end
-  resources :reserves
 
 	resources :users do
     collection do
