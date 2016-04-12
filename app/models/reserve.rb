@@ -10,6 +10,7 @@ class Reserve < ActiveRecord::Base
   validates :price_reserve_id, presence: true
 
   #Método para validar que solo se reserve la consola en una hora y una fecha dada.
+=begin
   def self.validates_date_and_hour(consoles, reserves)
     consoles.each do |c|
       reserves.each do |r|
@@ -21,6 +22,7 @@ class Reserve < ActiveRecord::Base
       end
     end
   end
+=end
 
   scope :activa, -> {find_by_sql('SELECT date, start_time, end_time, state FROM reserves WHERE state = "activa"')}
 
@@ -51,9 +53,9 @@ class Reserve < ActiveRecord::Base
   #Método de cancelar reserva, validando que no esté ni finalizada ni cancelada.
   def self.cancel_reservation(reserve)
     if reserve.state == "finalizada"
-      self.errors.add(:base ,"La reserva está finalizada.")
+      self.errors.add(:state ,"La reserva está finalizada.")
     elsif reserve.state == "cancelada"
-      self.errors.add(:base ,"La reserva ya se encuentra cancelada.")
+      self.errors.add(:state ,"La reserva ya se encuentra cancelada.")
     else
       self.update state: "cancelada"
     end

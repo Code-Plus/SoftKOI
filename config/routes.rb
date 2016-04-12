@@ -33,7 +33,8 @@ Rails.application.routes.draw do
   put "/reserves/:id/enProceso", to: "reserves#enProceso"
   put "/reserves/:id/finalizada", to: "reserves#finalizada"
   put "/reserves/:id/cancelada", to: "reserves#cancelada"
-
+  get "/reserves/cancelar", to: "reserves#cancelar"
+  
 	#Habilitar producto
 	put "/product/:id/habilitar", to: "products#disponible"
 

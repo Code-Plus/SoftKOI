@@ -59,3 +59,13 @@ function miabuela (){
    }
 
 }
+
+
+$(document).ready(function(){
+
+
+});
+
+var reloj = new FlipClock($('.clock'), {
+
+});
