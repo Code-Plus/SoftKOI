@@ -11,37 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field" id="m_r_reserves">
     <%= f.label :customer,"Cliente" %><br>
-    <%= f.text_field :customer %>
+    <%= f.text_field :customer , :class => "form-control"%>
   </div>
   <div class="field">
-    <%= f.label :products,"Consola" %><br>
-    <%= f.select(:products, options_for_select(@products.pluck(:name, :id))) %>
+  <%= f.label :products,"Consola" %><br>
+				<%= collection_select(:product,:product_id, Product.consolas, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
   </div>
   <div class="field">
     <%= f.label :date,"Fecha" %><br>
-    <%= f.date_select :date %>
+    <%= f.date_select :date%>
   </div>
   <div class="field">
     <%= label_tag :interval,"Intervalo" %><br>
-    <%= select_tag(:interval, options_for_select(@reserve_prices.pluck(:time, :id)), prompt: "Selecciona una opción") %>
+    <%= select_tag(:interval, options_for_select(@reserve_prices.pluck(:time, :id)), prompt: "Selecciona una opción", :class => "form-control") %>
   </div>
   <div class="field">
     <%= f.label :start_time,"Hora de incio" %><br>
-    <%= f.text_field :start_time %>
+    <%= f.text_field :start_time ,:class => "form-control"%>
   </div>
   <div class="field">
     <%= f.label :end_time,"Hora de finalizacion" %><br>
-    <%= f.text_field :end_time,readonly: true %>
+    <%= f.text_field :end_time,:class => "form-control",readonly: true %>
   </div>
   <div class="field">
     <%= f.label :state,"Estado" %><br>
-    <%= f.text_field :state %>
+    <%= f.text_field :state, :class => "form-control" %>
   </div>
   <div class="field">
     <%= f.label :price_reserve_id," Precio" %><br>
-    <%= f.number_field :price_reserve_id %>
+    <%= f.number_field :price_reserve_id , :class => "form-control"%>
   </div>
   <div class="actions">
     <%= f.submit %>
