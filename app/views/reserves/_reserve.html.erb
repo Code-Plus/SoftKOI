@@ -4,10 +4,26 @@
   <td><%= reserve.date %></td>
   <td><%= reserve.start_time %></td>
   <td><%= reserve.end_time %></td>
-  <td><%= reserve.state %></td>
   <td><%= reserve.price_reserve_id %></td>
+
+  <td width="105px">
+     <% if reserve.state == "enProceso" %>
+        <span class="label label-primary span-table">En Proceso</span>
+     <% elsif reserve.state == "finalizada" %>
+        <span class="label label-warning span-table">Finalizada</span>
+     <% elsif reserve.state == "cancelada" %>
+        <span class="label label-danger span-table">Cancelada</span>
+     <% else %>
+        <span class="label label-success span-table">Activa</span>
+     <% end %>
+  </td>
+
   <td>
     <%= link_to 'Show', reserve %>
     <%= link_to 'Edit', edit_reserf_path(reserve) %>
-</td>
+    <%= button_to "", { action: "cancelar", reserve_id: reserve.product_id }, method: :cancelar, data: { confirm: "Are you sure?" }, class: 'btn btn-sm btn-danger bold' do %>
+       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <% end %>
+    <div class="clock"></div>
+  </td>
 </tr>

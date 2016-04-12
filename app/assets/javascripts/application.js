@@ -144,3 +144,6 @@ function Cargar_En_Reserva(){
     }
   });
 }
+
+
+var reloj = new FlipClock($('.clock'), {});

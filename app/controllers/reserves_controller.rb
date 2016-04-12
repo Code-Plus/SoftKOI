@@ -1,5 +1,6 @@
 class ReservesController < ApplicationController
   before_action :set_reserve, only: [:show, :edit, :update, :destroy, :activa, :enProceso, :finalizada, :cancelada]
+  protect_from_forgery except: :index
 
   # GET /reserves
   # GET /reserves.json
@@ -8,13 +9,25 @@ class ReservesController < ApplicationController
     @reservesActivas = Reserve.activa
     @actualizarEstadoProceso = Reserve.validates_hour_start(Reserve.all)
     @actualizarEstadoFinalizada = Reserve.validates_hour_finish(Reserve.all)
-    #@cancelarReserva = Reserve.cancel_reservation(Reserve.find(params[:reserve_id]))
+
+    #render '/reserves/clock.js.erb'
+=begin
+    respond_to do |format|
+      format.js {
+         :template => '/reserves/clock.js.erb',
+         :layout => false
+      }
+    end
+=end
+    #respond_to do |format|
+    #  format.js { render '/reserves/clock.js.erb' }
+    #end
+
   end
 
   # GET /reserves/1
   # GET /reserves/1.json
   def show
-    @cancelarReserva = Reserve.cancel_reservation(Reserve.find(params[:reserve_id]))
   end
 
   # GET /reserves/new
@@ -26,6 +39,10 @@ class ReservesController < ApplicationController
 
   # GET /reserves/1/edit
   def edit
+  end
+
+  def cancelar
+    @cancelarReserva = Reserve.cancel_reservation(Reserve.find(params[:reserve_id]))
   end
 
   # POST /reserves
