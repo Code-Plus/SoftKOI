@@ -1,5 +1,5 @@
 $(document).ready(function() {
-		$('[data-toggle="tooltip"]').tooltip(); 
+		$('[data-toggle="tooltip"]').tooltip();
 
 	$('table').DataTable({
 		"language": {
@@ -30,7 +30,6 @@ $(document).ready(function() {
 
 
    $("#notice_wrapper").slideDown(400).delay(2000).slideUp("slow");
-
 	$("#iconmenu").on("click",function(){
 		$(".menusuperior").toggleClass("normal");
 		$(".menusuperior").toggleClass("desplegado");

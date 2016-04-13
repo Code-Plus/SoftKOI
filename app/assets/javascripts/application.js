@@ -1,3 +1,4 @@
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -11,16 +12,17 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require bootstrap3-typeahead.min
 //= require bootstrap3-autocomplete-input.min
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require jquery.turbolinks
+//= require flipclock.min
 //= require turbolinks
 //= require_tree .
-//= require flipclock.min
+
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 
@@ -33,10 +35,9 @@ $(document).ajaxError(function(event,xhr,options,exc) {
    }
 
    kk +="</ul>"
-
    $("#error_explanation").html(kk);
-
 });
+
 
 var categoriesI ;
 categoriesI = $('#product_category_id').html();
