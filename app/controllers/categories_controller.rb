@@ -8,7 +8,6 @@ class CategoriesController < ApplicationController
    end
 
 
-
    def new
       @category = Category.new
       @type_products = TypeProduct.activos
@@ -17,7 +16,6 @@ class CategoriesController < ApplicationController
 
    def edit
    end
-
 
 
    def create
