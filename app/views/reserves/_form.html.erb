@@ -1,22 +1,12 @@
-<%= form_for(@reserve) do |f| %>
-  <% if @reserve.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reserve.errors.count, "error") %> prohibited this reserve from being saved:</h2>
-
-      <ul>
-      <% @reserve.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for(@reserve, remote: true, :html => { :role => "form" })  do |f| %>
+<div id="error_explanation" class="text-danger modal-errors"></div>
 
   <div class="field" id="m_r_reserves">
     <%= f.label :customer,"Cliente" %><br>
     <%= f.text_field :customer , :class => "form-control"%>
   </div>
   <div class="field">
-  <%= f.label :products,"Consola" %><br>
+  <%= f.label :product_id,"Consola" %><br>
 				<%= collection_select(:product,:product_id, Product.consolas, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
   </div>
   <div class="field">
