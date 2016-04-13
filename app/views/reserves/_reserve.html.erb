@@ -1,5 +1,6 @@
 <tr id="reserve_<%= reserve.id%>">
   <td><%= reserve.customer %></td>
+  <td><%= reserve.console.name %></td>
   <td><%= reserve.date %></td>
   <td><%= reserve.start_time %></td>
   <td><%= reserve.end_time %></td>
@@ -20,7 +21,7 @@
   <td>
     <%= link_to 'Show', reserve %>
     <%= link_to 'Edit', edit_reserf_path(reserve) %>
-    <%= button_to "", { action: "cancelar", reserve_id: reserve.product_id }, method: :cancelar, data: { confirm: "Are you sure?" }, class: 'btn btn-sm btn-danger bold' do %>
+    <%= button_to "", { action: "cancelar", reserve_id: reserve.console_id }, method: :cancelar, data: { confirm: "Are you sure?" }, class: 'btn btn-sm btn-danger bold' do %>
        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     <% end %>
     <div class="clock"></div>
