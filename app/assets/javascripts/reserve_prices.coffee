@@ -14,6 +14,5 @@ cargar_elemento = ->
   if $('#new_reserve').length
     Cargar_En_Reserva()
   else
-    alert 'No se cargo la modal'
   return
 return
