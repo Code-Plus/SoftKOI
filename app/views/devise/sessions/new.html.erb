@@ -12,15 +12,15 @@
 						<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 						<!--Documento-->
 						<div class="control">
-							<%= f.text_field :document, required: true, placeholder: 'Documento CHUCO', class: 'form-control' %>
+							<%= f.text_field :document, required: true, placeholder: 'Documento', class: 'form-control' %>
 						</div>
 						<!--Contraseña-->
 						<div class="control">
-							<%= f.password_field :document, required: true, placeholder:'Contraseña CHUCO', class:'form-control' %>
+							<%= f.password_field :password, required: true, placeholder:'Contraseña', class:'form-control' %>
 						</div>
 						<!--Boton-->
 						<div class="login-button text-center">
-							<%= f.submit "CHUCO ESTUVO AQUI", class: 'btn btn-primary' %>
+							<%= f.submit "INICIAR SESION", class: 'btn btn-primary' %>
 						</div>
 						<% end %>
 					</div>
