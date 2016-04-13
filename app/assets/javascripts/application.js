@@ -101,13 +101,13 @@ function Cargar_En_Reserva(){
     minutos = fechaHora.getMinutes();
     segundos = fechaHora.getSeconds();
     sufijo = ' AM';
-    if (horas > 12) {
-      horas = horas - 12;
-      sufijo = ' PM';
-    }
-    // if (horas < 10) {
-    //   horas = '0' + horas;
+    // if (horas > 12) {
+    //   horas = horas - 12;
+    //   sufijo = ' PM';
     // }
+    if (horas < 10) {
+      horas = '0' + horas;
+    }
     if (minutos < 10) {
       minutos = '0' + minutos;
     }
@@ -134,7 +134,7 @@ function Cargar_En_Reserva(){
         $('#reserve_end_time').val(h_split_f + ':' + seconds);
       } else {
         h_split = parseInt(split_time[0]);
-        h_split_f = h_split + 1;
+        // h_split_f = h_split + 1;
         if (h_split_f < 10) {
           h_split_f = '0' + h_split_f;
         }
