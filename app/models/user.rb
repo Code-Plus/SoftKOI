@@ -1,13 +1,25 @@
 class User < ActiveRecord::Base
 
+	has_many :sales
+	belongs_to :role
+	belongs_to :type_document
+
 	devise :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
 
+=begin
+	validates :document, presence: true, numericality: { only_integer: true }, uniqueness: {case_sensitive: false}
+	validates :name, presence: true
+	validates :firstname, presence: true
+	validates :lastname, presence: true
+	validates :email, email: true, uniqueness: {case_sensitive: false}
+	validates :phone, numericality: { only_integer: true }, length: { is: 7 }
+	validates :cellphone, numericality: { only_integer: true }, length: { is: 10 }
+	validates :state, presence: true
+=end
 
 
 
-	has_many :sales
-	belongs_to :role
 
 	include AASM
 

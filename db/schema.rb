@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405190951) do
+ActiveRecord::Schema.define(version: 20160413151415) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -167,9 +167,11 @@ ActiveRecord::Schema.define(version: 20160405190951) do
     t.boolean  "can_consoles"
     t.boolean  "can_customers"
     t.string   "state"
+    t.integer  "type_document_id"
   end
 
   add_index "users", ["document"], name: "index_users_on_document", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["type_document_id"], name: "index_users_on_type_document_id"
 
 end

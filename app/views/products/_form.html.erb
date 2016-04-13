@@ -38,25 +38,25 @@
       </div>
 
       <div class="col-sm-6">
-         <div class="form-group required" style="display:none">
+         <div class="form-group required" style="display:none" attrdess="disabled_botton">
             <%= f.label :category_id, "Categoría" %>
             <%= f.grouped_collection_select(:category_id, TypeProduct.activos.order(name: :asc), :categories, :name, :id, :name, {prompt: "Seleccione una categoría..."}, {:class=>'form-control category_id'}) %>
          </div>
       </div>
 
-      
+
       <div class="col-sm-6">
          <div class="form-group">
             <%= f.label :can_change, "¿Se puede cambiar?", :class => "control-label"%>
             <%= f.check_box :can_change, :class => "form-control"%>
          </div>
       </div>
-         
+
 
       <div class="col-sm-12">
          <hr style="border: 1; margin-top: 0px; ">
          <div class="form-group" style="margin-bottom: 0px;">
-            <%= f.submit "Registrar producto", :class => "btn btn-success bold" %>
+            <%= f.submit "Registrar producto", :class => "btn btn-primary bold disabled", :id => "Btn_RProduct" %>
          </div>
       </div>
    </div>
