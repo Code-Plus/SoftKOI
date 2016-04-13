@@ -6,6 +6,12 @@
 
 	<div class="col-sm-4">
 		<div class="form-group required">
+			<%= f.label :type_document_id, "Tipo de Documento", :class => "control-label"%>
+			<%= collection_select(:user,:type_document_id, TypeDocument.all, :id, :description, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="form-group required">
 			<%= f.label :document, "Documento", :class => "control-label" %>
 			<%= f.text_field :document, :class => "form-control first_input" %>
 		</div>
@@ -40,14 +46,14 @@
 	</div>
 
 	<div class="col-sm-4">
-		<div class="form-group required">
+		<div class="form-group">
 			<%= f.label :phone, "Telefono", :class => "control-label" %>
 			<%= f.telephone_field :phone, :class => "form-control" %>
 		</div>
 	</div>
 
 	<div class="col-sm-4">
-		<div class="form-group required">
+		<div class="form-group">
 			<%= f.label :cellphone, "Celular", :class => "control-label" %>
 			<%= f.telephone_field :cellphone, :class => "form-control" %>
 		</div>

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
+		@type_document = TypeDocument.all
 	end
 
 	def edit
@@ -86,7 +87,8 @@ class UsersController < ApplicationController
 		:can_changes,
 		:can_consoles,
 		:can_customers,
-		:state)
+		:state,
+		:type_document_id)
 	end
 
 end
