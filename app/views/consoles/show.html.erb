@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @console.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @console.description %>
+</p>
+
+<p>
+  <strong>Serial:</strong>
+  <%= @console.serial %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @console.state %>
+</p>
+
+<%= link_to 'Edit', edit_console_path(@console) %> |
+<%= link_to 'Back', consoles_path %>
