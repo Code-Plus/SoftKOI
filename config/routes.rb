@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 	#welcome/index como home_path
 	get '/home', to: 'welcome#index', as: 'home'
 
+	#Rutas para el ajax creado por chuco
+	get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
+
 	devise_for :users
    resources :consoles
    resources :sales
@@ -37,6 +40,7 @@ Rails.application.routes.draw do
   put "/reserves/:id/cancelada", to: "reserves#cancelada"
   get "/reserves/cancelar", to: "reserves#cancelar"
 
+
 	#Estados de producto
 	put "/product/:id/habilitar", to: "products#disponible"
 	put "/product/:id/inhabilitar", to: "products#noDisponible"
@@ -52,4 +56,6 @@ Rails.application.routes.draw do
    #Estados de un usuario
    put "/user/:id/habilitar", to: "users#disponible"
    put "/user/:id/inhabilitar", to: "users#noDisponible"
+
+
 end

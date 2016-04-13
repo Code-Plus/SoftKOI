@@ -1,28 +1,20 @@
 class ConsolesController < ApplicationController
   before_action :set_console, only: [:show, :edit, :update, :destroy]
 
-  # GET /consoles
-  # GET /consoles.json
   def index
     @consoles = Console.all
   end
 
-  # GET /consoles/1
-  # GET /consoles/1.json
   def show
   end
 
-  # GET /consoles/new
   def new
     @console = Console.new
   end
 
-  # GET /consoles/1/edit
   def edit
   end
 
-  # POST /consoles
-  # POST /consoles.json
   def create
     @console = Console.new(console_params)
 
@@ -37,8 +29,6 @@ class ConsolesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /consoles/1
-  # PATCH/PUT /consoles/1.json
   def update
     respond_to do |format|
       if @console.update(console_params)
@@ -51,8 +41,6 @@ class ConsolesController < ApplicationController
     end
   end
 
-  # DELETE /consoles/1
-  # DELETE /consoles/1.json
   def destroy
     @console.destroy
     respond_to do |format|
@@ -62,12 +50,10 @@ class ConsolesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_console
       @console = Console.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def console_params
       params.require(:console).permit(:name, :description, :serial, :state)
     end
