@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Consoles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Serial</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consoles.each do |console| %>
+      <tr>
+        <td><%= console.name %></td>
+        <td><%= console.description %></td>
+        <td><%= console.serial %></td>
+        <td><%= console.state %></td>
+        <td><%= link_to 'Show', console %></td>
+        <td><%= link_to 'Edit', edit_console_path(console) %></td>
+        <td><%= link_to 'Destroy', console, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Console', new_console_path %>

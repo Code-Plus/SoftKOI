@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 	get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
 
 	devise_for :users
+   resources :consoles
    resources :sales
    resources :products
 	resources :output_products
@@ -39,30 +40,21 @@ Rails.application.routes.draw do
   put "/reserves/:id/cancelada", to: "reserves#cancelada"
   get "/reserves/cancelar", to: "reserves#cancelar"
 
-	#Habilitar producto
-	put "/product/:id/habilitar", to: "products#disponible"
 
-	#Inhabilitar producto
+	#Estados de producto
+	put "/product/:id/habilitar", to: "products#disponible"
 	put "/product/:id/inhabilitar", to: "products#noDisponible"
 
-	#Habilitar tipo de producto
+	#Estados de tipo de producto
 	put "/type_product/:id/habilitar", to: "type_products#disponible"
-
-	#Inhabilitar tipo de producto
 	put "/type_product/:id/inhabilitar", to: "type_products#noDisponible"
 
-	#Habilitar categoria
+	#Estados de categoria
 	put "/category/:id/habilitar", to: "categories#disponible"
-
-	#Inhabilitar categoria
 	put "/category/:id/inhabilitar", to: "categories#noDisponible"
 
-   put "/output_product/:id/deBaja", to: "output_products#deBaja"
-
-   #Habilitar un usuario
+   #Estados de un usuario
    put "/user/:id/habilitar", to: "users#disponible"
-
-   #Deshabilitar un usuario
    put "/user/:id/inhabilitar", to: "users#noDisponible"
 
 
