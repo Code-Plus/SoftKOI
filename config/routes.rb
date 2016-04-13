@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :consoles
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
