@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
 
+=begin
 	validates :document, presence: true, numericality: { only_integer: true }, uniqueness: {case_sensitive: false}
 	validates :name, presence: true
 	validates :firstname, presence: true
@@ -15,6 +16,7 @@ class User < ActiveRecord::Base
 	validates :phone, numericality: { only_integer: true }, length: { is: 7 }
 	validates :cellphone, numericality: { only_integer: true }, length: { is: 10 }
 	validates :state, presence: true
+=end
 
 
 
