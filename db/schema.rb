@@ -99,12 +99,11 @@ ActiveRecord::Schema.define(version: 20160413151415) do
 
   create_table "reserves", force: :cascade do |t|
     t.string   "customer"
-    t.integer  "product_id"
     t.date     "date"
     t.time     "start_time"
     t.time     "end_time"
     t.string   "state"
-    t.integer  "price_reserve_id"
+    t.integer  "reserve_price_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

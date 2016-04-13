@@ -33,7 +33,7 @@ class OutputProductsController < ApplicationController
             format.json { render :index, status: :created, location: @output_product }
          else
             format.html { render :new }
-            format.json { render json: @output_product.errors, status: :unprocessable_entity }
+            format.json { render json: @output_product.errors.full_messages, status: :unprocessable_entity }
          end
       end
    end

@@ -5,7 +5,6 @@ class Product < ActiveRecord::Base
    belongs_to :category
    has_many :output_products
    has_many :input_products
-   has_many :reserves
    belongs_to :reserve_price
    before_validation :validate_category_change
 

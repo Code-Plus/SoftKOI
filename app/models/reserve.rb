@@ -1,7 +1,7 @@
 class Reserve < ActiveRecord::Base
   include AASM
 
-  belongs_to :products
+  belongs_to :reserve_price
 
   #Validaciones.
   validates :customer, presence: true

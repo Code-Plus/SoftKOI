@@ -40,11 +40,13 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 
 
 var categoriesI ;
+var var_attr ;
+
 categoriesI = $('#product_category_id').html();
+
 
 function miabuela (){
    var categoriesF;
-
    categoriesF = $('#product_category_id').html();
    $('#product_category_id').parent().show();
    var escaped_type_product, options, type_product;
@@ -54,6 +56,9 @@ function miabuela (){
    if (options) {
       $('#product_category_id').html(options);
       $('#category_type_product_id').prop("disabled",true);
+      $('#Btn_RProduct').removeClass('disabled');
+      $('#Btn_RProduct').removeClass('btn-primary');
+      $('#Btn_RProduct').addClass('btn-success');
       return $('#product_category_id').parent().show();
    } else {
       $('#category_type_product_id').prop("disabled",true);
@@ -102,13 +107,13 @@ function Cargar_En_Reserva(){
     minutos = fechaHora.getMinutes();
     segundos = fechaHora.getSeconds();
     sufijo = ' AM';
-    if (horas > 12) {
-      horas = horas - 12;
-      sufijo = ' PM';
-    }
-    // if (horas < 10) {
-    //   horas = '0' + horas;
+    // if (horas > 12) {
+    //   horas = horas - 12;
+    //   sufijo = ' PM';
     // }
+    if (horas < 10) {
+      horas = '0' + horas;
+    }
     if (minutos < 10) {
       minutos = '0' + minutos;
     }
@@ -135,7 +140,7 @@ function Cargar_En_Reserva(){
         $('#reserve_end_time').val(h_split_f + ':' + seconds);
       } else {
         h_split = parseInt(split_time[0]);
-        h_split_f = h_split + 1;
+        // h_split_f = h_split + 1;
         if (h_split_f < 10) {
           h_split_f = '0' + h_split_f;
         }
