@@ -456,7 +456,10 @@ ul.menu.desplegado{
    top: 0;
    width: 100%;
    z-index: 999;
-   .alert { background: rgba(231, 76, 60,1.0) }
+   .alert {
+      background: rgba(231, 76, 60,1.0);
+      border-radius: 0px !important;
+    }
    .notice{ background:rgba(26, 188, 156,1.0) }
    .alert, .notice {
       color: #fff;
