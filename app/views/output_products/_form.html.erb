@@ -1,48 +1,45 @@
 <%= form_for(@output_product) do |f| %>
-  <% if @output_product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@output_product.errors.count, "error") %> no permite que la entrada se realice:</h2>
 
+<div class="container">
+   <% if @output_product.errors.any? %>
+   <div id="error_explanation" class="text-danger modal-errors">
       <ul>
-      <% @output_product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+         <% @output_product.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+         <% end %>
       </ul>
-    </div>
-  <% end %>
-  <div class="container"> 
-    <div class="row">
-        <div class="col-sm-12">
-          <div class="form-group required">
+   </div>
+   <% end %>
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="form-group required">
             <%= f.label :stock, "Cantidad a dar de baja", :class => "control-label"%><br>
             <%= f.number_field :stock, :class => "form-control first_input" %>
-          </div>
+         </div>
 
-          <div class="form-group required">
-              <!--Se trae la información del id del producto-->
-              <%= f.label :product_id, "Código del producto", :class => "control-label" %>
-              <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
-           </div>
+         <div class="form-group required">
+            <!--Se trae la información del id del producto-->
+            <%= f.label :product_id, "Código del producto", :class => "control-label" %>
+            <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
+         </div>
 
-            <div class="form-group">
-              <!--Se trae la información del id del producto-->
-               <%= label_tag "Producto" %>
-               <%= text_field_tag @output_product.product.name,@output_product.product.name, readonly: true, :class => "form-control" %>
-            </div>
+         <div class="form-group">
+            <!--Se trae la información del id del producto-->
+            <%= label_tag "Producto" %>
+            <%= text_field_tag @output_product.product.name,@output_product.product.name, readonly: true, :class => "form-control" %>
+         </div>
 
-           <div class="form-group">
-               <!--Se trae la información del precio del produto-->
-              <%= label_tag "Precio" %><br>
-              <%= text_field_tag @output_product.product.price,@output_product.product.price, readonly: true, :class => "form-control" %>
-            </div>
-            
+         <div class="form-group">
+            <!--Se trae la información del precio del produto-->
+            <%= label_tag "Precio" %><br>
+            <%= text_field_tag @output_product.product.price,@output_product.product.price, readonly: true, :class => "form-control" %>
+         </div>
 
+      </div>
 
-        </div>
-
-        <div class="actions">
-          <%= f.submit "Registrar Salida", :class => "btn btn-success bold" %>
-        </div>
-    </div>
-  </div>
+      <div class="actions">
+         <%= f.submit "Registrar Salida", :class => "btn btn-success bold" %>
+      </div>
+   </div>
+</div>
 <% end %>

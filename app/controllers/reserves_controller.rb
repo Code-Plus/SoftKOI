@@ -48,15 +48,15 @@ class ReservesController < ApplicationController
   # POST /reserves
   # POST /reserves.json
   def create
-    @reserve = Reserve.new(reserve_params)
+    @reserve = Reserve.create(reserve_params)
 
     respond_to do |format|
       if @reserve.save
-        format.html { redirect_to @reserve, notice: 'Reserve was successfully created.' }
-        format.json { render :show, status: :created, location: @reserve }
+         format.json { head :no_content }
+            format.js {  flash[:notice] = "¡Reserva creada satisfactoriamente!" }
       else
-        format.html { render :new }
-        format.json { render json: @reserve.errors, status: :unprocessable_entity }
+        format.json { render json: @reserve.errors.full_messages,
+               status: :unprocessable_entity }
       end
     end
   end
@@ -66,11 +66,11 @@ class ReservesController < ApplicationController
   def update
     respond_to do |format|
       if @reserve.update(reserve_params)
-        format.html { redirect_to @reserve, notice: 'Reserve was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reserve }
+        format.json { head :no_content }
+        format.js {  flash[:notice] = "¡Reserva actualizada satisfactoriamente!" }
       else
-        format.html { render :edit }
-        format.json { render json: @reserve.errors, status: :unprocessable_entity }
+        format.json { render json: @category.errors.full_messages,
+               status: :unprocessable_entity }
       end
     end
   end
