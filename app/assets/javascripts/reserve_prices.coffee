@@ -13,6 +13,5 @@ $(document).ready ->
 cargar_elemento = ->
   if $('#new_reserve').length
     Cargar_En_Reserva()
-  else
   return
 return
