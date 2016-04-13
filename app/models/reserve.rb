@@ -28,10 +28,14 @@ class Reserve < ActiveRecord::Base
 
   #Método para pasar al estado "enProceso" de una reserva determinada cuando llegue a la hora registrada.
   def self.validates_hour_start(search)
+    #Se hace la consulta con el arreglo de las reservas que llega
     search = search.where(state: 'activa').select("id, date, start_time, state")
     search.each do |var|
+      #Se recorre el arreglo de la consulta y se compara la fecha del sistema.
       if var.date.strftime("%F") == Time.new.strftime("%F")
+        #Luego se valida la hora de inicio con la hora del sistema
         if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
+          #Se actualiza el estado.
           var.update state: "enProceso"
         end
       end
