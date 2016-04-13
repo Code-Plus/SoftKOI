@@ -28,7 +28,7 @@ class InputProductsController < ApplicationController
             format.json { render :index, status: :created, location: @input_product }
          else
              format.html { render :new }
-            format.json { render json: @input_product.errors, status: :unprocessable_entity }
+            format.json { render json: @input_product.errors.full_messages, status: :unprocessable_entity }
          end
       end
    end

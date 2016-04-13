@@ -1,51 +1,51 @@
 <%= form_for(@input_product) do |f| %>
 
+
+<div class="container">
    <% if @input_product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@input_product.errors.count, "error") %> no permite que la baja se realice:</h2>
+   <div id="error_explanation" class="text-danger modal-errors">
       <ul>
-      <% @input_product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+         <% @input_product.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+         <% end %>
       </ul>
-    </div>
-  <% end %>
-  <div class="container">
-      <div class="row">
-         <div class="col-sm-12">
-            <div class="form-group required">
-               <!--Se ingresa la cantidad de productos que entraran al inventario-->
-               <%= f.label :stock, "Cantidad", :class => "control-label"%>
-               <%= f.number_field :stock, :class => "form-control first_input" %>
-            </div>
-
-            <div class="form-group required">
-               <!--Se trae la información del id del producto-->
-               <%= f.label :product_id, "Código del producto", :class => "control-label" %>
-               <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <!--Se trae la información del id del producto-->
-               <%= label_tag "Producto" %>
-               <%= text_field_tag @input_product.product.name,@input_product.product.name, readonly: true, :class => "form-control" %>
-            </div>
-
-           <div class="form-group">
-               <!--Se trae la información del precio del produto-->
-              <%= label_tag "Precio" %><br>
-              <%= text_field_tag @input_product.product.price,@input_product.product.price, readonly: true, :class => "form-control" %>
-            </div>
-           
+   </div>
+   <% end %>
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="form-group required">
+            <!--Se ingresa la cantidad de productos que entraran al inventario-->
+            <%= f.label :stock, "Cantidad", :class => "control-label"%>
+            <%= f.number_field :stock, :class => "form-control first_input" %>
          </div>
 
-         <div class="col-sm-12">
-            <hr style="border: 1; margin-top: 0px; ">
-            <div class="form-group" style="margin-bottom: 0px;">
-               <%= f.submit "Registrar Entrada", :class => "btn btn-success bold" %>
-            </div>
+         <div class="form-group required">
+            <!--Se trae la información del id del producto-->
+            <%= f.label :product_id, "Código del producto", :class => "control-label" %>
+            <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
+         </div>
+
+         <div class="form-group">
+            <!--Se trae la información del id del producto-->
+            <%= label_tag "Producto" %>
+            <%= text_field_tag @input_product.product.name,@input_product.product.name, readonly: true, :class => "form-control" %>
+         </div>
+
+         <div class="form-group">
+            <!--Se trae la información del precio del produto-->
+            <%= label_tag "Precio" %><br>
+            <%= text_field_tag @input_product.product.price,@input_product.product.price, readonly: true, :class => "form-control" %>
+         </div>
+
+      </div>
+
+      <div class="col-sm-12">
+         <hr style="border: 1; margin-top: 0px; ">
+         <div class="form-group" style="margin-bottom: 0px;">
+            <%= f.submit "Registrar Entrada", :class => "btn btn-success bold" %>
          </div>
       </div>
-  </div>
+   </div>
+</div>
 
 <% end %>
