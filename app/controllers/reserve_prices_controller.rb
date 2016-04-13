@@ -15,7 +15,7 @@ class ReservePricesController < ApplicationController
   # GET /reserve_prices/new
   def new
     @reserve_price = ReservePrice.new
-    @products = Product.consolas
+    @console = Console.all
   end
 
   # GET /reserve_prices/1/edit
@@ -70,6 +70,6 @@ class ReservePricesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reserve_price_params
-      params.require(:reserve_price).permit(:value, :time, :product_id)
+      params.require(:reserve_price).permit(:value, :time, :console_id)
     end
 end

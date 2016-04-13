@@ -5,7 +5,6 @@ class Product < ActiveRecord::Base
    belongs_to :category
    has_many :output_products
    has_many :input_products
-   belongs_to :reserve_price
    before_validation :validate_category_change
 
    validates :name, presence: true
@@ -24,8 +23,6 @@ class Product < ActiveRecord::Base
    #Productos que esten activos y tengan cantidad en su stock
    scope :activos_con_cantidad, ->{activos.where("stock > 0")}
 
-   #Productos de tipo y categoría consolas.
-   scope :consolas, ->{joins(category: :type_product).select("products.id, products.name").where("type_product_id = 3")}
 
    aasm column: "state" do
       state :disponible, :initial => true

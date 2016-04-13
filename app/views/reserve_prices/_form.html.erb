@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :product_id,"Consola" %><br>
-    <%= f.select(:product_id, options_for_select(@products.pluck(:name, :id)))%>
+    <%= collection_select(:consoles,:id, Console.all, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
   </div>
   <div class="actions">
     <%= f.submit %>
