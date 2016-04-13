@@ -20,8 +20,8 @@
     <%= f.number_field :time %>
   </div>
   <div class="field">
-    <%= f.label :product_id,"Consola" %><br>
-    <%= collection_select(:consoles,:id, Console.all, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
+    <%= f.label :consoles,"Consola" %><br>
+    <%= collection_select(:reserve_price, :console_id, Console.all, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
   </div>
   <div class="actions">
     <%= f.submit %>
