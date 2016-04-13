@@ -100,7 +100,7 @@ function Cargar_En_Reserva(){
     setInterval(muestraReloj, 60000);
   };
 
-  $('#interval').change(function() {
+  $('#interval_price_reserve_id').change(function() {
     var fechaHora, fin, h_split, h_split_f, horas, inter, minutos, rel_fin, second_split, seconds, segundos, send_ini, split_time, split_time_f, sufijo, sum_rel_fin, var_start_time;
     fechaHora = new Date;
     horas = fechaHora.getHours();
@@ -120,7 +120,7 @@ function Cargar_En_Reserva(){
     if (segundos < 10) {
       segundos = '0' + segundos;
     }
-    inter = parseInt($('#interval option:selected').text());
+    inter = parseInt($('#interval_price_reserve_id option:selected').text());
     var_start_time = $('#reserve_start_time').val();
     if (var_start_time !== '') {
       split_time = var_start_time.split(':');
@@ -141,11 +141,11 @@ function Cargar_En_Reserva(){
       } else {
         h_split = parseInt(split_time[0]);
         // h_split_f = h_split + 1;
-        if (h_split_f < 10) {
-          h_split_f = '0' + h_split_f;
+        if (h_split < 10) {
+          h_split = '0' + h_split;
         }
         seconds = sum_rel_fin;
-        $('#reserve_end_time').val(h_split_f + ':' + seconds);
+        $('#reserve_end_time').val(h_split + ':' + seconds);
       }
     }
   });
