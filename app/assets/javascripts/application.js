@@ -45,7 +45,7 @@ var var_attr ;
 categoriesI = $('#product_category_id').html();
 
 
-function miabuela (){
+function Products_category_function(){
    var categoriesF;
    categoriesF = $('#product_category_id').html();
    $('#product_category_id').parent().show();
@@ -101,12 +101,24 @@ function Cargar_En_Reserva(){
   };
 
   $('#interval_price_reserve_id').change(function() {
-    var fechaHora, fin, h_split, h_split_f, horas, inter, minutos, rel_fin, second_split, seconds, segundos, send_ini, split_time, split_time_f, sufijo, sum_rel_fin, var_start_time;
+    var fechaHora, fin, h_split, h_split_f, horas, inter, minutos, rel_fin, second_split, seconds, segundos, send_ini, split_time, split_time_f, sufijo, sum_rel_fin, var_start_time, var_id_interval;
     fechaHora = new Date;
     horas = fechaHora.getHours();
     minutos = fechaHora.getMinutes();
     segundos = fechaHora.getSeconds();
     sufijo = ' AM';
+
+    $.ajax({
+      url:'/reserves/price_interval',
+      data:{'interval_id':var_id_interval},
+      type:'get'
+    }).done(function(done){
+      alert('done');
+    }).error(function(errors){
+      console.log(errors);
+    });
+
+
     // if (horas > 12) {
     //   horas = horas - 12;
     //   sufijo = ' PM';
@@ -153,3 +165,5 @@ function Cargar_En_Reserva(){
 
 
 var reloj = new FlipClock($('.clock'), {});
+
+// ajax para traer el precio de la reserva dependiendo el intervalo

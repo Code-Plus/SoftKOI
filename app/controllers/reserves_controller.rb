@@ -116,4 +116,8 @@ class ReservesController < ApplicationController
     def reserve_params
       params.require(:reserve).permit(:customer, :product_id, :date, :start_time, :end_time, :state, :price_reserve_id)
     end
+
+    def Reserve_ajax
+      ReservePrice.all
+    end
 end

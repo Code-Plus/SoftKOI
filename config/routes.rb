@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 	#welcome/index como home_path
 	get '/home', to: 'welcome#index', as: 'home'
 
+	#Rutas para el ajax creado por chuco
+	get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
+
 	devise_for :users
    resources :sales
    resources :products
@@ -35,7 +38,7 @@ Rails.application.routes.draw do
   put "/reserves/:id/finalizada", to: "reserves#finalizada"
   put "/reserves/:id/cancelada", to: "reserves#cancelada"
   get "/reserves/cancelar", to: "reserves#cancelar"
-  
+
 	#Habilitar producto
 	put "/product/:id/habilitar", to: "products#disponible"
 
@@ -61,4 +64,6 @@ Rails.application.routes.draw do
 
    #Deshabilitar un usuario
    put "/user/:id/inhabilitar", to: "users#noDisponible"
+
+
 end
