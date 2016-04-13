@@ -39,11 +39,13 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 });
 
 var categoriesI ;
+var var_attr ;
+
 categoriesI = $('#product_category_id').html();
+
 
 function miabuela (){
    var categoriesF;
-
    categoriesF = $('#product_category_id').html();
    $('#product_category_id').parent().show();
    var escaped_type_product, options, type_product;
@@ -53,6 +55,9 @@ function miabuela (){
    if (options) {
       $('#product_category_id').html(options);
       $('#category_type_product_id').prop("disabled",true);
+      $('#Btn_RProduct').removeClass('disabled');
+      $('#Btn_RProduct').removeClass('btn-primary');
+      $('#Btn_RProduct').addClass('btn-success');
       return $('#product_category_id').parent().show();
    } else {
       $('#category_type_product_id').prop("disabled",true);
