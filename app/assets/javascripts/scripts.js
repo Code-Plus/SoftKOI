@@ -17,7 +17,12 @@ $(document).ready(function() {
 		$(".HomeM").toggleClass("Hnormal");
 		$(".HomeM").toggleClass("Hdesplegado");
 	});
-	
+	// menu
+
+	$('.McolorHoo').click(function(){
+	  $(this).trigger("hover");
+	});
+
 	$('table').DataTable({
 		"language": {
 			"sProcessing":     "Procesando...",
