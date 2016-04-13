@@ -21,7 +21,7 @@
     <%= link_to 'Show', reserve %>
     <%= link_to 'Edit', edit_reserf_path(reserve) %>
     <%= button_to "", { action: "cancelar", reserve_id: reserve.product_id }, method: :cancelar, data: { confirm: "Are you sure?" }, class: 'btn btn-sm btn-danger bold' do %>
-       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     <% end %>
     <div class="clock"></div>
   </td>

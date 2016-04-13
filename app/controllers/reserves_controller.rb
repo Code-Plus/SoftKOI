@@ -114,6 +114,6 @@ class ReservesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reserve_params
-      params.require(:reserve).permit(:customer, :product_id, :date, :start_time, :end_time, :state, :price_reserve_id)
+      params.require(:reserve).permit(:customer, :date, :start_time, :end_time, :state, :reserve_price_id)
     end
 end

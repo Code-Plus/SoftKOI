@@ -24,18 +24,14 @@
     <%= collection_select(:interval,:price_reserve_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control", :price => "1000") %>
   </div>
   <div class="field">
-  <%= f.label :products,"Consola" %><br>
-				<%= collection_select(:product,:product_id, Product.consolas, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
-  </div>
-  <div class="field">
     <%= f.label :start_time,"Hora de incio" %><br>
     <%= f.text_field :start_time ,:class => "form-control"%>
   </div>
   <div class="field">
     <%= f.label :end_time,"Hora de finalizacion" %><br>
-    <%= f.text_field :end_time,:class => "form-control",readonly: true %>
+    <%= f.text_field :end_time,:class => "form-control" %>
   </div>
-  
+
   <div class="field">
     <%= f.label :price_reserve_id," Precio" %><br>
     <%= f.number_field :reserve_price_id , :class => "form-control"%>
