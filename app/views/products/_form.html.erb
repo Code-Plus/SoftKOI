@@ -33,7 +33,7 @@
       <div class="col-sm-6">
          <div class="form-group required">
             <%= f.label :type_product, "Tipo de producto", :class => "control-label" %>
-            <%= collection_select(:category, :type_product_id, TypeProduct.activos.order(name: :asc), :id, :name, {prompt: "Seleccione un tipo..."}, {:class=>'form-control type_product_id',:onchange =>"miabuela()"}) %>
+            <%= collection_select(:category, :type_product_id, TypeProduct.activos.order(name: :asc), :id, :name, {prompt: "Seleccione un tipo..."}, {:class=>'form-control type_product_id',:onchange =>"Products_category_function()"}) %>
          </div>
       </div>
 
@@ -44,11 +44,17 @@
          </div>
       </div>
 
-
       <div class="col-sm-6">
          <div class="form-group">
-            <%= f.label :can_change, "¿Se puede cambiar?", :class => "control-label"%>
-            <%= f.check_box :can_change, :class => "form-control"%>
+            <hr style="border: 1; margin-top: 0px; margin-bottom:15px !important;">
+      		<label>Permisos:</label>
+      		<br>
+
+      		<section class="switch">
+      			<%= f.check_box :can_change, class: 'switch', id: 'checkbox1' %>
+      			<label class="switch" for="checkbox1"></label>
+      			<p class="switch">¿Se puede cambiar?</p>
+      		</section>
          </div>
       </div>
 

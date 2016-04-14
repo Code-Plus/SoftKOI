@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413175737) do
+ActiveRecord::Schema.define(version: 20160413203645) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160413175737) do
     t.boolean  "can_change",      default: true
   end
 
-
+  add_index "categories", ["type_product_id"], name: "index_categories_on_type_product_id"
 
   create_table "consoles", force: :cascade do |t|
     t.string   "name"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20160413175737) do
     t.datetime "updated_at",       null: false
   end
 
-
+  add_index "customers", ["type_document_id"], name: "index_customers_on_type_document_id"
 
   create_table "input_products", force: :cascade do |t|
     t.integer  "stock",      default: 0
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20160413175737) do
     t.datetime "updated_at",             null: false
   end
 
-
+  add_index "input_products", ["product_id"], name: "index_input_products_on_product_id"
 
   create_table "items", force: :cascade do |t|
     t.integer  "product_id"
@@ -69,7 +69,8 @@ ActiveRecord::Schema.define(version: 20160413175737) do
     t.datetime "updated_at",                                      null: false
   end
 
-
+  add_index "items", ["product_id"], name: "index_items_on_product_id"
+  add_index "items", ["sale_id"], name: "index_items_on_sale_id"
 
   create_table "output_products", force: :cascade do |t|
     t.integer  "stock",      default: 0
@@ -78,7 +79,7 @@ ActiveRecord::Schema.define(version: 20160413175737) do
     t.datetime "updated_at",             null: false
   end
 
-
+  add_index "output_products", ["product_id"], name: "index_output_products_on_product_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -93,17 +94,17 @@ ActiveRecord::Schema.define(version: 20160413175737) do
     t.boolean  "can_change",  default: true
   end
 
-
+  add_index "products", ["category_id"], name: "index_products_on_category_id"
 
   create_table "reserve_prices", force: :cascade do |t|
     t.integer  "value"
     t.integer  "time"
-    t.integer  "console_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "console_id"
   end
 
-
+  add_index "reserve_prices", ["console_id"], name: "index_reserve_prices_on_console_id"
 
   create_table "reserves", force: :cascade do |t|
     t.string   "customer"
@@ -114,7 +115,10 @@ ActiveRecord::Schema.define(version: 20160413175737) do
     t.integer  "reserve_price_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "console_id"
   end
+
+  add_index "reserves", ["console_id"], name: "index_reserves_on_console_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -135,7 +139,8 @@ ActiveRecord::Schema.define(version: 20160413175737) do
     t.datetime "updated_at",                           null: false
   end
 
-
+  add_index "sales", ["customer_id"], name: "index_sales_on_customer_id"
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
 
   create_table "type_documents", force: :cascade do |t|
     t.string "description", null: false
@@ -176,17 +181,7 @@ ActiveRecord::Schema.define(version: 20160413175737) do
     t.string   "state"
     t.integer  "type_document_id"
   end
-  
-  add_index "categories", ["type_product_id"], name: "index_categories_on_type_product_id"
-  add_index "customers", ["type_document_id"], name: "index_customers_on_type_document_id"
-  add_index "input_products", ["product_id"], name: "index_input_products_on_product_id"
-  add_index "items", ["product_id"], name: "index_items_on_product_id"
-  add_index "items", ["sale_id"], name: "index_items_on_sale_id"
-  add_index "output_products", ["product_id"], name: "index_output_products_on_product_id"
-  add_index "products", ["category_id"], name: "index_products_on_category_id"
-  add_index "reserve_prices", ["console_id"], name: "index_reserve_prices_on_console_id"
-  add_index "sales", ["customer_id"], name: "index_sales_on_customer_id"
-  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
+
   add_index "users", ["document"], name: "index_users_on_document", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["type_document_id"], name: "index_users_on_type_document_id"

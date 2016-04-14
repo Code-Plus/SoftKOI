@@ -2,12 +2,12 @@ class Reserve < ActiveRecord::Base
   include AASM
 
   belongs_to :reserve_price
-
+  belongs_to :console
   #Validaciones.
   validates :customer, presence: true
-  validates :product_id, presence: true
+  validates :console_id, presence: true
   validates :end_time, presence: true
-  validates :price_reserve_id, presence: true
+  validates :reserve_price_id, presence: true
 
   #Método para validar que solo se reserve la consola en una hora y una fecha dada.
 =begin

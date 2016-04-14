@@ -1,32 +1,32 @@
-<%= form_for(@reserve) do |f| %>
-  <% if @reserve.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reserve.errors.count, "error") %> prohibited this reserve from being saved:</h2>
+<%= form_for(@reserve, remote: true, :html => { :role => "form" })  do |f| %>
 
-      <ul>
-      <% @reserve.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div id="error_explanation" class="text-danger modal-errors"></div>
 
   <div class="field" id="m_r_reserves">
     <%= f.label :customer,"Cliente" %><br>
     <%= f.text_field :customer , :class => "form-control"%>
   </div>
+
   <div class="field">
     <%= f.label :date,"Fecha" %><br>
     <%= f.date_select :date%>
   </div>
+
   <div class="field">
     <%= f.label :interval,"Intervalo" %><br>
-    <%= collection_select(:interval,:price_reserve_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control", :price => "1000") %>
+    <%= collection_select(:reserve,:reserve_price_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
   </div>
+
+  <div class="field">
+    <%= f.label :consoles,"Consola" %><br>
+    <%= collection_select(:reserve,:console_id, Console.all, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
+  </div>
+
   <div class="field">
     <%= f.label :start_time,"Hora de incio" %><br>
     <%= f.text_field :start_time ,:class => "form-control"%>
   </div>
+  
   <div class="field">
     <%= f.label :end_time,"Hora de finalizacion" %><br>
     <%= f.text_field :end_time,:class => "form-control" %>
@@ -36,6 +36,7 @@
     <%= f.label :price_reserve_id," Precio" %><br>
     <%= f.number_field :reserve_price_id , :class => "form-control"%>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
