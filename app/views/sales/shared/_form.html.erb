@@ -1,0 +1,65 @@
+<div style="margin: 0px 60px;">
+   <%= simple_form_for @sale do |f| %>
+
+   <% content_for :title do -%>
+      Registrar venta
+   <% end -%>
+
+   <% content_for :menus do -%>
+      <li><h5 class="drop-title"><%= link_to "Abonos", "http://cdn.memegenerator.es/imagenes/memes/full/1/62/1628946.jpg" %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Clientes", "http://cdn.memegenerator.es/imagenes/memes/full/1/62/1628946.jpg" %></h5></li>
+   <% end -%>
+
+      <div class="row">
+         <div class="col-sm-8">
+            <div class="panel panel-default">
+               <div class="panel-body table">
+
+                  <h5>Aca irá la tabla con los productos de la venta</h5>
+                  <div class="field">
+                     <%= f.label :limit_date %><br>
+                     <%= f.input_field :limit_date,as: :date , wrapper_html: {class:  'datapicker'} %>
+                  </div>
+
+                  <div class="field">
+                     <%= f.label :comment %><br>
+                     <%= f.input_field :comment, as: :text %>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+
+         <div class="col-sm-4">
+            <div class="panel panel-default">
+               <div class="panel-body table">
+
+                  <div class="field">
+                     <%= f.input :customer, :as => :autocomplete, :source_query => autocomplete_customer_firstname_customers_url %>
+                  </div>
+
+                  <div class="field">
+                     <%= f.label :amount %><br>
+                     <%= f.input_field :amount, as: :decimal %>
+                  </div>
+                  <div class="field">
+                     <%= f.label :total_amount %><br>
+                     <%= f.input_field :total_amount, as: :decimal %>
+                  </div>
+
+                  <div class="field">
+                     <%= f.label :discount %><br>
+                     <%= f.input_field :discount, as: :decimal %>
+                  </div>
+                  <br><br>
+                  <div class="actions">
+                     <%= f.button  :submit, "Realizar pago", class: 'btn btn-success text-uppercase btn-block bold' %>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+
+      </div>
+   <% end %>
+</div>
