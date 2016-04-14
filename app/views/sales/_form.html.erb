@@ -35,7 +35,7 @@
                <div class="panel-body table">
 
                   <div class="field">
-                     <%= f.input :customer, :as => :autocomplete, :source_query => autocomplete_customer_firstname_customers_url %>
+                     <%= f.association :customer %>
                   </div>
 
                   <div class="field">

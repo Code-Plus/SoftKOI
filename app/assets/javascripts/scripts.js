@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-	$('[data-toggle="tooltip"]').tooltip();
+	$('#sale_customer_id').select2();
+
+	 $('[data-toggle="tooltip"]').tooltip();
    $("#notice_wrapper").slideDown(400).delay(2000).slideUp("slow");
 
 	$("#iconmenu").on("click",function(){

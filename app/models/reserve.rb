@@ -4,10 +4,6 @@ class Reserve < ActiveRecord::Base
   belongs_to :reserve_price
   belongs_to :console
   #Validaciones.
-  validates :customer, presence: true
-  validates :console_id, presence: true
-  validates :end_time, presence: true
-  validates :reserve_price_id, presence: true
 
   #Método para validar que solo se reserve la consola en una hora y una fecha dada.
 =begin
@@ -15,7 +11,7 @@ class Reserve < ActiveRecord::Base
     consoles.each do |c|
       reserves.each do |r|
         if c.id == r.product_id
-          validates_date :date, :after => r.date
+          validates_date :dte, :after => r.date
           validates_time :start_time, :after => r.start_time
           validates_time :start_time, :before => r.start_time
         end

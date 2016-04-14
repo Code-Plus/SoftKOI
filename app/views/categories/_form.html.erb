@@ -10,7 +10,7 @@
 			<%= f.text_field :name, :class => "form-control first_input" %>
 		</div>
 
-		<div class="for muestraReloj = ->m-group required">
+		<div class="form-group required">
 			<%= f.label :description, "Descripción", :class => "control-label" %>
 			<%= f.text_area :description, :class => "form-control" %>
 		</div>
@@ -20,6 +20,7 @@
 			<%= f.label "Tipo de Producto", :class => "control-label"%>
 			<%= collection_select(:category,:type_product_id, TypeProduct.activos, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
 		</div>
+
 
 		<hr style="border: 1; margin-top: 0px; margin-bottom:15px !important;">
 		<label>Permisos:</label>

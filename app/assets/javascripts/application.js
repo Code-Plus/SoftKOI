@@ -15,13 +15,14 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require bootstrap3-typeahead.min
-//= require bootstrap3-autocomplete-input.min
+//= require select2
+//= require select2_locale_es
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require flipclock.min
 //= require turbolinks
 //= require_tree .
+
 
 
 $(document).ajaxError(function(event,xhr,options,exc) {

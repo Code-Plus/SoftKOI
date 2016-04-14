@@ -1,6 +1,7 @@
 class ReservesController < ApplicationController
+
   before_action :set_reserve, only: [:show, :edit, :update, :destroy, :activa, :enProceso, :finalizada, :cancelada]
-  protect_from_forgery except: :index
+  #	protect_from_forgery except: :index
 
   # GET /reserves
   # GET /reserves.json
@@ -25,19 +26,17 @@ class ReservesController < ApplicationController
 
   end
 
-  # GET /reserves/1
-  # GET /reserves/1.json
   def show
   end
 
-  # GET /reserves/new
+
   def new
     @reserve = Reserve.new
     #@products = Reserve.validates_date_and_hour(Product.consolas, Reserve.all)
     @reserve_prices = ReservePrice.all
   end
 
-  # GET /reserves/1/edit
+
   def edit
   end
 
@@ -45,8 +44,7 @@ class ReservesController < ApplicationController
     @cancelarReserva = Reserve.cancel_reservation(Reserve.find(params[:reserve_id]))
   end
 
-  # POST /reserves
-  # POST /reserves.json
+
   def create
     @reserve = Reserve.create(reserve_params)
 
@@ -61,8 +59,7 @@ class ReservesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reserves/1
-  # PATCH/PUT /reserves/1.json
+
   def update
     respond_to do |format|
       if @reserve.update(reserve_params)
@@ -75,8 +72,7 @@ class ReservesController < ApplicationController
     end
   end
 
-  # DELETE /reserves/1
-  # DELETE /reserves/1.json
+
   def destroy
     @reserve.destroy
     respond_to do |format|
@@ -111,12 +107,12 @@ class ReservesController < ApplicationController
     end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_reserve
       @reserve = Reserve.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+
     def reserve_params
       params.require(:reserve).permit(:customer,:console_id, :date, :start_time, :end_time, :state, :reserve_price_id)
 
