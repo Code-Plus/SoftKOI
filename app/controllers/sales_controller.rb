@@ -95,7 +95,7 @@ class SalesController < ApplicationController
       end
    end
 
-   def updatCe_totals
+   def update_totals
       set_sale
       @sale.amount = 0.00
 
