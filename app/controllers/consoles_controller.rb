@@ -1,11 +1,12 @@
 class ConsolesController < ApplicationController
-  before_action :set_console, only: [:show, :edit, :update, :destroy]
+  before_action :set_console, only: [:edit, :update, :disponible, :noDisponible, :baja]
 
   def index
-    @consoles = Console.all
+    @consoles = Console.uso
   end
 
-  def show
+  def drop_console
+    @dropConsole = Console.drop
   end
 
   def new
@@ -16,15 +17,15 @@ class ConsolesController < ApplicationController
   end
 
   def create
-    @console = Console.new(console_params)
+    @console = Console.create(console_params)
 
     respond_to do |format|
       if @console.save
-        format.html { redirect_to @console, notice: 'Console was successfully created.' }
-        format.json { render :show, status: :created, location: @console }
+        format.json { head :no_content }
+            format.js {  flash[:notice] = "¡Consola creada satisfactoriamente!" }
       else
-        format.html { render :new }
-        format.json { render json: @console.errors, status: :unprocessable_entity }
+        format.json { render json: @category.errors.full_messages,
+               status: :unprocessable_entity }
       end
     end
   end
@@ -32,21 +33,28 @@ class ConsolesController < ApplicationController
   def update
     respond_to do |format|
       if @console.update(console_params)
-        format.html { redirect_to @console, notice: 'Console was successfully updated.' }
-        format.json { render :show, status: :ok, location: @console }
+       format.json { head :no_content }
+            format.js {  flash[:notice] = "¡Consola actualizada satisfactoriamente!" }
       else
-        format.html { render :edit }
-        format.json { render json: @console.errors, status: :unprocessable_entity }
+        format.json { render json: @category.errors.full_messages,
+               status: :unprocessable_entity }
       end
     end
   end
 
-  def destroy
-    @console.destroy
-    respond_to do |format|
-      format.html { redirect_to consoles_url, notice: 'Console was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def disponible
+      @console.disponible!
+      redirect_to consoles_url
+  end
+
+  def noDisponible
+    @console.noDisponible!
+    redirect_to consoles_url
+  end
+
+  def baja
+    @console.baja!
+    redirect_to consoles_url
   end
 
   private

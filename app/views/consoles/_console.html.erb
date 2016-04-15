@@ -1,0 +1,24 @@
+<tr id="console_<%= console.id %>">
+	<td><%= console.name %></td>
+	<td><%= console.description %></td>
+	<td><%= console.serial %></td>
+
+	<td width="120px">
+		<% if console.state == "noDisponible" %>
+			<span class="label label-primary span-table">No disponible</span>
+		<% elsif console.state == "disponible" %>
+			<span class="label label-success span-table"> Disponible </span>
+		<% else console.state == "baja"%>
+			<span class="label label-danger span-table"> Baja </span>
+		<% end %>
+	</td>
+
+	<% unless console.state == "baja"%>
+		<td>
+			<%= link_to edit_console_path(console), remote: true, :class => 'btn btn-sm btn-info bold' do%>
+			<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+			<% end %>
+		</td>
+	<%end%>
+	
+</tr>
