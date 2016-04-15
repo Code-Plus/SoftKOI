@@ -4,7 +4,7 @@
   <td><%= reserve.date %></td>
   <td><%= reserve.start_time.strftime("%I:%M %p") %></td>
   <td><%= reserve.end_time.strftime("%I:%M %p") %></td>
-  <td><%= reserve.reserve_price_id %></td>
+  <td><%= number_to_currency reserve.reserve_price_id %></td>
 
   <td width="105px">
      <% if reserve.state == "enProceso" %>

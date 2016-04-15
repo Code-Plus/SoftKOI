@@ -19,7 +19,10 @@
       <div class="col-sm-6">
          <div class="form-group required">
             <%= f.label :price, "Precio", :class => "control-label" %>
-            <%= f.number_field :price, :class => "form-control"  %>
+            <div class="input-group">
+               <span class="input-group-addon">$</span>
+               <%= f.number_field :price, :class => "form-control" %>
+            </div>
          </div>
       </div>
 
