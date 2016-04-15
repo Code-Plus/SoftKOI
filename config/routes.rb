@@ -34,11 +34,10 @@ Rails.application.routes.draw do
   end
 
   #Estados de la reserva.
-  put "/reserves/:id/activa", to: "reserves#activa"
-  put "/reserves/:id/enProceso", to: "reserves#enProceso"
-  put "/reserves/:id/finalizada", to: "reserves#finalizada"
-  put "/reserves/:id/cancelada", to: "reserves#cancelada"
-  get "/reserves/cancelar", to: "reserves#cancelar"
+  put "/reserve/:id/activa", to: "reserves#activa"
+  put "/reserve/:id/enProceso", to: "reserves#enProceso"
+  put "/reserve/:id/finalizada", to: "reserves#finalizada"
+  put "/reserve/:id/cancelada", to: "reserves#cancelada"
 
 
 	#Estados de producto
