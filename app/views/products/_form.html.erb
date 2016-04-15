@@ -19,7 +19,10 @@
       <div class="col-sm-6">
          <div class="form-group required">
             <%= f.label :price, "Precio", :class => "control-label" %>
-            <%= f.number_field :price, :class => "form-control" %>
+            <div class="input-group">
+               <span class="input-group-addon">$</span>
+               <%= f.number_field :price, :class => "form-control" %>
+            </div>
          </div>
       </div>
 
@@ -47,14 +50,14 @@
       <div class="col-sm-6">
          <div class="form-group">
             <hr style="border: 1; margin-top: 0px; margin-bottom:15px !important;">
-      		<label>Permisos:</label>
-      		<br>
+            <label>Permisos:</label>
+            <br>
 
-      		<section class="switch">
-      			<%= f.check_box :can_change, class: 'switch', id: 'checkbox1' %>
-      			<label class="switch" for="checkbox1"></label>
-      			<p class="switch">¿Se puede cambiar?</p>
-      		</section>
+            <section class="switch">
+               <%= f.check_box :can_change, class: 'switch', id: 'checkbox1' %>
+               <label class="switch" for="checkbox1"></label>
+               <p class="switch">¿Se puede cambiar?</p>
+            </section>
          </div>
       </div>
 

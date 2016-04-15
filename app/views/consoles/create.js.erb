@@ -1,0 +1,9 @@
+//Desplegar la modal
+$('#dialog').modal('toggle');
+
+//Añadir el registro que acabamos de crear en la tabla
+//Este ID corresponde al de la etiqueta tbody en el index
+$('#consoles').append('<%= j render (@console) %>');
+
+//Desplegar alerta
+$("#notice_wrapper2").html('<%= j flash[:notice] %>').slideDown(400).delay(2000).slideUp(400).fadeOut(1500);

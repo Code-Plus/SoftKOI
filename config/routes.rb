@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 	get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
 
 	devise_for :users
-   resources :consoles
+   resources :consoles do
+   	collection do
+   		get 'drop_console'
+   	end
+   end	
    resources :sales
    resources :products
 	resources :output_products
@@ -55,6 +59,11 @@ Rails.application.routes.draw do
    #Estados de un usuario
    put "/user/:id/habilitar", to: "users#disponible"
    put "/user/:id/inhabilitar", to: "users#noDisponible"
+
+   #Estados de consola
+    put "/console/:id/habilitar", to: "consoles#disponible"
+    put "/console/:id/inhabilitar", to: "consoles#noDisponible"
+    put "/console/:id/baja", to: "consoles#baja"
 
 
 end
