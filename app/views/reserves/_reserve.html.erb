@@ -2,8 +2,8 @@
   <td><%= reserve.customer %></td>
   <td><%= reserve.console.name %></td>
   <td><%= reserve.date %></td>
-  <td><%= reserve.start_time %></td>
-  <td><%= reserve.end_time %></td>
+  <td><%= reserve.start_time.strftime("%I:%M %p") %></td>
+  <td><%= reserve.end_time.strftime("%I:%M %p") %></td>
   <td><%= reserve.reserve_price_id %></td>
 
   <td width="105px">
