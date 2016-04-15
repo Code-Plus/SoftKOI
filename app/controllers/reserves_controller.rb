@@ -7,9 +7,9 @@ class ReservesController < ApplicationController
   # GET /reserves.json
   def index
     @reserves = Reserve.all
-    @reservesActivas = Reserve.activa
-    @actualizarEstadoProceso = Reserve.validates_hour_start(Reserve.all)
-    @actualizarEstadoFinalizada = Reserve.validates_hour_finish(Reserve.all)
+    # @reservesActivas = Reserve.activa
+    # @actualizarEstadoProceso = Reserve.validates_hour_start(Reserve.all)
+    # @actualizarEstadoFinalizada = Reserve.validates_hour_finish(Reserve.all)
 
     #render '/reserves/clock.js.erb'
 =begin
@@ -27,6 +27,7 @@ class ReservesController < ApplicationController
   end
 
   def show
+
   end
 
 
