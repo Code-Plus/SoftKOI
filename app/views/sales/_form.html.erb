@@ -1,5 +1,5 @@
 <div style="margin: 0px 60px;">
-   <%= simple_form_for @sale do |f| %>
+   <%= form_for @sale do |f| %>
 
    <% content_for :title do -%>
       Registrar venta
@@ -18,12 +18,12 @@
                   <h5>Aca irá la tabla con los productos de la venta</h5>
                   <div class="field">
                      <%= f.label :limit_date %><br>
-                     <%= f.input_field :limit_date,as: :date , wrapper_html: {class:  'datapicker'} %>
+                     <%= f.date_field :limit_date, :class =>  "datapicker" %>
                   </div>
 
                   <div class="field">
                      <%= f.label :comment %><br>
-                     <%= f.input_field :comment, as: :text %>
+                     <%= f.text_area :comment%>
                   </div>
 
                </div>
@@ -35,25 +35,25 @@
                <div class="panel-body table">
 
                   <div class="field">
-                     <%= f.association :customer %>
+                    <!--Aca va el cliente -->
                   </div>
 
                   <div class="field">
                      <%= f.label :amount %><br>
-                     <%= f.input_field :amount, as: :decimal %>
+                     <%= f.text_field :amount %>
                   </div>
                   <div class="field">
                      <%= f.label :total_amount %><br>
-                     <%= f.input_field :total_amount, as: :decimal %>
+                     <%= f.text_field :total_amount %>
                   </div>
 
                   <div class="field">
                      <%= f.label :discount %><br>
-                     <%= f.input_field :discount, as: :decimal %>
+                     <%= f.text_field :discount %>
                   </div>
                   <br><br>
                   <div class="actions">
-                     <%= f.button  :submit, "Realizar pago", class: 'btn btn-success text-uppercase btn-block bold' %>
+                     <%= f.submit "Registrar venta", :class => "btn btn-success bold" %>
                   </div>
 
                </div>

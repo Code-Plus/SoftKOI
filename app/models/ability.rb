@@ -21,9 +21,9 @@ class Ability
          #    can :manage, Change
          # end
 
-         # if user.can_consoles
-         #    can :manage, Console
-         # end
+         if user.can_consoles == true
+            can :manage, Console
+         end
 
          if user.can_customers == true
             can :manage, Customer
