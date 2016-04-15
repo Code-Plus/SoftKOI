@@ -13,8 +13,11 @@ Rails.application.routes.draw do
 	get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
 
 	devise_for :users
-   resources :consoles 
-   		
+   resources :consoles do
+   	collection do
+   		get 'drop_console'
+   	end
+   end	
    resources :sales
    resources :products
 	resources :output_products
@@ -34,13 +37,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/drop_console', to: 'consoles#drop_console'
   #Estados de la reserva.
-  put "/reserves/:id/activa", to: "reserves#activa"
-  put "/reserves/:id/enProceso", to: "reserves#enProceso"
-  put "/reserves/:id/finalizada", to: "reserves#finalizada"
-  put "/reserves/:id/cancelada", to: "reserves#cancelada"
-  get "/reserves/cancelar", to: "reserves#cancelar"
+  put "/reserve/:id/activa", to: "reserves#activa"
+  put "/reserve/:id/enProceso", to: "reserves#enProceso"
+  put "/reserve/:id/finalizada", to: "reserves#finalizada"
+  put "/reserve/:id/cancelada", to: "reserves#cancelada"
 
 
 	#Estados de producto

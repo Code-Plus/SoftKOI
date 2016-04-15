@@ -35,7 +35,8 @@
                <div class="panel-body table">
 
                   <div class="field">
-                    <!--Aca va el cliente -->
+                    <%= f.label "Cliente", :class => "control-label"%>
+                    <%= collection_select(:sale,:customer_id, Customer.all, :id, :name, {prompt: "Seleccione un cliente"}, :class => "form-control") %>
                   </div>
 
                   <div class="field">
