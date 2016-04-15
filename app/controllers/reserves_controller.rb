@@ -1,7 +1,7 @@
 class ReservesController < ApplicationController
 
   before_action :set_reserve, only: [:show, :edit, :update, :destroy, :activa, :enProceso, :finalizada, :cancelada]
-  #	protect_from_forgery except: :index
+
 
   # GET /reserves
   # GET /reserves.json
@@ -11,22 +11,10 @@ class ReservesController < ApplicationController
     #@actualizarEstadoProceso = Reserve.validates_hour_start(Reserve.all)
     #@actualizarEstadoFinalizada = Reserve.validates_hour_finish(Reserve.all)
 
-    #render '/reserves/clock.js.erb'
-=begin
-    respond_to do |format|
-      format.js {
-         :template => '/reserves/clock.js.erb',
-         :layout => false
-      }
-    end
-=end
-    #respond_to do |format|
-    #  format.js { render '/reserves/clock.js.erb' }
-    #end
-
   end
 
   def show
+
   end
 
 
