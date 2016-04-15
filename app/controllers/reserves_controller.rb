@@ -8,8 +8,8 @@ class ReservesController < ApplicationController
   def index
     @reserves = Reserve.all
     @reservesActivas = Reserve.activa
-    @actualizarEstadoProceso = Reserve.validates_hour_start(Reserve.all)
-    @actualizarEstadoFinalizada = Reserve.validates_hour_finish(Reserve.all)
+    #@actualizarEstadoProceso = Reserve.validates_hour_start(Reserve.all)
+    #@actualizarEstadoFinalizada = Reserve.validates_hour_finish(Reserve.all)
 
     #render '/reserves/clock.js.erb'
 =begin
@@ -102,9 +102,9 @@ class ReservesController < ApplicationController
      redirect_to reserves_url
   end
 
-  def Reserve_ajax
-      ReservePrice.all
-    end
+  # def Reserve_ajax
+  #     ReservePrice.all
+  #   end
 
   private
 
