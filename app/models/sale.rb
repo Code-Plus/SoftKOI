@@ -26,7 +26,7 @@ class Sale < ActiveRecord::Base
 
    private
 
-   def verificar_estado	
+   def verificar_estado
    		if self.amount == self.total_amount
    			self.state = "pago"
    		else

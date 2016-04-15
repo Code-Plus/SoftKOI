@@ -2,6 +2,10 @@ $(document).ready(function() {
 
 
 	$('#sale_customer_id').select2();
+	$('.input-group.date').datepicker({
+   	autoclose: true,
+		orientation: "bottom auto",
+	});
 
 	$('[data-toggle="tooltip"]').tooltip();
 	$("#notice_wrapper").slideDown(400).delay(2000).slideUp("slow");
