@@ -41,11 +41,18 @@
          <div class="col-sm-4">
             <div class="panel panel-default">
                <div class="panel-body table">
-
-                  <div class="field">
-                    <%= f.label "Cliente", :class => "control-label"%>
-                    <%= collection_select(:sale,:customer_id, Customer.all, :id, :pito, {prompt: "Seleccione un cliente"}, :class => "form-control") %>
-                  </div>
+                 <div id="inf_customer_start">
+                   <div class="field">
+                     <%= f.label "Cliente", :class => "control-label"%>
+                     <%= collection_select(:sale,:customer_id, Customer.all, :id, :pito, {prompt: "Seleccione un cliente"}, :class => "form-control") %>
+                   </div>
+                 </div>
+                <div id="inf_customer_end" class="hidden">
+                    <div class="field">
+                      <label for="">Nombre: <span id="info_customer_finish_name"></span></label><br>
+                      <label for="">Documento: <span id="info_customer_finish_doc"></span></label>
+                    </div>
+                </div>
 
                   <div class="field">
                      <%= f.label :amount %><br>

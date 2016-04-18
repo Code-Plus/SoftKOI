@@ -1,16 +1,22 @@
 $(document).ready(function() {
 
-	$('#sale_customer_id').select2();
+	// $('#sale_customer_id').select2();
 
 	$('#sale_customer_id').change(function(){
 		var id_customer = $('#sale_customer_id option:selected').val();
 		$.ajax({
-			url: '/sales/client',
+			url: '/sales/customer',
 			data:{customer:id_customer },
-			type: 'Get',
+			type: 'get',
 			DataType: 'json'
 		}).done(function(done){
-			var customer = done['firstname'],
+			var customer_firsname = done['firstname'];
+			var customer_lastname = done['lastname'];
+			var customer_doc = done['document'];
+			$('#inf_customer_start').addClass('hidden');
+			$('#inf_customer_end').removeClass('hidden');
+			$('#info_customer_finish_name').text(customer_firsname+' '+customer_lastname);
+			$('#info_customer_finish_doc').text(customer_doc);
 		}).error(function(error){
 			console.log('error al conectar con el servidor'+error);
 		});

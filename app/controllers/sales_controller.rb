@@ -7,11 +7,11 @@ class SalesController < ApplicationController
       @sales = Sale.all
    end
 
-   def ajax_add_customer
-     @ customer = params[:id_customer]
+   def ajax_customer
+     @customer = Customer.find(params[:customer])
      respond_to do |format|
        format.json{render json: @customer }
-    end
+     end
    end
 
    def show
