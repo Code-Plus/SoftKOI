@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-
 	$('#sale_customer_id').select2();
+
 	$('.input-group.date').datepicker({
    	autoclose: true,
 		orientation: "bottom auto",
@@ -24,8 +24,8 @@ $(document).ready(function() {
 		$(".HomeM").toggleClass("Hnormal");
 		$(".HomeM").toggleClass("Hdesplegado");
 	});
-	// menu
 
+	// Menu
 	$('.McolorHoo').click(function(){
 		$(this).trigger("hover");
 	});
