@@ -5,21 +5,6 @@ class Reserve < ActiveRecord::Base
   belongs_to :console
   #Validaciones.
 
-  #Método para validar que solo se reserve la consola en una hora y una fecha dada.
-=begin
-  def self.validates_date_and_hour(consoles, reserves)
-    consoles.each do |c|
-      reserves.each do |r|
-        if c.id == r.product_id
-          validates_date :dte, :after => r.date
-          validates_time :start_time, :after => r.start_time
-          validates_time :start_time, :before => r.start_time
-        end
-      end
-    end
-  end
-=end
-
   scope :activa, -> {find_by_sql('SELECT date, start_time, end_time, state FROM reserves WHERE state = "activa"')}
 
   #Método para pasar al estado "enProceso" de una reserva determinada cuando llegue a la hora registrada.

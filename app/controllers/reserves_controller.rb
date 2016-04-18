@@ -17,7 +17,6 @@ class ReservesController < ApplicationController
 
   def new
     @reserve = Reserve.new
-    #@products = Reserve.validates_date_and_hour(Product.consolas, Reserve.all)
     @reserve_prices = ReservePrice.all
   end
 

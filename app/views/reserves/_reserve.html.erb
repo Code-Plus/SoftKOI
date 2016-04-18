@@ -19,11 +19,11 @@
   </td>
 
   <td>
-    <%= link_to  edit_reserf_path(reserve), remote: true, :class => 'btn btn-sm btn-info bold' do %>
-       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
-    <% end %>
-
     <% if reserve.may_finalizada? %>
+
+        <%= link_to  edit_reserf_path(reserve), remote: true, :class => 'btn btn-sm btn-info bold' do %>
+           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+        <% end %>
 
         <%= link_to "/reserve/#{reserve.id}/cancelada", method: :put, class: 'btn btn-sm btn-danger bold' do %>
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp; Cancelar
@@ -31,11 +31,14 @@
 
       <% elsif reserve.may_cancelada? %>
 
+        <%= link_to  edit_reserf_path(reserve), remote: true, :class => 'btn btn-sm btn-info bold' do %>
+           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+        <% end %>
+
         <%= link_to "/reserve/#{reserve.id}/cancelada", method: :put, class: 'btn btn-sm btn-danger bold' do %>
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp; Cancelar
         <% end %>
 
     <% end %>
-
   </td>
 </tr>
