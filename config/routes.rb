@@ -9,16 +9,7 @@ Rails.application.routes.draw do
 	#welcome/index como home_path
 	get '/home', to: 'welcome#index', as: 'home'
 
-	#Rutas para el ajax creado por chuco
-	get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
-	get '/sales/client', to: 'sales#ajax_elnombre_de_mia_accion', as: 'ajax_sales'
-
 	devise_for :users
-   resources :consoles do
-   	collection do
-   		get 'drop_console'
-   	end
-   end
    resources :sales
    resources :products
 	resources :output_products
@@ -28,15 +19,29 @@ Rails.application.routes.draw do
    resources :reserve_prices
    resources :reserves
 
-	resources :customers do
-		get :autocomplete_customer_firstname, :on => :collection
+	resources :consoles do
+	   collection do
+	   	get 'drop_console'
+	   end
 	end
+
+	resources :consoles do
+   	collection do
+   		get 'drop_console'
+   	end
+   end
 
 	resources :users do
     collection do
       post 'new_user'
     end
   end
+
+  # Ruta para el ajax de reservas
+  get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
+  # Ruta para el ajax de ventas
+  get '/sales/client', to: 'sales#ajax_elnombre_de_mia_accion', as: 'ajax_sales'
+
 
   #Estados de la reserva.
   put "/reserve/:id/activa", to: "reserves#activa"
@@ -65,6 +70,5 @@ Rails.application.routes.draw do
     put "/console/:id/habilitar", to: "consoles#disponible"
     put "/console/:id/inhabilitar", to: "consoles#noDisponible"
     put "/console/:id/baja", to: "consoles#baja"
-
 
 end

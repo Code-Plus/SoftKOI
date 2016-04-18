@@ -1,16 +1,16 @@
 $(document).ready(function() {
 
-
 	$('#sale_customer_id').select2();
 
 	$('#sale_customer_id').change(function(){
+		var id_customer = $('#sale_customer_id option:selected').val();
 		$.ajax({
 			url: '/sales/client',
-			data:{mivariable : 'esta es la variable 3',miotravariable: 'el contenido de mi otra variable' },
+			data:{customer:id_customer },
 			type: 'Get',
 			DataType: 'json'
 		}).done(function(done){
-				alert(done);
+			var customer = done['firstname'],
 		}).error(function(error){
 			console.log('error al conectar con el servidor'+error);
 		});
@@ -40,8 +40,8 @@ $(document).ready(function() {
 		$(".HomeM").toggleClass("Hnormal");
 		$(".HomeM").toggleClass("Hdesplegado");
 	});
-	// menu
 
+	// Menu
 	$('.McolorHoo').click(function(){
 		$(this).trigger("hover");
 	});
