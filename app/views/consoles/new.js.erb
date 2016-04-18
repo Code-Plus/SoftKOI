@@ -1,5 +1,5 @@
 // Add the dialog title
-$('#dialog h4').html("<i class='fa fa-plus'></i>&nbsp; Registrar Producto");
+$('#dialog h4').html("<i class='fa fa-plus'></i>&nbsp; Registrar Consola");
 
 // Render the new form
 $('.modal-body').html('<%= j render("form") %>');
@@ -11,11 +11,3 @@ $('#dialog').modal("show");
 $('#dialog').on('shown.bs.modal', function () {
 	  $('.first_input').focus()
 })
-
-$('#category_type_product_id').select2({
-	theme: "bootstrap"
-});
-
-$('#product_category_id').select2({
-	theme: "bootstrap"
-});

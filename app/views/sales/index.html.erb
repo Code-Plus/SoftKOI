@@ -38,9 +38,9 @@
                <tbody>
                   <% @sales.each do |sale| %>
                   <tr>
-                     <td><%= sale.amount %></td>
-                     <td><%= sale.total_amount %></td>
-                     <td><%= sale.discount %></td>
+                     <td><%= number_to_currency sale.amount %></td>
+                     <td><%= number_to_currency sale.total_amount %></td>
+                     <td><%= number_to_currency sale.discount %></td>
                      <td><%= sale.limit_date %></td>
                      <td><%= sale.user.document %></td>
                      <td><%= sale.comment %></td>

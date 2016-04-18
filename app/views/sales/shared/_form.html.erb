@@ -17,9 +17,17 @@
 
                   <h5>Aca irá la tabla con los productos de la venta</h5>
                   <div class="field">
+
                      <%= f.label :limit_date %><br>
-                     <%= f.date_field :limit_date, :class =>  "datapicker" %>
+                     <div class="input-group input-group-sm date">
+                       <%= f.text_field :limit_date, :class => "form-control input-sm" %>
+                       <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-th"></i>
+                       </span>
+                     </div>
+
                   </div>
+
 
                   <div class="field">
                      <%= f.label :comment %><br>
@@ -35,7 +43,8 @@
                <div class="panel-body table">
 
                   <div class="field">
-                    <!--Aca va el cliente -->
+                    <%= f.label "Cliente", :class => "control-label"%>
+                    <%= collection_select(:sale,:customer_id, Customer.all, :id, :pito, {prompt: "Seleccione un cliente"}, :class => "form-control") %>
                   </div>
 
                   <div class="field">
@@ -63,4 +72,3 @@
       </div>
    <% end %>
 </div>
-

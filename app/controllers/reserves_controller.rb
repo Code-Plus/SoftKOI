@@ -2,36 +2,26 @@ class ReservesController < ApplicationController
 
   before_action :set_reserve, only: [:show, :edit, :update, :destroy, :activa, :enProceso, :finalizada, :cancelada]
 
-
   # GET /reserves
   # GET /reserves.json
   def index
     @reserves = Reserve.all
     @reservesActivas = Reserve.activa
-    #@actualizarEstadoProceso = Reserve.validates_hour_start(Reserve.all)
-    #@actualizarEstadoFinalizada = Reserve.validates_hour_finish(Reserve.all)
-
+    @actualizarEstadoProceso = Reserve.validates_hour_start(Reserve.all)
+    @actualizarEstadoFinalizada = Reserve.validates_hour_finish(Reserve.all)
   end
 
   def show
 
   end
 
-
   def new
     @reserve = Reserve.new
-    #@products = Reserve.validates_date_and_hour(Product.consolas, Reserve.all)
     @reserve_prices = ReservePrice.all
   end
 
-
   def edit
   end
-
-  def cancelar
-    @cancelarReserva = Reserve.cancel_reservation(Reserve.find(params[:reserve_id]))
-  end
-
 
   def create
     @reserve = Reserve.create(reserve_params)
@@ -90,9 +80,9 @@ class ReservesController < ApplicationController
      redirect_to reserves_url
   end
 
-  # def Reserve_ajax
-  #     ReservePrice.all
-  #   end
+  def Reserve_ajax
+       ReservePrice.all
+  end
 
   private
 

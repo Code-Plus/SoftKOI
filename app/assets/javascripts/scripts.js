@@ -1,9 +1,14 @@
 $(document).ready(function() {
 
-	$('#sale_customer_id').select2();
 
-	 $('[data-toggle="tooltip"]').tooltip();
-   $("#notice_wrapper").slideDown(400).delay(2000).slideUp("slow");
+	$('#sale_customer_id').select2();
+	$('.input-group.date').datepicker({
+   	autoclose: true,
+		orientation: "bottom auto",
+	});
+
+	$('[data-toggle="tooltip"]').tooltip();
+	$("#notice_wrapper").slideDown(400).delay(2000).slideUp("slow");
 
 	$("#iconmenu").on("click",function(){
 		$(".menusuperior").toggleClass("normal");
@@ -22,7 +27,7 @@ $(document).ready(function() {
 	// menu
 
 	$('.McolorHoo').click(function(){
-	  $(this).trigger("hover");
+		$(this).trigger("hover");
 	});
 
 	$('table').DataTable({

@@ -1,21 +1,14 @@
 <div style="margin: 0px 60px;">
 
    <% content_for :title do -%>
-      Gestion de consolas <i class="fa fa-caret-down"></i>
+      Consolas de baja <i class="fa fa-caret-down"></i>
    <% end -%>
 
    <% content_for :menus do -%>
-      <li><h5 class="drop-title"><%= link_to "Consolas de Baja", drop_console_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Consolas", consoles_path %></h5></li>
       <li><h5 class="drop-title"><%= link_to "Reservas", reserves_path %></h5></li>
       <li><h5 class="drop-title"><%= link_to "Precio de reserva", reserve_prices_path %></h5></li>
    <% end %>
-
-   <% content_for :button do -%>
-      <%= link_to new_console_path, remote: true, class: 'btn btn-success bold' do %>
-         <i class="fa fa-plus"></i>
-         &nbsp;Nueva Consola
-      <% end %>
-   <% end -%>
 
 
    <div class="panel">
@@ -28,12 +21,11 @@
                   <th>Descripción</th>
                   <th>Serial</th>
                   <th>Estado</th>
-                  <th width="140">Acciones</th>
                </tr>
             </thead>
 
             <tbody id="consoles">
-               <%= render @consoles %>
+               <%= render @dropConsole %>
             </tbody>
          </table>
 
