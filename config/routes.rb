@@ -20,6 +20,12 @@ Rails.application.routes.draw do
    resources :reserves
 
 	resources :consoles do
+	   collection do
+	   	get 'drop_console'
+	   end
+	end
+
+	resources :consoles do
    	collection do
    		get 'drop_console'
    	end
@@ -31,8 +37,11 @@ Rails.application.routes.draw do
     end
   end
 
-  #Ruta para el ajax de reservas
+  # Ruta para el ajax de reservas
   get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
+  # Ruta para el ajax de ventas
+  get '/sales/client', to: 'sales#ajax_elnombre_de_mia_accion', as: 'ajax_sales'
+
 
   #Estados de la reserva.
   put "/reserve/:id/activa", to: "reserves#activa"

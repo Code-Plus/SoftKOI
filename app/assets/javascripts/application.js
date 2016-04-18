@@ -41,18 +41,39 @@ $(document).ajaxError(function(event,xhr,options,exc) {
    $("#error_explanation").html(kk);
 });
 
-setTimeout(iden_page, 1000);
+// setTimeout(iden_page, 100);
+
+
 
 function iden_page(){
   if($('#Reserve_Page').length > 0){
-    setInterval(PageReload, 10000);
+      console.log("si llega hasta el primer if el elemento existe.");
+    var dess_page = "noact";
+    $('div.m_r_b_reservas').click(function(){
+      console.log("Se hizo click en el boton con la clase m_r_b_reservas.");
+      dess_page = "siact"
+    });
+      switch (dess_page) {
+        case 'noact':
+          console.log("entro en el switch y esta en el caso Noact.");
+            if(!$('#new_reserve').length > 0){
+              console.log("la modal no existe.");
+              setInterval(PageReload, 10000);
+            }
 
-  }
-  function PageReload(){
-    location.reload();
+          break;
+        case 'siact':
+        console.log("entro en el switch y esta en el caso Siact.");
+            alert('no recargar');
+          break;
+        default:
+      }
   }
 }
 
+function PageReload(){
+  location.reload();
+}
 
 var categoriesI ;
 var var_attr ;
@@ -121,16 +142,19 @@ function Cargar_En_Reserva(){
     horas = fechaHora.getHours();
     minutos = fechaHora.getMinutes();
     segundos = fechaHora.getSeconds();
-    sufijo = ' AM';
+
+    var id_reserve_price = $('#reserve_reserve_price_id option:selected').val();
 
     $.ajax({
       url:'/reserves/price_interval',
-      data:{'interval_id':var_id_interval},
-      type:'get'
+      data:{id_reserve_price_selected:id_reserve_price},
+      type:'get',
+      DataType:'json'
     }).done(function(done){
-      alert('done');
+      var price = done['value'];
+      $('.field_prices').val(price);
     }).error(function(errors){
-      console.log(errors);
+      alert(errors);
     });
 
 

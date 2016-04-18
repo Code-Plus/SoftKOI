@@ -7,6 +7,12 @@ class SalesController < ApplicationController
       @sales = Sale.all
    end
 
+   def ajax_elnombre_de_mia_accion
+     @sale_s = params[:mivariable]
+     respond_to do |format|
+       format.json{render json: @sale_s }
+    end
+   end
 
    def show
    end
@@ -65,7 +71,7 @@ class SalesController < ApplicationController
 
       unless @sale.blank? || params[:customer_id].blank?
          @sale.customer_id = params[:customer_id]
-         @sale.save
+         @sale.save    @sale = Sale.find(params[:sale_discount][:sale_id])
       end
 
       respond_to do |format|

@@ -81,7 +81,10 @@ class ReservesController < ApplicationController
   end
 
   def Reserve_ajax
-       ReservePrice.all
+    @reserve_price_reserve = ReservePrice.find(params[:id_reserve_price_selected])
+    respond_to do |format|
+      format.json {render json: @reserve_price_reserve}
+    end
   end
 
   private
