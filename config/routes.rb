@@ -11,13 +11,14 @@ Rails.application.routes.draw do
 
 	#Rutas para el ajax creado por chuco
 	get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
+	get '/sales/client', to: 'sales#ajax_elnombre_de_mia_accion', as: 'ajax_sales'
 
 	devise_for :users
    resources :consoles do
    	collection do
    		get 'drop_console'
    	end
-   end	
+   end
    resources :sales
    resources :products
 	resources :output_products

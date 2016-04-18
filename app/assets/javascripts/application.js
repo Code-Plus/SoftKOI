@@ -42,7 +42,7 @@ $(document).ajaxError(function(event,xhr,options,exc) {
    $("#error_explanation").html(kk);
 });
 
-setTimeout(iden_page, 100);
+// setTimeout(iden_page, 100);
 
 
 
@@ -143,16 +143,19 @@ function Cargar_En_Reserva(){
     horas = fechaHora.getHours();
     minutos = fechaHora.getMinutes();
     segundos = fechaHora.getSeconds();
-    sufijo = ' AM';
+
+    var id_reserve_price = $('#reserve_reserve_price_id option:selected').val();
 
     $.ajax({
       url:'/reserves/price_interval',
-      data:{'interval_id':var_id_interval},
-      type:'get'
+      data:{id_reserve_price_selected:id_reserve_price},
+      type:'get',
+      DataType:'json'
     }).done(function(done){
-      alert('done');
+      var price = done['value'];
+      $('.field_prices').val(price);
     }).error(function(errors){
-      console.log(errors);
+      alert(errors);
     });
 
 

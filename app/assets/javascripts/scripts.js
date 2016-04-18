@@ -2,6 +2,22 @@ $(document).ready(function() {
 
 
 	$('#sale_customer_id').select2();
+
+	$('#sale_customer_id').change(function(){
+		$.ajax({
+			url: '/sales/client',
+			data:{mivariable : 'esta es la variable 3',miotravariable: 'el contenido de mi otra variable' },
+			type: 'Get',
+			DataType: 'json'
+		}).done(function(done){
+				alert(done);
+		}).error(function(error){
+			console.log('error al conectar con el servidor'+error);
+		});
+
+	});
+
+
 	$('.input-group.date').datepicker({
    	autoclose: true,
 		orientation: "bottom auto",
@@ -30,6 +46,7 @@ $(document).ready(function() {
 		$(this).trigger("hover");
 	});
 
+
 	$('table').DataTable({
 		"language": {
 			"sProcessing":     "Procesando...",
@@ -56,5 +73,7 @@ $(document).ready(function() {
 			}
 		}
 	});
+
+
 
 });
