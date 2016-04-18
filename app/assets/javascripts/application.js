@@ -151,8 +151,10 @@ function Cargar_En_Reserva(){
       type:'get',
       DataType:'json'
     }).done(function(done){
+
       var price = done['value'];
       $('.field_prices').val(price);
+      
     }).error(function(errors){
       alert(errors);
     });

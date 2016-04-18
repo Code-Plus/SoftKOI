@@ -7,11 +7,11 @@ class SalesController < ApplicationController
       @sales = Sale.all
    end
 
-   def ajax_elnombre_de_mia_accion
-     @sale_s = params[:mivariable]
+   def ajax_customer
+     @customer = Customer.find(params[:customer])
      respond_to do |format|
-       format.json{render json: @sale_s }
-    end
+       format.json{render json: @customer }
+     end
    end
 
    def show

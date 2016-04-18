@@ -8,6 +8,12 @@ Rails.application.routes.draw do
 
 	#welcome/index como home_path
 	get '/home', to: 'welcome#index', as: 'home'
+	# Ruta para el ajax de ventas
+	get '/sales/customer', to: 'sales#ajax_customer', as: 'ajax_customer'
+
+	# Ruta para el ajax de reservas
+  get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
+
 
 	devise_for :users
    resources :sales
@@ -37,10 +43,8 @@ Rails.application.routes.draw do
     end
   end
 
-  # Ruta para el ajax de reservas
-  get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
-  # Ruta para el ajax de ventas
-  get '/sales/client', to: 'sales#ajax_elnombre_de_mia_accion', as: 'ajax_sales'
+
+
 
 
   #Estados de la reserva.
