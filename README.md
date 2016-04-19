@@ -1,4 +1,4 @@
-== SOFTKOI APP
+# SOFTKOI APP
 
 ### Módulos
 - Control de existencias
@@ -22,6 +22,5 @@
 - Miguel Angel Arenas [@maac4422](https://github.com/maac4422)
 
 ### License
-### This is an H3 ######
 
 MIT
