@@ -1,28 +1,27 @@
-== README
+== SOFTKOI APP
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Módulos
+- Control de existencias
+- Gestion de ventas
+- Pagos
+- Gestion de consolas
+- Cambios
+- Administración Usuarios
+- Clientes
+- Agenda
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+* Ruby version: 2.2.3
+
+* Rails version: 4.2.4
+
+- Emmanuel Deossa [@EmmanuelSW](https://github.com/EmmanuelSW)
+- Jesús Scarpetta [@Dragonizado](https://github.com/dragonizado)
+- Maria Camila Alzate [@Alphalt](https://github.com/Alphalt)
+- Miguel Angel Arenas [@maac4422](https://github.com/maac4422)
+
+License
+----
+
+MIT
