@@ -7,7 +7,7 @@
 	<div class="col-sm-4">
 		<div class="form-group required">
 			<%= f.label :type_document_id, "Tipo de Documento", :class => "control-label"%>
-			<%= collection_select(:user,:type_document_id, TypeDocument.all, :id, :description, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
+			<%= collection_select(:user,:type_document_id, TypeDocument.all, :id, :description, {prompt: "Seleccione una opcion"}, :class => "form-control ") %>
 		</div>
 	</div>
 	<div class="col-sm-4">
@@ -63,52 +63,57 @@
 		<div class="form-group required">
 			<!-- Crea una etiqueta select con los registros de la tabla asociada -->
 			<%= f.label "Rol", :class => "control-label"%>
-			<%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: "Seleccione una opción..."}, :class => "form-control") %>
+			<%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: "Seleccione una opción..."}, :class => "form-control rol") %>
 		</div>
 	</div>
 	<div class="col-sm-12">
 		<hr style="border: 1; margin-top: 0px; margin-bottom:15px !important;">
-		<label>Permisos:</label>
 	</div>
-	<div style="text-align:center;" class="col-sm-12">
-		<section class="switch">
-			<%= f.check_box :can_inventory, class: 'switch', id: 'checkbox1' %>
-			<label class="switch" for="checkbox1"></label>
-			<p class="switch">Control Existencias</p>
-		</section>
+	<div class="permisos hidden" id="permisos">
+		<div class="col-sm-12">
+			<label>Permisos:</label>
+		</div>
+		<div style="text-align:center;" class="col-sm-12">
+			<section class="switch">
+				<%= f.check_box :can_inventory, class: 'switch', id: 'checkbox1' %>
+				<label class="switch" for="checkbox1"></label>
+				<p class="switch">Control Existencias</p>
+			</section>
 
-		<section class="switch">
-			<%= f.check_box :can_sales, class: 'switch', id: 'checkbox2' %>
-			<label class="switch" for="checkbox2"></label>
-			<p class="switch">Ventas</p>
-		</section>
+			<section class="switch">
+				<%= f.check_box :can_sales, class: 'switch', id: 'checkbox2' %>
+				<label class="switch" for="checkbox2"></label>
+				<p class="switch">Ventas</p>
+			</section>
 
-		<section class="switch">
-			<%= f.check_box :can_changes, class: 'switch', id: 'checkbox3' %>
-			<label class="switch" for="checkbox3"></label>
-			<p class="switch">Cambios</p>
-		</section>
+			<section class="switch">
+				<%= f.check_box :can_changes, class: 'switch', id: 'checkbox3' %>
+				<label class="switch" for="checkbox3"></label>
+				<p class="switch">Cambios</p>
+			</section>
 
-		<section class="switch">
-			<%= f.check_box :can_consoles, class: 'switch', id: 'checkbox4' %>
-			<label class="switch" for="checkbox4"></label>
-			<p class="switch">Consolas</p>
-		</section>
+			<section class="switch">
+				<%= f.check_box :can_consoles, class: 'switch', id: 'checkbox4' %>
+				<label class="switch" for="checkbox4"></label>
+				<p class="switch">Consolas</p>
+			</section>
 
-		<section class="switch">
-			<%= f.check_box :can_customers, class: 'switch', id: 'checkbox5' %>
-			<label class="switch" for="checkbox5"></label>
-			<p class="switch">Clientes</p>
-		</section>
+			<section class="switch">
+				<%= f.check_box :can_customers, class: 'switch', id: 'checkbox5' %>
+				<label class="switch" for="checkbox5"></label>
+				<p class="switch">Clientes</p>
+			</section>
 
+			<hr style="border: 1; margin-top: 0px; ">
+		</div>
 	</div>
 
 	<div class="col-sm-12">
-		<hr style="border: 1; margin-top: 0px; ">
-		<div class="form-group" style="margin-bottom: 0px;">
-			<%= f.submit "Crear Usuario", :class => "btn btn-success bold" %>
+			<div class="form-group" style="margin-bottom: 0px;">
+				<%= f.submit "Crear Usuario", :class => "btn btn-success bold" %>
+			</div>
 		</div>
-	</div>
+
 </div>
 
 <% end %>

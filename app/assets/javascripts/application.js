@@ -27,6 +27,7 @@
 //= require_tree .
 
 
+
 $(document).ajaxError(function(event,xhr,options,exc) {
 
    var errors = JSON.parse(xhr.responseText);
@@ -154,7 +155,7 @@ function Cargar_En_Reserva(){
 
       var price = done['value'];
       $('.field_prices').val(price);
-      
+
     }).error(function(errors){
       alert(errors);
     });
