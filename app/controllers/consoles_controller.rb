@@ -1,5 +1,7 @@
 class ConsolesController < ApplicationController
+   
   before_action :set_console, only: [:edit, :update, :disponible, :noDisponible, :baja]
+  load_and_authorize_resource
 
   def index
     @consoles = Console.uso

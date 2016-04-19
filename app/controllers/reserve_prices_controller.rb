@@ -1,5 +1,7 @@
 class ReservePricesController < ApplicationController
+   
   before_action :set_reserve_price, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /reserve_prices
   # GET /reserve_prices.json

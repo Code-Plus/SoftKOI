@@ -1,6 +1,7 @@
 class ReservesController < ApplicationController
 
   before_action :set_reserve, only: [:show, :edit, :update, :destroy, :activa, :enProceso, :finalizada, :cancelada]
+  load_and_authorize_resource :class => false
 
   # GET /reserves
   # GET /reserves.json
