@@ -76,8 +76,9 @@ class ReservesController < ApplicationController
   end
 
   def cancelada
-     @reserve.cancelada!
-     redirect_to reserves_url
+    @update_price = Reserve.cancel_reserve(Reserve.find(params[:id]), Time.now)
+    @reserve.cancelada!
+    redirect_to reserves_url
   end
 
   def Reserve_ajax

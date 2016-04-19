@@ -39,6 +39,32 @@ class Reserve < ActiveRecord::Base
     end
   end
 
+  def self.cancel_reserve(reserve, current_time)
+    #Reserve.find(reserve_id)
+    console = reserve.console_id
+    if reserve.state == "activa"
+      reserve.update(reserve_price_id: 0)
+    elsif reserve.state == "enProceso" && reserve.console_id == console
+
+      all_times_one = ReservePrice.select("reserve_prices.time").where("console_id = ?", console)
+      minimum_time = all_times_one.minimum(:time)
+      price = ReservePrice.where("time = ?", minimum_time).select("reserve_prices.value")
+      time_elapsed = current_time.strftime("%H:%M") - reserve.start_time.strftime("%H:%M")
+
+      all_times_one.each do |t|
+        if t == minimum_time
+          if time_elapsed <= minimum_time
+            reserve.update(reserve_price_id: price)
+          end
+        elsif time_elapsed >= t
+          price_of_t = ReservePrice.where("time = hour", {hour: t}).select("reserve_prices.value")
+          reserve.update(reserve_price_id: price_of_t)
+        end
+      end
+
+    end
+  end
+
   aasm column: "state" do
     state :activa, :initial => true
     state :enProceso
