@@ -1,0 +1,12 @@
+<tr id="reserve_price_<%= reserve_price.id %>">
+	<td><%= reserve_price.value %></td>
+	<td><%= reserve_price.time %></td>
+	<td><%= reserve_price.console_id %></td>
+
+
+	<td>
+		<%= link_to edit_reserve_price_path(reserve_price), remote: true, :class => 'btn btn-sm btn-info bold' do%>
+		<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+		<% end %>
+	</td>
+</tr>
