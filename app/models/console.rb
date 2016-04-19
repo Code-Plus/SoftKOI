@@ -2,6 +2,7 @@ class Console < ActiveRecord::Base
   include AASM
 
   has_many :reserve
+  has_many :reserve_price
 
   validates :name, presence: true
   validates :description, presence: true, length: { in: 8..80 }
@@ -11,6 +12,8 @@ class Console < ActiveRecord::Base
   scope :drop, -> { where(state: "baja")}
 
   scope :uso, -> { where("state = 'disponible' OR state = 'noDisponible'")	 }
+
+  scope :disponible, -> { where(state: "disponible")}
 
 
   aasm column: "state" do

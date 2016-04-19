@@ -17,14 +17,15 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require select2_locale_es
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require flipclock.min
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 //= require_tree .
+
 
 
 $(document).ajaxError(function(event,xhr,options,exc) {
@@ -155,6 +156,7 @@ function Cargar_En_Reserva(){
       var price = done['value'];
       $('.field_prices').val(price);
       $('.field_prices_id').val(id_reserve_price);
+
 
     }).error(function(errors){
       alert(errors);

@@ -3,5 +3,5 @@
 	<%= image_tag 'magic.gif' %>
 	<h1>Bienvenido a SoftKOI APP <%= current_user.name %></h1>
 	<h4>Estamos en desarrollo</h4>
-	<h5><%= Time.now %></h5>
+	<h5><%= Time.now.strftime("%F") %></h5>
 </div>

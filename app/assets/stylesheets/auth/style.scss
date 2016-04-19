@@ -1001,6 +1001,18 @@ body.login-page {
 .row-example > [class*="col-"] {
   margin-bottom: 0px; }
 
+#error_explanation {
+   h2{
+      display: none;
+   }
+   ul{
+      padding: 0px;
+      list-style: none;
+      li {
+         color: red;
+      }
+   }
+}
 
 
 /* RESPONSIVE CSS

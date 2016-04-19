@@ -12,23 +12,6 @@ class UsersController < ApplicationController
 		@type_document = TypeDocument.all
 	end
 
-	def edit
-	end
-
-	def create
-		@user = User.create(user_params)
-
-		respond_to do |format|
-			if @user.save
-				format.json { head :no_content }
-				format.js { flash[:notice] = "¡Usuario creado satisfactoriamente!" }
-				render action: 'create'
-			else
-				format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
-			end
-		end
-	end
-
 	def new_user
 		@user = User.create(user_params)
 		if @user.save
@@ -36,13 +19,24 @@ class UsersController < ApplicationController
 			render action: 'create'
 		else
 			respond_to do |format|
-			  format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
+				format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
+			end
+		end
+	end
+
+	def update_profile
+		respond_to do |format|
+			if @user.update(user_params)
+				format.html { redirect_to home_path, notice: 'Perfil actualizado correctamente.' }
+            format.json { render :index, status: :created, location: @user }
+			else
+				format.html { render :edit }
+				format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
 			end
 		end
 	end
 
 	def update
-
 		respond_to do |format|
 			if @user.update(user_params)
 				format.json { head :no_content }
@@ -69,8 +63,8 @@ class UsersController < ApplicationController
 	end
 
 	def update_sanitized_params
-       devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:firstname, :lastname, :email, :phone, :cellphone, :role_id)}
-    end
+		devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:firstname, :lastname, :email, :phone, :cellphone, :role_id)}
+	end
 
 	def user_params
 		params.require(:user).permit(

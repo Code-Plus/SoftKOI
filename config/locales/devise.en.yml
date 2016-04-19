@@ -35,8 +35,8 @@ en:
         instruction: 'Usted puede confirmar el correo electrónico de su cuenta a través de este enlace:'
         subject: Instrucciones de confirmación
       password_change:
-        greeting: 
-        message: 
+        greeting:
+        message:
         subject: Contraseña cambiada
       reset_password_instructions:
         action: Cambiar mi contraseña
@@ -116,5 +116,5 @@ en:
       not_found: no se ha encontrado
       not_locked: no estaba bloqueada
       not_saved:
-        one: 'Ocurrió un error al tratar de guardar %{resource}:'
+        one: ''
         other: 'Ocurrieron %{count} errores al tratar de guardar %{resource}:'

@@ -4,6 +4,8 @@ class Ability
    def initialize(user)
 
       if user.role.name == 'Empleado'
+         
+         can :edit, User
 
          if user.can_inventory == true
             can :manage, Product
@@ -23,6 +25,8 @@ class Ability
 
          if user.can_consoles == true
             can :manage, Console
+            can :manage, Reserve
+            can :manage, ReservePrice
          end
 
          if user.can_customers == true

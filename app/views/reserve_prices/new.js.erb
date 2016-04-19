@@ -1,5 +1,5 @@
 // Add the dialog title
-$('#dialog h4').html("<i class='fa fa-plus'></i>&nbsp; Registrar Usuario");
+$('#dialog h4').html("<i class='fa fa-plus'></i>&nbsp; Registrar Precio de Reserva");
 
 // Render the new form
 $('.modal-body').html('<%= j render("form") %>');
@@ -12,11 +12,3 @@ $('#dialog').on('shown.bs.modal', function () {
 	  $('.first_input').focus()
 })
 
-$('.rol').change(function(){
-	var state = $('.rol option:selected').val();
-	if (state == '2') {
-		$('#permisos').removeClass('hidden');
-	} else {
-		$('#permisos').addClass('hidden');
-	}
-});
