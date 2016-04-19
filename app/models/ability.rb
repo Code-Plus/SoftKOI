@@ -4,7 +4,9 @@ class Ability
    def initialize(user)
 
       if user.role.name == 'Empleado'
+         
          can :edit, User
+
          if user.can_inventory == true
             can :manage, Product
             can :manage, Category
