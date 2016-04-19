@@ -40,7 +40,6 @@ class Reserve < ActiveRecord::Base
   end
 
   def self.cancel_reserve(reserve, current_time)
-    #Reserve.find(reserve_id)
     console = reserve.console_id
     if reserve.state == "activa"
       reserve.update(reserve_price_id: 0)
@@ -49,19 +48,35 @@ class Reserve < ActiveRecord::Base
       all_times_one = ReservePrice.select("reserve_prices.time").where("console_id = ?", console)
       minimum_time = all_times_one.minimum(:time)
       price = ReservePrice.where("time = ?", minimum_time).select("reserve_prices.value")
-      time_elapsed = current_time.strftime("%H:%M") - reserve.start_time.strftime("%H:%M")
+
+      if current_time.strftime("%H").to_i == reserve.start_time.strftime("%H").to_i
+        time_elapsed = current_time.strftime("%M").to_i - reserve.start_time.strftime("%M").to_i
+      elsif current_time.strftime("%H").to_i != reserve.start_time.strftime("%H").to_i
+        diference_for_hour = (current_time.strftime("%H").to_i - reserve.start_time.strftime("%H").to_i)
+        hour_in_minutes = diference_for_hour * 60
+        if current_time.strftime("%M").to_i == reserve.start_time.strftime("%M").to_i
+          diference_for_minutes = current_time.strftime("%M").to_i - reserve.start_time.strftime("%M").to_i
+          time_elapsed = hour_in_minutes + diference_for_minutes
+        end
+      end
 
       all_times_one.each do |t|
+        if time_elapsed == t
+          price_of_t = ReservePrice.where("time = ?", t).select("reserve_prices.value")
+          reserve.update(reserve_price_id: price_of_t)
+        elsif time_elapsed < t
+
+        end
+
         if t == minimum_time
           if time_elapsed <= minimum_time
             reserve.update(reserve_price_id: price)
           end
-        elsif time_elapsed >= t
-          price_of_t = ReservePrice.where("time = hour", {hour: t}).select("reserve_prices.value")
+        elsif time_elapsed >= t.time
+          price_of_t = ReservePrice.where("time = ?", t).select("reserve_prices.value")
           reserve.update(reserve_price_id: price_of_t)
         end
       end
-
     end
   end
 

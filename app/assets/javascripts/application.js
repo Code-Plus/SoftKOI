@@ -155,6 +155,8 @@ function Cargar_En_Reserva(){
 
       var price = done['value'];
       $('.field_prices').val(price);
+      $('.field_prices_id').val(id_reserve_price);
+
 
     }).error(function(errors){
       alert(errors);
