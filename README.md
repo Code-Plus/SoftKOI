@@ -1,6 +1,6 @@
 # SOFTKOI APP
 
-### Módulos
+### Modules
 - Inventory control
 - Sales
 - Payments
@@ -25,3 +25,5 @@
 ### License
 
 MIT
+
+##### 2016 CodePlus
