@@ -17,7 +17,20 @@
 			<p class="alert"><%= alert %></p>
 		<% end %>
 	</div>
+	<div class="container">
+		<div class="login-box">
+			<div>
+				<div class="login-form row">
+					<div class="col-sm-12 text-center login-header">
+						<%= image_tag('white_logo.png', size: '200x200') %>
+					</div>
 
-	<%= yield %>
+					<div class="col-sm-12">
+						<%= yield %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
