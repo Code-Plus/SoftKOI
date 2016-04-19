@@ -1,6 +1,6 @@
 == SOFTKOI APP
 
-### Módulos
+###Módulos
 - Control de existencias
 - Gestion de ventas
 - Pagos
@@ -10,7 +10,7 @@
 - Clientes
 - Agenda
 
-
+###Info
 
 * Ruby version: 2.2.3
 
@@ -21,7 +21,6 @@
 - Maria Camila Alzate [@Alphalt](https://github.com/Alphalt)
 - Miguel Angel Arenas [@maac4422](https://github.com/maac4422)
 
-License
-----
+###License
 
 MIT
