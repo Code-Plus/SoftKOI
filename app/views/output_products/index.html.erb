@@ -29,7 +29,7 @@
                 <td><%= output_product.id%></td>
                 <td><%= output_product.stock %></td>
                 <td><%= output_product.product.name %></td>
-                <td><%= output_product.product.price %></td>
+                <td><%= number_to_currency output_product.product.price %></td>
               </tr>
             <% end %>
           </tbody>
