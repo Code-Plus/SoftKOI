@@ -1,14 +1,14 @@
 # SOFTKOI APP
 
-### Módulos
-- Control de existencias
-- Gestion de ventas
-- Pagos
-- Gestion de consolas
-- Cambios
-- Administración Usuarios
-- Clientes
-- Agenda
+### Modules
+- Inventory control
+- Sales
+- Payments
+- Consoles reservation
+- Product change
+- Users
+- Customers
+- Diary and calendar
 
 ### Info
 
@@ -25,3 +25,5 @@
 ### License
 
 MIT
+
+##### 2016 CodePlus
