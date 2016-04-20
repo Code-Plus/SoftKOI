@@ -13,6 +13,11 @@ $('#dialog').on('shown.bs.modal', function () {
 	  $('.first_input').focus()
 });
 
+$('.input-group.date').datepicker({
+	autoclose: true,
+	orientation: "bottom auto",
+});
+
 Cargar_En_Reserva();
 function Cargar_En_Reserva(){
   var muestraReloj;

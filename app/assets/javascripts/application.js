@@ -101,9 +101,3 @@ function Products_category_function(){
    }
 
 }
-
-// Validar los intervalo de las reservas
-
-
-
-// ajax para traer el precio de la reserva dependiendo el intervalo
