@@ -34,8 +34,8 @@ class TypeProduct < ActiveRecord::Base
 			u = categories.select(:state ).where(state: 'disponible')
 			u = u.count
 			if u > 0
-				puts "Hay categorias habilitadas"
-				self.errors.add(:base,"Hay categorias habilitadas asociadas a este tipo de producto.")
+				puts "Hay Categorías habilitadas"
+				self.errors.add(:base,"Hay Categorías habilitadas asociadas a este tipo de producto.")
 			end
 		end
 	end

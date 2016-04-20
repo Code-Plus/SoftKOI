@@ -49,7 +49,7 @@ class Product < ActiveRecord::Base
       category_change = category.can_change
       if category_change == false
          if self.can_change == true
-            self.errors.add(:base ,"Esta categoria no permite cambios")
+            self.errors.add(:base ,"Esta Categoría no permite cambios")
          end
       end
    end

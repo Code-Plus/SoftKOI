@@ -55,7 +55,7 @@ Rails.application.routes.draw do
 	put "/type_product/:id/habilitar", to: "type_products#disponible"
 	put "/type_product/:id/inhabilitar", to: "type_products#noDisponible"
 
-	#Estados de categoria
+	#Estados de Categoría
 	put "/category/:id/habilitar", to: "categories#disponible"
 	put "/category/:id/inhabilitar", to: "categories#noDisponible"
 

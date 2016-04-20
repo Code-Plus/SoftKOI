@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
       respond_to do |format|
          if @category.save
             format.json { head :no_content }
-            format.js {  flash[:notice] = "¡Categoria creada satisfactoriamente!" }
+            format.js {  flash[:notice] = "¡Categoría creada satisfactoriamente!" }
          else
             format.json { render json: @category.errors.full_messages,
                status: :unprocessable_entity }
@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
       respond_to do |format|
          if @category.update(category_params)
             format.json { head :no_content }
-            format.js {  flash[:notice] = "¡Categoria actualizada satisfactoriamente!" }
+            format.js {  flash[:notice] = "¡Categoría actualizada satisfactoriamente!" }
          else
             format.json { render json: @category.errors.full_messages,
                status: :unprocessable_entity }
