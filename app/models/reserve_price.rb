@@ -1,6 +1,6 @@
 class ReservePrice < ActiveRecord::Base
 
-   has_many :reserves
+   has_many :reservations
    belongs_to :console
 
    validates :value, presence: true, numericality: {greater_than: 0}

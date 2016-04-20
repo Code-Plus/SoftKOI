@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @reservation.customer %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @reservation.date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @reservation.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @reservation.end_time %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @reservation.state %>
+</p>
+
+<p>
+  <strong>Price reservation:</strong>
+  <%= @reservation.reservation_price_id %>
+</p>
+
+<%= link_to 'Edit', edit_reserf_path(@reservation) %> |
+<%= link_to 'Back', reservations_path %>

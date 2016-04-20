@@ -1,0 +1,44 @@
+<tr id="reservation_<%= reservation.id %>">
+  <td><%= reservation.customer %></td>
+  <td><%= reservation.console.name %></td>
+  <td><%= reservation.date %></td>
+  <td><%= reservation.start_time.strftime("%I:%M %p") %></td>
+  <td><%= reservation.end_time.strftime("%I:%M %p") %></td>
+  <td><%= number_to_currency reservation.reserve_price.value %></td>
+
+  <td width="105px">
+     <% if reservation.state == "enProceso" %>
+        <span class="label label-primary span-table">En Proceso</span>
+     <% elsif reservation.state == "finalizada" %>
+        <span class="label label-warning span-table">Finalizada</span>
+     <% elsif reservation.state == "cancelada" %>
+        <span class="label label-danger span-table">Cancelada</span>
+     <% else %>
+        <span class="label label-success span-table">Activa</span>
+     <% end %>
+  </td>
+
+  <td>
+    <% if reservation.may_finalizada? %>
+
+        <%= link_to  edit_reservation_path(reservation), remote: true, :class => 'btn btn-sm btn-info bold' do %>
+           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+        <% end %>
+
+        <%= link_to "/reservation/#{reservation.id}/cancelada", method: :put, class: 'btn btn-sm btn-danger bold' do %>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp; Cancelar
+        <% end %>
+
+      <% elsif reservation.may_cancelada? %>
+
+        <%= link_to  edit_reservation_path(reservation), remote: true, :class => 'btn btn-sm btn-info bold' do %>
+           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+        <% end %>
+
+        <%= link_to "/reservation/#{reservation.id}/cancelada", method: :put, class: 'btn btn-sm btn-danger bold' do %>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp; Cancelar
+        <% end %>
+
+    <% end %>
+  </td>
+</tr>

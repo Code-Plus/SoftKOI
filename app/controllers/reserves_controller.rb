@@ -3,8 +3,7 @@ class ReservesController < ApplicationController
   before_action :set_reserve, only: [:show, :edit, :update, :destroy, :activa, :enProceso, :finalizada, :cancelada]
   load_and_authorize_resource :class => false
 
-  # GET /reserves
-  # GET /reserves.json
+
   def index
     @reserves = Reserve.all
     @reservesActivas = Reserve.activa
@@ -91,14 +90,12 @@ class ReservesController < ApplicationController
 
   private
 
-    def set_reserve
-      @reserve = Reserve.find(params[:id])
+    def set_reservation
+      @reservation = Reservation.find(params[:id])
     end
 
-
-    def reserve_params
-      params.require(:reserve).permit(:customer,:console_id, :date, :start_time, :end_time, :state, :reserve_price_id)
-
+    def reservation_params
+      params.require(:reservation).permit(:date, :start_time, :end_time, :state, :customer, :console_id, :reserve_price_id)
     end
 
 end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 	get '/sales/customer', to: 'sales#ajax_customer', as: 'ajax_customer'
 
 	# Ruta para el ajax de reservas
-  get '/reserves/price_interval', to: 'reserves#Reserve_ajax', as: 'interval_price'
+  get '/reservations/price_interval', to: 'reservations#Reserve_ajax', as: 'interval_price'
 
 
 	devise_for :users
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 	resources :type_products
 	resources :input_products
    resources :reserve_prices
-   resources :reserves
+   resources :reservations
 
 
 	resources :consoles do
@@ -41,10 +41,10 @@ Rails.application.routes.draw do
 	patch "users/:id/update_profile", to: "users#update_profile"
 
   #Estados de la reserva.
-  put "/reserve/:id/activa", to: "reserves#activa"
-  put "/reserve/:id/enProceso", to: "reserves#enProceso"
-  put "/reserve/:id/finalizada", to: "reserves#finalizada"
-  put "/reserve/:id/cancelada", to: "reserves#cancelada"
+  put "/reservation/:id/activa", to: "reservations#activa"
+  put "/reservation/:id/enProceso", to: "reservations#enProceso"
+  put "/reservation/:id/finalizada", to: "reservations#finalizada"
+  put "/reservation/:id/cancelada", to: "reservations#cancelada"
 
 
 	#Estados de producto

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-04-20
+  start_time: 2016-04-20 06:29:27
+  end_time: 2016-04-20 06:29:27
+  state: MyString
+  customer: MyString
+  console_id: 
+  reserve_price_id: 
+
+two:
+  date: 2016-04-20
+  start_time: 2016-04-20 06:29:27
+  end_time: 2016-04-20 06:29:27
+  state: MyString
+  customer: MyString
+  console_id: 
+  reserve_price_id: 

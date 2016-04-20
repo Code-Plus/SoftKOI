@@ -13,8 +13,9 @@
 ### Info
 
 * Ruby version: 2.2.3
-
 * Rails version: 4.2.4
+
+### Members
 
 - Emmanuel Deossa [@EmmanuelSW](https://github.com/EmmanuelSW)
 - Jesús Scarpetta [@Dragonizado](https://github.com/dragonizado)
