@@ -40,6 +40,8 @@ class Reservation < ActiveRecord::Base
 
    def self.cancel_reserve(reserve, current_time)
       console = reserve.console_id
+      s_number = 120
+      interval = 0
       if reserve.state == "activa"
          reserve.update(reserve_price_id: 0)
       elsif reserve.state == "enProceso" && reserve.console_id == console
@@ -61,21 +63,17 @@ class Reservation < ActiveRecord::Base
 
          all_times_one.each do |t|
             if time_elapsed == t
-               price_of_t = ReservePrice.where("time = ?", t).select("reserve_prices.value")
-               reserve.update(reserve_price_id: price_of_t)
+               interval = t
             elsif time_elapsed < t
-
-            end
-
-            if t == minimum_time
-               if time_elapsed <= minimum_time
-                  reserve.update(reserve_price_id: price)
+               subtraction = time_elapsed - t
+               if subtraction < s_number
+                  s_number = subtraction
+                  interval = t
                end
-            elsif time_elapsed >= t.time
-               price_of_t = ReservePrice.where("time = ?", t).select("reserve_prices.value")
-               reserve.update(reserve_price_id: price_of_t)
             end
          end
+         price_of_t = ReservePrice.where("time=?", interval). select("reserve_prices.value")
+         reserve.update(reserve_price_id: price_of_t)
       end
    end
 
