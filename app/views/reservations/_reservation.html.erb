@@ -4,7 +4,7 @@
   <td><%= reservation.date %></td>
   <td><%= reservation.start_time.strftime("%I:%M %p") %></td>
   <td><%= reservation.end_time.strftime("%I:%M %p") %></td>
-  <td><%= number_to_currency reservation.reserve_price.value %></td>
+  <td><%= number_to_currency reservation.reserve_price_id %></td>
 
   <td width="105px">
      <% if reservation.state == "enProceso" %>

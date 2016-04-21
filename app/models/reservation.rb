@@ -42,11 +42,12 @@ class Reservation < ActiveRecord::Base
       console = reserve.console_id
       s_number = 120
       interval = 0
+      id_precio=0
       if reserve.state == "activa"
          reserve.update(reserve_price_id: 0)
       elsif reserve.state == "enProceso" && reserve.console_id == console
 
-         all_times_one = ReservePrice.select("reserve_prices.time").where("console_id = ?", console)
+         all_times_one = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
          minimum_time = all_times_one.minimum(:time)
          price = ReservePrice.where("time = ?", minimum_time).select("reserve_prices.value")
 
@@ -62,18 +63,22 @@ class Reservation < ActiveRecord::Base
          end
 
          all_times_one.each do |t|
-            if time_elapsed == t
-               interval = t
-            elsif time_elapsed < t
-               subtraction = time_elapsed - t
+            if time_elapsed == t.time 
+               interval = t.time
+            elsif time_elapsed < t.time
+               subtraction =   t.time - time_elapsed
                if subtraction < s_number
                   s_number = subtraction
-                  interval = t
-               end
+                  interval = t.time
+               end 
             end
          end
-         price_of_t = ReservePrice.where("time=?", interval). select("reserve_prices.value")
-         reserve.update(reserve_price_id: price_of_t)
+         price_of_t = ReservePrice.where("time = ?", interval).select("reserve_prices.id")
+         id_chema = price_of_t.pluck(:id)
+
+         id_chema.each do |id_c|
+            reserve.update(reserve_price_id: id_c)
+         end        
       end
    end
 

@@ -2,10 +2,12 @@ class Product < ActiveRecord::Base
 
    include AASM
 
+
    belongs_to :category
    has_many :output_products
    has_many :input_products
    before_validation :validate_category_change
+
 
    validates :name, presence: true
    validates :price, presence: true, numericality: {greater_than_or_equal_to: 0}
@@ -23,6 +25,8 @@ class Product < ActiveRecord::Base
    #Productos que esten activos y tengan cantidad en su stock
    scope :activos_con_cantidad, ->{activos.where("stock > 0")}
 
+   #Productos que se crearon en la fecha actual
+   scope :creados_hoy, ->{where("created_at.strftime('%Y-%d-%m') => Time.now.strftime('%Y-%d-%m')")}
 
    aasm column: "state" do
       state :disponible, :initial => true
@@ -40,6 +44,14 @@ class Product < ActiveRecord::Base
 
       event :bajas do
          transitions from: :disponible, to: :bajas
+      end
+   end
+
+   def reports(product,current_time)
+      product.each do |p|
+         if p.create_at.strftime("%Y-%d-%m") == Time.now.strftime("%Y-%d-%m")
+            
+         end
       end
    end
 

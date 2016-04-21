@@ -4,17 +4,19 @@ class ProductsController < ApplicationController
    load_and_authorize_resource
 
    def index
-      @products = Product.all
-
+      @products = Product.all 
       respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = ProductPdf.new(@products)
-        send_data pdf.render, filename: 'productos.pdf', type: 'application/pdf'
+         format.html
+         format.pdf do
+           pdf = ProductPdf.new(@products)
+           send_data pdf.render, filename: 'productos.pdf', type: 'application/pdf'
+         end
       end
-    end
    end
 
+   def products_today
+      @products = Product.all     
+   end
 
 
    def new
