@@ -4,7 +4,7 @@ class TypeProduct < ActiveRecord::Base
 
 	has_many :categories
  	after_save :validar_estado
-
+	attr_accessor :flash_notice
 	validate :validar_estado
 	validates :name, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
@@ -35,10 +35,9 @@ class TypeProduct < ActiveRecord::Base
 			u = u.count
 			if u > 0
 				puts "Hay Categorías habilitadas"
-				self.errors.add(:base,"Hay Categorías habilitadas asociadas a este tipo de producto.")
+				self.flash_notice = "Hay categorías habilitadas asociadas a este tipo de producto."
+				self.errors.add(:base, "Hay categorías habilitadas asociadas a este tipo de producto.")
 			end
 		end
 	end
-
-
 end
