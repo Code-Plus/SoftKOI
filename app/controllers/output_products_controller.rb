@@ -8,8 +8,8 @@ class OutputProductsController < ApplicationController
       respond_to do |format|
          format.html
          format.pdf do
-            pdf = ReportPdf.new(@output_products)
-            send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+            pdf = OutputproductPdf.new(@output_products)
+            send_data pdf.render, filename: 'salida_baja.pdf', type: 'application/pdf'
          end
       end
    end

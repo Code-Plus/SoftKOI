@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '~> 3.5', '>= 3.5.6' 			# Autenticacion de users
 gem 'prawn', '~> 2.0', '>= 2.0.2' 			# Generar PDF
+gem 'prawn-table', '~> 0.2.2'				#Tablas para el PDF
 gem 'aasm', '~> 4.8' 						   # Maquina de estados
 gem 'cancancan', '~> 1.13', '>= 1.13.1'	# Permisos de usuarios
 gem 'font-awesome-sass'						   # Iconos
