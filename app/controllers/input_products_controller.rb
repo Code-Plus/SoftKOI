@@ -4,6 +4,14 @@ class InputProductsController < ApplicationController
 
    def index
       @input_products = InputProduct.all
+
+      respond_to do |format|
+         format.html
+         format.pdf do
+            pdf = InputproductPdf.new(@input_products)
+            send_data pdf.render, filename: 'entrada.pdf', type: 'application/pdf'
+         end
+      end
    end
 
 

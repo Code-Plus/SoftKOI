@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413203645) do
+ActiveRecord::Schema.define(version: 20160420112927) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -95,6 +95,21 @@ ActiveRecord::Schema.define(version: 20160413203645) do
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
+
+  create_table "reservations", force: :cascade do |t|
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.string   "state"
+    t.string   "customer"
+    t.integer  "console_id"
+    t.integer  "reserve_price_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "reservations", ["console_id"], name: "index_reservations_on_console_id"
+  add_index "reservations", ["reserve_price_id"], name: "index_reservations_on_reserve_price_id"
 
   create_table "reserve_prices", force: :cascade do |t|
     t.integer  "value"

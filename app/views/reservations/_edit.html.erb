@@ -1,4 +1,4 @@
-<%= form_for(@reserve, remote: true, :html => { :role => "form" })  do |f| %>
+<%= form_for(@reservation, remote: true, :html => { :role => "form" })  do |f| %>
 
   <div id="error_explanation" class="text-danger modal-errors"></div>
 
@@ -7,19 +7,19 @@
     <%= f.text_field :customer , :class => "form-control"%>
   </div>
 
-  <div class="field">
+  <div class="input-group date">
     <%= f.label :date,"Fecha" %><br>
-    <%= f.date_field :date, class: 'datapicker' %>
+    <%= f.text_field :date, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :interval,"Intervalo" %><br>
-    <%= collection_select(:reserve,:reserve_price_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
+    <%= collection_select(:reservation,:reserve_price_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
   </div>
 
   <div class="field">
     <%= f.label :consoles,"Consola" %><br>
-    <%= collection_select(:reserve,:console_id, Console.all, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
+    <%= collection_select(:reservation,:console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, :class => "form-control") %>
   </div>
 
   <div class="field">
@@ -33,9 +33,11 @@
   </div>
 
   <div class="field">
-    <%= f.label :price_reserve_id," Precio" %><br>
-    <%= f.number_field :reserve_price_id , :class => "form-control"%>
+     <%= f.label :price_reserve_id," Precio" %><br>
+     <%= f.text_field :reserve_price_id , :class => "form-control field_prices_id hidden" %>
+     <%= text_field_tag :field_prices,'',class:'form-control field_prices'  %>
   </div>
+
 
   <div class="col-sm-12">
      <hr style="border: 1; margin-top: 0px; ">
@@ -43,5 +45,5 @@
         <%= f.submit "Editar Reserva", :class => "btn btn-success bold" %>
      </div>
   </div>
-  
+
 <% end %>

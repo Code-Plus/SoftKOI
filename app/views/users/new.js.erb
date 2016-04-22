@@ -11,3 +11,12 @@ $('#dialog').modal("show");
 $('#dialog').on('shown.bs.modal', function () {
 	  $('.first_input').focus()
 })
+
+$('.rol').change(function(){
+	var state = $('.rol option:selected').val();
+	if (state == '2') {
+		$('#permisos').removeClass('hidden');
+	} else {
+		$('#permisos').addClass('hidden');
+	}
+});

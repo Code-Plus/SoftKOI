@@ -14,10 +14,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '~> 3.5', '>= 3.5.6' 			# Autenticacion de users
 gem 'prawn', '~> 2.0', '>= 2.0.2' 			# Generar PDF
+gem 'prawn-table', '~> 0.2.2'				#Tablas para el PDF
 gem 'aasm', '~> 4.8' 						   # Maquina de estados
 gem 'cancancan', '~> 1.13', '>= 1.13.1'	# Permisos de usuarios
 gem 'font-awesome-sass'						   # Iconos
-gem 'jquery-datatables-rails' 		      # jQuery Datatables
+gem 'jquery-datatables-rails', '~> 3.4'   # jQuery Datatables
 gem 'will_paginate', '~> 3.0.6'				# Paginacion
 gem 'will_paginate-bootstrap'             # Paginacion bootstrap
 gem 'bootstrap-sass'						      # Styling

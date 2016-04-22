@@ -39,6 +39,12 @@
 			<!-- Notificaciones y boton de perfil -->
 			<div  class="alerts">
 				<div class="imgsize">
+					<%= link_to new_sale_path, class: "ALETMensajes" do %>
+						<%= image_tag("tag.svg") %>
+					<% end %>
+				</div>
+
+				<div class="imgsize">
 					<a class="ALETCalendario"href="#"><%= image_tag("calendar.svg") %></a>
 				</div>
 
@@ -46,7 +52,6 @@
 					<a class="ALETNotificacion"href="#"><%= image_tag("notifications.svg", class: 'last') %></a>
 				</div>
 				<%= link_to  "Perfil", edit_user_path(current_user), class:'btn ui button' %>
-
 			</div>
 		</div>
 	</header>

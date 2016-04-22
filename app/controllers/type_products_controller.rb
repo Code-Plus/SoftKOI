@@ -1,6 +1,8 @@
 class TypeProductsController < ApplicationController
-   
+
    before_action :set_type_product, only: [:edit, :update, :noDisponible, :disponible]
+   after_filter :flash_notice, :except => :index
+
    load_and_authorize_resource
 
    def index
@@ -48,9 +50,23 @@ class TypeProductsController < ApplicationController
    end
 
    def noDisponible
-      @type_product.noDisponible!
-      redirect_to type_products_url
+      if @type_product.noDisponible!
+         redirect_to type_products_url
+      else
+         respond_to do |format|
+            format.html { redirect_to type_products_url }
+            format.json { render json: @type_product.errors.full_messages,
+               status: :unprocessable_entity }
+         end
+      end
    end
+
+   def flash_notice
+      if !@type_product.flash_notice.blank?
+         flash[:alert] = @type_product.flash_notice
+      end
+   end
+
 
    private
 

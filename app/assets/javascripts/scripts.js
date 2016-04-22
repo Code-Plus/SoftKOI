@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-	// $('#sale_customer_id').select2();
+	$('#sale_customer_id').select2({
+		theme: "bootstrap"
+	});
 
 	$('#sale_customer_id').change(function(){
 		var id_customer = $('#sale_customer_id option:selected').val();

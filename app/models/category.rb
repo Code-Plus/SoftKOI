@@ -6,10 +6,10 @@ class Category < ActiveRecord::Base
 	has_many :products
 
 
-	#Inhabilitar productos si la categoria se inhabilita
+	#Inhabilitar productos si la Categoría se inhabilita
 	after_save do
 		if self.state == "noDisponible"
-			#Actualizar productos con la categoria asociada a estado noDisponible
+			#Actualizar productos con la Categoría asociada a estado noDisponible
 			products.update_all state: "noDisponible"
 		end
 	end
@@ -25,7 +25,7 @@ class Category < ActiveRecord::Base
 	validates :description, presence: true, length: { in: 8..80 }
 
 
-	#Seleccionar categorias disponibles
+	#Seleccionar Categorías disponibles
 	scope :activos, -> { where(state: "disponible")}
 
 

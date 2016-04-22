@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 	end
 
 	def update_sanitized_params
-		devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:firstname, :lastname, :email, :phone, :cellphone, :role_id, :current_password)}
+		devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:firstname, :lastname, :email, :phone, :cellphone, :role_id)}
 	end
 
 	def user_params

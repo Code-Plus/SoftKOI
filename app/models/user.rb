@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
 	:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
 
 	validates :document, presence: true, numericality: { only_integer: true }, uniqueness: {case_sensitive: false}
-	validates :password, presence: true
 	validates :name, presence: true
 	validates :firstname, presence: true
 	validates :lastname, presence: true

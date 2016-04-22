@@ -10,7 +10,7 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 <% end -%>
 
 <% content_for :button do -%>
-<%= link_to new_reserf_path, remote: true, class: 'btn btn-success bold registrar' do %>
+<%= link_to new_reservation_path, remote: true, class: 'btn btn-success bold registrar' do %>
 <div><i class="fa fa-plus"></i>
 &nbsp;Registrar Reserva</div>
 <% end %>
@@ -28,12 +28,12 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
           <th>Hora fin</th>
           <th>Precio</th>
           <th>Estado</th>
-          <th>Acciones</th>
+          <th width="170px">Acciones</th>
         </tr>
       </thead>
 
-      <tbody id="reserves">
-         <%= render @reserves %>
+      <tbody id="reservations">
+         <%= render @reservations %>
       </tbody>
     </table>
   </div>
