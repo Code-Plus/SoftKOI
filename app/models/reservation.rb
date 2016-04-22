@@ -7,12 +7,14 @@ class Reservation < ActiveRecord::Base
    scope :activa, -> {find_by_sql('SELECT date, start_time, end_time, state FROM reservations WHERE state = "activa"')}
 
    #Validaciones para los campos.
-   validates :date, presence: true
+   validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
    validates :start_time, presence: true
    validates :end_time, presence: true
    validates :console_id, presence: true
-   validates :customer, presence: true,:with => /^[-a-z]+$/
+   validates :customer, presence: true
    validates :reserve_price_id, presence: true
+   before_validation :validate_times
+
 
    #Método para pasar al estado "enProceso" de una reserva determinada cuando llegue a la hora registrada.
    def self.validates_hour_start(search)
@@ -107,6 +109,18 @@ class Reservation < ActiveRecord::Base
       event :cancelada do
          transitions from: :activa, to: :cancelada
          transitions from: :enProceso, to: :cancelada
+      end
+   end
+
+   private
+
+   def validate_times
+      if self.start_time.strftime("%H:%M") > Time.now.strftime("%H:%M")
+         if self.start_time.strftime("%H:%M") > self.end_time.strftime("%H:%M")
+            self.errors.add(:base ,"Hora de  inicio mayor a la fin")
+         end
+      else
+         self.errors.add(:base ,"La hora de inicio debe ser mayor a la actual")
       end
    end
 end
