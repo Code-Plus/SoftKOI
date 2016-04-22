@@ -34,7 +34,8 @@
 
   <div class="field">
     <%= f.label :price_reserve_id," Precio" %><br>
-    <%= f.text_field :reserve_price_id , :class => "form-control field_prices", readonly: true %>
+    <%= text_field_tag :reserve_price_id , :class => "form-control field_prices", readonly: true %>
+    <%= f.text_field :reserve_price_id , :class => "form-control field_prices_id hidden", readonly: true %>
   </div>
 
   <div class="actions">

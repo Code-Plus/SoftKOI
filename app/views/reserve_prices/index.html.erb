@@ -1,31 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div style="margin: 0px 60px;">
 
-<h1>Listing Reserve Prices</h1>
+   <% content_for :title do -%>
+      Precio de Reserva <i class="fa fa-caret-down"></i>
+   <% end -%>
 
-<table>
-  <thead>
-    <tr>
-      <th>Value</th>
-      <th>Time</th>
-      <th>Product</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+   <% content_for :menus do -%>
 
-  <tbody>
-    <% @reserve_prices.each do |reserve_price| %>
-      <tr>
-        <td><%= reserve_price.value %></td>
-        <td><%= reserve_price.time %></td>
-        <td><%= reserve_price.console_id %></td>
-        <td><%= link_to 'Show', reserve_price %></td>
-        <td><%= link_to 'Edit', edit_reserve_price_path(reserve_price) %></td>
-        <td><%= link_to 'Destroy', reserve_price, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <li><h5 class="drop-title"><%= link_to "Reservas", reserves_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Consolas", consoles_path %></h5></li>
+   <% end %>
 
-<br>
+   <% content_for :button do -%>
+      <%= link_to new_reserve_price_path, remote: true, class: 'btn btn-success bold' do %>
+         <i class="fa fa-plus"></i>
+         &nbsp;Nuevo Precio
+      <% end %>
+   <% end -%>
 
-<%= link_to 'New Reserve price', new_reserve_price_path %>
+
+   <div class="panel">
+
+      <div class="panel-body table">
+         <table class="table table-bordered table-striped">
+            <thead>
+               <tr>
+                  <th>Consola</th>
+                  <th>Intervalo</th>
+                  <th>Valor</th>
+                  <th width="140">Acciones</th>
+               </tr>
+            </thead>
+
+            <tbody id="reserve_prices">
+               <%= render @reserve_prices %>
+            </tbody>
+         </table>
+
+      </div>
+   </div>
+
+   <%= render 'dialog' %>
+
+</div>
+

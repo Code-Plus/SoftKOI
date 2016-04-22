@@ -12,6 +12,8 @@ class Console < ActiveRecord::Base
 
   scope :uso, -> { where("state = 'disponible' OR state = 'noDisponible'")	 }
 
+  scope :disponible, -> { where(state: "disponible")}
+
 
   aasm column: "state" do
 

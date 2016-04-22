@@ -1,6 +1,7 @@
 class ReservesController < ApplicationController
 
   before_action :set_reserve, only: [:show, :edit, :update, :destroy, :activa, :enProceso, :finalizada, :cancelada]
+  load_and_authorize_resource :class => false
 
   # GET /reserves
   # GET /reserves.json
@@ -76,8 +77,9 @@ class ReservesController < ApplicationController
   end
 
   def cancelada
-     @reserve.cancelada!
-     redirect_to reserves_url
+    @update_price = Reserve.cancel_reserve(Reserve.find(params[:id]), Time.now)
+    @reserve.cancelada!
+    redirect_to reserves_url
   end
 
   def Reserve_ajax

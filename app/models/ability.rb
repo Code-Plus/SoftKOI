@@ -23,6 +23,8 @@ class Ability
 
          if user.can_consoles == true
             can :manage, Console
+            can :manage, Reserve
+            can :manage, ReservePrice
          end
 
          if user.can_customers == true

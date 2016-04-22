@@ -25,11 +25,6 @@ Rails.application.routes.draw do
    resources :reserve_prices
    resources :reserves
 
-	resources :consoles do
-	   collection do
-	   	get 'drop_console'
-	   end
-	end
 
 	resources :consoles do
    	collection do
@@ -43,9 +38,7 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-
+	patch "users/:id/update_profile", to: "users#update_profile"
 
   #Estados de la reserva.
   put "/reserve/:id/activa", to: "reserves#activa"

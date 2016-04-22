@@ -1,16 +1,16 @@
-<h2>Forgot your password?</h2>
+<div class="login-body" style="margin-bottom:40px">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+      <div class="control">
+         <%= f.label :email %>
+         <%= f.email_field :email, autofocus: true, placeholder: 'Email', required: true, class:'form-control' %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+      <div class="login-button text-center">
+         <%= f.submit "ENVIAR CORREO", class:'btn btn-primary' %>
+      </div>
 
-<%= render "devise/shared/links" %>
+   <% end %>
+</div>

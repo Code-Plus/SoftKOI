@@ -1,5 +1,7 @@
 class ReservePricesController < ApplicationController
-  before_action :set_reserve_price, only: [:show, :edit, :update, :destroy]
+   
+  before_action :set_reserve_price, only: [:edit, :update]
+  load_and_authorize_resource
 
   # GET /reserve_prices
   # GET /reserve_prices.json
@@ -7,15 +9,11 @@ class ReservePricesController < ApplicationController
     @reserve_prices = ReservePrice.all
   end
 
-  # GET /reserve_prices/1
-  # GET /reserve_prices/1.json
-  def show
-  end
 
   # GET /reserve_prices/new
   def new
     @reserve_price = ReservePrice.new
-    @console = Console.all
+    @console = Console.disponible
   end
 
   # GET /reserve_prices/1/edit
@@ -29,11 +27,11 @@ class ReservePricesController < ApplicationController
 
     respond_to do |format|
       if @reserve_price.save
-        format.html { redirect_to @reserve_price, notice: 'Reserve price was successfully created.' }
-        format.json { render :show, status: :created, location: @reserve_price }
+        format.json { head :no_content }
+        format.js {  flash[:notice] = "¡Precio de reserva creado satisfactoriamente!" }
       else
-        format.html { render :new }
-        format.json { render json: @reserve_price.errors, status: :unprocessable_entity }
+        format.json { render json: @reserve_price.errors.full_messages,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -43,22 +41,12 @@ class ReservePricesController < ApplicationController
   def update
     respond_to do |format|
       if @reserve_price.update(reserve_price_params)
-        format.html { redirect_to @reserve_price, notice: 'Reserve price was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reserve_price }
+       ormat.json { head :no_content }
+        format.js {  flash[:notice] = "¡Precio de reserva actualizada satisfactoriamente!" }
       else
-        format.html { render :edit }
-        format.json { render json: @reserve_price.errors, status: :unprocessable_entity }
+        format.json { render json: @reserve_price.errors.full_messages,
+          status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /reserve_prices/1
-  # DELETE /reserve_prices/1.json
-  def destroy
-    @reserve_price.destroy
-    respond_to do |format|
-      format.html { redirect_to reserve_prices_url, notice: 'Reserve price was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
