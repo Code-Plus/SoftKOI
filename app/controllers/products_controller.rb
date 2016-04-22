@@ -4,18 +4,19 @@ class ProductsController < ApplicationController
    load_and_authorize_resource
 
    def index
-      @products = Product.all 
+     @products = Product.all
+     @products_for_pdf = Product.creados_hoy(Time.new.strftime("%F"))
       respond_to do |format|
          format.html
          format.pdf do
-           pdf = ProductPdf.new(@products)
+           pdf = ProductPdf.new(@products_for_pdf)
            send_data pdf.render, filename: 'productos.pdf',:disposition => 'inline',type: 'application/pdf'
          end
       end
    end
 
    def products_today
-      @products = Product.all     
+      @products = Product.all
    end
 
 
