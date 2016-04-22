@@ -16,16 +16,16 @@
 
    </div>
 
-   <div class="field">
-      <%= f.label :interval,"Intervalo" %><br>
+    <div class="field">
+      <%= f.label :consoles, "Consola" %><br>
+      <%= collection_select(:reservation, :console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, {:class=>'form-control type_product_id',:onchange =>"price_console_function()"}) %>
+   </div>
+
+   <div class="field" style="display:none" attrdess="disabled_botton">
+      <%= f.label :interval,"Intervalo"  %><br>
       <%= collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
    </div>
-
-   <div class="field">
-      <%= f.label :consoles, "Consola" %><br>
-      <%= collection_select(:reservation, :console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, :class => "form-control") %>
-   </div>
-
+  
    <div class="field">
       <%= f.label :start_time,"Hora de incio" %><br>
       <%= f.time_field :start_time ,:class => "form-control"%>
@@ -43,6 +43,6 @@
    </div>
 
    <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Registrar reserva", :class => "btn btn-primary bold disabled", :id=>"Btn_RReserve"%>
    </div>
 <% end %>
