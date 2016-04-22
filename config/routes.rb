@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 	devise_for :users
    resources :sales
    resources :products
+	resources :customers
 	resources :output_products
 	resources :categories
 	resources :type_products

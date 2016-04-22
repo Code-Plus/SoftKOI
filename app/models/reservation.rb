@@ -11,7 +11,7 @@ class Reservation < ActiveRecord::Base
    validates :start_time, presence: true
    validates :end_time, presence: true
    validates :console_id, presence: true
-   validates :customer, presence: true,:with => /^[-a-z]+$/
+   validates :customer, presence: true
    validates :reserve_price_id, presence: true
 
    #Método para pasar al estado "enProceso" de una reserva determinada cuando llegue a la hora registrada.
