@@ -23,6 +23,19 @@ class Reservation < ActiveRecord::Base
          if var.date.strftime("%F") == Time.new.strftime("%F")
             #Luego se valida la hora de inicio con la hora del sistema
             if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
+               return @message_validation = "¿El cliente está listo para iniciar la reserva?"
+=begin
+               if @answer_validation == true
+                 #Se actualiza el estado.
+                 #var.update state: "enProceso"
+               else
+                 if @answer_validation == "posponer"
+                   #Render edit
+                 elsif @answer_validation == "cancelar"
+                   #Cancel URL
+                 end
+               end
+=end
                #Se actualiza el estado.
                var.update state: "enProceso"
             end

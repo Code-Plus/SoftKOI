@@ -1,7 +1,7 @@
 class ProductPdf < Prawn::Document
-  def initialize(products)
+  def initialize(products_for_pdf)
     super()
-    @products = products
+    @products_for_pdf = products_for_pdf
     header
     text_content
     table_content
@@ -28,14 +28,14 @@ class ProductPdf < Prawn::Document
       row(0).font_style = :bold
       self.header = true
       self.row_colors = ['DDDDDD', 'FFFFFF']
-      self.column_widths = [40, 300, 200]
+      self.column_widths = [40]
     end
   end
 
   def product_rows
-    [['#', 'Name', 'Price']] +
-      @products.map do |product|
-      [product.id, product.name, product.price]
+    [['#']] +
+      @products_for_pdf.map do |product|
+      [product.id]
     end
   end
 end
