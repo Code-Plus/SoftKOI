@@ -17,12 +17,13 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require select2_locale_es
-//= require flipclock.min
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require alertify
+//= require alertify/confirm-modal
 //= require turbolinks
 //= require_tree .
 

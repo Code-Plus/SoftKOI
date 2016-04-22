@@ -9,7 +9,10 @@
 
    <%= f.label :date,"Fecha" %><br>
    <div class="input-group input-group-md date">
-     <%= f.date_field :date %>
+      <%= f.text_field :date, :class => "form-control input-md" %>
+      <span class="input-group-addon">
+        <i class="glyphicon glyphicon-th"></i>
+      </span>
 
    </div>
 
