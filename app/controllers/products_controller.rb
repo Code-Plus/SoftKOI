@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
          format.html
          format.pdf do
            pdf = ProductPdf.new(@products_for_pdf)
-           send_data pdf.render, filename: 'productos.pdf', type: 'application/pdf'
+           send_data pdf.render, filename: 'productos.pdf',:disposition => 'inline',type: 'application/pdf'
          end
       end
    end

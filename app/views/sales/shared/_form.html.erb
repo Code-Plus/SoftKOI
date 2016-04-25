@@ -15,7 +15,26 @@
             <div class="panel panel-default">
                <div class="panel-body table">
 
-                  <h5>Aca irá la tabla con los productos de la venta</h5>
+                  <%= f.fields_for :items do |item|%>
+                  <div class="items_fields">
+                    <div class="field">
+                      <%=item.label :product_id, "Producto"%>
+                     <%= collection_select(:items,:product_id, Product.activos_con_cantidad,:id, :name, {prompt: "Seleccione un cliente"}, :class => "form-control") %>
+                      <input type="button"  id="addtotable" value="Añadir" class="btn btn-default"></input>
+                    </div>
+                      <table id="products">
+                        <thead>
+                          <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>accion</th>
+                          </tr>
+                        </thead>
+                      </table>
+
+                  </div>
+                  <%end%>
+                  
                   <div class="field">
 
                      <%= f.label :limit_date %><br>
