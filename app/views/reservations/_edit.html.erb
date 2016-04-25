@@ -23,13 +23,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :start_time,"Hora de incio" %><br>
-    <%= f.text_field :start_time ,:class => "form-control"%>
+     <%= f.label :start_time,"Hora de incio" %><br>
+     <%= f.text_field :start_time ,:class => "form-control", :value => @reservation.start_time.strftime("%I:%M %p")%>
   </div>
 
   <div class="field">
-    <%= f.label :end_time,"Hora de finalizacion" %><br>
-    <%= f.text_field :end_time,:class => "form-control" %>
+     <%= f.label :end_time,"Hora de finalizacion" %><br>
+     <%= f.text_field :end_time, :class => "form-control", :value => @reservation.end_time.strftime("%I:%M %p") %>
   </div>
 
   <div class="field">
