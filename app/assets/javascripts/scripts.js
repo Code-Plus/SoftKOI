@@ -4,6 +4,7 @@ $(document).ready(function() {
 		theme: "bootstrap"
 	});
 
+	// Ajax para traer el cliente en venta
 	$('#sale_customer_id').change(function(){
 		var id_customer = $('#sale_customer_id option:selected').val();
 		$.ajax({
@@ -70,7 +71,7 @@ $(document).ready(function() {
 		});
 	});
 
-	//eliminar un producto del detalle de la venta 
+	//eliminar un producto del detalle de la venta
 	$(document).on('click', '.input-eliminar', function(){
 		var tr = $(this).closest('tr');
 	  	tr.fadeOut(200, function(){
@@ -78,6 +79,7 @@ $(document).ready(function() {
 		    calculate_the_total()
 		});
 	});
+
 
 	$('.input-group.date').datepicker({
    	autoclose: true,
@@ -108,7 +110,7 @@ $(document).ready(function() {
 	});
 
 
-	$('table').DataTable({
+	$('#datatable').DataTable({
 		"language": {
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar  _MENU_  registros",
