@@ -25,6 +25,86 @@ $(document).ready(function() {
 
 	});
 
+	$('#items_product_id').select2({
+		theme: "bootstrap"
+	});
+
+	function calcular_total()
+	{
+		var sum = 0;
+		$('#sale_amount').text(sum);
+	}
+
+
+	$('#addtotable').click(function(){
+		var id_product = $('#items_product_id option:selected').val();
+		var sum = 0;
+		$.ajax({
+			url: '/items/product',
+			data:{product:id_product },
+			type: 'get',
+			DataType: 'json'
+		}).done(function(done){
+			var product_name = done['name'];
+			var product_price = done['price'];
+
+			sum =sum+ parseInt(product_price);
+
+			console.log(sum);
+			var form_data={};
+
+			form_data['product'] = product_name + "<input type='hidden' name='tblproducto[]' id='tblproducto' value='"+product_name+"'>";
+			form_data['precio'] = product_price +"<input type='hidden' name='tblprecio[]' id='tblprecio' value='"+product_price+"'>";
+			form_data['eliminar'] = "<button class='tbncerrar'>x</button>";
+			var row = $('<tr></tr>');
+
+			$.each(form_data,function(tipo,valor){
+				$('<td class="input-'+tipo+'" id="input-'+tipo+'"></td>').html(valor).appendTo(row);
+			});
+			$('#products > tbody:last').append(row);
+		}).error(function(error){
+			console.log('error al conectar con el servidor'+error);
+		});
+	});
+
+	//eliminar un producto del detalle de la venta 
+	$(document).on('click', '.input-eliminar', function(){
+		var tr = $(this).closest('tr');
+	  	tr.fadeOut(200, function(){
+		    tr.remove();
+		    calcular_total()
+		});
+	});
+
+	//Agrega el producto cuando lo selecciona
+	//Lo dejo por si nos sirve en algun momento
+	/*$('#items_product_id').change(function(){
+		var id_product = $('#items_product_id option:selected').val();
+		$.ajax({
+			url: '/items/product',
+			data:{product:id_product },
+			type: 'get',
+			DataType: 'json'
+		}).done(function(done){
+			var product_name = done['name'];
+			var product_price = done['price'];
+
+			var form_data={};
+
+			form_data['product'] = product_name + "<input type='hidden' name='tblproducto[]' id='tblproducto' value='"+product_name+"'>";
+			form_data['precio'] = product_price +"<input type='hidden' name='tblprecio[]' id='tblprecio' value='"+product_price+"'>";
+			form_data['eliminar'] = "<button class='tbncerrar'>x</button>";
+			var row = $('<tr></tr>');
+
+			$.each(form_data,function(tipo,valor){
+				$('<td class="input-'+tipo+'" id="input-'+tipo+'"></td>').html(valor).appendTo(row);
+			});
+			$('#products > tbody:last').append(row);
+		}).error(function(error){
+			console.log('error al conectar con el servidor'+error);
+		});
+	});	*/
+
 
 	$('.input-group.date').datepicker({
    	autoclose: true,

@@ -1,6 +1,9 @@
 class Sale < ActiveRecord::Base
   belongs_to :user
   belongs_to :customer
+  has_many :items
+
+  accepts_nested_attributes_for :items
 
   include AASM
 
