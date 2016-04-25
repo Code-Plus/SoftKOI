@@ -29,16 +29,21 @@ $(document).ready(function() {
 		theme: "bootstrap"
 	});
 
-	function calcular_total()
+	//Calcular el total de la venta cuando se agregar o retiran productos
+	function calculate_the_total()
 	{
 		var sum = 0;
-		$('#sale_amount').text(sum);
+		$('.input-price').each (function(){
+			var t = $(this).find("input:eq(0)").val();
+
+			sum += parseInt(t.replace(".",""));
+		});
+		$('#sale_amount').val(sum);
 	}
 
-
+	//Agregar productos a la tabla de "sale"
 	$('#addtotable').click(function(){
 		var id_product = $('#items_product_id option:selected').val();
-		var sum = 0;
 		$.ajax({
 			url: '/items/product',
 			data:{product:id_product },
@@ -48,20 +53,18 @@ $(document).ready(function() {
 			var product_name = done['name'];
 			var product_price = done['price'];
 
-			sum =sum+ parseInt(product_price);
-
-			console.log(sum);
 			var form_data={};
 
 			form_data['product'] = product_name + "<input type='hidden' name='tblproducto[]' id='tblproducto' value='"+product_name+"'>";
-			form_data['precio'] = product_price +"<input type='hidden' name='tblprecio[]' id='tblprecio' value='"+product_price+"'>";
-			form_data['eliminar'] = "<button class='tbncerrar'>x</button>";
+			form_data['price'] = product_price +"<input type='hidden' name='tblprecio[]' id='tblprecio' value='"+product_price+"'>";
+			form_data['eliminar'] = "<input type='button' value='eliminar' class='tbncerrar btn btn-danger'></input>";
 			var row = $('<tr></tr>');
 
 			$.each(form_data,function(tipo,valor){
 				$('<td class="input-'+tipo+'" id="input-'+tipo+'"></td>').html(valor).appendTo(row);
 			});
 			$('#products > tbody:last').append(row);
+			calculate_the_total();
 		}).error(function(error){
 			console.log('error al conectar con el servidor'+error);
 		});
@@ -72,39 +75,9 @@ $(document).ready(function() {
 		var tr = $(this).closest('tr');
 	  	tr.fadeOut(200, function(){
 		    tr.remove();
-		    calcular_total()
+		    calculate_the_total()
 		});
 	});
-
-	//Agrega el producto cuando lo selecciona
-	//Lo dejo por si nos sirve en algun momento
-	/*$('#items_product_id').change(function(){
-		var id_product = $('#items_product_id option:selected').val();
-		$.ajax({
-			url: '/items/product',
-			data:{product:id_product },
-			type: 'get',
-			DataType: 'json'
-		}).done(function(done){
-			var product_name = done['name'];
-			var product_price = done['price'];
-
-			var form_data={};
-
-			form_data['product'] = product_name + "<input type='hidden' name='tblproducto[]' id='tblproducto' value='"+product_name+"'>";
-			form_data['precio'] = product_price +"<input type='hidden' name='tblprecio[]' id='tblprecio' value='"+product_price+"'>";
-			form_data['eliminar'] = "<button class='tbncerrar'>x</button>";
-			var row = $('<tr></tr>');
-
-			$.each(form_data,function(tipo,valor){
-				$('<td class="input-'+tipo+'" id="input-'+tipo+'"></td>').html(valor).appendTo(row);
-			});
-			$('#products > tbody:last').append(row);
-		}).error(function(error){
-			console.log('error al conectar con el servidor'+error);
-		});
-	});	*/
-
 
 	$('.input-group.date').datepicker({
    	autoclose: true,
