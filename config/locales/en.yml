@@ -113,7 +113,7 @@ en:
         amount: "Monto"
         total_amount: "Monto total"
         discount: "Descuento"
-        limit_date: "Fecha límite"
+        limit_date: "Fecha límite de pago"
         comment: "Comentario"
         user_id: "Empleado"
         customer_id: "Cliente"
