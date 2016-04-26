@@ -21,7 +21,7 @@
       <%= collection_select(:reservation, :console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, {:class=>'form-control type_product_id',:onchange =>"price_console_function()"}) %>
    </div>
 
-   <div class="field" style="display:none" attrdess="disabled_botton">
+   <div class="field" >
       <%= f.label :interval,"Intervalo"  %><br>
       <%# f.grouped_collection_select(:interval, , :reserve_price, :time, :id, :time, {prompt: "Selecciona un intervalo..."}, {:class => 'form-control'}) %>
       <%= collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
@@ -44,6 +44,6 @@
    </div>
 
    <div class="actions">
-      <%= f.submit "Registrar reserva", :class => "btn btn-primary bold disabled", :id=>"Btn_RReserve"%>
+      <%= f.submit "Registrar reserva", :class => "btn btn-primary bold ", :id=>"Btn_RReserve"%>
    </div>
 <% end %>

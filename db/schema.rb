@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160426141322) do
-=======
-ActiveRecord::Schema.define(version: 20160426134716) do
->>>>>>> 8923ba003b96bb33b0129593cbf2dd58a786470f
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -151,7 +147,7 @@ ActiveRecord::Schema.define(version: 20160426134716) do
     t.integer  "amount",       default: 0
     t.integer  "total_amount", default: 0
     t.integer  "discount",     default: 0
-    t.date     "limit_date"
+    t.date     "limit_date",   default: '2016-04-26'
     t.text     "comment"
     t.integer  "user_id"
     t.integer  "customer_id"
