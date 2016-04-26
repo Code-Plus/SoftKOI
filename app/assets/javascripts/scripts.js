@@ -13,6 +13,7 @@ $(document).ready(function() {
 	$('.input-group.date').datepicker({
    	autoclose: true,
 		orientation: "bottom auto",
+		format: "dd/mm/yyyy"
 	});
 
 	// Tooltip y alerta

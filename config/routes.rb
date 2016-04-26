@@ -15,42 +15,41 @@ Rails.application.routes.draw do
 	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
 
 	# Ruta para el ajax de reservas
-  	get '/reservations/price_interval', to: 'reservations#Reserve_ajax', as: 'interval_price'
+	get '/reservations/price_interval', to: 'reservations#Reserve_ajax', as: 'interval_price'
 
 
 
 	devise_for :users
-   resources :sales
-   resources :products
+	resources :sales
+	resources :products
 	resources :customers
 	resources :output_products
 	resources :categories
 	resources :type_products
 	resources :input_products
-   resources :reserve_prices
-   resources :reservations
+	resources :reserve_prices
+	resources :reservations
 
 
 	resources :consoles do
-   	collection do
-   		get 'drop_console'
-   	end
-   end
+		collection do
+			get 'drop_console'
+		end
+	end
 
 	resources :users do
-    collection do
-      post 'new_user'
-    end
-  end
+		collection do
+			post 'new_user'
+		end
+	end
 
 	patch "users/:id/update_profile", to: "users#update_profile"
 
-  #Estados de la reserva.
-  put "/reservation/:id/activa", to: "reservations#activa"
-  put "/reservation/:id/enProceso", to: "reservations#enProceso"
-  put "/reservation/:id/finalizada", to: "reservations#finalizada"
-  put "/reservation/:id/cancelada", to: "reservations#cancelada"
-
+	#Estados de la reserva.
+	put "/reservation/:id/activa", to: "reservations#activa"
+	put "/reservation/:id/enProceso", to: "reservations#enProceso"
+	put "/reservation/:id/finalizada", to: "reservations#finalizada"
+	put "/reservation/:id/cancelada", to: "reservations#cancelada"
 
 	#Estados de producto
 	put "/product/:id/habilitar", to: "products#disponible"
@@ -64,13 +63,13 @@ Rails.application.routes.draw do
 	put "/category/:id/habilitar", to: "categories#disponible"
 	put "/category/:id/inhabilitar", to: "categories#noDisponible"
 
-   #Estados de un usuario
-   put "/user/:id/habilitar", to: "users#disponible"
-   put "/user/:id/inhabilitar", to: "users#noDisponible"
+	#Estados de un usuario
+	put "/user/:id/habilitar", to: "users#disponible"
+	put "/user/:id/inhabilitar", to: "users#noDisponible"
 
-   #Estados de consola
-    put "/console/:id/habilitar", to: "consoles#disponible"
-    put "/console/:id/inhabilitar", to: "consoles#noDisponible"
-    put "/console/:id/baja", to: "consoles#baja"
+	#Estados de consola
+	put "/console/:id/habilitar", to: "consoles#disponible"
+	put "/console/:id/inhabilitar", to: "consoles#noDisponible"
+	put "/console/:id/baja", to: "consoles#baja"
 
 end

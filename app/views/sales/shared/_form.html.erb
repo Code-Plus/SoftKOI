@@ -89,16 +89,23 @@
                </div>
 
                <div id="inf_customer_end" class="hidden">
-                  <div class="well well-sm">
-                     <label>
-                        <i class="fa fa-user"></i> Nombre:
-                        <span id="info_customer_finish_name"></span>
-                     </label><br>
+                  <div class="col-sm-12" style="padding:0;">
+                     <div class="customer_wrapper">
+                        <div class="col-sm-4">
+                            <%= image_tag 'sokoi.png', width: '50px' %>
+                        </div>
+                        <div class="col-sm-8" style="padding-top:3px;">
+                           <label>
+                              <i class="fa fa-user"></i>
+                              <span id="info_customer_finish_name"></span>
+                           </label><br>
 
-                     <label>
-                        <i class="fa fa-list-alt"></i>  Documento:
-                        <span id="info_customer_finish_doc"></span>
-                     </label>
+                           <label>
+                              <i class="fa fa-list-alt"></i>
+                              <span id="info_customer_finish_doc"></span>
+                           </label>
+                        </div>
+                     </div>
                   </div>
                </div>
 

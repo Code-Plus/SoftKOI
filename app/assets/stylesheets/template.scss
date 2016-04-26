@@ -14,6 +14,15 @@ header{
    z-index: 1;
 }
 
+.customer_wrapper {
+   background: #ECF0F1;
+   width: 100%;
+   border-radius: 3px;
+   height: 70px;
+   padding-top: 10px;
+   margin-bottom: 15px;
+}
+
 table#products {
    border-width: 2px;
    border-color: #dce4ec !important;
