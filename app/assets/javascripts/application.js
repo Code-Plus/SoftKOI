@@ -46,35 +46,33 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 // setTimeout(iden_page, 100);
 
 
-
 function iden_page(){
-  if($('#Reserve_Page').length > 0){
+   if($('#Reserve_Page').length > 0){
       console.log("si llega hasta el primer if el elemento existe.");
-    var dess_page = "noact";
-    $('div.m_r_b_reservas').click(function(){
-      console.log("Se hizo click en el boton con la clase m_r_b_reservas.");
-      dess_page = "siact"
-    });
+      var dess_page = "noact";
+      $('div.m_r_b_reservas').click(function(){
+         console.log("Se hizo click en el boton con la clase m_r_b_reservas.");
+         dess_page = "siact"
+      });
       switch (dess_page) {
-        case 'noact':
-          console.log("entro en el switch y esta en el caso Noact.");
+         case 'noact':
+            console.log("entro en el switch y esta en el caso Noact.");
             if(!$('#new_reserve').length > 0){
-              console.log("la modal no existe.");
-              setInterval(PageReload, 10000);
+               console.log("la modal no existe.");
+               setInterval(PageReload, 10000);
             }
-
-          break;
-        case 'siact':
-        console.log("entro en el switch y esta en el caso Siact.");
+         break;
+         case 'siact':
+            console.log("entro en el switch y esta en el caso Siact.");
             alert('no recargar');
-          break;
-        default:
+         break;
+         default:
       }
-  }
+   }
 }
 
 function PageReload(){
-  location.reload();
+   location.reload();
 }
 
 var categoriesI ;
@@ -100,5 +98,4 @@ function Products_category_function(){
    } else {
       $('#category_type_product_id').prop("disabled",true);
    }
-
 }

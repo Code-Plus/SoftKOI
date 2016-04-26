@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160426141322) do
+=======
+ActiveRecord::Schema.define(version: 20160426134716) do
+>>>>>>> 8923ba003b96bb33b0129593cbf2dd58a786470f
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -144,15 +148,15 @@ ActiveRecord::Schema.define(version: 20160426141322) do
 
   create_table "sales", force: :cascade do |t|
     t.string   "state"
-    t.decimal  "amount",       precision: 8, scale: 2
-    t.decimal  "total_amount", precision: 8, scale: 2
-    t.decimal  "discount",     precision: 8, scale: 2
+    t.integer  "amount",       default: 0
+    t.integer  "total_amount", default: 0
+    t.integer  "discount",     default: 0
     t.date     "limit_date"
     t.text     "comment"
     t.integer  "user_id"
     t.integer  "customer_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "sales", ["customer_id"], name: "index_sales_on_customer_id"

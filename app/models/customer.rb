@@ -37,8 +37,4 @@ class Customer < ActiveRecord::Base
       "#{firstname} #{lastname}"
    end
 
-   def pito
-      "#{document} - #{name}"
-   end
-
 end
