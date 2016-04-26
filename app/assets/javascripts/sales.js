@@ -50,7 +50,7 @@ $(document).ready(function() {
 	//eliminar un producto del detalle de la venta
 	$(document).on('click', '.input-eliminar', function(){
 		var tr = $(this).closest('tr');
-		r.fadeOut(200, function(){
+		tr.fadeOut(200, function(){
 			tr.remove();
 			calculate_total()
 		});
