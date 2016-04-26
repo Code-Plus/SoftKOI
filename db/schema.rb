@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420112927) do
+ActiveRecord::Schema.define(version: 20160426141322) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160420112927) do
     t.integer  "reserve_price_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "interval"
   end
 
   add_index "reservations", ["console_id"], name: "index_reservations_on_console_id"

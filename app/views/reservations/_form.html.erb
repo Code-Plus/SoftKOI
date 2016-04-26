@@ -23,9 +23,10 @@
 
    <div class="field" style="display:none" attrdess="disabled_botton">
       <%= f.label :interval,"Intervalo"  %><br>
+      <%# f.grouped_collection_select(:interval, , :reserve_price, :time, :id, :time, {prompt: "Selecciona un intervalo..."}, {:class => 'form-control'}) %>
       <%= collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
    </div>
-  
+
    <div class="field">
       <%= f.label :start_time,"Hora de incio" %><br>
       <%= f.time_field :start_time ,:class => "form-control"%>
