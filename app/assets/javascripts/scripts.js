@@ -13,7 +13,6 @@ $(document).ready(function() {
 	$('.input-group.date').datepicker({
    	autoclose: true,
 		orientation: "bottom auto",
-		format: "dd/mm/yyyy"
 	});
 
 	// Tooltip y alerta
@@ -40,8 +39,8 @@ $(document).ready(function() {
 		$(this).trigger("hover");
 	});
 
-	//Datatables
-	$('#datatable').DataTable({
+	//Datatable
+	$('table').DataTable({
 		"language": {
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar  _MENU_  registros",
