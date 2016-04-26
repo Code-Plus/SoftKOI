@@ -122,5 +122,26 @@ function Cargar_En_Reserva(){
   });
 }
 
+function price_console_function(){
+  var PricesC;
+  PricesC = $('#reservation_reserve_price_id').html();
+  $('#reservation_reserve_price_id').parent().show();
+  var escaped_interval_console, options, interval;
+  interval = $('#reservation_console_id :selected').text();
+  escaped_interval_console = interval.replace(/([0-9])/g, '\\$1');
+  options = $(PricesC).filter("optgroup[label = '" +  escaped_interval_console + "']").html();
+  if (options) 
+  {
+    $('#reservation_reserve_price_id').html(options);
+    $('#reservation_console_id').prop("disabled",true);
+    $('#Btn_RReserve').removeClass('disabled');
+    $('#Btn_RReserve').removeClass('btn-primary');
+    $('#Btn_RReserve').addClass('btn-success');
+    return $('#reservation_reserve_price_id').parent().show();
+  }else
+  {
+    $('#reservation_console_id').prop("disabled",true);
+  }
+}
 
 var reloj = new FlipClock($('.clock'), {});

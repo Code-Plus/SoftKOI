@@ -12,7 +12,7 @@
    <% end -%>
 
 	<% content_for :button do -%>
-		
+
 		<%= link_to new_product_path, remote: true, class: 'btn btn-success bold registrar' do %>
 			<i class="fa fa-plus"></i>
 			&nbsp;Nuevo Producto
@@ -21,7 +21,7 @@
 
 	<div class="panel panel-default">
 	   <div class="panel-body table">
-			<table class="table table-bordered table-striped">
+			<table id="datatable" class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th>Nombre</th>

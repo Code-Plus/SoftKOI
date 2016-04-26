@@ -11,13 +11,18 @@ Rails.application.routes.draw do
 	# Ruta para el ajax de ventas
 	get '/sales/customer', to: 'sales#ajax_customer', as: 'ajax_customer'
 
+	#Ruta para el ajax de productos
+	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
+
 	# Ruta para el ajax de reservas
-  get '/reservations/price_interval', to: 'reservations#Reserve_ajax', as: 'interval_price'
+  	get '/reservations/price_interval', to: 'reservations#Reserve_ajax', as: 'interval_price'
+
 
 
 	devise_for :users
    resources :sales
    resources :products
+	resources :customers
 	resources :output_products
 	resources :categories
 	resources :type_products

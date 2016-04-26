@@ -13,11 +13,27 @@ header{
    display: flex !important;
    z-index: 1;
 }
+
+table#products {
+   border-width: 2px;
+   border-color: #dce4ec !important;
+}
+
 li.Mnormal{
    transition: box-shadow 0.4s ease 0s;
 }
 li.Mnormal:hover {
    box-shadow: 81px 0 #e4e8ec inset, 84px 0 #abb6c4 inset !important;
+}
+
+textarea#sale_comment {
+   width: 100%;
+}
+
+#addtotable {
+   border-radius: 3px !important;
+   height: 33px !important;
+   margin-left: 4px !important;
 }
 /*-----------------------------etiquetas con clases---------------------*/
 ul.menu.normal{
@@ -110,6 +126,12 @@ div.menusuperior div.alerts a.ALETNotificacion {
 }
 
 .form-group.required .control-label:after {
+   color: #d00;
+   content: "*";
+   margin-left: 3px;
+}
+
+.required .control-label:after {
    color: #d00;
    content: "*";
    margin-left: 3px;

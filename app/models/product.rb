@@ -28,6 +28,19 @@ class Product < ActiveRecord::Base
    #Productos que se crearon en la fecha actual
    scope :creados_hoy, ->{where("created_at.strftime('%Y-%d-%m') => Time.now.strftime('%Y-%d-%m')")}
 
+   def self.creados_hoy(current_time)
+     product_created = Product.select("products.id, products.created_at")
+     created = nil
+     product_created.each do |t|
+       if t.created_at.strftime("%F") == current_time
+          created = t.created_at.strftime("%F")
+       end
+     end
+     products_finallly = Product.where("created_at LIKE '#{created}%'").select("products.id, products.name, products.description, products.category_id, products.stock_min, products.stock, products.price")
+     puts products_finallly.pluck(:id)
+     return products_finallly
+   end
+
    aasm column: "state" do
       state :disponible, :initial => true
       state :noDisponible
@@ -50,7 +63,7 @@ class Product < ActiveRecord::Base
    def reports(product,current_time)
       product.each do |p|
          if p.create_at.strftime("%Y-%d-%m") == Time.now.strftime("%Y-%d-%m")
-            
+
          end
       end
    end
