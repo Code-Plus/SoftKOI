@@ -1,94 +1,25 @@
 $(document).ready(function() {
 
+	// Select autocomplete
 	$('#sale_customer_id').select2({
 		theme: "bootstrap"
-	});
-
-	// Ajax para traer el cliente en venta
-	$('#sale_customer_id').change(function(){
-		var id_customer = $('#sale_customer_id option:selected').val();
-		$.ajax({
-			url: '/sales/customer',
-			data:{customer:id_customer },
-			type: 'get',
-			DataType: 'json'
-		}).done(function(done){
-			var customer_firsname = done['firstname'];
-			var customer_lastname = done['lastname'];
-			var customer_doc = done['document'];
-			$('#inf_customer_start').addClass('hidden');
-			$('#inf_customer_end').removeClass('hidden');
-			$('#info_customer_finish_name').text(customer_firsname+' '+customer_lastname);
-			$('#info_customer_finish_doc').text(customer_doc);
-		}).error(function(error){
-			console.log('error al conectar con el servidor'+error);
-		});
-
 	});
 
 	$('#items_product_id').select2({
 		theme: "bootstrap"
 	});
 
-	//Calcular el total de la venta cuando se agregar o retiran productos
-	function calculate_the_total()
-	{
-		var sum = 0;
-		$('.input-price').each (function(){
-			var t = $(this).find("input:eq(0)").val();
-
-			sum += parseInt(t.replace(".",""));
-		});
-		$('#sale_amount').val(sum);
-	}
-
-	//Agregar productos a la tabla de "sale"
-	$('#addtotable').click(function(){
-		var id_product = $('#items_product_id option:selected').val();
-		$.ajax({
-			url: '/items/product',
-			data:{product:id_product },
-			type: 'get',
-			DataType: 'json'
-		}).done(function(done){
-			var product_name = done['name'];
-			var product_price = done['price'];
-
-			var form_data={};
-
-			form_data['product'] = product_name + "<input type='hidden' name='tblproducto[]' id='tblproducto' value='"+product_name+"'>";
-			form_data['price'] = product_price +"<input type='hidden' name='tblprecio[]' id='tblprecio' value='"+product_price+"'>";
-			form_data['eliminar'] = "<input type='button' value='eliminar' class='tbncerrar btn btn-danger'></input>";
-			var row = $('<tr></tr>');
-
-			$.each(form_data,function(tipo,valor){
-				$('<td class="input-'+tipo+'" id="input-'+tipo+'"></td>').html(valor).appendTo(row);
-			});
-			$('#products > tbody:last').append(row);
-			calculate_the_total();
-		}).error(function(error){
-			console.log('error al conectar con el servidor'+error);
-		});
-	});
-
-	//eliminar un producto del detalle de la venta
-	$(document).on('click', '.input-eliminar', function(){
-		var tr = $(this).closest('tr');
-	  	tr.fadeOut(200, function(){
-		    tr.remove();
-		    calculate_the_total()
-		});
-	});
-
-
+	// Datepicker
 	$('.input-group.date').datepicker({
    	autoclose: true,
 		orientation: "bottom auto",
 	});
 
+	// Tooltip y alerta
 	$('[data-toggle="tooltip"]').tooltip();
 	$("#notice_wrapper").slideDown(400).delay(2000).slideUp("slow");
 
+	// Menu lateral izquierdo
 	$("#iconmenu").on("click",function(){
 		$(".menusuperior").toggleClass("normal");
 		$(".menusuperior").toggleClass("desplegado");
@@ -104,12 +35,11 @@ $(document).ready(function() {
 		$(".HomeM").toggleClass("Hdesplegado");
 	});
 
-	// Menu
 	$('.McolorHoo').click(function(){
 		$(this).trigger("hover");
 	});
 
-
+	//Datatables
 	$('#datatable').DataTable({
 		"language": {
 			"sProcessing":     "Procesando...",
@@ -136,7 +66,4 @@ $(document).ready(function() {
 			}
 		}
 	});
-
-
-
 });

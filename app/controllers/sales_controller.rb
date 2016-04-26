@@ -35,7 +35,7 @@ class SalesController < ApplicationController
             format.json { render :show, status: :created, location: @sale }
          else
             format.html { render :new }
-            format.json { render json: @sale.errors, status: :unprocessable_entity }
+            format.json { render json: @sale.errors.full_messages, status: :unprocessable_entity }
          end
       end
    end
@@ -133,8 +133,6 @@ class SalesController < ApplicationController
       custom_customer.email = params[:custom_customer][:email]
       custom_customer.state = params[:custom_customer][:state]
       custom_customer.type_document_id = params[:custom_customer][:type_document_id]
-
-
 
       custom_customer.save
 

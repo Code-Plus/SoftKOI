@@ -9,6 +9,17 @@
 
 <div style="margin: 0px 60px;">
    <%= form_for @sale do |f| %>
+
+   <% if @sale.errors.any? %>
+      <div id="error_explanation" class="text-danger modal-errors">
+         <ul>
+            <% @sale.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+         </ul>
+      </div>
+   <% end %>
+
    <div class="row">
       <div class="col-sm-9">
          <div class="panel panel-default">
@@ -20,10 +31,11 @@
                      <div class="col-sm-6 required">
                         <%=item.label :product_id, "Producto", :class => "control-label"%>
                         <div class="input-group input-group-sm">
-                           <%= collection_select(:items, :product_id, Product.activos_con_cantidad, :id, :name, {prompt: "Selecciona un cliente..."}, :class => "form-control input-sm") %>
+                           <%= collection_select(:items, :product_id, Product.activos_con_cantidad, :id, :name, {prompt: "Selecciona un producto..."}, :class => "form-control input-sm") %>
 
                            <span class="input-group-btn">
-                             <button id="addtotable" class="btn btn-sm btn-success input-sm"><i class="fa fa-plus"></i></button>
+                             <div id="addtotable" class="btn btn-sm btn-success input-sm"><i class="fa fa-plus"></i>
+                             </div>
                            </span>
                         </div>
                      </div>
@@ -31,7 +43,7 @@
                      <div class="col-sm-6 required">
                         <%= f.label :limit_date, :class => "control-label" %><br>
                         <div class="input-group input-group-sm date">
-                           <%= f.text_field :limit_date, :class => "form-control input-sm" %>
+                           <%= f.text_field :limit_date, :class => "form-control input-sm", value: Time.now.strftime("%d/%m/%Y") %>
                            <span class="input-group-addon">
                               <i class="glyphicon glyphicon-th"></i>
                            </span>
@@ -79,7 +91,7 @@
                <div id="inf_customer_end" class="hidden">
                   <div class="well well-sm">
                      <label>
-                        <i class="fa fa-user"></i> Nombre: 
+                        <i class="fa fa-user"></i> Nombre:
                         <span id="info_customer_finish_name"></span>
                      </label><br>
 

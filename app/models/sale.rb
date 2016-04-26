@@ -1,7 +1,11 @@
 class Sale < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :customer
   has_many :items
+
+  before_validation :verificar_estado
+  before_create :default_date
 
   accepts_nested_attributes_for :items
 
@@ -15,7 +19,6 @@ class Sale < ActiveRecord::Base
   validates :customer_id, presence: true
   validates_date :limit_date, presence: true, :afer => lambda { Date.current }
 
-  before_validation :verificar_estado
 
   aasm column: "state" do
       state :pago
@@ -27,14 +30,21 @@ class Sale < ActiveRecord::Base
       end
    end
 
+
    private
 
    def verificar_estado
-   		if self.amount == self.total_amount
-   			self.state = "pago"
-   		else
-   			self.state = "sinpagar"
-   		end
+		if self.amount == self.total_amount
+			self.state = "pago"
+		else
+			self.state = "sinpagar"
+		end
+   end
+
+   def default_date
+     if self.limit_date.nil?
+        self.limit_date = Time.now
+     end
    end
 
 end
