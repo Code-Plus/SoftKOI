@@ -10,7 +10,7 @@ $(document).ready(function() {
 		$('#sale_amount').val(sum);
 	}
 
-	
+
 	//Agregar productos a la tabla de "sale"
 	$('#addtotable').click(function(){
 		var id_product = $('#items_product_id option:selected').val();
@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 			form_data['price'] = product_price +"<input type='hidden' name='tblprecio[]' id='tblprecio' value='"+product_price+"'>";
 
-			form_data['eliminar'] = "<input type='button' value='eliminar' class='tbncerrar btn btn-danger'></input>";
+			form_data['eliminar'] = "<div class='tbncerrar btn btn-sm bold btn-danger'><i class='fa fa-close'></i></div>";
 
 			var row = $('<tr></tr>');
 
@@ -50,7 +50,7 @@ $(document).ready(function() {
 	//eliminar un producto del detalle de la venta
 	$(document).on('click', '.input-eliminar', function(){
 		var tr = $(this).closest('tr');
-		r.fadeOut(200, function(){
+		tr.fadeOut(200, function(){
 			tr.remove();
 			calculate_total()
 		});
