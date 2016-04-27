@@ -3,7 +3,7 @@
    <td><%= product.description %></td>
    <td><%= product.category.name %></td>
    <td width="10px"><%= product.stock_min %></td>
-   <td width="10px"><%= product.stock %></td>
+   <td width="10px" class="<%= product.stock <= product.stock_min ? 'text-danger bold': '' %>"><%= product.stock %></td>
    <td><%= number_to_currency product.price %></td>
 
    <td width="105px">
