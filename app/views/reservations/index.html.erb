@@ -41,3 +41,23 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 <br>
 <%= render 'dialog' %>
 </div>
+<script type="text/javascript">
+    ReloadPage();
+  function ReloadPage(state){
+    var dess = state;
+
+    if(dess == "openmodal"){
+      alert("No recargar pagina");
+    }else{
+      if($('#Reserve_Page').length != 0){
+        alert('la modal esta abierta');
+      }else{
+        setInterval(function(){
+          // location.reload();
+          console.log('reload page');
+        }, 1000);
+      }
+
+    }
+  }
+</script>
