@@ -67,8 +67,8 @@ class ProductsController < ApplicationController
       redirect_to products_url
    end
 
-   def bajas
-      @product.bajas!
+   def sinCantidad
+      @product.sinCantidad!
       redirect_to products_url
    end
 
