@@ -9,6 +9,17 @@
 
 <div style="margin: 0px 60px;">
    <%= form_for @sale do |f| %>
+
+   <% if @sale.errors.any? %>
+      <div id="error_explanation" class="text-danger modal-errors">
+         <ul>
+            <% @sale.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+         </ul>
+      </div>
+   <% end %>
+
    <div class="row">
       <div class="col-sm-9">
          <div class="panel panel-default">
@@ -18,12 +29,13 @@
                   <div class="items_fields">
 
                      <div class="col-sm-6 required">
-                        <%=item.label :product_id, "Producto", :class => "control-label"%>
+                        <%=item.label :product_id, "Agregar producto", :class => "control-label"%>
                         <div class="input-group input-group-sm">
-                           <%= collection_select(:items, :product_id, Product.activos_con_cantidad, :id, :name, {prompt: "Selecciona un cliente..."}, :class => "form-control input-sm") %>
+                           <%= collection_select(:items, :product_id, Product.activos_con_cantidad, :id, :name, {prompt: "Selecciona un producto..."}, :class => "form-control input-sm") %>
 
                            <span class="input-group-btn">
-                             <button id="addtotable" class="btn btn-sm btn-success input-sm"><i class="fa fa-plus"></i></button>
+                             <div id="addtotable" class="btn btn-sm btn-success input-sm"><i class="fa fa-plus"></i>
+                             </div>
                            </span>
                         </div>
                      </div>
@@ -31,7 +43,7 @@
                      <div class="col-sm-6 required">
                         <%= f.label :limit_date, :class => "control-label" %><br>
                         <div class="input-group input-group-sm date">
-                           <%= f.text_field :limit_date, :class => "form-control input-sm" %>
+                           <%= f.text_field :limit_date, :class => "form-control input-sm", value: Time.now.strftime("%d/%m/%Y") %>
                            <span class="input-group-addon">
                               <i class="glyphicon glyphicon-th"></i>
                            </span>
@@ -42,14 +54,19 @@
                         <hr>
                      </div>
                      <div class="col-sm-12">
-                        <table id="products" class="table table-bordered table-hover table-striped">
+                        <h4 class="text-left">Productos</h2>
+                        <table id="products"  class="table table-bordered table-hover table-striped">
                            <thead>
                               <tr>
                                  <th>Nombre</th>
-                                 <th>Precio</th>
+                                 <th>Precio Unitario</th>
+                                 <th>Cantidad</th>
+                                 <th>Precio Total</th>
                                  <th>Acción</th>
                               </tr>
                            </thead>
+                           <tbody>
+                           </tbody>
                         </table>
                      </div>
 
@@ -77,19 +94,25 @@
                </div>
 
                <div id="inf_customer_end" class="hidden">
-                  <div class="well well-sm">
-                     <label>
-                        <i class="fa fa-user"></i> Nombre: 
-                        <span id="info_customer_finish_name"></span>
-                     </label><br>
+                  <div class="col-sm-12" style="padding:0;">
+                     <div class="customer_wrapper">
+                        <div class="col-sm-4">
+                            <%= image_tag 'sokoi.png', width: '50px' %>
+                        </div>
+                        <div class="col-sm-8" style="padding-top:3px;">
+                           <label>
+                              <i class="fa fa-user"></i>
+                              <span id="info_customer_finish_name"></span>
+                           </label><br>
 
-                     <label>
-                        <i class="fa fa-list-alt"></i>  Documento:
-                        <span id="info_customer_finish_doc"></span>
-                     </label>
+                           <label>
+                              <i class="fa fa-list-alt"></i>
+                              <span id="info_customer_finish_doc"></span>
+                           </label>
+                        </div>
+                     </div>
                   </div>
                </div>
-
                <div class="form-group">
                   <%= f.label :amount %>
                   <div class="input-group input-group-sm required">
@@ -122,7 +145,6 @@
             </div>
          </div>
       </div>
-
    </div>
    <% end %>
 </div>

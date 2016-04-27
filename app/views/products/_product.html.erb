@@ -3,12 +3,14 @@
    <td><%= product.description %></td>
    <td><%= product.category.name %></td>
    <td width="10px"><%= product.stock_min %></td>
-   <td width="10px"><%= product.stock %></td>
+   <td width="10px" class="<%= product.stock <= product.stock_min ? 'text-danger bold': '' %>"><%= product.stock %></td>
    <td><%= number_to_currency product.price %></td>
 
    <td width="105px">
       <% if product.state == "noDisponible" %>
          <span class="label label-primary span-table">No disponible</span>
+      <% elsif product.state == "sinCantidad"%>
+         <span class="label label-danger span-table">Sin existencia</span>
       <% else %>
          <span class="label label-success span-table"> Disponible </span>
       <% end %>

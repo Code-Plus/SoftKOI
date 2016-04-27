@@ -1,45 +1,64 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do -%>
+   Detalle de venta <i class="fa fa-caret-down"></i>
+<% end -%>
 
-<p>
-  <strong>State:</strong>
-  <%= @sale.state %>
-</p>
+<% content_for :menus do -%>
+   <li><h5 class="drop-title"><%= link_to "Gestión de ventas", "#" %></h5></li>
+<% end -%>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @sale.amount %>
-</p>
+<% content_for :button do -%>
+   <%= link_to @sale, class: 'btn btn-primary bold' do %>
+      &nbsp;<strong>Venta N° <%= @sale.id %></strong>
+   <% end %>
+<% end -%>
 
-<p>
-  <strong>Total amount:</strong>
-  <%= @sale.total_amount %>
-</p>
+<div style="margin: 0px 60px;">
+   <div class="panel panel-default">
+      <div class="panel-body">
+         <p>
+           <strong>Estado:</strong>
+           <%= @sale.state %>
+         </p>
+
+         <p>
+           <strong>Monto:</strong>
+           <%= number_to_currency @sale.amount %>
+         </p>
+
+         <p>
+           <strong>Descuento:</strong>
+           <%= number_to_currency @sale.discount %>
+         </p>
+
+         <p>
+           <strong>Monto total:</strong>
+           <%= number_to_currency @sale.total_amount %>
+         </p>
 
 
-<p>
-  <strong>Discount:</strong>
-  <%= @sale.discount %>
-</p>
+         <p>
+           <strong>Fecha límite</strong>
+           <%= @sale.limit_date %>
+         </p>
 
-<p>
-  <strong>Limit date:</strong>
-  <%= @sale.limit_date %>
-</p>
+         <p>
+           <strong>Usuario:</strong>
+           <%= @sale.user.name %>
+         </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @sale.user %>
-</p>
+         <p>
+           <strong>Comentario:</strong>
+           <%= @sale.comment %>
+         </p>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @sale.comment %>
-</p>
+         <p>
+           <strong>Cliente:</strong>
+           <%= @sale.customer.name %>
+         </p>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @sale.customer %>
-</p>
-
-<%= link_to 'Edit', edit_sale_path(@sale) %> |
-<%= link_to 'Back', sales_path %>
+         <%= link_to sales_path, class:'btn btn-info btn-sm bold' do %>
+            <i class="fa fa-arrow-left"></i> &nbsp; Volver
+         <% end %>
+      </div>
+   </div>
+</div>

@@ -5,7 +5,7 @@ class Ability
 
       if user.role.name == 'Empleado'
 
-         can :edit, User
+         can [:update_profile, :edit], [User]
 
          if user.can_inventory == true
             can :manage, Product
