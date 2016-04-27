@@ -1,0 +1,12 @@
+<fieldset>
+	<%= f.label :product, "Product" %>
+	<%= f.collection_select :product_id, Product.all, :id, :name %>
+	<%= f.label :quantity, "Quantity" %>
+	<%= f.text_field :quantity, class: 'padli' %>
+	<%= f.label :price, "Precio" %>
+	<%= f.text_field :price, class: 'padli' %>
+	<%= f.label :total_price, "Total precio" %>
+	<%= f.text_field :total_price, class: 'padli' %>
+	<%= f.hidden_field :_destroy %>
+	<%= link_to "remove", '#', class: "remove_fields" %>
+</fieldset>
