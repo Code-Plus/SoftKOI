@@ -1,17 +1,4 @@
 $(document).ready(function() {
-
-	//Alertas confirmación
-   $('.example1').on('click', function () {
-       $.alert({
-           title: 'Alerta de la Toña!',
-           content: 'Alerta simple!',
-           confirm: function () {
-               $.alert('Confirmed!');
-           }
-       });
-   });
-
-
 	// Select autocomplete
 	$('#sale_customer_id').select2({
 		theme: "bootstrap"

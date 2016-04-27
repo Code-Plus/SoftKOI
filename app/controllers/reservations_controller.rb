@@ -9,7 +9,12 @@ class ReservationsController < ApplicationController
     @reservationsActivas = Reservation.activa
     @actualizarEstadoProceso = Reservation.validates_hour_start(Reservation.all)
     @actualizarEstadoFinalizada = Reservation.validates_hour_finish(Reservation.all)
-    gon.message_validation = @actualizarEstadoProceso
+
+    if @actualizarEstadoProceso.is_a?(Array)
+      gon.message_validation = nil
+    else
+      gon.message_validation = @actualizarEstadoProceso
+    end
   end
 
   def show
