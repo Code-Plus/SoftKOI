@@ -17,17 +17,33 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require select2_locale_es
+//= require alertify
+//= require alertify/confirm-modal
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require alertify
-//= require alertify/confirm-modal
 //= require turbolinks
 //= require_tree .
 
+alerticas();
 
+function alerticas (){
+ alert("La toñila");
+  $.alert({
+      title: 'Alert!',
+      content: 'Simple alert!',
+      confirm: function(){
+          $.alert('Confirmed!'); // shorthand.
+      }
+  });
+
+}
+
+if (gon.message_validation != null) {
+
+}
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 

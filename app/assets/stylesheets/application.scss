@@ -71,7 +71,8 @@ span.select2{
 }
 
 
-
+@import "alertify";
+@import "alertify/default";
 @import "bootstrap-sprockets";
 @import "bootstrap.scss";
 @import "font-awesome-sprockets";

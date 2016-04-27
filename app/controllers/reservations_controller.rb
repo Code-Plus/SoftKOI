@@ -8,8 +8,8 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all
     @reservationsActivas = Reservation.activa
     @actualizarEstadoProceso = Reservation.validates_hour_start(Reservation.all)
-    gon.message = @message_validation
     @actualizarEstadoFinalizada = Reservation.validates_hour_finish(Reservation.all)
+    gon.message_validation = @actualizarEstadoProceso
   end
 
   def show

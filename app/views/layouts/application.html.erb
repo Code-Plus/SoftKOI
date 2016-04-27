@@ -2,12 +2,12 @@
 <html>
 <head>
 	<title>SoftKOI App</title>
-	<%# <%= alertify_flash > %>
 	<%= favicon_link_tag 'favicon.ico' %>
+	<%= Gon::Base.render_data({}) %>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
-	<%= Gon::Base.render_data %>
+	<%= alertify_flash %>
 </head>
 
 <body>
