@@ -27,6 +27,17 @@
 //= require turbolinks
 //= require_tree .
 
+function miabuelo (val){
+      var initialamount = $('#tblprice').val();
+      
+      var value = val;
+      
+      var finalAmount = initialamount * value;
+      
+      $('#tbltotal_price').val(finalAmount);
+      $('#unit_prices').text(finalAmount);
+   }
+
 
 
 $(document).ajaxError(function(event,xhr,options,exc) {

@@ -29,7 +29,7 @@
                   <div class="items_fields">
 
                      <div class="col-sm-6 required">
-                        <%=item.label :product_id, "Producto", :class => "control-label"%>
+                        <%=item.label :product_id, "Agregar producto", :class => "control-label"%>
                         <div class="input-group input-group-sm">
                            <%= collection_select(:items, :product_id, Product.activos_con_cantidad, :id, :name, {prompt: "Selecciona un producto..."}, :class => "form-control input-sm") %>
 
@@ -54,11 +54,14 @@
                         <hr>
                      </div>
                      <div class="col-sm-12">
-                        <table id="products" class="table table-bordered table-hover table-striped">
+                        <h4 class="text-left">Productos</h2>
+                        <table id="products"  class="table table-bordered table-hover table-striped">
                            <thead>
                               <tr>
                                  <th>Nombre</th>
-                                 <th>Precio</th>
+                                 <th>Precio Unitario</th>
+                                 <th>Cantidad</th>
+                                 <th>Precio Total</th>
                                  <th>Acción</th>
                               </tr>
                            </thead>
@@ -110,7 +113,6 @@
                      </div>
                   </div>
                </div>
-
                <div class="form-group">
                   <%= f.label :amount %>
                   <div class="input-group input-group-sm required">
@@ -143,7 +145,6 @@
             </div>
          </div>
       </div>
-
    </div>
    <% end %>
 </div>
