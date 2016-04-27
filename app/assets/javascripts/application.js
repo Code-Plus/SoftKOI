@@ -27,10 +27,6 @@
 //= require turbolinks
 //= require_tree .
 
-if (gon.message_validation != null) {
-
-}
-
 $(document).ajaxError(function(event,xhr,options,exc) {
 
    var errors = JSON.parse(xhr.responseText);

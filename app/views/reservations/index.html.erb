@@ -42,10 +42,14 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 <%= render 'dialog' %>
 </div>
 <script type="text/javascript">
-  /*if (gon.message != null) {
-      window.showConfirm = function(){
-        alertify.confirm(gon.message);
-      }
-      window.showConfirm();
-  }*/
+    if (gon.message_validation != null) {
+          console.log(gon.message_validation);
+          $.alert({
+              title: 'Confirmación inicio de reserva.',
+              content: gon.message_validation,
+              confirm: function () {
+                  $.alert('Confirmed!');
+              }
+          });
+    }
 </script>
