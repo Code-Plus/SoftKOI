@@ -27,34 +27,6 @@
 //= require turbolinks
 //= require_tree .
 
-<<<<<<< HEAD
-alerticas();
-
-function alerticas (){
- alert("La toñila");
-  $.alert({
-      title: 'Alert!',
-      content: 'Simple alert!',
-      confirm: function(){
-          $.alert('Confirmed!'); // shorthand.
-      }
-  });
-
-}
-=======
-function miabuelo (val){
-      var initialamount = $('#tblprice').val();
-      
-      var value = val;
-      
-      var finalAmount = initialamount * value;
-      
-      $('#tbltotal_price').val(finalAmount);
-      $('#unit_prices').text(finalAmount);
-   }
-
->>>>>>> 94e6fe21bb98ff7f8eb5a5a3a3d5b576db5976fd
-
 if (gon.message_validation != null) {
 
 }
