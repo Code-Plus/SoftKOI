@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 			form_data['price'] = "<span id='unit_price'>"+product_price+"</span><input type='hidden' name='tblprice[]' id='tblprice' value='"+product_price+"'>";
 
-			form_data['quantity'] = "<input type='number' name='tblquantity[]' id='tblquantitys' class='quantity_sale' value='1' onkeyup='miabuelo(this.value)'>"
+			form_data['quantity'] = "<div id='mas' class='btn btn-primary btn-xs'><i class='fa fa-plus-circle'></i></div> &nbsp; <input type='number' name='tblquantity[]' id='tblquantitys' class='quantity_sale form-control input-sm' value='1' onkeyup='miabuelo(this.value)' readonly> &nbsp; <div id='menos' class='btn btn-primary btn-xs'><i class='fa fa-minus-circle'></i></div>"
 
 			form_data['total_price'] = "<span id='unit_prices'>"+product_price+"</span><input type='hidden'  name='tbltotal_price[]' id='tbltotal_price' value='"+product_price+"'>";
 
@@ -69,8 +69,8 @@ $(document).ready(function() {
       $('#sale_total_amount').val(total_amount);
 	});
 
-	
 
-	
+
+
 
 });
