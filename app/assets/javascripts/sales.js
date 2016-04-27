@@ -3,13 +3,15 @@ $(document).ready(function() {
 	//Calcular el total de la venta cuando se agregar o retiran productos
 	function calculate_total() {
 		var sum = 0;
-		$('.input-price').each (function(){
+		$('.input-total_price').each (function(){
 			var t = $(this).find("input:eq(0)").val();
 			sum += parseInt(t.replace(".",""));
 		});
 		$('#sale_amount').val(sum);
-	}
 
+		var total_amount = $('#sale_amount').val() - $('#sale_discount').val()
+		$('#sale_total_amount').val(total_amount);
+	}
 
 	//Agregar productos a la tabla de "sale"
 	$('#addtotable').click(function(){
@@ -26,11 +28,15 @@ $(document).ready(function() {
 
 			var form_data={};
 
-			form_data['product'] = product_name + "<input type='hidden' name='tblproducto[]' id='tblproducto' value='"+product_name+"'>";
+			form_data['product'] = product_name + "<input type='hidden' name='tblproduct[]' id='tblproduct' value='"+product_name+"'>";
 
-			form_data['price'] = product_price +"<input type='hidden' name='tblprecio[]' id='tblprecio' value='"+product_price+"'>";
+			form_data['price'] = "<span id='unit_price'>"+product_price+"</span><input type='hidden' name='tblprice[]' id='tblprice' value='"+product_price+"'>";
 
-			form_data['eliminar'] = "<div class='tbncerrar btn btn-sm bold btn-danger'><i class='fa fa-close'></i></div>";
+			form_data['quantity'] = "<input type='number' name='tblquantity[]' id='tblquantitys' class='quantity_sale' value='1' onkeyup='miabuelo(this.value)'>"
+
+			form_data['total_price'] = "<span id='unit_prices'>"+product_price+"</span><input type='hidden'  name='tbltotal_price[]' id='tbltotal_price' value='"+product_price+"'>";
+
+			form_data['delete'] = "<div class='tbncerrar btn btn-sm bold btn-danger'><i class='fa fa-close'></i></div>";
 
 			var row = $('<tr></tr>');
 
@@ -48,11 +54,23 @@ $(document).ready(function() {
 
 
 	//eliminar un producto del detalle de la venta
-	$(document).on('click', '.input-eliminar', function(){
+	$(document).on('click', '.input-delete', function(){
 		var tr = $(this).closest('tr');
 		tr.fadeOut(200, function(){
 			tr.remove();
 			calculate_total()
 		});
 	});
+
+	$('#sale_discount').keyup(function(){
+
+		var amount = $('#sale_amount').val();
+      var total_amount = amount - $(this).val();
+      $('#sale_total_amount').val(total_amount);
+	});
+
+	
+
+	
+
 });
