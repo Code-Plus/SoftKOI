@@ -7,6 +7,13 @@ class Product < ActiveRecord::Base
    has_many :output_products
    has_many :input_products
    before_validation :validate_category_change
+  after_update do
+    if self.state == "noDisponible" || self.state == "disponible"
+      if self.stock == 0 
+        self.update(state: "sinCantidad")
+      end
+    end
+  end
 
 
    validates :name, presence: true
@@ -44,7 +51,7 @@ class Product < ActiveRecord::Base
    aasm column: "state" do
       state :disponible, :initial => true
       state :noDisponible
-      state :bajas
+      state :sinCantidad
 
       #Eventos de movimiento o transiciones para los estados.
       event :disponible do
@@ -53,10 +60,11 @@ class Product < ActiveRecord::Base
 
       event :noDisponible do
          transitions from: :disponible, to: :noDisponible
+         transitions from: :sinCantidad, to: :noDisponible
       end
 
-      event :bajas do
-         transitions from: :disponible, to: :bajas
+      event :sinCantidad do
+         transitions from: :disponible, to: :sinCantidad
       end
    end
 

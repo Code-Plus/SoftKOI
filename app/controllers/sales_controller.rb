@@ -15,6 +15,13 @@ class SalesController < ApplicationController
    end
 
    def show
+      respond_to do |format|
+         format.html
+         format.pdf do
+           pdf = SalePdf.new(@sale)
+           send_data pdf.render, filename: 'venta.pdf',:disposition => 'inline',type: 'application/pdf'
+         end
+      end
    end
 
    def new

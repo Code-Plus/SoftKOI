@@ -18,51 +18,49 @@
 
    <div class="panel panel-default">
       <div class="panel-body table">
-         <div class="table-responsive">
 
-            <table id="datatable" class="table table-bordered table-hover table-striped">
-               <thead>
-                  <tr>
-                     <th>Código</th>
-                     <th>Fecha</th>
-                     <th>Cliente</th>
-                     <th>Monto</th>
-                     <th>Descuento</th>
-                     <th>Monto total</th>
-                     <th>Fecha límite</th>
-                     <th>Estado</th>
-                     <th>Acción</th>
-                  </tr>
-               </thead>
+         <table id="datatable" class="table table-bordered table-hover table-striped">
+            <thead>
+               <tr>
+                  <th>Código</th>
+                  <th>Fecha</th>
+                  <th>Cliente</th>
+                  <th>Monto</th>
+                  <th>Descuento</th>
+                  <th>Monto total</th>
+                  <th>Fecha límite</th>
+                  <th>Estado</th>
+                  <th>Acción</th>
+               </tr>
+            </thead>
 
-               <tbody>
-                  <% @sales.each do |sale| %>
-                  <tr>
-                     <td><%= sale.id %></td>
-                     <td><%= sale.created_at.strftime("%d/%m/%Y %I:%M %p") %></td>
-                     <td><%= sale.customer.name %></td>
-                     <td><%= number_to_currency sale.amount %></td>
-                     <td><%= number_to_currency sale.discount %></td>
-                     <td><%= number_to_currency sale.total_amount %></td>
-                     <td><%= sale.limit_date.strftime("%d/%m/%Y") %></td>
-                     <td width="100px">
-                        <% if sale.state == "sinpagar" %>
-                           <span class="label label-primary span-table">Pendiente</span>
-                        <% else %>
-                           <span class="label label-success span-table">Cancelada</span>
-                        <% end %>
-                     </td>
-                     <td>
-                        <%= link_to sale, class:'btn btn-primary bold btn-sm' do %>
-                        <i class="fa fa-search"></i>&nbsp; Detalles
-                        <% end %>
-                     </td>
+            <tbody>
+               <% @sales.each do |sale| %>
+               <tr>
+                  <td><%= sale.id %></td>
+                  <td><%= sale.created_at.strftime("%d/%m/%Y %I:%M %p") %></td>
+                  <td><%= sale.customer.name %></td>
+                  <td><%= number_to_currency sale.amount %></td>
+                  <td><%= number_to_currency sale.discount %></td>
+                  <td><%= number_to_currency sale.total_amount %></td>
+                  <td><%= sale.limit_date.strftime("%d/%m/%Y") %></td>
+                  <td width="100px">
+                     <% if sale.state == "sinpagar" %>
+                        <span class="label label-primary span-table">Pendiente</span>
+                     <% else %>
+                        <span class="label label-success span-table">Cancelada</span>
+                     <% end %>
+                  </td>
+                  <td>
+                     <%= link_to sale, class:'btn btn-primary bold btn-sm' do %>
+                     <i class="fa fa-search"></i>&nbsp; Detalles
+                     <% end %>
+                  </td>
 
-                  </tr>
-                  <% end %>
-               </tbody>
-            </table>
-         </div>
+               </tr>
+               <% end %>
+            </tbody>
+         </table>
       </div>
    </div>
 </div>
