@@ -9,6 +9,8 @@
    <td width="105px">
       <% if product.state == "noDisponible" %>
          <span class="label label-primary span-table">No disponible</span>
+      <% elsif product.state == "sinCantidad"%>
+         <span class="label label-danger span-table">Sin existencia</span>
       <% else %>
          <span class="label label-success span-table"> Disponible </span>
       <% end %>

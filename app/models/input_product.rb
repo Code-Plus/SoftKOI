@@ -17,7 +17,7 @@ class InputProduct < ActiveRecord::Base
    def update_stock
       stock_product= product.stock
       unless self.stock.nil?
-         product.update(stock: stock_product + self.stock)
+         product.update(stock: stock_product + self.stock, state: "disponible")
       end
    end
 
