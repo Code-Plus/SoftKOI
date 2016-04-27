@@ -3,6 +3,8 @@ class Reservation < ActiveRecord::Base
    belongs_to :reserve_price
    belongs_to :console
 
+   attr_accessor :message_validation
+
    include AASM
    scope :activa, -> {find_by_sql('SELECT date, start_time, end_time, state FROM reservations WHERE state = "activa"')}
 
@@ -25,7 +27,8 @@ class Reservation < ActiveRecord::Base
          if var.date.strftime("%F") == Time.new.strftime("%F")
             #Luego se valida la hora de inicio con la hora del sistema
             if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
-               return @message_validation = "¿El cliente está listo para iniciar la reserva?"
+               message_validation = "¿El cliente está listo para iniciar la reserva?"
+               return message_validation
 =begin
                if @answer_validation == true
                  #Se actualiza el estado.
@@ -39,7 +42,7 @@ class Reservation < ActiveRecord::Base
                end
 =end
                #Se actualiza el estado.
-               var.update state: "enProceso"
+               #var.update state: "enProceso"
             end
          end
       end

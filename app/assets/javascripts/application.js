@@ -17,28 +17,19 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require select2_locale_es
+//= require alertify
+//= require alertify/confirm-modal
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require alertify
-//= require alertify/confirm-modal
 //= require turbolinks
 //= require_tree .
 
-function miabuelo (val){
-      var initialamount = $('#tblprice').val();
-      
-      var value = val;
-      
-      var finalAmount = initialamount * value;
-      
-      $('#tbltotal_price').val(finalAmount);
-      $('#unit_prices').text(finalAmount);
-   }
+if (gon.message_validation != null) {
 
-
+}
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 

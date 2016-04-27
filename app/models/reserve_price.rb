@@ -9,4 +9,7 @@ class ReservePrice < ActiveRecord::Base
 
     scope :name_consoles, ->{joins("INNER JOIN console ON reserve_prices.console_id = consoles.id").select("reserve_prices.*, consoles.name")}
 
+    def console_name
+      return console.name
+    end
 end
