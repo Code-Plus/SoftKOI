@@ -21,7 +21,11 @@ Rails.application.routes.draw do
 
 	devise_for :users
 	resources :sales
-	resources :products
+	resources :products do
+		collection do
+			get 'products_today'
+		end
+	end
 	resources :customers
 	resources :output_products
 	resources :categories
