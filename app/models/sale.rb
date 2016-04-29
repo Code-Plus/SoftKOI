@@ -3,6 +3,7 @@ class Sale < ActiveRecord::Base
   belongs_to :user
   belongs_to :customer
   has_many :items
+  has_many :payments
 
   before_validation :verificar_estado
   before_create :default_date
