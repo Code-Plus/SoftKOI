@@ -42,22 +42,19 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 <%= render 'dialog' %>
 </div>
 <script type="text/javascript">
-    ReloadPage();
-  function ReloadPage(state){
-    var dess = state;
+  var modaltt;
 
-    if(dess == "openmodal"){
-      alert("No recargar pagina");
-    }else{
-      if($('#Reserve_Page').length != 0){
-        alert('la modal esta abierta');
-      }else{
         setInterval(function(){
-          // location.reload();
-          console.log('reload page');
-        }, 1000);
-      }
+          modaltt = $('#new_reservation').length;
+          if(modaltt > 0){
+            console.log('no recargar la pagina'+ modaltt);
+            $('#closemodal').click(function(){
+                $('#new_reservation').remove();
+                console.log('haz cerrado la modal'+ modaltt);
+            });
+          }else{
+            // location.reload();
+          }
+        },1000);
 
-    }
-  }
 </script>
