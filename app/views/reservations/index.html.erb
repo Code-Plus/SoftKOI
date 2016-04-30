@@ -42,14 +42,56 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 <%= render 'dialog' %>
 </div>
 <script type="text/javascript">
-    if (gon.message_validation != null) {
-          console.log(gon.message_validation);
-          $.alert({
-              title: 'Confirmación inicio de reserva.',
-              content: gon.message_validation,
-              confirm: function () {
-                  $.alert('Confirmed!');
-              }
+    var res;
+    if (gon.reserve_id != null) {
+      $.confirm({
+        confirmButton: 'Sí',
+        cancelButton: 'No',
+        title: 'Confirmación inicio de reserva',
+        content: '¿El  cliente está listo para iniciar la reserva?',
+
+        confirm: function(){
+          //Cambiar a estado "enProceso"
+            $.alert('¡La reserva ha iniciado :) !');
+            res = 1;
+            miajax(res, gon.reserve_id);
+        },
+        cancel: function(){
+          $.confirm({
+            confirmButton: 'Posponer',
+            cancelButton: 'Cancelar',
+            title: 'Confirmación inicio de reserva',
+            content: 'Que desea?',
+            confirm: function(){
+              //Redireccionar a editar la reserva
+                $.alert('Confirmada');
+                res = 2;
+              
+            },
+            cancel: function(){
+              //Cambiar el estado a "cancelada"
+                $.alert('Cancelada');
+                res = 3;
+                miajax(res, gon.reserve_id);
+            }
           });
+        }
+      });
+
+      function miajax(resp, id){
+        respuesta = resp;
+        identify = id;
+        $.ajax({
+          url:'/reservations/change_state',
+          data:{respuesta: respuesta, id: identify},
+          type: 'get'
+
+        }).done(function(done){
+          location.reload();
+        }).error(function(error){
+          console.log('Ha ocurrido un error '+ error);
+        });
+
+      }
     }
 </script>

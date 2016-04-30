@@ -4,6 +4,8 @@ class ReservationsController < ApplicationController
   load_and_authorize_resource
 
 
+
+
   def index
     @reservations = Reservation.all
     @reservationsActivas = Reservation.activa
@@ -11,9 +13,27 @@ class ReservationsController < ApplicationController
     @actualizarEstadoFinalizada = Reservation.validates_hour_finish(Reservation.all)
 
     if @actualizarEstadoProceso.is_a?(Array)
-      gon.message_validation = nil
+      gon.reserve_id = nil
     else
-      gon.message_validation = @actualizarEstadoProceso
+      gon.reserve_id = @actualizarEstadoProceso
+    end
+  end
+
+  def change_state
+    @respons = params[:respuesta]
+    @id = params[:id]
+
+    unless @respons.nil?
+      if @respons.to_i == 1
+        @identify = @id.to_i
+        @r = Reservation.where(id: @identify).update_all(state: 'enProceso')
+      elsif @respons.to_i == 2
+        #Acá redirecciona la wea de editar.
+        render :edit
+      elsif @respons.to_i == 3
+        @identify = @id.to_i
+        @r = Reservation.where(id: @identify).update_all(state: 'cancelada')
+      end
     end
   end
 

@@ -3,12 +3,9 @@ class Reservation < ActiveRecord::Base
    belongs_to :reserve_price
    belongs_to :console
 
-   attr_accessor :message_validation
-
    include AASM
    #reservas en estado activas
    scope :activa, -> {find_by_sql('SELECT date, start_time, end_time, state FROM reservations WHERE state = "activa"')}
-
 
    #Reservas en estado activas y en proceso
    scope :activas_proceso, ->{where("state = 'activa' OR state = 'enProceso'")}
@@ -56,20 +53,8 @@ class Reservation < ActiveRecord::Base
          if var.date.strftime("%F") == Time.new.strftime("%F")
             #Luego se valida la hora de inicio con la hora del sistema
             if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
-               message_validation = "¿El cliente está listo para iniciar la reserva?"
-               return message_validation
-=begin
-               if @answer_validation == true
-                 #Se actualiza el estado.
-                 #var.update state: "enProceso"
-               else
-                 if @answer_validation == "posponer"
-                   #Render edit
-                 elsif @answer_validation == "cancelar"
-                   #Cancel URL
-                 end
-               end
-=end
+               reserve_id = var.id.to_s
+               return reserve_id
                #Se actualiza el estado.
                #var.update state: "enProceso"
             end
@@ -133,7 +118,7 @@ class Reservation < ActiveRecord::Base
       end
    end
 
-  
+
 
    private
 
