@@ -7,9 +7,10 @@ class SalesController < ApplicationController
 	end
 
   def new
-    @sale = Sale.create
-    redirect_to controller: 'sales', action: 'edit', id: @sale.id
+    @sale.save
+    redirect_to edit_sale_path(@sale)
   end
+
 
 	def edit
 		set_sale

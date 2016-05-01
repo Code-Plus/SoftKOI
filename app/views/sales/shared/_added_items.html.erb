@@ -15,37 +15,41 @@
     <tbody>
       <%= fields_for @sale do |f|%>
         <%= f.fields_for :products do |e| %>
-          <% @item = Item.where(:sale_id => @sale.id, :product_id => e.object.id).first %>
-          <tr>
+          <% unless e.object.nil? %>
+            <% @item = Item.where(:sale_id => @sale.id, :product_id => e.object.id).first %>
 
-            <td><%= e.text_field :id, :class => "form-control line_item_sku", :readonly => true %></td>
-            <td><%= e.text_field :name, :class => "form-control", :readonly => true %></td>
-            <td><%= e.text_area :description, :class => "form-control", :readonly => true %></td>
 
-            <td>
-              <input type="text" id="line_item_price" class='form-control price_control' value="<%= number_to_currency(@item.price) %>">
-            </td>
+            <tr>
 
-            <td class="amount">
-              <%= text_field(:item, :quantity, :class => 'form-control price_control', :readonly => 'readonly') %>
+              <td><%= e.text_field :id, :class => "form-control line_item_sku", :readonly => true %></td>
+              <td><%= e.text_field :name, :class => "form-control", :readonly => true %></td>
+              <td><%= e.text_area :description, :class => "form-control", :readonly => true %></td>
 
-              <div class="adjust hidden-print">
-                <%= link_to url_for(:controller => 'sales', :action => 'add_item', :product_id => e.object.id, :sale_id => @sale.id), :remote => true do %>
-                  <span class="glyphicon glyphicon-plus"></span>
-                <% end %>
+              <td>
+                <input type="text" id="line_item_price" class='form-control price_control' value="<%= number_to_currency(@item.price) %>">
+              </td>
 
-                <%= link_to url_for(:controller => 'sales', :action => 'remove_item', :product_id => e.object.id, :sale_id => @sale.id), :remote => true do %>
-                  <span class="glyphicon glyphicon-minus"></span>
-                <% end %>
-              </div>
+              <td class="amount">
+                <%= text_field(:item, :quantity, :class => 'form-control price_control', :readonly => 'readonly') %>
 
-            </td>
+                <div class="adjust hidden-print">
+                  <%= link_to url_for(:controller => 'sales', :action => 'add_item', :product_id => e.object.id, :sale_id => @sale.id), :remote => true do %>
+                    <span class="glyphicon glyphicon-plus"></span>
+                  <% end %>
 
-            <td>
-              <input class="form-control" type="text" value="<%= number_to_currency(@item.total_price) %>" placeholder="Total Price" readonly="readonly">
-            </td>
+                  <%= link_to url_for(:controller => 'sales', :action => 'remove_item', :product_id => e.object.id, :sale_id => @sale.id), :remote => true do %>
+                    <span class="glyphicon glyphicon-minus"></span>
+                  <% end %>
+                </div>
 
-          </tr>
+              </td>
+
+              <td>
+                <input class="form-control" type="text" value="<%= number_to_currency(@item.total_price) %>" placeholder="Total Price" readonly="readonly">
+              </td>
+
+            </tr>
+          <% end %>
         <% end %>
       <% end %>
     </tbody>

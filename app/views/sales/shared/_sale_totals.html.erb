@@ -11,12 +11,13 @@
 <label>Descuento</label>
 <div class="input-group">
   <input type="text" class="form-control" readonly value=<%= number_to_currency(@sale.discount, unit: '') %>>
-  <span class="input-group-addon">$<%= @sale.discount.blank? ? 0 : number_to_currency(@sale.get_discounted_amount %></span>
+  <span class="input-group-addon">$<%= @sale.discount.blank? ? 0 : number_to_currency(@sale.get_discounted_amount) %></span>
 </div>
 
 
 <label class="text-success">Precio total</label>
 <div class="input-group has-success total_price_output">
   <span class="input-group-addon price_output">$</span>
-  <input type="text" class="form-control price_output" readonly value=<%= number_to_currency(@sale.total_amount) %>>
+  <input type="text" class="form-control price_output" readonly value="<%= number_to_currency(@sale.total_amount) %>">
+
 </div>
