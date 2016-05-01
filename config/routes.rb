@@ -1,34 +1,16 @@
 Rails.application.routes.draw do
 
 
-  resources :payments
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
 	end
 
-	#welcome/index como home_path
+	# welcome/index como home_path
 	get '/home', to: 'welcome#index', as: 'home'
-	# Ruta para el ajax de ventas
-	get '/sales/customer', to: 'sales#ajax_customer', as: 'ajax_customer'
-
-	#Ruta para el ajax de productos
-	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
-
-	# Ruta para el ajax de reservas
-	get '/reservations/price_interval', to: 'reservations#Reserve_ajax', as: 'interval_price'
-	#Ajax para el cambio de estado cuando va a iniciar la reserva
-	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
-
 
 
 	devise_for :users
-	resources :sales
-	resources :products do
-		collection do
-			get 'products_today'
-		end
-	end
 	resources :customers
 	resources :output_products
 	resources :categories
@@ -37,6 +19,36 @@ Rails.application.routes.draw do
 	resources :reserve_prices
 	resources :reservations
 
+  resources :payments do
+  	collection do
+      get 'make_payment'
+    end
+  end
+
+	resources :sales do
+		collection do
+			get 'update_line_item_options'
+      get 'update_customer_options'
+      get 'create_line_item'
+      get 'update_totals'
+      get 'add_item'
+      get 'remove_item'
+	    get 'create_customer_association'
+      get 'create_custom_item'
+      get 'create_custom_customer'
+      get 'add_comment'
+      post 'override_price'
+      post 'sale_discount'
+		end
+	end
+
+	resources :products do
+		get 'search'
+		collection do
+			get 'products_today'
+			get 'search'
+		end
+	end
 
 	resources :consoles do
 		collection do
@@ -51,6 +63,19 @@ Rails.application.routes.draw do
 	end
 
 	patch "users/:id/update_profile", to: "users#update_profile"
+
+	# Ruta para el ajax de ventas
+	get '/sales/customer', to: 'sales#ajax_customer', as: 'ajax_customer'
+
+	#Ruta para el ajax de productos
+	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
+
+	# Ruta para el ajax de reservas
+	get '/reservations/price_interval', to: 'reservations#Reserve_ajax', as: 'interval_price'
+
+	#Ajax para el cambio de estado cuando va a iniciar la reserva
+	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
+
 
 	#Estados de la reserva.
 	put "/reservation/:id/activa", to: "reservations#activa"

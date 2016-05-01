@@ -1,15 +1,14 @@
 class Product < ActiveRecord::Base
 
-   include AASM
-
-
    belongs_to :category
    has_many :output_products
    has_many :input_products
+   has_many :items
+
    before_validation :validate_category_change
   after_update do
     if self.state == "noDisponible" || self.state == "disponible"
-      if self.stock == 0 
+      if self.stock == 0
         self.update(state: "sinCantidad")
       end
     end
@@ -22,6 +21,8 @@ class Product < ActiveRecord::Base
    validates :stock_min, presence: true, numericality: {greater_than_or_equal_to: 0}
    validates :stock, numericality: {greater_than_or_equal_to: 0}
    validates :category_id, presence: true
+
+   include AASM
 
    #Seleccionar productos disponibles
    scope :activos, -> { where(state: "disponible")}

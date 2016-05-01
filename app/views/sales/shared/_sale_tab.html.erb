@@ -1,0 +1,44 @@
+<%# Tab donde esta todo el contenido de la venta %>
+<div class="row item_search_wrapper hidden-print">
+  <div class="col-sm-4">
+    <h4 class="text-primary"><span class="glyphicon glyphicon-search"></span> Buscar productos</h4>
+    <hr>
+    <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_line_item_options", :format => :js), :method => "get", :remote => true do |f| %>
+
+      <div class="form-group">
+        <%= f.text_field :item_name, :class => "form-control item_search_input", :placeholder => "Search Items" %>
+      </div>
+
+      <%= f.hidden_field :sale_id, :value => @sale.id %>
+      <%= submit_tag "search", :class => "btn btn-primary btn-lg item_search" %>
+    <% end %>
+  </div>
+  <div class="col-sm-8">
+    <div class="searched_items">
+      <%# Tabla para agregar productos a la venta %>
+      <%= render :partial => 'sales/shared/searched_items' %>
+    </div>
+  </div>
+</div>
+
+
+<%= form_for(@sale) do |f| %>
+  <%# render :partial => 'template/form_errors', :object => @sale %>
+
+  <h4 class="text-primary"><span class="glyphicon glyphicon-tags"></span> Productos</h4>
+  <hr class="hidden-print" />
+
+  <div class="added_items">
+    <%# Tabla con los productos asociados a la venta %>
+    <%= render :partial => 'sales/shared/added_items', :locals=>{:f=>f} %>
+  </div>
+
+  <div class="row">
+    <div class="sale_totals col-sm-4 hidden-print">
+      <%# Info de el precio de la venta, descuento, etc. %>
+      <%= render :partial => 'sales/shared/sale_totals', :locals=>{:f=>f} %>
+    </div>
+  </div>
+  <%= f.submit 'Update Sale', :class => "btn btn-success btn-lg sale_submit" %>
+<% end %>
+

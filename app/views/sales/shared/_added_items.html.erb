@@ -1,0 +1,53 @@
+<%# Tabla donde se muestran los productos asociados a la venta %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Producto</th>
+        <th>Descripción</th>
+        <th>Precio unitarop</th>
+        <th>Cantidad</th>
+        <th>Precio total</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= fields_for @sale do |f|%>
+        <%= f.fields_for :products do |e| %>
+          <% @item = Item.where(:sale_id => @sale.id, :product_id => e.object.id).first %>
+          <tr>
+
+            <td><%= e.text_field :id, :class => "form-control line_item_sku", :readonly => true %></td>
+            <td><%= e.text_field :name, :class => "form-control", :readonly => true %></td>
+            <td><%= e.text_area :description, :class => "form-control", :readonly => true %></td>
+
+            <td>
+              <input type="text" id="line_item_price" class='form-control price_control' value="<%= number_to_currency(@item.price) %>">
+            </td>
+
+            <td class="amount">
+              <%= text_field(:item, :quantity, :class => 'form-control price_control', :readonly => 'readonly') %>
+
+              <div class="adjust hidden-print">
+                <%= link_to url_for(:controller => 'sales', :action => 'add_item', :product_id => e.object.id, :sale_id => @sale.id), :remote => true do %>
+                  <span class="glyphicon glyphicon-plus"></span>
+                <% end %>
+
+                <%= link_to url_for(:controller => 'sales', :action => 'remove_item', :product_id => e.object.id, :sale_id => @sale.id), :remote => true do %>
+                  <span class="glyphicon glyphicon-minus"></span>
+                <% end %>
+              </div>
+
+            </td>
+
+            <td>
+              <input class="form-control" type="text" value="<%= number_to_currency(@item.total_price) %>" placeholder="Total Price" readonly="readonly">
+            </td>
+
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

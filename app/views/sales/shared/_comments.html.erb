@@ -1,0 +1,14 @@
+<%# Parcial con la caja de comentarios %>
+<div class="comments">
+	<h4 class="text-primary"><span class="glyphicon glyphicon-book"></span> Commentarios</h4>
+
+	<%= form_for :sale_comments, :url => url_for(:controller => "sales", :action => "add_comment", :sale_id => @sale.id, :format => :js), :method => "get", :remote => true do |f| %>
+
+		<div class="form-group">
+	    <%= f.text_area :comment, :class => "form-control", :placeholder => "Sección de comentatios", :value => @sale.comment %>
+	  </div>
+
+	  <%= submit_tag "Buscar", :class => "btn btn-primary btn-lg sale_comments" %>
+
+	<% end %>
+</div>

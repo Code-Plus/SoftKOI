@@ -1,0 +1,27 @@
+<%# Parcial donde se muestra el formulario para ir filtrando en la tabla de clientes %>
+<div class="row item_search_wrapper hidden-print">
+  <div class="col-sm-4">
+    <h4 class="text-primary"><span class="glyphicon glyphicon-search"></span> Find</h4>
+    <hr>
+
+    <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_customer_options",
+      :format => :js), :method => "get", :remote => true do |f| %>
+
+      <%= f.text_field :customer_name, :class => "form-control customer_search_input", :placeholder => "Buscar" %>
+      <%= f.hidden_field :sale_id, :value => @sale.id %>
+      <%= submit_tag "search", :class => "btn btn-primary btn-lg customer_search" %>
+    <% end %>
+
+    <p>O</p>
+    <button class="btn" data-toggle="modal" data-target="#customCustomer">
+      Create Customer
+    </button>
+  </div>
+
+  <div class="col-sm-8">
+    <div class="searched_customers">
+      <%# Tabla para asociar un cliente a la venta %>
+      <%= render :partial => 'sales/shared/searched_customers' %>
+    </div>
+  </div>
+</div>

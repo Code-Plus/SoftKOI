@@ -1,0 +1,35 @@
+<%# Tabla donde se pueden agregar productos a la venta %>
+<h4 class="text-primary"><span class="glyphicon glyphicon-tags"></span>Productos disponibles</h4>
+<hr>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>Agregar producto</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% unless @available_items.blank? %>
+      	<% for product in @available_items %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= product.name %></td>
+            <td><%= product.description %></td>
+            <td><%= number_to_currency(product.price) %></td>
+            <td class="add_to_current_sale">
+              <%= link_to url_for(:controller => 'sales', :action => 'create_line_item', :product_id => product.id,
+                :sale_id => @sale.id, :quantity => 1), :remote => true do %>
+                <p><span class="glyphicon glyphicon-plus"></span></p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
