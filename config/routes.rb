@@ -82,6 +82,7 @@ Rails.application.routes.draw do
 	put "/reservation/:id/enProceso", to: "reservations#enProceso"
 	put "/reservation/:id/finalizada", to: "reservations#finalizada"
 	put "/reservation/:id/cancelada", to: "reservations#cancelada"
+	#put "/reservation/:id/posponer", to: "reservations#postpone_reserve"
 
 	#Estados de producto
 	put "/product/:id/habilitar", to: "products#disponible"
