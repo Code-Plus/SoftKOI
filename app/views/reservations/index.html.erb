@@ -127,7 +127,6 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
       var subtraction = sum_hour - gon.hour_start;
       if (subtraction <= 5) {
 
-<<<<<<< HEAD
         $.confirm({
           confirmButton: 'Sí',
           cancelButton: 'No',
@@ -149,6 +148,12 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
               confirm: function(){
                 //Redireccionar a editar la reserva
                   res = 2;
+                  miajax(res, gon.reserve_id);
+                  $.ajax({
+                    url:'/reservations/'+gon.reserve_id+'/edit'
+                  }).error(function(error){
+                    console.log('El cliente no ha asistido a la reserva y se ha intentado posponer pero hubo un error en la respuesta del servidor.');
+                  });
               },
               cancel: function(){
                 //Cambiar el estado a "cancelada"
@@ -164,40 +169,8 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
         res = 0;
         miajax(res, gon.reserve_id);
       }
-=======
-        confirm: function(){
-          //Cambiar a estado "enProceso"
-            $.alert('¡La reserva ha iniciado :) !');
-            res = 1;
-            miajax(res, gon.reserve_id);
-        },
-        cancel: function(){
-          $.confirm({
-            confirmButton: 'Posponer',
-            cancelButton: 'Cancelar',
-            title: 'Confirmación inicio de reserva',
-            content: 'Que desea?',
-            confirm: function(){
-              //Redireccionar a editar la reserva
-                $.ajax({
-                  url:'/reservations/'+gon.reserve_id+'/edit'
-                }).error(function(error){
-                  console.log('El cliente no ha asistido a la reserva y se ha intentado editar pero hubo un error en la respuesta del servido.');
-                });
-                res = 2;
-            },
-            cancel: function(){
-              //Cambiar el estado a "cancelada"
-                $.alert('Cancelada');
-                res = 3;
-                miajax(res, gon.reserve_id);
-            }
-          });
-        }
-      });
->>>>>>> 34678e97e158c0065fe3f64447a374c33cf1f513
 
-      function miajax(resp, id){
+    function miajax(resp, id){
         respuesta = resp;
         identify = id;
         $.ajax({
