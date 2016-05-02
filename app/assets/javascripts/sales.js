@@ -17,7 +17,7 @@ $(document).ready(function() {
 	$(document).on("change", "#sale_discount", function(){
 		$.ajax({
       type: "POST",
-      url: '/sales/sale_discount', 
+      url: '/sales/sale_discount',
       data: { sale_discount: { discount: $(this).val(), sale_id: $(document).find('.sale_id').html() }},
       dataType: "script",
       success: function() {
@@ -25,5 +25,4 @@ $(document).ready(function() {
       }
     });
 	});
-
 });

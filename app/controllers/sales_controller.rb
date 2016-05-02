@@ -6,7 +6,7 @@ class SalesController < ApplicationController
 		@sales = Sale.all
 	end
 
-
+	# Estado
 	def pago
 		@sale.pago!
 		redirect_to sales_url
@@ -266,20 +266,40 @@ class SalesController < ApplicationController
 		end
 	end
 
+
 	# Poblar productos
 	def populate_products
 		@available_products = Product.activos_con_cantidad
 	end
+
 
 	# Poblar clientes
 	def populate_customers
 		@available_customers = Customer.all
 	end
 
+
+	# Rducir el stock de un producto
+	def remove_item_from_stock(product_id, quantity)
+    item = Product.find(product_id)
+    item.stock = item.stock - quantity
+    item.save
+  end
+
+
+  #Devolver producto a stock
+  def return_item_to_stock(product_id, quantity)
+    item = Product.find(product_id)
+    item.stock = item.stock + quantity
+    item.save
+  end
+
+
 	# Actualizar secciones de la vista de ventas
 	def ajax_refresh
 		render(file: 'sales/ajax_reload.js.erb')
 	end
+
 
 	# Parametros permitidos para guardar en la venta
 	def sale_params
@@ -291,7 +311,7 @@ class SalesController < ApplicationController
 			:user_id,
 			:comment,
 			:customer_id,
-		items_attributes: [:id, :product_id, :price, :total_price, :quantity])
+		  items_attributes: [:id, :product_id, :price, :total_price, :quantity])
 	end
 
 end
