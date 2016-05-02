@@ -11,7 +11,7 @@ class Reservation < ActiveRecord::Base
   scope :activas_proceso, ->{where("state = 'activa' OR state = 'enProceso'")}
 
   #Validaciones para los campos.
-  validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
+  # validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :console_id, presence: true
@@ -44,33 +44,32 @@ class Reservation < ActiveRecord::Base
   end
 
 
-  #Método para pasar al estado "enProceso" de una reserva determinada cuando llegue a la hora registrada.
+  #Método para pasar al estado "enProceso" cuando llegue a la hora registrada.
   def self.validates_hour_start(search)
-    #Se hace la consulta con el arreglo de las reservas que llega
+    #consulta con el arreglo de las reservas que llega
     search = search.where(state: 'activa').select("id, date, start_time, state")
     search.each do |var|
-      #Se recorre el arreglo de la consulta y se compara la fecha del sistema.
+      #Recorrer arreglo de la consulta y  comparar la fecha del sistema.
       if var.date.strftime("%F") == Time.new.strftime("%F")
-        #Luego se valida la hora de inicio con la hora del sistema
+        #Validar la hora de inicio con la hora del sistema
         if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
           reserve_id = var.id.to_s
           return reserve_id
-          puts "id -> #{reserve_id}"
         end
       end
     end
   end
 
-  #Método para pasar al estado "finalizada" de una reserva determinada cuando llegue a la hora registrada.
+
+  #Método para pasar al estado "finalizada" cuando llegue a la hora registrada.
   def self.validates_hour_finish(search)
-    #Se hace la consulta con el arreglo de las reservas que llega
+    #Consulta con el arreglo de las reservas que llega
     search = search.where(state: 'enProceso').select("id, date, end_time, state")
     search.each do |var|
-      #Se recorre el arreglo de la consulta y se compara la fecha del sistema.
+      #Recorrer el arreglo de la consulta y se compara la fecha del sistema.
       if var.date.strftime("%F") == Time.new.strftime("%F")
         #Luego se valida la hora fin con la hora del sistema
         if var.end_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
-          #Se actualiza el estado
           var.update state: "finalizada"
         end
       end
@@ -122,8 +121,8 @@ class Reservation < ActiveRecord::Base
   private
 
   def validate_times
-    if self.start_time.strftime("%H:%M") > Time.now.strftime("%H:%M")
-      if self.start_time.strftime("%H:%M") > self.end_time.strftime("%H:%M")
+    if self.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")
+      if self.start_time.strftime("%H:%M") >= self.end_time.strftime("%H:%M")
         self.errors.add(:base ,"Hora de  inicio mayor a la fin")
       end
     else
