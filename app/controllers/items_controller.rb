@@ -1,12 +1,12 @@
 class ItemsController < ApplicationController
 
-	before_action :set_item, only: [:show, :edit, :update] 
+	before_action :set_item, only: [:show, :edit, :update]
 
 	def ajax_product
 		@product = Product.find(params[:product])
-	       respond_to do |format|
-	       format.json{render json: @product }
-     	end	
+		respond_to do |format|
+			format.json{render json: @product }
+		end
 	end
 
 

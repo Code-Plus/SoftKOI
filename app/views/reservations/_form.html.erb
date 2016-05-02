@@ -30,7 +30,7 @@
 
          <div class="field">
             <%= f.label :start_time,"Hora de incio" %><br>
-            <%= f.time_field :start_time ,:class => "form-control"%>
+            <%= f.time_field :start_time ,:class => "form-control", :onkeyup => "price_console_function()"%>
          </div>
 
          <div class="field">

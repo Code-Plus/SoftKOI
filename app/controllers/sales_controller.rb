@@ -31,7 +31,7 @@ class SalesController < ApplicationController
 	def edit
 		set_sale
 
-		populate_items
+		populate_products
 		populate_customers
 
 		@sale.items.build
@@ -63,7 +63,7 @@ class SalesController < ApplicationController
 
 		# Mirar si sqlite o pg
 		@available_customers = Customer.all.where('last_name ILIKE ?  OR first_name ILIKE ?
-			OR email_address ILIKE ? OR phone_number ILIKE ?', "%#{params[:search][:customer_name]}%",
+			OR email ILIKE ? OR phone ILIKE ?', "%#{params[:search][:customer_name]}%",
 			"%#{params[:search][:customer_name]}%",
 			"%#{params[:search][:customer_name]}%",
 			"%#{params[:search][:customer_name]}%").limit(5)

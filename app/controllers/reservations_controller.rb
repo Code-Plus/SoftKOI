@@ -112,7 +112,7 @@ class ReservationsController < ApplicationController
     redirect_to reservations_url
   end
 
-  def Reserve_ajax
+  def reserve_ajax
     @reserve_price_reserve = ReservePrice.find(params[:id_reserve_price_selected])
     respond_to do |format|
       format.json {render json: @reserve_price_reserve}

@@ -36,7 +36,4 @@ class Console < ActiveRecord::Base
 		end
 	end
 
-
-
-
 end
