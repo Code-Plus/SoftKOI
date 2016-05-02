@@ -5,10 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Amount</th>
-      <th>Sale</th>
-      <th>Amount Sale</th>
-      <th colspan="3"></th>
+      <th>Pagado</th>
+      <th>Venta</th>
+      <th>Total a Pagar</th>
     </tr>
   </thead>
 
@@ -18,14 +17,7 @@
         <td><%= payment.amount %></td>
         <td><%= payment.sale.id %></td>
         <td><%= payment.sale.total_amount %></td>
-        <td><%= link_to 'Show', payment %></td>
-        <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
-        <td><%= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Payment', new_payment_path %>
