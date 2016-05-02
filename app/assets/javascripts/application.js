@@ -27,10 +27,7 @@
 //= require turbolinks
 //= require_tree .
 
-<<<<<<< HEAD
-=======
 Turbolinks.ProgressBar.enable();
->>>>>>> b759f2f33d48fdf9815f12860aa87e2c055b9736
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 

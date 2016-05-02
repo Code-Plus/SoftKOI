@@ -43,34 +43,34 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 </div>
 
 <script type="text/javascript">
-  // var modaltt;
-  //       setInterval(function(){
-  //         modaltt = $('#new_reservation').length;
-  //         alerttt = $('#jconfirm-box15').length;
-  //         if(modaltt > 0){
-  //           console.log('no recargar la pagina'+ modaltt);
-  //           $('#closemodal').click(function(){
-  //               $('#new_reservation').remove();
-  //               console.log('haz cerrado la modal'+ modaltt);
-  //           });
-  //         }else{
-  //           if(alerttt > 0){
-  //             console.log('No recargar pagina, Se ha inciado una alerta' + alerttt);
-  //
-  //           }else{
-  //           console.log("Recargar pagina, esto es lo que vale la variable " + alerttt);
-  //             location.reload();
-  //           }
-  //         }
-  //       },3000);
+  var modaltt;
+        setInterval(function(){
+          modaltt = $('#new_reservation').length;
+          alerttt = $('#jconfirm-box15').length;
+          if(modaltt > 0){
+            console.log('no recargar la pagina'+ modaltt);
+            $('#closemodal').click(function(){
+                $('#new_reservation').remove();
+                console.log('haz cerrado la modal'+ modaltt);
+            });
+          }else{
+            if(alerttt > 0){
+              console.log('No recargar pagina, Se ha inciado una alerta' + alerttt);
 
-  setInterval( function () {
+            }else{
+            console.log("Recargar pagina, esto es lo que vale la variable " + alerttt);
+              // location.reload();
+            }
+          }
+        },3000);
+
+    setInterval( function () {
     // $('#datatable').dataTable().fnDestroy();
     //  $('#datatable > tbody').empty();
     // loadreserves();
     // loaddatatables();
-    alertreserve();
-  }, 3000 );
+    // alertreserve();
+  }, 30000 );
 // var tken = $('meta[name="csrf-token"]').attr('content');
 //   function loadreserves(){
 //     $.ajax({

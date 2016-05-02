@@ -27,73 +27,7 @@
                             start: new Date(y, m, 1),
                             end: new Date(y, m, 2),
                             className: 'bgm-cyan'
-                        },
-                        {
-                            title: 'encontrarse con clientes',
-                            start: new Date(y, m, 10),
-                            allDay: true,
-                            className: 'bgm-red'
-                        },
-                        {
-                            title: 'repetir evento',
-                            start: new Date(y, m, 18),
-                            allDay: true,
-                            className: 'bgm-blue'
-                        },
-                        {
-                            title: 'ir a trabajar',
-                            start: new Date(y, m, 20),
-                            end: new Date(y, m, 23),
-                            className: 'bgm-green'
-                        },
-                        {
-                            title: 'terminar calendario',
-                            start: new Date(y, m, 5),
-                            end: new Date(y, m, 6),
-                            className: 'bgm-purple'
-                        },
-                        {
-                            title: 'tomar cafe',
-                            start: new Date(y, m, 21),
-                            className: 'bgm-orange'
-                        },
-                        {
-                            title: 'ir a entrevista de trabajo',
-                            start: new Date(y, m, 5),
-                            className: 'bgm-dark'
-                        },
-                        {
-                            title: 'conecer lenguajes nuevos',
-                            start: new Date(y, m, 5),
-                            className: 'bgm-cyan'
-                        },
-                        {
-                            title: 'tomarse unas vacaciones',
-                            start: new Date(y, m, 1),
-                            className: 'bgm-purple'
-                        },
-                        {
-                            title: 'ver TV',
-                            start: new Date(y, m, 15),
-                            end: new Date(y, m, 17),
-                            className: 'bgm-orange'
-                        },
-                        {
-                            title: 'ir a conferencia de software',
-                            start: new Date(y, m, 25),
-                            end: new Date(y, m, 28),
-                            className: 'bgm-blue'
-                        },
-                        {
-                            title: 'tiempo de cafe',
-                            start: new Date(y, m, 30),
-                            className: 'bgm-orange'
-                        },
-                        {
-                            title: 'ir a entrevista de',
-                            start: new Date(y, m, 30),
-                            className: 'bgm-dark'
-                        },
+                        }
                     ],
 
                     //On Day Select
