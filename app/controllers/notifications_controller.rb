@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+
   def index
     @notifications = PublicActivity::Activity.where(read_at: nil)
   end
