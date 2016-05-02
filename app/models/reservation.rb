@@ -51,13 +51,8 @@ class Reservation < ActiveRecord::Base
          if var.date.strftime("%F") == Time.new.strftime("%F")
             if var.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")
                reserve_id = var.id.to_s
-<<<<<<< HEAD
                minutes_of_hour = var.start_time.strftime("%H").to_i * 60
                minutes = var.start_time.strftime("%M").to_i
-=======
-               minutes_of_hour = var.start_time.strftime("%H") * 60
-               minutes = var.start_time.strftime("%M")
->>>>>>> 829a94f2466c887c5fd884bafae357593c02ae80
                hour_finish = minutes_of_hour + minutes
                return reserve_id, hour_finish
             end
