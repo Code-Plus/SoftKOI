@@ -24,7 +24,7 @@ class Product < ActiveRecord::Base
 
    include AASM
    include PublicActivity::Model
-   tracked only: [:update]
+   tracked only: [:products_low]
 
 
 

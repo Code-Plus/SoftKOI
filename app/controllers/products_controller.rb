@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
-   before_action :set_product, only: [:edit, :update, :disponible, :noDisponible, :bajas ]
+   before_action :set_product, only: [:edit, :update, :disponible, :noDisponible, :bajas, :products_low ]
+   after_action :products_low, only:[:update]
    load_and_authorize_resource
 
    def index
@@ -50,15 +51,18 @@ class ProductsController < ApplicationController
    def update
       respond_to do |format|
          if @product.update(product_params)
-            if @product.stock <= @product.stock_min
-              @product.create_activity key: 'se esta agotando', read_at: nil
-            end
             format.json { head :no_content}
             format.js {  flash[:notice] = "¡Producto actualizado satisfactoriamente!" }
          else
             format.json { render json: @product.errors.full_messages, status: :unprocessable_entity }
          end
       end
+   end
+
+   def products_low
+     if @product.stock <= @product.stock_min
+          @product.create_activity key: 'se esta agotando', read_at: nil
+     end
    end
 
 

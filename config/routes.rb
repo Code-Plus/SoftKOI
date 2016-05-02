@@ -52,6 +52,7 @@ Rails.application.routes.draw do
 		collection do
 			get 'products_today'
 			get 'search'
+			get 'products_low'
 		end
 	end
 
