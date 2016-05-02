@@ -24,6 +24,6 @@
 
 ### License
 
-MIT
+Not yet 
 
 ##### 2016 CodePlus

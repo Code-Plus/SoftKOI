@@ -2,7 +2,7 @@
 	<div class="col-sm-6 required">
 		<%=item.label :product_id, "Agregar producto", :class => "control-label"%>
 		<div class="input-group input-group-sm">
-			<%= collection_select(:items, :product_id, Product.activos_con_cantidad, :id, :name, {prompt: "Selecciona un producto..."}, :class => "form-control input-sm") %>
+			<%= collection_select(:items, :product_id, Product.active_quantity, :id, :name, {prompt: "Selecciona un producto..."}, :class => "form-control input-sm") %>
 
 			<span class="input-group-btn">
 			  <div id="addtotable" class="btn btn-sm btn-success input-sm"><i class="fa fa-plus"></i>

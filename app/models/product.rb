@@ -30,11 +30,11 @@ class Product < ActiveRecord::Base
   #Productos disponibles
   scope :activos, -> { where(state: "disponible")}
 
-  #Productos activos cuya cantidad sea mayor a cero.
-  scope :activos_y_cantidad, ->{ activos.where("stock >= stock_min")}
-
   #Productos que esten activos y tengan cantidad en su stock
-  scope :activos_con_cantidad, ->{activos.where("stock > 0")}
+  scope :active_stock_min, ->{ activos.where("stock >= stock_min")}
+
+  #Productos activos cuya cantidad sea mayor a cero.
+  scope :active_quantity, ->{activos.where("stock > 0")}
 
   #Productos que se crearon en la fecha actual
   scope :creados_hoy, ->{where("created_at.strftime('%Y-%d-%m') => Time.now.strftime('%Y-%d-%m')")}
@@ -74,14 +74,14 @@ class Product < ActiveRecord::Base
     end
   end
 
-  =begin
+=begin
   def reports(product,current_time)
     product.each do |p|
       if p.create_at.strftime("%Y-%d-%m") == Time.now.strftime("%Y-%d-%m")
       end
     end
   end
-  =end
+=end
 
   private
 
