@@ -19,7 +19,7 @@
 
           <div class="field">
             <%= f.label :consoles, "Consola" %><br>
-            <%= collection_select(:reservation, :console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, {:class=>'form-control type_product_id',:onchange =>"price_console_function()"}) %>
+            <%= collection_select(:reservation, :console, Console.all, :id, :name, {prompt: "Selecciona una opción"}, {:class=>'form-control type_product_id',:onchange =>"price_console_function()"}) %>
          </div>
 
          <div class="field" style="display:none" attrdess="disabled_botton">
