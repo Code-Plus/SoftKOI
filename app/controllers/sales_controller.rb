@@ -1,213 +1,317 @@
 class SalesController < ApplicationController
 
-   before_action :set_sale, only: [:show, :edit, :update, :destroy]
-   load_and_authorize_resource
+	load_and_authorize_resource
 
-   def index
-      @sales = Sale.all
-   end
+	def index
+		@sales = Sale.all
+	end
 
-   def ajax_customer
-     @customer = Customer.find(params[:customer])
-     respond_to do |format|
-       format.json{render json: @customer }
-     end
-   end
-
-   def show
-      respond_to do |format|
-         format.html
-         format.pdf do
-           pdf = SalePdf.new(@sale)
-           send_data pdf.render, filename: 'venta.pdf',:disposition => 'inline',type: 'application/pdf'
-         end
-      end
-   end
-
-   def new
-      @sale = Sale.new
-      @sale.items.build
-   end
-
-   def edit
-   end
+	# Estado
+	def pago
+		@sale.pago!
+		redirect_to sales_url
+	end
 
 
-   def create
-      @sale = current_user.sales.build(sale_params)
-
-      respond_to do |format|
-         if @sale.save
-            format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
-            format.json { render :show, status: :created, location: @sale }
-         else
-            format.html { render :new }
-            format.json { render json: @sale.errors.full_messages, status: :unprocessable_entity }
-         end
-      end
-   end
+	def show
+		set_sale
+	end
 
 
-   def update
-      respond_to do |format|
-         if @sale.update(sale_params)
-            format.html { redirect_to sales_url, notice: 'Sale was successfully updated.' }
-            format.json { render :show, status: :ok, location: @sale }
-         else
-            format.html { render :edit }
-            format.json { render json: @sale.errors, status: :unprocessable_entity }
-         end
-      end
-   end
+	# Crear venta, asignar empleado y guardar
+	def new
+		@sale = Sale.new
+		@sale.user_id = current_user.id
+		@sale.save
+		redirect_to edit_sale_path(@sale)
+	end
 
 
-   def destroy
-      @sale.destroy
-      respond_to do |format|
-         format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
-         format.json { head :no_content }
-      end
-   end
+	# Traer productos y clientes disponibles
+	def edit
+		set_sale
 
-   def pago
-      @sale.pago!
-      redirect_to sales_url
-   end
+		populate_items
+		populate_customers
 
-   def create_customer_association
-      set_sale
+		@sale.items.build
+		@sale.payments.build
 
-      unless @sale.blank? || params[:customer_id].blank?
-         @sale.customer_id = params[:customer_id]
-         @sale.save    @sale = Sale.find(params[:sale_discount][:sale_id])
-      end
-
-      respond_to do |format|
-         format.js { ajax_refresh }
-      end
-   end
-
-   def sale_discount
-      @sale = Sale.find(params[:sale_discount][:sale_id])
-
-      @sale.discount = params[:sale_discount][:discount]
-      @sale.save
-
-      update_totals
-
-      respond_to do |format|
-         format.js { ajax_refresh }
-      end
-   end
-
-   def destroy_item
-      set_sale
-      update_totals
-
-      respond_to do |format|
-         format.js { ajax_refresh }
-      end
-   end
-
-   def update_totals
-      set_sale
-      @sale.amount = 0.00
-
-      for item in @sale.items
-         @sale.amount += item.total_price
-      end
-
-      total_amount = @sale.amount
-
-      if @sale.discount.blank?
-         @sale.total_amount = total_amount
-      else
-         discount_amount = @sale.discount
-         @sale.total_amount = total_amount - discount_amount
-      end
-      @sale.save
-   end
-
-   def create_custom_customer
-      set_sale
-
-      custom_customer = Customer.new
-      custom_customer.firstname = params[:custom_customer][:firstname]
-      custom_customer.lastname = params[:custom_customer][:lastname]
-      custom_customer.phone = params[:custom_customer][:phone]
-      custom_customer.cellphone = params[:custom_customer][:cellphone]
-      custom_customer.birthday = params[:custom_customer][:birthday]
-      custom_customer.email = params[:custom_customer][:email]
-      custom_customer.state = params[:custom_customer][:state]
-      custom_customer.type_document_id = params[:custom_customer][:type_document_id]
-
-      custom_customer.save
-
-      @sale.add_customer(custom_customer.id)
-
-      update_totals
-
-      respond_to do |format|
-         format.js { ajax_refresh }
-      end
-   end
-
-   def add_comment
-      set_sale
-      @sale.comments = params[:sale_comment][:comment]
-      @sale.save
-
-      respond_to do |format|
-         format.js { ajax_refresh }
-      end
-   end
+		@custom_customer = Customer.new
+	end
 
 
+	# Filtrar en la tabla de productos
+	def update_line_item_options
+		set_sale
+		populate_products
 
-   def update_totals
+		# Realizar esta consulta con sqlite
+		@available_products = Product.all.where('name ILIKE ? OR description ILIKE ?',
+		"%#{params[:search][:item_name]}%", "%#{params[:search][:item_name]}%").limit(5)
 
-      set_sale
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
 
-      @sale.amount = 0.00
 
-      for item in @sale.items
-         @sale.amount += item.total_price
-      end
+	# Filtrar en la tabla de clientes
+	def update_customer_options
+		set_sale
+		populate_products
 
-      total_amount = @sale.amount
+		# Mirar si sqlite o pg
+		@available_customers = Customer.all.where('last_name ILIKE ?  OR first_name ILIKE ?
+			OR email_address ILIKE ? OR phone_number ILIKE ?', "%#{params[:search][:customer_name]}%",
+			"%#{params[:search][:customer_name]}%",
+			"%#{params[:search][:customer_name]}%",
+			"%#{params[:search][:customer_name]}%").limit(5)
 
-      if @sale.discount.blank?
-         @sale.total_amount = total_amount
-      else
-         discount_amount = @sale.discount
-         @sale.total_amount = total_amount - discount_amount
-      end
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
 
-      @sale.save
-   end
 
-   private
-   # Use callbacks to share common setup or constraints between actions.
-   def set_sale
-      if @sale.blank?
-         if params[:sale_id].blank?
-            if params[:search].blank?
-               @sale = Sale.find(params[:id])
-            else
-               @sale = Sale.find(params[:search][:sale_id])
-            end
-         else
-            @sale = Sale.find(params[:sale_id])
-         end
-      end
-   end
+	# Asociar cliente a la venta
+	def create_customer_association
+		set_sale
 
-   def ajax_refresh
-      render(file: 'sales/ajax_reload.js.erb')
-   end
+		unless @sale.blank? || params[:customer_id].blank?
+			@sale.customer_id = params[:customer_id]
+			@sale.save
+		end
 
-   # Never trust parameters from the scary internet, only allow the white list through.
-   def sale_params
-      params.require(:sale).permit(:state, :amount, :total_amount, :discount, :limit_date, :user_id, :comment, :customer_id, items_attributes: [:id, :product_id, :price, :total_price, :quantity])
-   end
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
+
+
+	# Agregar productos a la venta
+	def create_line_item
+		set_sale
+		populate_products
+
+		existing_line_item = Item.where('product_id = ? AND sale_id = ?', params[:product_id], @sale.id).first
+
+		if existing_line_item.blank?
+			line_item = Item.new(product_id: params[:product_id], sale_id: params[:sale_id], quantity: params[:quantity])
+			line_item.price = line_item.product.price
+			line_item.save
+
+			remove_item_from_stock(params[:product_id], 1)
+			update_line_item_totals(line_item)
+		else
+			existing_line_item.quantity += 1
+			existing_line_item.save
+
+			remove_item_from_stock(params[:product_id], 1)
+			update_line_item_totals(existing_line_item)
+		end
+
+		update_totals
+
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
+
+
+	# Aumentar cantidad de un producto asociado
+	def add_item
+		set_sale
+		populate_products
+
+		line_item = Item.where(sale_id: params[:sale_id], product_id: params[:product_id]).first
+		line_item.quantity += 1
+		line_item.save
+
+		remove_item_from_stock(params[:item_id], 1)
+		update_line_item_totals(line_item)
+
+		update_totals
+
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
+
+
+	# Reducir cantidad de un producto asociado o eliminarlo
+	def remove_item
+		set_sale
+		populate_products
+
+		line_item = Item.where(sale_id: params[:sale_id], product_id: params[:product_id]).first
+		line_item.quantity -= 1
+		if line_item.quantity <= 0
+			line_item.destroy
+		else
+			line_item.save
+			update_line_item_totals(line_item)
+		end
+
+		return_item_to_stock(params[:product_id], 1)
+
+		update_totals
+
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
+
+
+	# Crear usuario nuevo
+	def create_custom_customer
+		set_sale
+		populate_products
+
+		custom_customer = Customer.new
+		custom_customer.document = params[:custom_customer][:document]
+		custom_customer.firstname = params[:custom_customer][:firstname]
+		custom_customer.lastname = params[:custom_customer][:lastname]
+		custom_customer.phone = params[:custom_customer][:phone]
+		custom_customer.cellphone = params[:custom_customer][:cellphone]
+		custom_customer.birthday = params[:custom_customer][:birthday]
+		custom_customer.email = params[:custom_customer][:email]
+		custom_customer.state = params[:custom_customer][:state]
+		custom_customer.type_document_id = params[:custom_customer][:type_document_id]
+
+		custom_customer.save
+
+		@sale.add_customer(custom_customer.id)
+
+		update_totals
+
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
+
+
+	# Obtener valor total del producto con cantidad + -
+	def update_line_item_totals(line_item)
+		line_item.total_price = line_item.price * line_item.quantity
+		line_item.save
+	end
+
+
+	# Obtener precio de venta con descuento via ajax
+	def sale_discount
+		@sale = Sale.find(params[:sale_discount][:sale_id])
+
+		@sale.discount = params[:sale_discount][:discount]
+		@sale.save
+
+		update_totals
+
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
+
+
+	# Actualizar valores de la venta (valor, valor total, descuento	)
+  def update_totals
+
+    set_sale
+
+    @sale.amount = 0
+
+    for line_item in @sale.line_items
+      @sale.amount += line_item.total_price
+    end
+
+    total_amount = @sale.amount #+ (@sale.amount * tax_amount)
+
+    if @sale.discount.blank?
+      @sale.total_amount = total_amount
+    else
+      discount_amount = total_amount - @sale.discount
+      @sale.total_amount = total_amount - discount_amount
+    end
+
+    @sale.save
+  end
+
+
+  # Agregar comentarios a la venta
+  def add_comment
+    set_sale
+    @sale.comment = params[:sale_comments][:comments]
+    @sale.save
+
+    respond_to do |format|
+      format.js { ajax_refresh }
+    end
+  end
+
+
+	private
+
+	# Identificar la venta
+	def set_sale
+		if @sale.blank?
+			if params[:sale_id].blank?
+				if params[:search].blank?
+					@sale = Sale.find(params[:id])
+				else
+					@sale = Sale.find(params[:search][:sale_id])
+				end
+			else
+				@sale = Sale.find(params[:sale_id])
+			end
+		end
+	end
+
+
+	# Poblar productos
+	def populate_products
+		@available_products = Product.activos_con_cantidad
+	end
+
+
+	# Poblar clientes
+	def populate_customers
+		@available_customers = Customer.all
+	end
+
+
+	# Rducir el stock de un producto
+	def remove_item_from_stock(product_id, quantity)
+    item = Product.find(product_id)
+    item.stock = item.stock - quantity
+    item.save
+  end
+
+
+  #Devolver producto a stock
+  def return_item_to_stock(product_id, quantity)
+    item = Product.find(product_id)
+    item.stock = item.stock + quantity
+    item.save
+  end
+
+
+	# Actualizar secciones de la vista de ventas
+	def ajax_refresh
+		render(file: 'sales/ajax_reload.js.erb')
+	end
+
+
+	# Parametros permitidos para guardar en la venta
+	def sale_params
+		params.require(:sale).permit(
+			:state, :amount,
+			:total_amount,
+			:discount,
+			:limit_date,
+			:user_id,
+			:comment,
+			:customer_id,
+		  items_attributes: [:id, :product_id, :price, :total_price, :quantity])
+	end
+
 end

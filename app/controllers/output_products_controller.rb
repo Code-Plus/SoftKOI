@@ -1,6 +1,7 @@
 class OutputProductsController < ApplicationController
 
    load_and_authorize_resource
+   after_action :products_low, only:[:create]
 
    def index
       @output_products = OutputProduct.all
@@ -37,6 +38,12 @@ class OutputProductsController < ApplicationController
          end
       end
    end
+
+   def products_low
+     if @output_product.product.stock <= @output_product.product.stock_min
+        @output_product.product.create_activity key: 'se esta agotando', read_at: nil
+     end
+   ends
 
    private
 

@@ -32,11 +32,6 @@
                      </div>
                   </div>
                   <div class="col-sm-12">
-                     <%= f.fields_for :items do |item| %>
-                        <%= render 'item_fields', f: item %>
-                     <%end%>
-
-                     <%= link_to_add_fields "Add Item", f, :items %>
                   </div>
 
 

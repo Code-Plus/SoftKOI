@@ -33,6 +33,7 @@ gem 'flipclockjs-rails', '~> 0.7.7'       # Reloj en tiempo real.
 gem 'select2-rails'                       # Autocomplete
 gem 'alertifyjs-rails'                    # Alertas
 gem 'gon', '~> 6.0', '>= 6.0.1'           # Llamar variables en archivos JS
+gem 'public_activity'                     #Notificaciones
 
 
 group :development, :test do

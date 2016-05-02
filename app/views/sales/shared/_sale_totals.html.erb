@@ -1,0 +1,23 @@
+<%# Sección donde se muestra los valores parciales y totales de la venta, asi como el descuento. %>
+<h4 class="text-primary"><span class="glyphicon glyphicon-usd"></span> Valor de la venta</h4>
+<hr />
+
+<label>Precio base</label>
+<div class="input-group">
+  <span class="input-group-addon">$</span>
+  <input type="text" class="form-control" readonly value=<%= number_to_currency(@sale.amount, unit: '') %>>
+</div>
+
+<label>Descuento</label>
+<div class="input-group">
+  <input type="text" class="form-control" readonly value=<%= number_to_currency(@sale.discount, unit: '') %>>
+  <span class="input-group-addon">$<%= @sale.discount.blank? ? 0 : number_to_currency(@sale.get_discounted_amount) %></span>
+</div>
+
+
+<label class="text-success">Precio total</label>
+<div class="input-group has-success total_price_output">
+  <span class="input-group-addon price_output">$</span>
+  <input type="text" class="form-control price_output" readonly value="<%= number_to_currency(@sale.total_amount) %>">
+
+</div>

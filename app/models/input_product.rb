@@ -5,6 +5,8 @@ class InputProduct < ActiveRecord::Base
    validates :stock, presence: true, numericality: {greater_than: 0}
    before_create :update_stock
 
+   include PublicActivity::Model
+   tracked only: [:products_low]
 
    #Getter de los valores de productos para el stock
    def product=(value)

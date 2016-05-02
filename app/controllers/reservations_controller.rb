@@ -3,9 +3,6 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy, :activa, :enProceso, :finalizada, :cancelada]
   load_and_authorize_resource
 
-
-
-
   def index
     @reservations = Reservation.all
     @reservationsActivas = Reservation.activa
@@ -17,6 +14,7 @@ class ReservationsController < ApplicationController
     else
       gon.reserve_id = @actualizarEstadoProceso
     end
+
   end
 
   def change_state
@@ -28,13 +26,13 @@ class ReservationsController < ApplicationController
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'enProceso')
       elsif @respons.to_i == 2
-        #Acá redirecciona la wea de editar.
         render :edit
       elsif @respons.to_i == 3
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'cancelada')
       end
     end
+
   end
 
   def show
