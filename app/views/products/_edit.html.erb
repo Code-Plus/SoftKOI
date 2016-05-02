@@ -50,11 +50,11 @@
       <div class="col-sm-12">
          <hr style="border: 1; margin-top: 0px; ">
          <div class="inline" style="margin-bottom: 0px;">
-            <%= f.submit "Editar producto", :class => "btn btn-success bold" %>
+            <%= f.submit "Editar", :class => "btn btn-success bold" %>
          </div>
 
          <div class="inline">
-            <% if @product.may_disponible? || @product.may_sinCantidad?%>
+            <% if @product.may_disponible? %>
                <%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put, class:'btn btn-primary bold' %>
             <% else %>
                <%= link_to "Inhabilitar", "/product/#{@product.id}/inhabilitar", method: :put, class:'btn btn-primary bold' %>

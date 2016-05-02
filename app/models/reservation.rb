@@ -4,16 +4,44 @@ class Reservation < ActiveRecord::Base
    belongs_to :console
 
    include AASM
+   #reservas en estado activas
    scope :activa, -> {find_by_sql('SELECT date, start_time, end_time, state FROM reservations WHERE state = "activa"')}
 
+   #Reservas en estado activas y en proceso
+   scope :activas_proceso, ->{where("state = 'activa' OR state = 'enProceso'")}
+
    #Validaciones para los campos.
-   validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
+  # validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
    validates :start_time, presence: true
    validates :end_time, presence: true
    validates :console_id, presence: true
    validates :customer, presence: true
    validates :reserve_price_id, presence: true
    before_validation :validate_times
+
+    aasm column: "state" do
+      state :activa, :initial => true
+      state :enProceso
+      state :finalizada
+      state :cancelada
+
+      event :activa do
+         transitions from: :cancelada, to: :activa
+      end
+
+      event :enProceso do
+         transitions from: :activa, to: :enProceso
+      end
+
+      event :finalizada do
+         transitions from: :enProceso, to: :finalizada
+      end
+
+      event :cancelada do
+         transitions from: :activa, to: :cancelada
+         transitions from: :enProceso, to: :cancelada
+      end
+   end
 
 
    #Método para pasar al estado "enProceso" de una reserva determinada cuando llegue a la hora registrada.
@@ -25,21 +53,10 @@ class Reservation < ActiveRecord::Base
          if var.date.strftime("%F") == Time.new.strftime("%F")
             #Luego se valida la hora de inicio con la hora del sistema
             if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
-               return @message_validation = "¿El cliente está listo para iniciar la reserva?"
-=begin
-               if @answer_validation == true
-                 #Se actualiza el estado.
-                 #var.update state: "enProceso"
-               else
-                 if @answer_validation == "posponer"
-                   #Render edit
-                 elsif @answer_validation == "cancelar"
-                   #Cancel URL
-                 end
-               end
-=end
+               reserve_id = var.id.to_s
+               return reserve_id
                #Se actualiza el estado.
-               var.update state: "enProceso"
+               #var.update state: "enProceso"
             end
          end
       end
@@ -101,35 +118,13 @@ class Reservation < ActiveRecord::Base
       end
    end
 
-   aasm column: "state" do
-      state :activa, :initial => true
-      state :enProceso
-      state :finalizada
-      state :cancelada
 
-      event :activa do
-         transitions from: :cancelada, to: :activa
-      end
-
-      event :enProceso do
-         transitions from: :activa, to: :enProceso
-      end
-
-      event :finalizada do
-         transitions from: :enProceso, to: :finalizada
-      end
-
-      event :cancelada do
-         transitions from: :activa, to: :cancelada
-         transitions from: :enProceso, to: :cancelada
-      end
-   end
 
    private
 
    def validate_times
-      if self.start_time.strftime("%H:%M") > Time.now.strftime("%H:%M")
-         if self.start_time.strftime("%H:%M") > self.end_time.strftime("%H:%M")
+      if self.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")
+         if self.start_time.strftime("%H:%M") >= self.end_time.strftime("%H:%M")
             self.errors.add(:base ,"Hora de  inicio mayor a la fin")
          end
       else

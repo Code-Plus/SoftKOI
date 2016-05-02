@@ -77,10 +77,12 @@ span.select2{
 }
 
 
-
+@import "alertify";
+@import "alertify/default";
 @import "bootstrap-sprockets";
 @import "bootstrap.scss";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'template.scss';
 @import 'flipclock';
+@import 'jquery-confirm.min.css';

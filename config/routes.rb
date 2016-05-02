@@ -16,12 +16,18 @@ Rails.application.routes.draw do
 
 	# Ruta para el ajax de reservas
 	get '/reservations/price_interval', to: 'reservations#Reserve_ajax', as: 'interval_price'
+	#Ajax para el cambio de estado cuando va a iniciar la reserva
+	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
 
 
 
 	devise_for :users
 	resources :sales
-	resources :products
+	resources :products do
+		collection do
+			get 'products_today'
+		end
+	end
 	resources :customers
 	resources :output_products
 	resources :categories

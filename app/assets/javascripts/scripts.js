@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	// Select autocomplete
 	$('#sale_customer_id').select2({
 		theme: "bootstrap"
@@ -41,7 +40,7 @@ $(document).ready(function() {
 	});
 
 	//Datatable
-	$('#datatable').DataTable({
+	var tables = $('#datatable').DataTable({
 		"language": {
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar  _MENU_  registros",

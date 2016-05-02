@@ -1,0 +1,48 @@
+<div style="margin: 0px 60px;">
+
+	<% content_for :title do -%>
+      Registro de productos <i class="fa fa-caret-down"></i>
+   <% end -%>
+
+   <% content_for :menus do -%>
+		<li><h5 class="drop-title"><%= link_to "Entrada de productos", input_products_path %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Tipos de productos", type_products_path %></h5></li>
+   	<li><h5 class="drop-title"><%= link_to "gestion de Categorías", categories_path %></h5></li>
+   	<li><h5 class="drop-title"><%= link_to "Salida de productos", output_products_path %></h5></li>
+   <% end -%>
+
+	<% content_for :button do -%>
+
+		<%= link_to new_product_path, remote: true, class: 'btn btn-success bold registrar' do %>
+			<i class="fa fa-plus"></i>
+			&nbsp;Nuevo Producto
+		<% end %>
+	<% end -%>
+
+	<div class="panel panel-default">
+	   <div class="panel-body table">
+			<table id="datatable" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Descripción</th>
+						<th>Categoría</th>
+						<th>Stock</th>
+						<th>Cantidad</th>
+						<th>Precio</th>
+						<th>Estado</th>
+						<th width="142">Acciones</th>
+					</tr>
+				</thead>
+
+				<tbody id="products">
+					<%= render @products %>
+				</tbody>
+
+			</table>
+	   </div>
+	</div>
+
+	<%= render 'dialog' %>
+
+</div>

@@ -50,8 +50,20 @@ class ConsolesController < ApplicationController
   end
 
   def noDisponible
-    @console.noDisponible!
-    redirect_to consoles_url
+    @cont=0
+    @reservation = Reservation.activas_proceso
+    @reservation.each do |reservation|
+      if reservation.console_id == @console.id
+        @cont = @cont + 1
+      end
+    end
+    if @cont >0
+      flash[:alert] = "No se puede inhabilitar, tiene reservas asociadas"
+      redirect_to consoles_url
+    else
+      @console.noDisponible!
+      redirect_to consoles_url
+    end
   end
 
   def baja

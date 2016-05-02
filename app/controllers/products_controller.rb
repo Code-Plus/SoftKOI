@@ -5,18 +5,21 @@ class ProductsController < ApplicationController
 
    def index
      @products = Product.all
-     @products_for_pdf = Product.creados_hoy(Time.new.strftime("%F"))
-      respond_to do |format|
+    
+   end
+
+   def products_today
+      @products_for_pdf = Product.creados_hoy(Time.new.strftime("%F"))
+      @products_for_pdf.each do |product|
+         puts"El producto es ----------------->#{product.name}"
+      end
+         respond_to do |format|
          format.html
          format.pdf do
            pdf = ProductPdf.new(@products_for_pdf)
            send_data pdf.render, filename: 'productos.pdf',:disposition => 'inline',type: 'application/pdf'
          end
       end
-   end
-
-   def products_today
-      @products = Product.all
    end
 
 

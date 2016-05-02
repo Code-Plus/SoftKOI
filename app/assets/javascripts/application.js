@@ -17,27 +17,15 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require select2_locale_es
+//= require alertify
+//= require alertify/confirm-modal
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require alertify
-//= require alertify/confirm-modal
 //= require turbolinks
 //= require_tree .
-
-function miabuelo (val){
-      var initialamount = $('#tblprice').val();
-
-      var value = val;
-
-      var finalAmount = initialamount * value;
-
-      $('#tbltotal_price').val(finalAmount);
-      $('#unit_prices').text(finalAmount);
-   }
-
 
 
 $(document).ajaxError(function(event,xhr,options,exc) {
@@ -57,34 +45,34 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 // setTimeout(iden_page, 100);
 
 
-function iden_page(){
-   if($('#Reserve_Page').length > 0){
-      console.log("si llega hasta el primer if el elemento existe.");
-      var dess_page = "noact";
-      $('div.m_r_b_reservas').click(function(){
-         console.log("Se hizo click en el boton con la clase m_r_b_reservas.");
-         dess_page = "siact"
-      });
-      switch (dess_page) {
-         case 'noact':
-            console.log("entro en el switch y esta en el caso Noact.");
-            if(!$('#new_reserve').length > 0){
-               console.log("la modal no existe.");
-               setInterval(PageReload, 10000);
-            }
-         break;
-         case 'siact':
-            console.log("entro en el switch y esta en el caso Siact.");
-            alert('no recargar');
-         break;
-         default:
-      }
-   }
-}
-
-function PageReload(){
-   location.reload();
-}
+// function iden_page(){
+//    if($('#Reserve_Page').length > 0){
+//       console.log("si llega hasta el primer if el elemento existe.");
+//       var dess_page = "noact";
+//       $('div.m_r_b_reservas').click(function(){
+//          console.log("Se hizo click en el boton con la clase m_r_b_reservas.");
+//          dess_page = "siact"
+//       });
+//       switch (dess_page) {
+//          case 'noact':
+//             console.log("entro en el switch y esta en el caso Noact.");
+//             if(!$('#new_reserve').length > 0){
+//                console.log("la modal no existe.");
+//                setInterval(PageReload, 10000);
+//             }
+//          break;
+//          case 'siact':
+//             console.log("entro en el switch y esta en el caso Siact.");
+//             alert('no recargar');
+//          break;
+//          default:
+//       }
+//    }
+// }
+//
+// function PageReload(){
+//    location.reload();
+// }
 
 
 var categoriesI ;
