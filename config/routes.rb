@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
@@ -18,6 +17,7 @@ Rails.application.routes.draw do
 	resources :input_products
 	resources :reserve_prices
 	resources :reservations
+
 	resources :notifications do
 		collection do
 			post :read
@@ -42,7 +42,6 @@ Rails.application.routes.draw do
       get 'create_custom_item'
       get 'create_custom_customer'
       get 'add_comment'
-      post 'override_price'
       post 'sale_discount'
 		end
 	end
@@ -77,7 +76,7 @@ Rails.application.routes.draw do
 	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
 
 	# Ruta para el ajax de reservas
-	get '/reservations/price_interval', to: 'reservations#Reserve_ajax', as: 'interval_price'
+	get '/reservations/price_interval', to: 'reservations#reserve_ajax', as: 'interval_price'
 
 	#Ajax para el cambio de estado cuando va a iniciar la reserva
 	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'

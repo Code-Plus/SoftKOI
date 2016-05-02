@@ -23,21 +23,21 @@ class Product < ActiveRecord::Base
   validates :category_id, presence: true
 
 
-   include AASM
-   include PublicActivity::Model
-   tracked only: [:products_low]
+  include AASM
+  include PublicActivity::Model
+  tracked only: [:products_low]
 
-   #Productos disponibles
-   scope :activos, -> { where(state: "disponible")}
+  #Productos disponibles
+  scope :activos, -> { where(state: "disponible")}
 
-   #Productos activos cuya cantidad sea mayor a cero.
-   scope :activos_y_cantidad, ->{ activos.where("stock >= stock_min")}
+  #Productos activos cuya cantidad sea mayor a cero.
+  scope :activos_y_cantidad, ->{ activos.where("stock >= stock_min")}
 
-   #Productos que esten activos y tengan cantidad en su stock
-   scope :activos_con_cantidad, ->{activos.where("stock > 0")}
+  #Productos que esten activos y tengan cantidad en su stock
+  scope :activos_con_cantidad, ->{activos.where("stock > 0")}
 
-   #Productos que se crearon en la fecha actual
-   scope :creados_hoy, ->{where("created_at.strftime('%Y-%d-%m') => Time.now.strftime('%Y-%d-%m')")}
+  #Productos que se crearon en la fecha actual
+  scope :creados_hoy, ->{where("created_at.strftime('%Y-%d-%m') => Time.now.strftime('%Y-%d-%m')")}
 
   def self.creados_hoy(current_time)
     product_created = Product.select("products.id, products.created_at")
@@ -75,12 +75,12 @@ class Product < ActiveRecord::Base
   end
 
 =begin
-    def reports(product,current_time)
-      product.each do |p|
-       if p.create_at.strftime("%Y-%d-%m") == Time.now.strftime("%Y-%d-%m")
-       end
-     end
-   end
+  def reports(product,current_time)
+    product.each do |p|
+      if p.create_at.strftime("%Y-%d-%m") == Time.now.strftime("%Y-%d-%m")
+      end
+    end
+  end
 =end
 
   private

@@ -17,8 +17,6 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require select2_locale_es
-//= require alertify
-//= require alertify/confirm-modal
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
@@ -42,6 +40,7 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 	kk +="</ul>"
 	$("#error_explanation").html(kk);
 });
+
 
 var categoriesI ;
 var var_attr ;

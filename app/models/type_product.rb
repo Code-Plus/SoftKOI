@@ -3,7 +3,7 @@ class TypeProduct < ActiveRecord::Base
 	include AASM
 
 	has_many :categories
- 	after_save :validar_estado
+	after_save :validar_estado
 	attr_accessor :flash_notice
 	validate :validar_estado
 	validates :name, presence: true
