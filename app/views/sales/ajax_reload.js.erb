@@ -1,0 +1,14 @@
+
+// Secciones actualizadas
+$('.added_items').html("<%= j render(:file => 'sales/shared/_added_items.html.erb') %>");
+$('.sale_totals').html("<%= j render(:file => 'sales/shared/_sale_totals.html.erb') %>");
+$('.sale_payments').html("<%= j render(:file => 'sales/shared/_sale_payments.html.erb') %>");
+$('.added_customer').html("<%= j render(:file => 'sales/shared/_added_customer.html.erb') %>");
+$('#makePayment .modal-body').html("<%= j render(:file => 'sales/shared/_payment.html.erb') %>");
+$('#customCustomer .modal-body').html("<%= j render(:file => 'sales/shared/_create_custom_customer.html.erb') %>");
+
+$('.searched_items').html("<%= j render(:file => 'sales/shared/_searched_items.html.erb') %>");
+$('.searched_customers').html("<%= j render(:file => 'sales/shared/_searched_customers.html.erb') %>");
+
+$('.edit_sale').show();
+

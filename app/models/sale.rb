@@ -12,9 +12,6 @@ class Sale < ActiveRecord::Base
 	accepts_nested_attributes_for :items
 	accepts_nested_attributes_for :payments
 
-	include AASM
-
-	#COMENTE LAS VALIDACIONES PORQUE ESTAN PONIENDO PROBLEMA A LA HORA DE CREAR LA VENTA BY: MIGUEL
 	# validates :state, presence: true
 	# validates :amount, presence: true,  numericality: { only_integer: true, greater_than: 0 }
 	# validates :total_amount, presence: true, numericality: { only_integer: true, greater_than: 0 }
@@ -23,6 +20,8 @@ class Sale < ActiveRecord::Base
 	# validates :customer_id, presence: true
 	# validates_date :limit_date, presence: true, :afer => lambda { Date.current }
 
+
+	include AASM
 
 	aasm column: "state" do
 		state :pago
@@ -54,7 +53,7 @@ class Sale < ActiveRecord::Base
     self.total_amount * self.discount
   end
 
-
+  # Valor total en todos los pagos
   def paid_total
     paid_total = 0.00
     unless self.payments.blank?
@@ -78,6 +77,7 @@ class Sale < ActiveRecord::Base
     end
   end
 
+  # Asociar cliente a venta
   def add_customer(customer_id)
     self.customer_id = customer_id
     self.save

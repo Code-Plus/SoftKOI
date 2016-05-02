@@ -27,50 +27,52 @@
 //= require turbolinks
 //= require_tree .
 
+Turbolinks.ProgressBar.enable();
+
 $(document).ajaxError(function(event,xhr,options,exc) {
 
-   var errors = JSON.parse(xhr.responseText);
-   var kk ="<ul>";
+	var errors = JSON.parse(xhr.responseText);
+	var kk ="<ul>";
 
-   for(var i = 0; i < errors.length; i++){
-      var list = errors[i];
-      kk += "<li>"+list+"</li>"
-   }
+	for(var i = 0; i < errors.length; i++){
+		var list = errors[i];
+		kk += "<li>"+list+"</li>"
+	}
 
-   kk +="</ul>"
-   $("#error_explanation").html(kk);
+	kk +="</ul>"
+	$("#error_explanation").html(kk);
 });
 
 // setTimeout(iden_page, 100);
 
 
 function iden_page(){
-   if($('#Reserve_Page').length > 0){
-      console.log("si llega hasta el primer if el elemento existe.");
-      var dess_page = "noact";
-      $('div.m_r_b_reservas').click(function(){
-         console.log("Se hizo click en el boton con la clase m_r_b_reservas.");
-         dess_page = "siact"
-      });
-      switch (dess_page) {
-         case 'noact':
-            console.log("entro en el switch y esta en el caso Noact.");
-            if(!$('#new_reserve').length > 0){
-               console.log("la modal no existe.");
-               setInterval(PageReload, 10000);
-            }
-         break;
-         case 'siact':
-            console.log("entro en el switch y esta en el caso Siact.");
-            alert('no recargar');
-         break;
-         default:
-      }
-   }
+	if($('#Reserve_Page').length > 0){
+		console.log("si llega hasta el primer if el elemento existe.");
+		var dess_page = "noact";
+		$('div.m_r_b_reservas').click(function(){
+			console.log("Se hizo click en el boton con la clase m_r_b_reservas.");
+			dess_page = "siact"
+		});
+		switch (dess_page) {
+			case 'noact':
+			console.log("entro en el switch y esta en el caso Noact.");
+			if(!$('#new_reserve').length > 0){
+				console.log("la modal no existe.");
+				setInterval(PageReload, 10000);
+			}
+			break;
+			case 'siact':
+			console.log("entro en el switch y esta en el caso Siact.");
+			alert('no recargar');
+			break;
+			default:
+		}
+	}
 }
 
 function PageReload(){
-   location.reload();
+	location.reload();
 }
 
 var categoriesI ;
@@ -79,21 +81,21 @@ var var_attr ;
 categoriesI = $('#product_category_id').html();
 
 function Products_category_function(){
-   var categoriesF;
-   categoriesF = $('#product_category_id').html();
-   $('#product_category_id').parent().show();
-   var escaped_type_product, options, type_product;
-   type_product = $('#category_type_product_id :selected').text();
-   escaped_type_product = type_product.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-   options = $(categoriesF).filter("optgroup[label='" + escaped_type_product + "']").html();
-   if (options) {
-      $('#product_category_id').html(options);
-      $('#category_type_product_id').prop("disabled",true);
-      $('#Btn_RProduct').removeClass('disabled');
-      $('#Btn_RProduct').removeClass('btn-primary');
-      $('#Btn_RProduct').addClass('btn-success');
-      return $('#product_category_id').parent().show();
-   } else {
-      $('#category_type_product_id').prop("disabled",true);
-   }
+	var categoriesF;
+	categoriesF = $('#product_category_id').html();
+	$('#product_category_id').parent().show();
+	var escaped_type_product, options, type_product;
+	type_product = $('#category_type_product_id :selected').text();
+	escaped_type_product = type_product.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+	options = $(categoriesF).filter("optgroup[label='" + escaped_type_product + "']").html();
+	if (options) {
+		$('#product_category_id').html(options);
+		$('#category_type_product_id').prop("disabled",true);
+		$('#Btn_RProduct').removeClass('disabled');
+		$('#Btn_RProduct').removeClass('btn-primary');
+		$('#Btn_RProduct').addClass('btn-success');
+		return $('#product_category_id').parent().show();
+	} else {
+		$('#category_type_product_id').prop("disabled",true);
+	}
 }
