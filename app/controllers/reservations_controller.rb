@@ -49,7 +49,6 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
-    @consoles = Console.all
     @reserve_prices = ReservePrice.all
   end
 
