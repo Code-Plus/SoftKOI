@@ -119,13 +119,52 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 
 
     var res;
+    var current_time = new Date;
     if (gon.reserve_id != null) {
-      $.confirm({
-        confirmButton: 'Sí',
-        cancelButton: 'No',
-        title: 'Confirmación inicio de reserva',
-        content: '¿El  cliente está listo para iniciar la reserva?',
+      var minutes_hour = current_time.getHours() * 60;
+      var minutes = current_time.getMinutes();
+      var sum_hour = minutes_hour + minutes;
+      var subtraction = sum_hour - gon.hour_start;
+      if (subtraction <= 5) {
 
+<<<<<<< HEAD
+        $.confirm({
+          confirmButton: 'Sí',
+          cancelButton: 'No',
+          title: 'Inicio Reserva',
+          content: '¿El  cliente está listo para iniciar la reserva?',
+
+          confirm: function(){
+            //Cambiar a estado "enProceso"
+              $.alert('¡La reserva ha iniciado!');
+              res = 1;
+              miajax(res, gon.reserve_id);
+          },
+          cancel: function(){
+            $.confirm({
+              confirmButton: 'Posponer',
+              cancelButton: 'Cancelar',
+              title: 'Confirmación inicio de reserva',
+              content: '¿Qué desea?',
+              confirm: function(){
+                //Redireccionar a editar la reserva
+                  res = 2;
+              },
+              cancel: function(){
+                //Cambiar el estado a "cancelada"
+                  $.alert('¡La reserva se ha cancelado!');
+                  res = 3;
+                  miajax(res, gon.reserve_id);
+              }
+            });
+          }
+        });
+
+      }else {
+        res = 0;
+        miajax(res, gon.reserve_id);
+      }
+=======
         confirm: function(){
           //Cambiar a estado "enProceso"
             $.alert('¡La reserva ha iniciado :) !');
@@ -156,6 +195,7 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
           });
         }
       });
+>>>>>>> 34678e97e158c0065fe3f64447a374c33cf1f513
 
       function miajax(resp, id){
         respuesta = resp;
