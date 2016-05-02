@@ -72,8 +72,8 @@ class Reservation < ActiveRecord::Base
                var.update state: "finalizada"
             end
          end
-    end
-  end
+      end
+   end
 
   def self.cancel_reserve(reserve, current_time)
     console = reserve.console_id

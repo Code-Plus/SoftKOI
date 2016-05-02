@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501233958) do
+ActiveRecord::Schema.define(version: 20160502154414) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160501233958) do
     t.text     "parameters"
     t.integer  "recipient_id"
     t.string   "recipient_type"
-    t.datetime "read_at", ,      default: nil
+    t.datetime "read_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -129,14 +129,12 @@ ActiveRecord::Schema.define(version: 20160501233958) do
     t.time     "end_time"
     t.string   "state"
     t.string   "customer"
-    t.integer  "console_id"
     t.integer  "reserve_price_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "interval"
   end
 
-  add_index "reservations", ["console_id"], name: "index_reservations_on_console_id"
   add_index "reservations", ["reserve_price_id"], name: "index_reservations_on_reserve_price_id"
 
   create_table "reserve_prices", force: :cascade do |t|
