@@ -50,7 +50,6 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
-    @consoles = Console.all
     @reserve_prices = ReservePrice.all
   end
 
@@ -127,7 +126,7 @@ class ReservationsController < ApplicationController
     end
 
     def reservation_params
-      params.require(:reservation).permit(:date, :start_time, :end_time, :state, :customer, :console_id, :reserve_price_id)
+      params.require(:reservation).permit(:date, :start_time, :end_time, :state, :customer, :reserve_price_id)
     end
 
 end
