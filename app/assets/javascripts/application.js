@@ -27,6 +27,8 @@
 //= require turbolinks
 //= require_tree .
 
+Turbolinks.ProgressBar.enable();
+
 $(document).ajaxError(function(event,xhr,options,exc) {
 
    var errors = JSON.parse(xhr.responseText);

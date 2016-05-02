@@ -12,6 +12,12 @@
 *= require alertify/bootstrap
 */
 
+
+html.turbolinks-progress-bar::before {
+  background-color: red !important;
+  height: 5px !important;
+}
+
 span#select2-items_product_id-container {
    font-size: 14px !important;
 }
@@ -53,6 +59,14 @@ div.dataTables_paginate ul.pagination{
       content: " ";
       height: 85%;
    }
+}
+
+.sale_submit {
+  display: none !important;
+}
+
+.item_search, .customer_search, .sale_comments {
+    display: none !important;
 }
 
 .modal-dialog {

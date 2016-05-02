@@ -38,6 +38,11 @@
       <%# Info de el precio de la venta, descuento, etc. %>
       <%= render :partial => 'sales/shared/sale_totals', :locals=>{:f=>f} %>
     </div>
+
+    <div class="sale_payments col-sm-8">
+      <%= render :partial => 'sales/shared/sale_payments', :locals => {:f => f} %>
+    </div>
+
   </div>
   <%= f.submit 'Update Sale', :class => "btn btn-success btn-lg sale_submit" %>
 <% end %>
