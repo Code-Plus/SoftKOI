@@ -55,7 +55,6 @@ class Reservation < ActiveRecord::Base
             if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
                reserve_id = var.id.to_s
                return reserve_id
-               puts "id -> #{reserve_id}"
             end
          end
       end

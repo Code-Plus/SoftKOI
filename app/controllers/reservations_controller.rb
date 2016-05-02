@@ -26,18 +26,13 @@ class ReservationsController < ApplicationController
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'enProceso')
       elsif @respons.to_i == 2
-        @identify = @id.to_i
-        postpone_reserve(@identify)
+        render :edit
       elsif @respons.to_i == 3
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'cancelada')
       end
     end
 
-  end
-
-  def postpone_reserve(id)
-    Reservation.find(id)
   end
 
   def show
