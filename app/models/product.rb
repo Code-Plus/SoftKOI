@@ -74,14 +74,14 @@ class Product < ActiveRecord::Base
     end
   end
 
-  =begin
+=begin
   def reports(product,current_time)
     product.each do |p|
       if p.create_at.strftime("%Y-%d-%m") == Time.now.strftime("%Y-%d-%m")
       end
     end
   end
-  =end
+=end
 
   private
 
