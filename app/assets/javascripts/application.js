@@ -43,8 +43,6 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 	$("#error_explanation").html(kk);
 });
 
-// setTimeout(iden_page, 100);
-
 
 function iden_page(){
 	if($('#Reserve_Page').length > 0){

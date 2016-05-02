@@ -1,58 +1,58 @@
 class InputProductsController < ApplicationController
 
-   load_and_authorize_resource
-   after_action :products_low, only:[:create]
+  load_and_authorize_resource
+  after_action :products_low, only:[:create]
 
-   def index
-      @input_products = InputProduct.all
+  def index
+    @input_products = InputProduct.all
 
-      respond_to do |format|
-         format.html
-         format.pdf do
-            pdf = InputproductPdf.new(@input_products)
-            send_data pdf.render, filename: 'entrada.pdf', type: 'application/pdf'
-         end
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = InputproductPdf.new(@input_products)
+        send_data pdf.render, filename: 'entrada.pdf', type: 'application/pdf'
       end
-   end
+    end
+  end
 
 
-   def new
-      #Obtener el producto que se selecciono para la entrada
-      @productx = Product.find(params[:product_id])
-      @input_product = @productx.input_products.build
+  def new
+    #Obtener el producto que se selecciono para la entrada
+    @productx = Product.find(params[:product_id])
+    @input_product = @productx.input_products.build
 
-      #Traer todos los productos con estado disponible
-      @product=Product.activos
-   end
+    #Traer todos los productos con estado disponible
+    @product=Product.activos
+  end
 
 
-   def create
-      @input_product = Product.new
-      @input_product = InputProduct.new(input_product_params)
-      @input_product.product = params[:stock]
+  def create
+    @input_product = Product.new
+    @input_product = InputProduct.new(input_product_params)
+    @input_product.product = params[:stock]
 
-      respond_to do |format|
-         if @input_product.save
-            format.html { redirect_to products_path, notice: 'La entrada se ha registrado correctamente' }
-            format.json { render :index, status: :created, location: @input_product }
-         else
-             format.html { render :new }
-            format.json { render json: @input_product.errors.full_messages, status: :unprocessable_entity }
-         end
+    respond_to do |format|
+      if @input_product.save
+        format.html { redirect_to products_path, notice: 'La entrada se ha registrado correctamente' }
+        format.json { render :index, status: :created, location: @input_product }
+      else
+        format.html { render :new }
+        format.json { render json: @input_product.errors.full_messages, status: :unprocessable_entity }
       end
-   end
+    end
+  end
 
-   def products_low
-     if @input_product.product.stock <= @input_product.product.stock_min
-          @input_product.product.create_activity key: 'se esta agotando', read_at: nil
-     end
-   end
+  def products_low
+    if @input_product.product.stock <= @input_product.product.stock_min
+      @input_product.product.create_activity key: 'se esta agotando', read_at: nil
+    end
+  end
 
 
-   private
+  private
 
-   def input_product_params
-      params.require(:input_product).permit(:stock, :product_id)
-   end
+  def input_product_params
+    params.require(:input_product).permit(:stock, :product_id)
+  end
 
 end
