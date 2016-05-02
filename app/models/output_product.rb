@@ -5,6 +5,8 @@ class OutputProduct < ActiveRecord::Base
    validates :stock, presence: true, numericality: {greater_than: 0}
    before_validation :update_stock
 
+   include PublicActivity::Model
+   tracked only: [:products_low]
 
    def product=(value)
       @product=value

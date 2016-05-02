@@ -1,6 +1,7 @@
 class InputProductsController < ApplicationController
 
    load_and_authorize_resource
+   after_action :products_low, only:[:create]
 
    def index
       @input_products = InputProduct.all
@@ -39,6 +40,12 @@ class InputProductsController < ApplicationController
             format.json { render json: @input_product.errors.full_messages, status: :unprocessable_entity }
          end
       end
+   end
+
+   def products_low
+     if @input_product.product.stock <= @input_product.product.stock_min
+          @input_product.product.create_activity key: 'se esta agotando', read_at: nil
+     end
    end
 
 

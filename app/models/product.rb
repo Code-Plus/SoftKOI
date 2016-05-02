@@ -22,10 +22,10 @@ class Product < ActiveRecord::Base
   validates :stock, numericality: {greater_than_or_equal_to: 0}
   validates :category_id, presence: true
 
-  include AASM
-  include PublicActivity::Model
-  tracked only: [:update]
 
+   include AASM
+   include PublicActivity::Model
+   tracked only: [:products_low]
 
    #Productos disponibles
    scope :activos, -> { where(state: "disponible")}
