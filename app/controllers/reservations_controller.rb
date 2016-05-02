@@ -6,13 +6,19 @@ class ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
     @reservationsActivas = Reservation.activa
-    @actualizarEstadoProceso = Reservation.validates_hour_start(Reservation.all)
-    @actualizarEstadoFinalizada = Reservation.validates_hour_finish(Reservation.all)
+    @updateStateProceso = Reservation.validates_hour_start(Reservation.all)
+    @updateStateFinalizada = Reservation.validates_hour_finish(Reservation.proceso)
 
-    if @actualizarEstadoProceso.is_a?(Array)
-      gon.reserve_id = nil
-    else
-      gon.reserve_id = @actualizarEstadoProceso
+    if @updateStateProceso.is_a?(Array)
+      @updateStateProceso.each do |u|
+        if u.is_a?(Numeric)
+          gon.reserve_id = @updateStateProceso[0]
+          gon.hour_start = @updateStateProceso[1]
+        else
+          gon.reserve_id = nil
+          gon.hour_start = nil
+        end
+      end
     end
 
   end
@@ -30,13 +36,15 @@ class ReservationsController < ApplicationController
       elsif @respons.to_i == 3
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'cancelada')
+      elsif @respons.to_i == 0
+        @identify = @id.to_i
+        @r = Reservation.where(id: @identify).update_all(state: 'cancelada')
       end
     end
 
   end
 
   def show
-
   end
 
   def new
