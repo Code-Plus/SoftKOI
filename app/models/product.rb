@@ -23,6 +23,11 @@ class Product < ActiveRecord::Base
    validates :category_id, presence: true
 
    include AASM
+   include PublicActivity::Model
+   tracked only: [:update]
+
+
+
 
    #Seleccionar productos disponibles
    scope :activos, -> { where(state: "disponible")}

@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
    def index
      @products = Product.all
-    
+
    end
 
    def products_today
@@ -50,6 +50,9 @@ class ProductsController < ApplicationController
    def update
       respond_to do |format|
          if @product.update(product_params)
+            if @product.stock <= @product.stock_min
+              @product.create_activity key: 'se esta agotando', read_at: nil
+            end
             format.json { head :no_content}
             format.js {  flash[:notice] = "¡Producto actualizado satisfactoriamente!" }
          else

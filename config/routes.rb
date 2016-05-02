@@ -18,6 +18,11 @@ Rails.application.routes.draw do
 	resources :input_products
 	resources :reserve_prices
 	resources :reservations
+	resources :notifications do
+		collection do
+			post :read
+		end
+	end
 
   resources :payments do
   	collection do

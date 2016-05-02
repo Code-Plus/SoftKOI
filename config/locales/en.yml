@@ -1,4 +1,4 @@
-# Files in the config/locales directory are used for internationalization
+  # Files in the config/locales directory are used for internationalization
 # and are automatically loaded by Rails. If you want to use locales other
 # than English, add the necessary files in this directory.
 #
@@ -344,3 +344,6 @@ en:
       long: "%A, %d de %B de %Y a las %I:%M %p"
       short: "%d de %b a las %H:%M hrs"
     pm: pm
+  activity:
+    product:
+      stock_min_or_less: 'El producto se esta agotando'
