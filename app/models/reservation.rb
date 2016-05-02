@@ -51,9 +51,8 @@ class Reservation < ActiveRecord::Base
          if var.date.strftime("%F") == Time.new.strftime("%F")
             if var.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")
                reserve_id = var.id.to_s
-               hour_start = var.start_time.strftime("%H:%M")
-               minutes_of_hour = hour_start.strftime("%H") * 60
-               minutes = hour_start.strftime("%M")
+               minutes_of_hour = var.start_time.strftime("%H") * 60
+               minutes = var.start_time.strftime("%M")
                hour_finish = minutes_of_hour + minutes
                return reserve_id, hour_finish
             end
@@ -74,13 +73,13 @@ class Reservation < ActiveRecord::Base
    end
 
   def self.cancel_reserve(reserve, current_time)
-    console = reserve.reserse_price.console_id
+    console = reserve.reserve_price.console_id
     s_number = 120
     interval = 0
     id_precio= 0
     if reserve.state == "activa"
       reserve.update(reserve_price_id: 0)
-    elsif reserve.state == "enProceso" && reserve.reserse_price.console_id == console
+    elsif reserve.state == "enProceso" && reserve.reserve_price.console_id == console
       all_times_one = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
       minimum_time = all_times_one.minimum(:time)
       price = ReservePrice.where("time = ?", minimum_time).select("reserve_prices.value")
