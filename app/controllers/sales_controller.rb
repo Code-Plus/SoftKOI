@@ -46,9 +46,9 @@ class SalesController < ApplicationController
 		set_sale
 		populate_products
 
-		# Realizar esta consulta con sqlite
-		@available_products = Product.all.where('name ILIKE ? OR description ILIKE ?',
-		"%#{params[:search][:item_name]}%", "%#{params[:search][:item_name]}%").limit(5)
+		@available_products = Product.active_quantity.where("name LIKE ? OR description LIKE ?",
+		params[:search][:item_name],
+		params[:search][:item_name])
 
 		respond_to do |format|
 			format.js { ajax_refresh }
@@ -61,12 +61,12 @@ class SalesController < ApplicationController
 		set_sale
 		populate_products
 
-		# Mirar si sqlite o pg
-		@available_customers = Customer.all.where('last_name ILIKE ?  OR first_name ILIKE ?
-			OR email ILIKE ? OR phone ILIKE ?', "%#{params[:search][:customer_name]}%",
-			"%#{params[:search][:customer_name]}%",
-			"%#{params[:search][:customer_name]}%",
-			"%#{params[:search][:customer_name]}%").limit(5)
+		@available_customers = Customer.all.where("last_name LIKE ?  OR first_name LIKE ?
+			OR email LIKE ? OR phone LIKE ?",
+			params[:search][:customer_name],
+			params[:search][:customer_name],
+			params[:search][:customer_name],
+			params[:search][:customer_name])
 
 		respond_to do |format|
 			format.js { ajax_refresh }
@@ -213,7 +213,7 @@ class SalesController < ApplicationController
 	end
 
 
-	# Actualizar valores de la venta (valor, valor total, descuento	)
+	# Actualizar valores de la venta (valor, valor total, descuento)
   def update_totals
 
     set_sale
@@ -269,7 +269,7 @@ class SalesController < ApplicationController
 
 	# Poblar productos
 	def populate_products
-		@available_products = Product.activos_con_cantidad
+		@available_products = Product.active_quantity
 	end
 
 
