@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 	# welcome/index como home_path
 	get '/home', to: 'welcome#index', as: 'home'
 
+	# Ruta para el ajax de reservas
+	get '/reservations/price_interval', to: 'reservations#reserve_ajax', as: 'interval_price'
+
+	get '/users/compare_password', to: 'users#compare_password',  as: 'compare_password'
+
 
 	devise_for :users
 	resources :customers
@@ -64,8 +69,10 @@ Rails.application.routes.draw do
 	resources :users do
 		collection do
 			post 'new_user'
+			patch 'update_password'
 		end
 	end
+
 
 	patch "users/:id/update_profile", to: "users#update_profile"
 
@@ -75,8 +82,7 @@ Rails.application.routes.draw do
 	#Ruta para el ajax de productos
 	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
 
-	# Ruta para el ajax de reservas
-	get '/reservations/price_interval', to: 'reservations#reserve_ajax', as: 'interval_price'
+
 
 	#Ajax para el cambio de estado cuando va a iniciar la reserva
 	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
