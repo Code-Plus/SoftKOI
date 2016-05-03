@@ -19,18 +19,18 @@ class ReservationsController < ApplicationController
           gon.hour_start = nil
         end
       end
+
     end
 
-    if @update_price == nil
-      puts "EL NOMBRE EN EL CONTROLLER -> #{@console_name}"
-      return @console_name
-    end
+    # if @update_price == nil?
+    #   @console_name = @update_price
+    # end
 
   end
 
   def change_state
     @respons = params[:respuesta]
-    @id = params[:id]
+    @id = params[:return console_nameid]
     unless @respons.nil?
       if @respons.to_i == 1
         @identify = @id.to_i
@@ -113,6 +113,7 @@ class ReservationsController < ApplicationController
 
   def cancelada
     @update_price = Reservation.cancel_reserve(Reservation.find(params[:id]), Time.now)
+    puts "HOLI ESTA ES LA VARIABLE #{@update_price}"
     @reservation.cancelada!
     redirect_to reservations_url
   end

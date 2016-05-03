@@ -74,14 +74,13 @@ class Reservation < ActiveRecord::Base
 
   def self.cancel_reserve(reserve, current_time)
     console = reserve.reserve_price.console_id
-    @console_name = reserve.reserve_price.console.name
+    console_name = reserve.reserve_price.console.name
     s_number = 120
     interval = 0
     id_precio= 0
     if reserve.state == "activa"
       Reservation.where(id: reserve.id).update_all(reserve_price_id: 0)
-      puts "#{@console_name}"
-      return @console_name
+      return console_name
     elsif reserve.state == "enProceso" && reserve.reserve_price.console_id == console
       all_times_one = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
       minimum_time = all_times_one.minimum(:time)
