@@ -49,7 +49,7 @@ class Reservation < ActiveRecord::Base
       search = search.where(state: 'activa').select("id, date, start_time, state")
       search.each do |var|
          if var.date.strftime("%F") == Time.new.strftime("%F")
-            if var.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")
+            if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
                reserve_id = var.id.to_s
                minutes_of_hour = var.start_time.strftime("%H").to_i * 60
                minutes = var.start_time.strftime("%M").to_i
