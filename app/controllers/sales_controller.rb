@@ -61,7 +61,7 @@ class SalesController < ApplicationController
 		set_sale
 		populate_products
 
-		@available_customers = Customer.all.where("last_name LIKE ?  OR first_name LIKE ?
+		@available_customers = Customer.all.where("document LIKE ?  OR firstname LIKE ?
 			OR email LIKE ? OR phone LIKE ?",
 			params[:search][:customer_name],
 			params[:search][:customer_name],
@@ -176,11 +176,9 @@ class SalesController < ApplicationController
 		custom_customer.cellphone = params[:custom_customer][:cellphone]
 		custom_customer.birthday = params[:custom_customer][:birthday]
 		custom_customer.email = params[:custom_customer][:email]
-		custom_customer.state = params[:custom_customer][:state]
 		custom_customer.type_document_id = params[:custom_customer][:type_document_id]
 
 		custom_customer.save
-
 		@sale.add_customer(custom_customer.id)
 
 		update_totals
@@ -220,7 +218,7 @@ class SalesController < ApplicationController
 
     @sale.amount = 0
 
-    for line_item in @sale.line_items
+    for line_item in @sale.items
       @sale.amount += line_item.total_price
     end
 
@@ -250,6 +248,11 @@ class SalesController < ApplicationController
 
 
 	private
+
+	# Actualizar secciones de la vista de ventas
+	def ajax_refresh
+		render(file: 'sales/ajax_reload.js.erb')
+	end
 
 	# Identificar la venta
 	def set_sale
@@ -293,12 +296,6 @@ class SalesController < ApplicationController
     item.stock = item.stock + quantity
     item.save
   end
-
-
-	# Actualizar secciones de la vista de ventas
-	def ajax_refresh
-		render(file: 'sales/ajax_reload.js.erb')
-	end
 
 
 	# Parametros permitidos para guardar en la venta

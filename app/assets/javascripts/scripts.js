@@ -57,7 +57,7 @@ $(document).ready(function() {
 			"oPaginate": {
 				"sFirst":    "Primero",
 				"sLast":     "Último",
-				"sNext":     "Sigiente &nbsp;<i class='fa fa-angle-right'></i>",
+				"sNext":     "Siguiente &nbsp;<i class='fa fa-angle-right'></i>",
 				"sPrevious": "<i class='fa fa-angle-left'></i>&nbsp; Anterior"
 			},
 			"oAria": {

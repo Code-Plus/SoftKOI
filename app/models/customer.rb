@@ -5,6 +5,7 @@ class Customer < ActiveRecord::Base
 
   include AASM
 
+=begin
   validates :document, presence: true, uniqueness: true
   validates :firstname, presence: true
   validates :lastname, presence: true
@@ -14,6 +15,7 @@ class Customer < ActiveRecord::Base
   validates :email, email: true
   validates :state, presence: true
   validates :type_document_id, presence: true
+=end
 
   aasm column: "state" do
     state :sinDeuda, :initial => true

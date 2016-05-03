@@ -1,6 +1,6 @@
 <%# Parcial con la caja de comentarios %>
 <div class="comments">
-	<h4 class="text-primary"><span class="glyphicon glyphicon-book"></span> Commentarios</h4>
+	<h4 class="text-primary"><span class="glyphicon glyphicon-book"></span> Comentarios</h4>
 
 	<%= form_for :sale_comments, :url => url_for(:controller => "sales", :action => "add_comment", :sale_id => @sale.id, :format => :js), :method => "get", :remote => true do |f| %>
 

@@ -1,56 +1,65 @@
 <%# Formulario mostrado en una modal para registrar un cliente %>
 <div class="create_an_item">
-	<%= form_for :custom_customer, :url => url_for(:controller => "sales", :action => "create_custom_customer",
-	 	:sale_id => @sale.id, :format => :js), :method => "get", :remote => true,
-	 	:html => { :id => 'create_custom_customer' } do |f| %>
+	<%= form_for :custom_customer, :url => url_for(:controller => "sales", :action => "create_custom_customer", :sale_id => @sale.id, :format => :js), :method => "get",
+	 :remote => true, :id => 'create_custom_customer' do |f| %>
 
 	<div id="error_explanation" class="text-danger modal-errors"></div>
+
+	<% if @sale.errors.any? %>
+		<div id="error_explanation" class="text-danger modal-errors">
+			 <ul>
+					<% @sale.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+					<% end %>
+			 </ul>
+		</div>
+	<% end %>
 
 	<div class="row">
 		<div class="col-sm-6">
 			<div class="form-group required">
-				<%= f.label :document,"Documento" ,:class => "control-label"%><br>
+				<%= f.label :document, "Documento" ,:class => "control-label"%><br>
     		<%= f.text_field :document, :class => "form-control" %>
 			</div>
 		</div>
 
 		<div class="col-sm-6">
 			<div class="form-group required">
-				<%= f.label :firstname,"Nombre",:class => "control-label"%><br>
+				<%= f.label :firstname, "Nombre",:class => "control-label"%><br>
     		<%= f.text_field :firstname, :class => "form-control" %>
 			</div>
 		</div>
 
 		<div class="col-sm-6">
 			<div class="form-group required">
-				<%= f.label :lastname,"Apellido" ,:class => "control-label"%><br>
+				<%= f.label :lastname, "Apellido" ,:class => "control-label"%><br>
     		<%= f.text_field :lastname, :class => "form-control" %>
 			</div>
 		</div>
 
 		<div class="col-sm-6">
 			<div class="form-group">
-				<%= f.label :phone,"Teléfono" ,:class => "control-label"%><br>
+				<%= f.label :phone, "Teléfono" ,:class => "control-label"%><br>
     		<%= f.telephone_field :phone, :class => "form-control" %>
 			</div>
 		</div>
 		<div class="col-sm-6">
 			<div class="form-group">
-				<%= f.label :cellphone,"Celular" ,:class => "control-label"%><br>
+				<%= f.label :cellphone, "Celular" ,:class => "control-label"%><br>
     		<%= f.telephone_field :cellphone, :class => "form-control" %>
 			</div>
 		</div>
 
 		<div class="col-sm-6">
 			<div class="form-group required">
-				<%= f.label :birthday,"Fecha Nacimiento",:class => "control-label"%><br>
+				<%= f.label :birthday, "Fecha Nacimiento",:class => "control-label"%><br>
     		<%= f.date_field :birthday, :class => "datepicker" %>
 			</div>
 		</div>
 
 		<div class="col-sm-6">
 			<div class="form-group required">
-				<%= f.label :email,"Email" ,:class => "control-label"%><br>
+				<%= f.label :email, "Email" ,:class => "control-label"%><br>
     		<%= f.email_field :email, :class => "form-control" %>
 			</div>
 		</div>
@@ -58,7 +67,7 @@
 		<div class="col-sm-6">
 			<div class="form-group required">
 				<%= f.label :type_document_id,"Tipo de Documento" ,:class => "control-label"%><br>
-    		<%= collection_select(:customer, :type_document_id, TypeDocument.all, :id, :description, {prompt: "Seleccione una opcion"})%>
+    		<%= collection_select(:custom_customer, :type_document_id, TypeDocument.all, :id, :description, {prompt: "Seleccione una opcion"})%>
 			</div>
 		</div>
 

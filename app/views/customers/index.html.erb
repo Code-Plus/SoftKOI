@@ -29,7 +29,7 @@
         <td><%= customer.birthday %></td>
         <td><%= customer.email %></td>
         <td><%= customer.state %></td>
-        <td><%= customer.type_document.description %></td>
+        <td><%= customer.type_document.blank? ? '-' : customer.type_document.description %></td>
         <td>
            <%= link_to 'Show', customer %>
            <%= link_to 'Edit', edit_customer_path(customer) %>
