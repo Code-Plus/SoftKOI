@@ -4,8 +4,7 @@ class ReservationsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @reservations = Reservation.all
-    @reservationsActivas = Reservation.activa
+    @reservationsActivas = Reservation.activas_proceso
     @updateStateProceso = Reservation.validates_hour_start(Reservation.all)
     @updateStateFinalizada = Reservation.validates_hour_finish(Reservation.all)
 
@@ -26,6 +25,10 @@ class ReservationsController < ApplicationController
     #   @console_name = @update_price
     # end
 
+  end
+
+  def reservations_end
+    @reservations_end = Reservation.end_cancel_reservations
   end
 
   def change_state

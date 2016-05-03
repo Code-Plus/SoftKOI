@@ -7,6 +7,9 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 <% content_for :menus do -%>
 <li><h5 class="drop-title"><%= link_to "Consolas", consoles_path %></h5></li>
 <li><h5 class="drop-title"><%= link_to "Precio de reserva", reserve_prices_path %></h5></li>
+<li><h5 class="drop-title"><%= link_to "Consolas en baja", drop_console_consoles_path %></h5></li>
+<li><h5 class="drop-title"><%= link_to "Reservas finalizadas", reservas_terminadas_path %></h5></li>
+<li><h5></h5></li>
 <% end -%>
 
 <% content_for :button do -%>
@@ -33,7 +36,7 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
       </thead>
 
       <tbody id="reservations">
-         <%= render @reservations %>
+         <%= render @reservationsActivas %>
       </tbody>
     </table>
   </div>
