@@ -32,7 +32,11 @@ Rails.application.routes.draw do
 	resources :type_products
 	resources :input_products
 	resources :reserve_prices
-	resources :reservations
+	resources :reservations do
+		collection do
+			get 'reservations_end'
+		end
+	end
 
 	resources :notifications do
 		collection do

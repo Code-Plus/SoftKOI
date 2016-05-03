@@ -12,6 +12,9 @@ class Reservation < ActiveRecord::Base
   #Reservas en estado enProceso
   scope :proceso, ->{where("state = 'enProceso'")}
 
+  #Reservas en estado finalizada o cancelada
+  scope :end_cancel_reservations, -> {where ("state = 'cancelada' OR state = 'finalizada'")}
+
   #Validaciones para los campos.
   # validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
   validates :start_time, presence: true
@@ -62,11 +65,11 @@ class Reservation < ActiveRecord::Base
 
    #Método para pasar al estado "finalizada" de una reserva determinada cuando llegue a la hora registrada.
    def self.validates_hour_finish(search)
-      #search = search.where(state: 'enProceso').select("id, date, end_time, state")
+      search = search.where(state: 'enProceso').select("id, date, end_time, state")
       search.each do |var|
          if var.date.strftime("%F") == Time.new.strftime("%F")
             if var.end_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
-               var.update state: "finalizada"
+              Reservation.where(id: var.id).update_all(state: 'finalizada')
             end
          end
       end
@@ -74,11 +77,13 @@ class Reservation < ActiveRecord::Base
 
   def self.cancel_reserve(reserve, current_time)
     console = reserve.reserve_price.console_id
+    console_name = reserve.reserve_price.console.name
     s_number = 120
     interval = 0
     id_precio= 0
     if reserve.state == "activa"
-      reserve.update(reserve_price_id: 0)
+      Reservation.where(id: reserve.id).update_all(reserve_price_id: 0)
+      return console_name
     elsif reserve.state == "enProceso" && reserve.reserve_price.console_id == console
       all_times_one = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
       minimum_time = all_times_one.minimum(:time)
@@ -113,7 +118,6 @@ class Reservation < ActiveRecord::Base
   end
 
 private
-
   def validate_times
     if self.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")
       if self.start_time.strftime("%H:%M") >= self.end_time.strftime("%H:%M")

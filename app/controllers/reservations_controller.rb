@@ -4,10 +4,9 @@ class ReservationsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @reservations = Reservation.all
-    @reservationsActivas = Reservation.activa
+    @reservationsActivas = Reservation.activas_proceso
     @updateStateProceso = Reservation.validates_hour_start(Reservation.all)
-    @updateStateFinalizada = Reservation.validates_hour_finish(Reservation.proceso)
+    @updateStateFinalizada = Reservation.validates_hour_finish(Reservation.all)
 
     if @updateStateProceso.is_a?(Array)
       @updateStateProceso.each do |u|
@@ -19,14 +18,22 @@ class ReservationsController < ApplicationController
           gon.hour_start = nil
         end
       end
+
     end
 
+    # if @update_price == nil?
+    #   @console_name = @update_price
+    # end
+
+  end
+
+  def reservations_end
+    @reservations_end = Reservation.end_cancel_reservations
   end
 
   def change_state
     @respons = params[:respuesta]
     @id = params[:id]
-
     unless @respons.nil?
       if @respons.to_i == 1
         @identify = @id.to_i
@@ -109,6 +116,7 @@ class ReservationsController < ApplicationController
 
   def cancelada
     @update_price = Reservation.cancel_reserve(Reservation.find(params[:id]), Time.now)
+    puts "HOLI ESTA ES LA VARIABLE #{@update_price}"
     @reservation.cancelada!
     redirect_to reservations_url
   end

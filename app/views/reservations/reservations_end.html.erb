@@ -1,0 +1,38 @@
+<div style="margin: 0px 60px;">
+
+  <% content_for :title do -%>
+     Reservas finalizadas <i class="fa fa-caret-down"></i>
+  <% end -%>
+
+  <% content_for :menus do -%>
+    <li><h5 class="drop-title"><%= link_to "Consolas", consoles_path %></h5></li>
+    <li><h5 class="drop-title"><%= link_to "Reservas", reservations_path %></h5></li>
+    <li><h5 class="drop-title"><%= link_to "Precio de reserva", reserve_prices_path %></h5></li>
+    <li><h5 class="drop-title"><%= link_to "Consolas en baja", drop_console_consoles_path %></h5></li>
+  <% end -%>
+
+  <div class="panel panel-default" id="Reserve_Page">
+    <div class="panel-body table">
+      <table id="datatable" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Consola</th>
+            <th>Fecha</th>
+            <th>Hora inicio</th>
+            <th>Hora fin</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th width="170px">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody id="reservations">
+           <%= render @reservations_end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br>
+  <%= render 'dialog' %>
+</div>
