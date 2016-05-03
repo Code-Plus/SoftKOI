@@ -238,7 +238,7 @@ class SalesController < ApplicationController
   # Agregar comentarios a la venta
   def add_comment
     set_sale
-    @sale.comment = params[:sale_comments][:comments]
+    @sale.comment = params[:sale_comments][:comment]
     @sale.save
 
     respond_to do |format|
