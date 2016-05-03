@@ -31,8 +31,9 @@ class ReservationsController < ApplicationController
       if @respons.to_i == 1
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'enProceso')
-      elsif @respons.to_i == 2
-        render :edit
+        puts "Estoy aca"
+      #elsif @respons.to_i == 2
+      #  render :edit
       elsif @respons.to_i == 3
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'cancelada')
@@ -49,11 +50,11 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
-    @consoles = Console.all
     @reserve_prices = ReservePrice.all
   end
 
   def edit
+
   end
 
   def create
@@ -126,7 +127,7 @@ class ReservationsController < ApplicationController
     end
 
     def reservation_params
-      params.require(:reservation).permit(:date, :start_time, :end_time, :state, :customer, :console_id, :reserve_price_id)
+      params.require(:reservation).permit(:date, :start_time, :end_time, :state, :customer, :reserve_price_id)
     end
 
 end

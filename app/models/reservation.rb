@@ -1,39 +1,6 @@
 class Reservation < ActiveRecord::Base
 
-<<<<<<< HEAD
-   belongs_to :reserve_price
-   belongs_to :console
-
-   include AASM
-   #reservas en estado activas
-   scope :activa, -> {find_by_sql('SELECT date, start_time, end_time, state FROM reservations WHERE state = "activa"')}
-
-   #Reservas en estado activas y en proceso
-   scope :activas_proceso, ->{where("state = 'activa' OR state = 'enProceso'")}
-
-   #Reservas en estado enProceso
-   scope :proceso, ->{where("state = 'enProceso'")}
-
-   #Validaciones para los campos.
-   validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
-   validates :start_time, presence: true
-   validates :end_time, presence: true
-   validates :console_id, presence: true
-   validates :customer, presence: true
-   validates :reserve_price_id, presence: true
-   before_validation :validate_times
-
-    aasm column: "state" do
-      state :activa, :initial => true
-      state :enProceso
-      state :finalizada
-      state :cancelada
-
-      event :activa do
-         transitions from: :cancelada, to: :activa
-=======
   belongs_to :reserve_price
-  belongs_to :console
 
   include AASM
   #reservas en estado activas
@@ -42,11 +9,13 @@ class Reservation < ActiveRecord::Base
   #Reservas en estado activas y en proceso
   scope :activas_proceso, ->{where("state = 'activa' OR state = 'enProceso'")}
 
+  #Reservas en estado enProceso
+  scope :proceso, ->{where("state = 'enProceso'")}
+
   #Validaciones para los campos.
   # validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validates :console_id, presence: true
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
   before_validation :validate_times
@@ -75,51 +44,15 @@ class Reservation < ActiveRecord::Base
     end
   end
 
-
-  #Método para pasar al estado "enProceso" cuando llegue a la hora registrada.
-  def self.validates_hour_start(search)
-    #consulta con el arreglo de las reservas que llega
-    search = search.where(state: 'activa').select("id, date, start_time, state")
-    search.each do |var|
-      #Recorrer arreglo de la consulta y  comparar la fecha del sistema.
-      if var.date.strftime("%F") == Time.new.strftime("%F")
-        #Validar la hora de inicio con la hora del sistema
-        if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
-          reserve_id = var.id.to_s
-          return reserve_id
-        end
->>>>>>> 34678e97e158c0065fe3f64447a374c33cf1f513
-      end
-    end
-  end
-
-
-  #Método para pasar al estado "finalizada" cuando llegue a la hora registrada.
-  def self.validates_hour_finish(search)
-    #Consulta con el arreglo de las reservas que llega
-    search = search.where(state: 'enProceso').select("id, date, end_time, state")
-    search.each do |var|
-      #Recorrer el arreglo de la consulta y se compara la fecha del sistema.
-      if var.date.strftime("%F") == Time.new.strftime("%F")
-        #Luego se valida la hora fin con la hora del sistema
-        if var.end_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
-          var.update state: "finalizada"
-        end
-      end
-<<<<<<< HEAD
-   end
-
-
    #Método para pasar al estado "enProceso" de una reserva determinada cuando llegue a la hora registrada.
    def self.validates_hour_start(search)
       search = search.where(state: 'activa').select("id, date, start_time, state")
       search.each do |var|
          if var.date.strftime("%F") == Time.new.strftime("%F")
-            if var.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")
+            if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
                reserve_id = var.id.to_s
-               hour_start = var.start_time.strftime("%H:%M")
-               minutes_of_hour = hour_start.strftime("%H") * 60
-               minutes = hour_start.strftime("%M")
+               minutes_of_hour = var.start_time.strftime("%H").to_i * 60
+               minutes = var.start_time.strftime("%M").to_i
                hour_finish = minutes_of_hour + minutes
                return reserve_id, hour_finish
             end
@@ -136,18 +69,17 @@ class Reservation < ActiveRecord::Base
                var.update state: "finalizada"
             end
          end
-=======
-    end
-  end
+      end
+   end
 
   def self.cancel_reserve(reserve, current_time)
-    console = reserve.console_id
+    console = reserve.reserve_price.console_id
     s_number = 120
     interval = 0
     id_precio= 0
     if reserve.state == "activa"
       reserve.update(reserve_price_id: 0)
-    elsif reserve.state == "enProceso" && reserve.console_id == console
+    elsif reserve.state == "enProceso" && reserve.reserve_price.console_id == console
       all_times_one = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
       minimum_time = all_times_one.minimum(:time)
       price = ReservePrice.where("time = ?", minimum_time).select("reserve_prices.value")
@@ -171,23 +103,16 @@ class Reservation < ActiveRecord::Base
             interval = t.time
           end
         end
->>>>>>> 34678e97e158c0065fe3f64447a374c33cf1f513
       end
       price_of_t = ReservePrice.where("time = ?", interval).select("reserve_prices.id")
       id_time = price_of_t.pluck(:id)
       id_time.each do |id_c|
-        reserve.update(reserve_price_id: id_c)
+      reserve.update(reserve_price_id: id_c)
       end
     end
   end
 
-<<<<<<< HEAD
-   private
-=======
-
-
-  private
->>>>>>> 34678e97e158c0065fe3f64447a374c33cf1f513
+private
 
   def validate_times
     if self.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")

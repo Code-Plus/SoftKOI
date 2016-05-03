@@ -43,79 +43,41 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 </div>
 
 <script type="text/javascript">
-  // var modaltt;
-  //       setInterval(function(){
-  //         modaltt = $('#new_reservation').length;
-  //         alerttt = $('#jconfirm-box15').length;
-  //         if(modaltt > 0){
-  //           console.log('no recargar la pagina'+ modaltt);
-  //           $('#closemodal').click(function(){
-  //               $('#new_reservation').remove();
-  //               console.log('haz cerrado la modal'+ modaltt);
-  //           });
-  //         }else{
-  //           if(alerttt > 0){
-  //             console.log('No recargar pagina, Se ha inciado una alerta' + alerttt);
-  //
-  //           }else{
-  //           console.log("Recargar pagina, esto es lo que vale la variable " + alerttt);
-  //             location.reload();
-  //           }
-  //         }
-  //       },3000);
+  var modaltt;
+        setInterval(function(){
+          modaltt = $('#new_reservation').length;
+          modalrr = $('.edit_reservation').length;
+          alerttt = $('.jconfirm-box').length;
+          if(modaltt > 0){
+            console.log('no recargar la pagina'+ modaltt);
+            $('#closemodal').click(function(){
+                $('#new_reservation').remove();
+                console.log('haz cerrado la modal'+ modaltt);
+            });
+          }else{
+            if(alerttt > 0){
+              console.log('No recargar pagina, Se ha inciado una alerta ' + alerttt);
+            }else{
+              var indexss = $('.paginate_button.active > a').text();
+              if (indexss == "1") {
+                if(modalrr > 0){
+                  console.log("No recargar la pagina porque esta abierta la modal de editar.");
+                  $('#closemodal').click(function(){
+                      $('.new_reservation').remove();
+                      console.log('haz cerrado la modal'+ modalrr);
+                  });
+                }else{
+                  console.log("Recargar pagina la tabla esta en la pagina #"+ indexss);
+                    // location.reload();
+                }
+              }else{
+                console.log("No recargar la pagina porque no esta en la pagina # 1 de la tabla al contrario te encuentras en la pagina #"+ indexss);
+              }
 
-  setInterval( function () {
-    // $('#datatable').dataTable().fnDestroy();
-    //  $('#datatable > tbody').empty();
-    // loadreserves();
-    // loaddatatables();
-    alertreserve();
-  }, 3000 );
-// var tken = $('meta[name="csrf-token"]').attr('content');
-//   function loadreserves(){
-//     $.ajax({
-//       url: '/reservations'
-//     }).error(function(error){
-//       console.log('Error al traer las reservas');
-//     });
-//   }
-//   function loaddatatables(){
-//
-//         $('#datatable').dataTable({
-//           "ajax":{
-//             "url": "/reservations",
-//             "dataType": "HTML"
-//           },
-//           headers: {
-//      'X-CSRF-Token': tken
-//    },
-//       	"language": {
-//   			"sProcessing":     "Procesando...",
-//   			"sLengthMenu":     "Mostrar  _MENU_  registros",
-//   			"sZeroRecords":    "No se encontraron resultados",
-//   			"sEmptyTable":     "Ningún dato disponible en esta tabla",
-//   			"sInfo":           "_TOTAL_ registros en total.",
-//   			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-//   			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-//   			"sInfoPostFix":    "",
-//   			"sSearch":         "Buscar:",
-//   			"sUrl":            "",
-//   			"sInfoThousands":  ",",
-//   			"sLoadingRecords": "Cargando...",
-//   			"oPaginate": {
-//   				"sFirst":    "Primero",
-//   				"sLast":     "Último",
-//   				"sNext":     "Sigiente &nbsp;<i class='fa fa-angle-right'></i>",
-//   				"sPrevious": "<i class='fa fa-angle-left'></i>&nbsp; Anterior"
-//   			},
-//   			"oAria": {
-//   				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-//   				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-//   			}
-//   		}
-//   	});
-//
-//   }
+            }
+          }
+        },3000);
+
 
 
     var res;
@@ -127,7 +89,6 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
       var subtraction = sum_hour - gon.hour_start;
       if (subtraction <= 5) {
 
-<<<<<<< HEAD
         $.confirm({
           confirmButton: 'Sí',
           cancelButton: 'No',
@@ -149,6 +110,12 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
               confirm: function(){
                 //Redireccionar a editar la reserva
                   res = 2;
+                  miajax(res, gon.reserve_id);
+                  $.ajax({
+                    url:'/reservations/'+gon.reserve_id+'/edit'
+                  }).error(function(error){
+                    console.log('El cliente no ha asistido a la reserva y se ha intentado posponer pero hubo un error en la respuesta del servidor.');
+                  });
               },
               cancel: function(){
                 //Cambiar el estado a "cancelada"
@@ -164,40 +131,8 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
         res = 0;
         miajax(res, gon.reserve_id);
       }
-=======
-        confirm: function(){
-          //Cambiar a estado "enProceso"
-            $.alert('¡La reserva ha iniciado :) !');
-            res = 1;
-            miajax(res, gon.reserve_id);
-        },
-        cancel: function(){
-          $.confirm({
-            confirmButton: 'Posponer',
-            cancelButton: 'Cancelar',
-            title: 'Confirmación inicio de reserva',
-            content: 'Que desea?',
-            confirm: function(){
-              //Redireccionar a editar la reserva
-                $.ajax({
-                  url:'/reservations/'+gon.reserve_id+'/edit'
-                }).error(function(error){
-                  console.log('El cliente no ha asistido a la reserva y se ha intentado editar pero hubo un error en la respuesta del servido.');
-                });
-                res = 2;
-            },
-            cancel: function(){
-              //Cambiar el estado a "cancelada"
-                $.alert('Cancelada');
-                res = 3;
-                miajax(res, gon.reserve_id);
-            }
-          });
-        }
-      });
->>>>>>> 34678e97e158c0065fe3f64447a374c33cf1f513
 
-      function miajax(resp, id){
+    function miajax(resp, id){
         respuesta = resp;
         identify = id;
         $.ajax({
@@ -213,7 +148,5 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 
       }
     }
-
-
 
 </script>

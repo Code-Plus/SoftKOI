@@ -1,6 +1,6 @@
 <tr id="reservation_<%= reservation.id %>">
   <td><%= reservation.customer %></td>
-  <td><%= reservation.console.name %></td>
+  <td><%= reservation.reserve_price.console.name %></td>
   <td><%= reservation.date %></td>
   <td><%= reservation.start_time.strftime("%I:%M %p") %></td>
   <td><%= reservation.end_time.strftime("%I:%M %p") %></td>
@@ -9,7 +9,7 @@
   <%else %>
     <td><%= number_to_currency reservation.reserve_price.value %></td>
   <% end %>
-  
+
 
   <td width="105px">
      <% if reservation.state == "enProceso" %>
