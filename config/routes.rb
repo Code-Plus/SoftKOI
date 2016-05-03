@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 	resources :reserve_prices
 	resources :reservations do
 		collection do
-			get 'reservations_end', as: 'reservas_terminadas'
+			get 'reservations_end'
 		end
 	end
 
