@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all
     @reservationsActivas = Reservation.activa
     @updateStateProceso = Reservation.validates_hour_start(Reservation.all)
-    @updateStateFinalizada = Reservation.validates_hour_finish(Reservation.proceso)
+    @updateStateFinalizada = Reservation.validates_hour_finish(Reservation.all)
 
     if @updateStateProceso.is_a?(Array)
       @updateStateProceso.each do |u|
@@ -21,12 +21,16 @@ class ReservationsController < ApplicationController
       end
     end
 
+    if @update_price == nil
+      puts "EL NOMBRE EN EL CONTROLLER -> #{@console_name}"
+      return @console_name
+    end
+
   end
 
   def change_state
     @respons = params[:respuesta]
     @id = params[:id]
-
     unless @respons.nil?
       if @respons.to_i == 1
         @identify = @id.to_i

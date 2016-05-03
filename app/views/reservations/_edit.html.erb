@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= f.label :consoles,"Consola" %><br>
-    <%= collection_select(:reservation,:console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, :class => "form-control") %>
+    <%= collection_select(:reserve_price,:console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, :class => "form-control") %>
   </div>
 
   <div class="field">
