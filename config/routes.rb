@@ -8,12 +8,11 @@ Rails.application.routes.draw do
 	# welcome/index como home_path
 	get '/home', to: 'welcome#index', as: 'home'
 
-<<<<<<< HEAD
+
 	# Ruta para el ajax de reservas
 	get '/reservations/price_interval', to: 'reservations#reserve_ajax', as: 'interval_price'
 
-	get '/users/compare_password', to: 'users#compare_password',  as: 'compare_password'
-=======
+
 	# Ruta para el ajax de ventas
 	get '/sales/customer', to: 'sales#ajax_customer', as: 'ajax_customer'
 
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
 
 	#Ajax para el cambio de estado cuando va a iniciar la reserva
 	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
->>>>>>> 58c4c03f3ab63e573b75ff6511f097cdce6a896c
+
 
 
 	devise_for :users
@@ -90,20 +89,7 @@ Rails.application.routes.draw do
 
 	patch "users/:id/update_profile", to: "users#update_profile"
 
-<<<<<<< HEAD
-	# Ruta para el ajax de ventas
-	get '/sales/customer', to: 'sales#ajax_customer', as: 'ajax_customer'
 
-	#Ruta para el ajax de productos
-	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
-
-
-
-	#Ajax para el cambio de estado cuando va a iniciar la reserva
-	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
-
-=======
->>>>>>> 58c4c03f3ab63e573b75ff6511f097cdce6a896c
 
 	#Estados de la reserva.
 	put "/reservation/:id/activa", to: "reservations#activa"
