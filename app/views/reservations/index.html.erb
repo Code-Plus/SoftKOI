@@ -43,78 +43,41 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 </div>
 
 <script type="text/javascript">
-  // var modaltt;
-  //       setInterval(function(){
-  //         modaltt = $('#new_reservation').length;
-  //         alerttt = $('#jconfirm-box15').length;
-  //         if(modaltt > 0){
-  //           console.log('no recargar la pagina'+ modaltt);
-  //           $('#closemodal').click(function(){
-  //               $('#new_reservation').remove();
-  //               console.log('haz cerrado la modal'+ modaltt);
-  //           });
-  //         }else{
-  //           if(alerttt > 0){
-  //             console.log('No recargar pagina, Se ha inciado una alerta' + alerttt);
-  //
-  //           }else{
-  //           console.log("Recargar pagina, esto es lo que vale la variable " + alerttt);
-  //             location.reload();
-  //           }
-  //         }
-  //       },3000);
+  var modaltt;
+        setInterval(function(){
+          modaltt = $('#new_reservation').length;
+          modalrr = $('.edit_reservation').length;
+          alerttt = $('.jconfirm-box').length;
+          if(modaltt > 0){
+            console.log('no recargar la pagina'+ modaltt);
+            $('#closemodal').click(function(){
+                $('#new_reservation').remove();
+                console.log('haz cerrado la modal'+ modaltt);
+            });
+          }else{
+            if(alerttt > 0){
+              console.log('No recargar pagina, Se ha inciado una alerta ' + alerttt);
+            }else{
+              var indexss = $('.paginate_button.active > a').text();
+              if (indexss == "1") {
+                if(modalrr > 0){
+                  console.log("No recargar la pagina porque esta abierta la modal de editar.");
+                  $('#closemodal').click(function(){
+                      $('.new_reservation').remove();
+                      console.log('haz cerrado la modal'+ modalrr);
+                  });
+                }else{
+                  console.log("Recargar pagina la tabla esta en la pagina #"+ indexss);
+                    // location.reload();
+                }
+              }else{
+                console.log("No recargar la pagina porque no esta en la pagina # 1 de la tabla al contrario te encuentras en la pagina #"+ indexss);
+              }
 
-  setInterval( function () {
-    // $('#datatable').dataTable().fnDestroy();
-    //  $('#datatable > tbody').empty();
-    // loadreserves();
-    // loaddatatables();
-  }, 3000 );
-// var tken = $('meta[name="csrf-token"]').attr('content');
-//   function loadreserves(){
-//     $.ajax({
-//       url: '/reservations'
-//     }).error(function(error){
-//       console.log('Error al traer las reservas');
-//     });
-//   }
-//   function loaddatatables(){
-//
-//         $('#datatable').dataTable({
-//           "ajax":{
-//             "url": "/reservations",
-//             "dataType": "HTML"
-//           },
-//           headers: {
-//      'X-CSRF-Token': tken
-//    },
-//       	"language": {
-//   			"sProcessing":     "Procesando...",
-//   			"sLengthMenu":     "Mostrar  _MENU_  registros",
-//   			"sZeroRecords":    "No se encontraron resultados",
-//   			"sEmptyTable":     "Ningún dato disponible en esta tabla",
-//   			"sInfo":           "_TOTAL_ registros en total.",
-//   			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-//   			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-//   			"sInfoPostFix":    "",
-//   			"sSearch":         "Buscar:",
-//   			"sUrl":            "",
-//   			"sInfoThousands":  ",",
-//   			"sLoadingRecords": "Cargando...",
-//   			"oPaginate": {
-//   				"sFirst":    "Primero",
-//   				"sLast":     "Último",
-//   				"sNext":     "Sigiente &nbsp;<i class='fa fa-angle-right'></i>",
-//   				"sPrevious": "<i class='fa fa-angle-left'></i>&nbsp; Anterior"
-//   			},
-//   			"oAria": {
-//   				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-//   				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-//   			}
-//   		}
-//   	});
-//
-//   }
+            }
+          }
+        },3000);
+
 
 
     var res;
