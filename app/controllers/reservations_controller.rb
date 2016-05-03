@@ -30,7 +30,7 @@ class ReservationsController < ApplicationController
 
   def change_state
     @respons = params[:respuesta]
-    @id = params[:return console_nameid]
+    @id = params[:id]
     unless @respons.nil?
       if @respons.to_i == 1
         @identify = @id.to_i
