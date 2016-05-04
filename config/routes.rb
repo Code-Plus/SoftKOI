@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 	#Ajax para el cambio de estado cuando va a iniciar la reserva
 	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
 
+	#Ajax para traer las consolas
+	get '/reservations/query_console', to: 'reservations#query_console', as: 'query_console'
+
 
 
 	devise_for :users

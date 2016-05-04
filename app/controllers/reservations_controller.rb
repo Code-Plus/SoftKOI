@@ -20,11 +20,16 @@ class ReservationsController < ApplicationController
       end
 
     end
+  end
 
-    # if @update_price == nil?
-    #   @console_name = @update_price
-    # end
+  def query_console
+    @console_identify = params[:consol]
+    query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
+    query.each do |q|
+        puts "CONSULTA -> #{q.time }"
+    end
 
+    gon.answer_query = query
   end
 
   def reservations_end
@@ -58,6 +63,7 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     @reserve_prices = ReservePrice.all
+    gon.console_id = 0
   end
 
   def edit
@@ -135,7 +141,7 @@ class ReservationsController < ApplicationController
     end
 
     def reservation_params
-      params.require(:reservation).permit(:date, :start_time, :end_time, :state, :customer, :reserve_price_id)
+      params.require(:reservation).permit(:date, :start_time, :console_id,:end_time, :state, :customer, :reserve_price_id)
     end
 
 end

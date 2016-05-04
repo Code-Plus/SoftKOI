@@ -31,8 +31,8 @@
           <div class="col-sm-6">
             <div id="intervalrealtime" class="field" style="display:none" attrdess="disabled_botton" realtimeprop="true">
                <%= f.label :interval,"Intervalo"  %><br>
-               <%# f.grouped_collection_select(:interval, , :reserve_price, :time, :id, :time, {prompt: "Selecciona un intervalo..."}, {:class => 'form-control'}) %>
-               <%= collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
+               <%# grouped_collection_select(:reservation,:reserve_price_id, ReservePrice.all, :reserve_prices, :time, :console_id, :time, {prompt: "Selecciona un intervalo..."}, {:class => 'form-control'}) %>
+               <%= collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:console_id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
         </div>
         <div class="col-sm-5">
           <p>
-            ¿Activar relog en tiempo real?
+            ¿Activar reloj en tiempo real?
           </p>
         </div>
         <div class="col-sm-3">
