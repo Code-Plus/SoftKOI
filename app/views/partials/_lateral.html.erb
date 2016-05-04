@@ -10,42 +10,42 @@
 
 	<ul class="menu normal">
 
-		<li id="InventarioM" class="Mnormal McolorHoo">
-			<%= link_to products_path, :class => 'Modulos' do%>
+		<li id="InventarioM" class="Mnormal McolorHoo" menu-name="products">
+			<%= link_to products_path, class: classname(products_path) do%>
 				<%= image_tag("1-small.png") %><span>Control de existencias</span></a>
 			<% end %>
 		</li>
 
-		<li id="VentasM" class="Mnormal McolorHoo">
-			<%= link_to sales_path, :class => 'Modulos' do%>
+		<li id="VentasM" class="Mnormal McolorHoo" menu-name="sales">
+			<%= link_to sales_path, class: classname(sales_path) do%>
 				<%= image_tag("2-small.png") %><span>Ventas</span></a>
 			<% end %>
 		</li>
 
-		<li id="CambiosM" class="Mnormal McolorHoo">
+		<li id="CambiosM" class="Mnormal McolorHoo" menu-name="">
 		<a class="Modulos" href="#">
 			<%= image_tag("3-small.png") %><span>Cambios</span></a>
 		</li>
 
-		<li id="ConsolasM" class="Mnormal McolorHoo" >
-			<%= link_to reservations_path, :class => 'Modulos' do%>
+		<li id="ConsolasM" class="Mnormal McolorHoo"  menu-name="reservations">
+			<%= link_to reservations_path, class: classname(reservations_path) do%>
 				<%= image_tag("4-small.png") %><span>Consolas</span></a>
 			<% end %>
 		</li>
 
-		<li id="PagosM" class="Mnormal McolorHoo">
+		<li id="PagosM" class="Mnormal McolorHoo" menu-name="">
 		<a class="Modulos" href="#">
 			<%= image_tag("5-small.png") %><span>Pagos</span></a>
 		</li>
 
-		<li id="UsuariosM" class="Mnormal McolorHoo">
-			<%= link_to users_path, :class => 'Modulos' do%>
+		<li id="UsuariosM" class="Mnormal McolorHoo" menu-name="users">
+			<%= link_to users_path, class: classname(users_path) do%>
 				<%= image_tag("6-small.png") %><span>Usuarios</span></a>
 			<% end %>
 
 		</li>
 
-		<li id="AgendaM" class="Mnormal McolorHoo">
+		<li id="AgendaM" class="Mnormal McolorHoo" onclick="activemenu('AgendaM')">
 		<a class="Modulos" href="#">
 			<%= image_tag("9-small.png") %><span>Agenda</span></a>
 		</li>
