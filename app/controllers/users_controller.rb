@@ -24,6 +24,18 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def update_password
+		@user = User.find(current_user.id)
+		respond_to do |format|
+			if @user.update_with_password(user_params)
+	      sign_in @user, :bypass => true
+	      format.html { redirect_to home_path(@user), notice: 'Contraseña cambiada exitosamente.' }
+	    else
+				format.html { redirect_to edit_user_path(@user), alert: 'Los datos suministrados no fueron correctos.' }
+	    end
+		end
+  end
+
 	def update_profile
 		respond_to do |format|
 			if @user.update(user_params)
@@ -70,6 +82,8 @@ class UsersController < ApplicationController
 		params.require(:user).permit(
 		:document,
 		:password,
+		:password_confirmation,
+		:current_password,
 		:firstname,
 		:lastname,
 		:email,

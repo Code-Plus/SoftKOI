@@ -25,14 +25,14 @@
           <div class="col-sm-6">
             <div class="field">
               <%= f.label :consoles, "Consola" %><br>
-              <%= collection_select(:reserve_price, :console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, {:class=>'form-control type_product_id',:onchange =>"price_console_function()"}) %>
+              <%= collection_select(:reserve_price, :console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, {:class=>'form-control type_product_id'}) %>
            </div>
           </div>
           <div class="col-sm-6">
-            <div id="intervalrealtime" class="field" style="display:none" attrdess="disabled_botton" realtimeprop="true">
+            <div id="intervalrealtime" class="field" style="display:none;" attrdess="disabled_botton" realtimeprop="true">
                <%= f.label :interval,"Intervalo"  %><br>
-               <%# f.grouped_collection_select(:interval, , :reserve_price, :time, :id, :time, {prompt: "Selecciona un intervalo..."}, {:class => 'form-control'}) %>
-               <%= collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
+               <%= f.select(:interval, @query_pluck.map { |i, t| [ t, i ] } ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
+               <%# collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:console_id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
         </div>
         <div class="col-sm-5">
           <p>
-            ¿Activar relog en tiempo real?
+            ¿Activar reloj en tiempo real?
           </p>
         </div>
         <div class="col-sm-3">

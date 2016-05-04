@@ -4,8 +4,8 @@ class Ability
   def initialize(user)
 
     if user.role.name == 'Empleado'
-      
-      can [:update_profile, :edit], [User]
+
+      can [:update_password, :update_profile, :edit], [User]
 
       if user.can_inventory == true
         can :manage, Product

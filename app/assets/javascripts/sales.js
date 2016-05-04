@@ -8,7 +8,7 @@ $(document).ready(function() {
 	  $('.customer_search').click();
 	});
 
-	$(document).on("change", "#sale_comments_comments", function(){
+	$(document).on("change", "#sale_comments_comment", function(){
 		$('.sale_comments').click();
 	});
 

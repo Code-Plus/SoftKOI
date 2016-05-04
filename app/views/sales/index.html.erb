@@ -39,7 +39,7 @@
                <tr>
                   <td><%= sale.id %></td>
                   <td><%= sale.created_at.strftime("%d/%m/%Y %I:%M %p") %></td>
-                  <td><%= sale.customer.name %></td>
+                  <td><%= sale.customer.blank? ? ' - ' : sale.customer.name %></td>
                   <td><%= number_to_currency sale.amount %></td>
                   <td><%= number_to_currency sale.discount %></td>
                   <td><%= number_to_currency sale.total_amount %></td>

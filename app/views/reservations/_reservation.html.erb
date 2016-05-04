@@ -1,12 +1,17 @@
 <tr id="reservation_<%= reservation.id %>">
-  <td><%= reservation.customer %></td>
-  <td><%= reservation.reserve_price.console.name %></td>
-  <td><%= reservation.date %></td>
-  <td><%= reservation.start_time.strftime("%I:%M %p") %></td>
-  <td><%= reservation.end_time.strftime("%I:%M %p") %></td>
   <% if reservation.reserve_price == nil%>
+    <td><%= reservation.customer %></td>
+    <td>Consola not found</td>
+    <td><%= reservation.date %></td>
+    <td><%= reservation.start_time.strftime("%I:%M %p") %></td>
+    <td><%= reservation.end_time.strftime("%I:%M %p") %></td>
     <td>$0</td>
   <%else %>
+    <td><%= reservation.customer %></td>
+    <td><%= reservation.reserve_price.console.name %></td>
+    <td><%= reservation.date %></td>
+    <td><%= reservation.start_time.strftime("%I:%M %p") %></td>
+    <td><%= reservation.end_time.strftime("%I:%M %p") %></td>
     <td><%= number_to_currency reservation.reserve_price.value %></td>
   <% end %>
 

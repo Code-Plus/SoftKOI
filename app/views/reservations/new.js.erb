@@ -1,7 +1,6 @@
 // Add the dialog title
 $('#dialog h4').html("<i class='fa fa-plus'></i>&nbsp; Reserva de consola");
 
-
 // Render the new form
 $('.modal-body').html('<%= j render("form") %>');
 
@@ -57,24 +56,24 @@ function Cargar_En_Reserva(){
 
 		setInterval(function(){
 				if($("#real_time").prop('checked')){
-					// console.log("Esta seleccionado la opcion de relog en tiempo real");
+					console.log("Esta seleccionado la opcion de relog en tiempo real");
 					muestraReloj();
 					var intervalistrue = $('#intervalrealtime').attr('realtimeprop');
-					// console.log(intervalistrue);
+					console.log(intervalistrue);
 					if( intervalistrue !== "true"){
-						var ckeckintervalvalue = $("#reservation_reserve_price_id option:selected").val();
-						// console.log('esto es lo que tiene interval en su value '+ ckeckintervalvalue);
+						var ckeckintervalvalue = $("#reservation_interval option:selected").val();
+						console.log('esto es lo que tiene interval en su value '+ ckeckintervalvalue);
 						if(ckeckintervalvalue !== ""){
 								calculatehoursandminutes();
 						}else{
-							// console.log('Interval no esta vacio '+ ckeckintervalvalue);
+							console.log('Interval no esta vacio '+ ckeckintervalvalue);
 						}
 
 					}else{
-						// console.log("No hay nada en interval");
+						console.log("No hay nada en interval");
 					}
 				}else{
-					// console.log("No esta seleccionada la opcion de relog en tiempo real");
+					console.log("No esta seleccionada la opcion de relog en tiempo real");
 				}
 
 		},3000);
@@ -82,7 +81,7 @@ function Cargar_En_Reserva(){
 	}, 1);
 
 
-  $('#reservation_reserve_price_id').change(function(){
+  $('#reservation_interval').change(function(){
 		$('#reservation_start_time').removeAttr('disabled');
 		$('#reservation_end_time').removeAttr('disabled');
 		calculatehoursandminutes();
@@ -97,7 +96,7 @@ function calculatehoursandminutes(){
 	minutos = fechaHora.getMinutes();
 	segundos = fechaHora.getSeconds();
 
-	var id_reserve_price = $('#reservation_reserve_price_id option:selected').val();
+	var id_reserve_price = $('#reservation_interval option:selected').val();
 
 	$.ajax({
 		url:'/reservations/price_interval',
@@ -126,7 +125,7 @@ function calculatehoursandminutes(){
 	if (segundos < 10) {
 		segundos = '0' + segundos;
 	}
-	inter = parseInt($('#reservation_reserve_price_id option:selected').text());
+	inter = parseInt($('#reservation_interval option:selected').text());
 	var_start_time = $('#reservation_start_time').val();
 	if (var_start_time !== '') {
 		split_time = var_start_time.split(':');
@@ -156,26 +155,22 @@ function calculatehoursandminutes(){
 	}
 }
 
-function price_console_function(){
-  var PricesC;
-	$('#intervalrealtime').attr({'realtimeprop':"false"});
-  PricesC = $('#reservation_reserve_price_id').html();
-  $('#reservation_reserve_price_id').parent().show();
-  var escaped_interval_console, options, interval;
-  interval = $('#reservation_console_id :selected').text();
-  escaped_interval_console = interval.replace(/([0-9])/g, '\\$1');
-  options = $(PricesC).filter("optgroup[label = '" +  escaped_interval_console + "']").html();
-  if (options)
-  {
-    $('#reservation_reserve_price_id').html(options);
-    $('#reservation_console_id').attr('readonly', true);
-    $('#Btn_RReserve').removeClass('disabled');
-    $('#Btn_RReserve').removeClass('btn-primary');
-    $('#Btn_RReserve').addClass('btn-success');
 
-    return $('#reservation_reserve_price_id').parent().show();
-  }else
-  {
-    $('#reservation_console_id').attr('readonly', true);
-  }
-}
+$('#reserve_price_console_id').change(function(){
+	var console_identify;
+	$('#intervalrealtime').attr({'realtimeprop':"false"});
+	console_identify = $(this).val();
+	$.ajax({
+		url:'/reservations/new',
+		data:{consol: console_identify},
+		type: 'get'
+	}).done(function(done){
+		$('#reservation_interval').parent().show();
+	}).error(ajaxerror)
+});
+
+
+
+	function ajaxerror(error){
+		console.log("Ha ocurrido un error al conectar con el servidor en:");
+	}
