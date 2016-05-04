@@ -26,6 +26,18 @@ class CategoriesController < ApplicationController
         format.json { head :no_content }
         format.js {  flash[:notice] = "¡Categoría creada satisfactoriamente!" }
       else
+        format.json { render json: @category.errors.full_messages,status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  def update
+    respond_to do |format|
+      if @category.update(category_params)
+        format.json { head :no_content }
+        format.js {  flash[:notice] = "¡Categoría actualizada satisfactoriamente!" }
+      else
         format.json { render json: @category.errors.full_messages,
           status: :unprocessable_entity }
         end
@@ -33,39 +45,26 @@ class CategoriesController < ApplicationController
     end
 
 
-    def update
-      respond_to do |format|
-        if @category.update(category_params)
-          format.json { head :no_content }
-          format.js {  flash[:notice] = "¡Categoría actualizada satisfactoriamente!" }
-        else
-          format.json { render json: @category.errors.full_messages,
-            status: :unprocessable_entity }
-          end
-        end
-      end
+  #Cambia el estado a disponible
+  def disponible
+    @category.disponible!
+    redirect_to categories_url
+  end
+
+  #Cambia el estado a no disponible
+  def noDisponible
+    @category.noDisponible!
+    redirect_to categories_url
+  end
+
+  private
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
 
-      #Cambia el estado a disponible
-      def disponible
-        @category.disponible!
-        redirect_to categories_url
-      end
-
-      #Cambia el estado a no disponible
-      def noDisponible
-        @category.noDisponible!
-        redirect_to categories_url
-      end
-
-      private
-
-      def set_category
-        @category = Category.find(params[:id])
-      end
-
-
-      def category_params
-        params.require(:category).permit(:name, :description, :type_product_id, :can_change)
-      end
-    end
+  def category_params
+    params.require(:category).permit(:name, :description, :type_product_id, :can_change)
+  end
+end
