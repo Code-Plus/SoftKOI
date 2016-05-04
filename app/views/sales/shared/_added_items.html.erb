@@ -17,11 +17,9 @@
         <%= f.fields_for :products do |e| %>
           <% unless e.object.nil? %>
             <% @item = Item.where(:sale_id => @sale.id, :product_id => e.object.id).first %>
-
-
             <tr>
 
-              <td><%= e.text_field :id, :class => "form-control line_item_sku", :readonly => true %></td>
+              <td><%= e.text_field :id, :class => "form-control item_id", :readonly => true %></td>
               <td><%= e.text_field :name, :class => "form-control", :readonly => true %></td>
               <td><%= e.text_area :description, :class => "form-control", :readonly => true %></td>
 

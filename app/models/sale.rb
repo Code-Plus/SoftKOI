@@ -2,15 +2,17 @@ class Sale < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :customer
-	has_many :items
+
+	has_many :items, dependent: :destroy
 	has_many :products, through: :items
-	has_many :payments
+	has_many :payments, dependent: :destroy
 
 	before_validation :verificar_estado
 	before_create :default_date
 
-	accepts_nested_attributes_for :items
-	accepts_nested_attributes_for :payments
+	accepts_nested_attributes_for :items, allow_destroy: true
+	accepts_nested_attributes_for :products, allow_destroy: true
+	accepts_nested_attributes_for :payments, allow_destroy: true
 
 	# validates :state, presence: true
 	# validates :amount, presence: true,  numericality: { only_integer: true, greater_than: 0 }

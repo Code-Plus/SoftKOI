@@ -10,8 +10,8 @@
 
 <label>Descuento</label>
 <div class="input-group">
-  <input type="text" class="form-control" readonly value=<%= number_to_currency(@sale.discount, unit: '') %>>
-  <span class="input-group-addon">$<%= @sale.discount.blank? ? 0 : number_to_currency(@sale.get_discounted_amount) %></span>
+  <input type="text" class="form-control" value=<%= number_to_currency(@sale.discount, unit: '') %>>
+  <span class="input-group-addon"><%= @sale.discount.blank? ? 0 : number_to_currency(@sale.get_discounted_amount) %></span>
 </div>
 
 
