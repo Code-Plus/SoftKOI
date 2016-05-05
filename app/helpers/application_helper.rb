@@ -1,5 +1,9 @@
 module ApplicationHelper
   def classname(path)
-    "Mnormarclick" if request.url.include?(path)
+    if request.url.include?(path)
+      "Mnormarclick Modulos"
+    else
+      "Modulos"
+    end
   end
 end

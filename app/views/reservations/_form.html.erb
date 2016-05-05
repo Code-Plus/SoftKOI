@@ -7,17 +7,17 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="field" id="m_r_reserves">
-               <%= f.label :customer,"Cliente" %><br>
-               <%= f.text_field :customer , :class => "form-control"%>
+              <%= f.label :customer,"Cliente" %><br>
+              <%= f.text_field :customer , :class => "form-control"%>
             </div>
           </div>
           <div class="col-sm-6">
             <%= f.label :date, "Fecha" %><br>
             <div class="input-group input-group-md date">
-               <%= f.text_field :date, :class => "form-control input-md" %>
-               <span class="input-group-addon">
-                 <i class="glyphicon glyphicon-th"></i>
-               </span>
+              <%= f.text_field :date, :class => "form-control input-md" %>
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-th"></i>
+              </span>
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
           </div>
           <div class="col-sm-6">
             <div id="intervalrealtime" class="field" style="display:none;" attrdess="disabled_botton" realtimeprop="true">
-               <%= f.label :interval,"Intervalo"  %><br>
+               <%= f.label :interval,"Intervalo (Min)"  %><br>
                <%= f.select(:interval, @query_pluck.map { |i, t| [ t, i ] } ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
                <%# collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:console_id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
             </div>

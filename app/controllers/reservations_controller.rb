@@ -20,10 +20,13 @@ class ReservationsController < ApplicationController
       end
     end
 
-
-
   end
 
+  def ajaxnewconsole
+    @console_identify = params[:consol]
+    @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
+    @query_pluck = @query.pluck(:id, :time)
+  end
   # def query_console
   #   @console_identify = params[:consol]
   #   @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
@@ -68,7 +71,6 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-
   end
 
   def create
@@ -104,6 +106,8 @@ class ReservationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   #Métodos para los estados de la reserva.
   def activa

@@ -53,31 +53,21 @@ function Cargar_En_Reserva(){
 
   setTimeout(function(){
 		muestraReloj()
-
 		setInterval(function(){
 				if($("#real_time").prop('checked')){
-					console.log("Esta seleccionado la opcion de relog en tiempo real");
 					muestraReloj();
 					var intervalistrue = $('#intervalrealtime').attr('realtimeprop');
-					console.log(intervalistrue);
 					if( intervalistrue !== "true"){
 						var ckeckintervalvalue = $("#reservation_interval option:selected").val();
-						console.log('esto es lo que tiene interval en su value '+ ckeckintervalvalue);
 						if(ckeckintervalvalue !== ""){
-								calculatehoursandminutes();
+							calculatehoursandminutes();
 						}else{
-							console.log('Interval no esta vacio '+ ckeckintervalvalue);
 						}
-
 					}else{
-						console.log("No hay nada en interval");
 					}
 				}else{
-					console.log("No esta seleccionada la opcion de relog en tiempo real");
 				}
-
 		},3000);
-		// setInterval(muestraReloj,3000);
 	}, 1);
 
 
@@ -145,7 +135,6 @@ function calculatehoursandminutes(){
 			$('#reservation_end_time').val(h_split_f + ':' + seconds);
 		} else {
 			h_split = parseInt(split_time[0]);
-			// h_split_f = h_split + 1;
 			if (h_split < 10) {
 				h_split = '0' + h_split;
 			}
@@ -158,13 +147,24 @@ function calculatehoursandminutes(){
 
 $('#reserve_price_console_id').change(function(){
 	var console_identify;
-	$('#intervalrealtime').attr({'realtimeprop':"false"});
+	var varconsolename;
+	var frmcustomer;
+	var frmdate;
 	console_identify = $(this).val();
+	varconsolename = $('#reserve_price_console_id option:selected').text();
+	frmcustomer = $('#reservation_customer').val();
+	frmdate = $('#reservation_date').val();
 	$.ajax({
 		url:'/reservations/new',
 		data:{consol: console_identify},
 		type: 'get'
 	}).done(function(done){
+		var consolename = gon.console_frmName;
+		$('#intervalrealtime').attr({'realtimeprop':"false"});
+		$('#reservation_customer').val(frmcustomer);
+		$('#reservation_date').val(frmdate);
+		$('#reserve_price_console_id').attr({'disabled':'true'});
+		$('#reserve_price_console_id option:selected').text(varconsolename);
 		$('#reservation_interval').parent().show();
 	}).error(ajaxerror)
 });
