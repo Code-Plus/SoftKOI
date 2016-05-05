@@ -12,22 +12,16 @@ class OutputProduct < ActiveRecord::Base
     @product=value
   end
 
-
   private
   def update_stock
     stock_product= product.stock
     subtraction = (stock_product-self.stock)
     if self.stock.nil?
-
     elsif subtraction<0
       self.errors.add(:base ,"No hay suficientes productos para dar de baja")
     elsif subtraction == 0
       product.update(stock: stock_product - self.stock,state: "sinCantidad")
-    else
-
-      product.update(stock: stock_product - self.stock)
     end
   end
-
 
 end

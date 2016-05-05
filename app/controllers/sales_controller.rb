@@ -148,7 +148,7 @@ class SalesController < ApplicationController
 		line_item = Item.where(sale_id: params[:sale_id], product_id: params[:product_id]).first
 		line_item.quantity -= 1
 
-		if line_item.quantity <= 0
+		if line_item.quantity == 0
 			line_item.destroy
 		else
 			line_item.save
@@ -225,7 +225,7 @@ class SalesController < ApplicationController
       @sale.amount += line_item.total_price
     end
 
-    total_amount = @sale.amount 
+    total_amount = @sale.amount
 
     if @sale.discount == 0
       @sale.total_amount = total_amount
@@ -287,15 +287,25 @@ class SalesController < ApplicationController
 	# Reducir el stock de un producto
 	def remove_item_from_stock(product_id)
     product = Product.find(product_id)
-    product.stock -= 1
-    product.save
+		puts"El producto #{product.name} tiene un total de #{product.stock}"
+		if product.stock - 1 < 0
+			puts"El producto #{product.name} quedo con un total de 0"
+			render :json => "No hay suficientes productos"
+		else
+			product.stock -= 1
+			puts"El producto #{product.name} quedo con un total de #{product.stock}"
+	    product.save
+		end
+
   end
 
 
   #Devolver producto a stock
   def return_item_to_stock(product_id)
     product = Product.find(product_id)
+		puts"El producto #{product.name} tiene un total de #{product.stock}"
     product.stock += 1
+		puts"El producto #{product.name} quedo con un total de #{product.stock}"
     product.save
   end
 
