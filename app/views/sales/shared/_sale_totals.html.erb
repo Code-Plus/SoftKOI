@@ -18,6 +18,6 @@
 <label class="text-success">Precio total</label>
 <div class="input-group has-success total_price_output">
   <span class="input-group-addon price_output">$</span>
-  <input type="text" class="form-control price_output" readonly value="<%= number_to_currency(@sale.total_amount) %>">
+  <input type="text" class="form-control price_output" readonly value=<%= number_to_currency(@sale.total_amount) %>>
 
 </div>
