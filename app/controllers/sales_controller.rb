@@ -225,15 +225,12 @@ class SalesController < ApplicationController
       @sale.amount += line_item.total_price
     end
 
-    total_amount = @sale.amount #+ (@sale.amount * tax_amount)
-		puts "LA VARIABLE TOTAL AMOUNT ES ESTA #{total_amount}"
+    total_amount = @sale.amount 
 
     if @sale.discount == 0
       @sale.total_amount = total_amount
-			puts "LAAAAAAAAAA VARIABLE CON EL DESCUENTO EN BLANCO ES #{@sale.total_amount}"
     else
       @sale.total_amount -= @sale.discount
-			puts "LAAAAAAAAAA VARIABLE CON EL DESCUENTO ES #{@sale.total_amount}"
     end
 
     @sale.save
