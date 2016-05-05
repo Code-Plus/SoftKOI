@@ -21,6 +21,8 @@ class OutputProduct < ActiveRecord::Base
       self.errors.add(:base ,"No hay suficientes productos para dar de baja")
     elsif subtraction == 0
       product.update(stock: stock_product - self.stock,state: "sinCantidad")
+    else
+      product.update(stock: stock_product - self.stock)
     end
   end
 
