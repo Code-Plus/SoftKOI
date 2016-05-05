@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
 
 	#Ajax para traer las consolas
-	get '/reservations/query_console', to: 'reservations#query_console', as: 'query_console'
+	#get '/reservations/ajaxnewconsole', to: 'reservations#query_console', as: 'query_console'
 
 
 

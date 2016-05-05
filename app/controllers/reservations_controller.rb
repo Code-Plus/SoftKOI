@@ -18,19 +18,17 @@ class ReservationsController < ApplicationController
           gon.hour_start = nil
         end
       end
-
-    end
-  end
-
-  def query_console
-    @console_identify = params[:consol]
-    query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
-    query.each do |q|
-        puts "CONSULTA -> #{q.time }"
     end
 
-    gon.answer_query = query
+
+
   end
+
+  # def query_console
+  #   @console_identify = params[:consol]
+  #   @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
+  #   @query_pluck = @query.pluck(:id, :time)
+  # end
 
   def reservations_end
     @reservations_end = Reservation.end_cancel_reservations
@@ -64,6 +62,9 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     @reserve_prices = ReservePrice.all
     gon.console_id = 0
+    @console_identify = params[:consol]
+    @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
+    @query_pluck = @query.pluck(:id, :time)
   end
 
   def edit
