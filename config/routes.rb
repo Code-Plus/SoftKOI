@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
@@ -26,7 +28,8 @@ Rails.application.routes.draw do
 	#Ajax para traer las consolas
 	get '/reservations/new', to: 'reservations#new', as: 'ajax_new_console'
 
-
+	#Pagina principal de reportes
+	get 'reports/index'
 
 	devise_for :users
 	resources :customers
@@ -72,7 +75,7 @@ Rails.application.routes.draw do
 	resources :products do
 		get 'search'
 		collection do
-			get 'products_today'
+			get 'generate_pdf'
 			get 'search'
 			get 'products_low'
 		end
