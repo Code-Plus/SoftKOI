@@ -7,6 +7,8 @@ class ReservePrice < ActiveRecord::Base
   validates :time, presence: true, numericality: {greater_than: 0}
   validates :console_id, presence: true
 
+  scope :searchconsole, -> (console_id) {where(:console_id => console_id)}
+
   scope :name_consoles, ->{joins("INNER JOIN console ON reserve_prices.console_id = consoles.id").select("reserve_prices.*, consoles.name")}
 
   def console_name

@@ -15,6 +15,8 @@ class Reservation < ActiveRecord::Base
   #Reservas en estado finalizada o cancelada
   scope :end_cancel_reservations, -> {where ("state = 'cancelada' OR state = 'finalizada'")}
 
+
+
   #Validaciones para los campos.
   # validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
   validates :start_time, presence: true
