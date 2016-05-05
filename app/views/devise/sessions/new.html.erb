@@ -1,5 +1,9 @@
 <div class="login-body">
 
+<% if browser.ie?(6) %>
+  <p class="disclaimer">Hemos dectectado que estas utilizando un navegador no soportado.!</p>
+<% end %>
+
 	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 		<!--Documento-->
 		<div class="control">
