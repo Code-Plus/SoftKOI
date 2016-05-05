@@ -18,6 +18,7 @@
 		<% end %>
 	</div>
 	<div class="container">
+		<% if browser.webkit? %>
 		<div class="login-box">
 			<div>
 				<div class="login-form row">
@@ -31,6 +32,29 @@
 				</div>
 			</div>
 		</div>
+			<%else%>
+			<div class="col-sm-12 text-center login-header" style="margin-top: 10%;">
+				<div class="row">
+					<%= image_tag('white_logo.png', size: '200x200') %>
+				</div>
+				<div class="row" style="margin-top: 50px;">
+					<div class="col-sm-1">
+
+					</div>
+					<div class="col-sm-10">
+						<p class="disclaimer" style="color:white; font-size:25px;">¡Hemos dectectado que estas utilizando un navegador no soportado!</p>
+						<p class="disclaimer" style="color:white; font-size:15px;">SoftKOI App funciona mejor en el navegador Google Chrome</p>
+						<a href="https://www.google.com/chrome/" target="_blank"class="btn btn-primary"><%= image_tag('Chrome_icon.png', size: '20x20') %> Descargar Google chrome</a>
+					</div>
+					<div class="col-sm-2">
+
+					</div>
+				</div>
+
+
+
+			</div>
+		<% end %>
 	</div>
 </body>
 </html>
