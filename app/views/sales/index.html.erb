@@ -22,8 +22,7 @@
          <table id="datatable" class="table table-bordered table-hover table-striped">
             <thead>
                <tr>
-                  <th>Código</th>
-                  <th>Fecha</th>
+                  <th>Fecha creación</th>
                   <th>Cliente</th>
                   <th>Monto</th>
                   <th>Descuento</th>
@@ -37,7 +36,6 @@
             <tbody>
                <% @sales.each do |sale| %>
                <tr>
-                  <td><%= sale.id %></td>
                   <td><%= sale.created_at.strftime("%d/%m/%Y %I:%M %p") %></td>
                   <td><%= sale.customer.blank? ? ' - ' : sale.customer.name %></td>
                   <td><%= number_to_currency sale.amount %></td>
@@ -46,7 +44,7 @@
                   <td><%= sale.limit_date.strftime("%d/%m/%Y") %></td>
                   <td width="100px">
                      <% if sale.state == "sinpagar" %>
-                        <span class="label label-primary span-table">Pendiente</span>
+                        <span class="label label-danger span-table">Pendiente</span>
                      <% else %>
                         <span class="label label-success span-table">Cancelada</span>
                      <% end %>

@@ -101,13 +101,13 @@ class SalesController < ApplicationController
 			line_item.price = line_item.product.price
 			line_item.save
 
-			remove_item_from_stock(params[:product_id], 1)
+			remove_item_from_stock(params[:product_id])
 			update_line_item_totals(line_item)
 		else
 			existing_line_item.quantity += 1
 			existing_line_item.save
 
-			remove_item_from_stock(params[:product_id], 1)
+			remove_item_from_stock(params[:product_id])
 			update_line_item_totals(existing_line_item)
 		end
 
@@ -128,7 +128,8 @@ class SalesController < ApplicationController
 		line_item.quantity += 1
 		line_item.save
 
-		remove_item_from_stock(params[:item_id], 1)
+		# Llama método que reduce cantidad de stock
+		remove_item_from_stock(params[:product_id])
 		update_line_item_totals(line_item)
 
 		update_totals
@@ -146,6 +147,7 @@ class SalesController < ApplicationController
 
 		line_item = Item.where(sale_id: params[:sale_id], product_id: params[:product_id]).first
 		line_item.quantity -= 1
+
 		if line_item.quantity <= 0
 			line_item.destroy
 		else
@@ -153,7 +155,8 @@ class SalesController < ApplicationController
 			update_line_item_totals(line_item)
 		end
 
-		return_item_to_stock(params[:product_id], 1)
+		# Llama método que devuelve cantidad al stock
+		return_item_to_stock(params[:product_id])
 
 		update_totals
 
@@ -223,12 +226,14 @@ class SalesController < ApplicationController
     end
 
     total_amount = @sale.amount #+ (@sale.amount * tax_amount)
+		puts "LA VARIABLE TOTAL AMOUNT ES ESTA #{total_amount}"
 
-    if @sale.discount.blank?
+    if @sale.discount == 0
       @sale.total_amount = total_amount
+			puts "LAAAAAAAAAA VARIABLE CON EL DESCUENTO EN BLANCO ES #{@sale.total_amount}"
     else
-      discount_amount = total_amount - @sale.discount
-      @sale.total_amount = total_amount - discount_amount
+      @sale.total_amount -= @sale.discount
+			puts "LAAAAAAAAAA VARIABLE CON EL DESCUENTO ES #{@sale.total_amount}"
     end
 
     @sale.save
@@ -282,19 +287,19 @@ class SalesController < ApplicationController
 	end
 
 
-	# Rducir el stock de un producto
-	def remove_item_from_stock(product_id, quantity)
-    item = Product.find(product_id)
-    item.stock = item.stock - quantity
-    item.save
+	# Reducir el stock de un producto
+	def remove_item_from_stock(product_id)
+    product = Product.find(product_id)
+    product.stock -= 1
+    product.save
   end
 
 
   #Devolver producto a stock
-  def return_item_to_stock(product_id, quantity)
-    item = Product.find(product_id)
-    item.stock = item.stock + quantity
-    item.save
+  def return_item_to_stock(product_id)
+    product = Product.find(product_id)
+    product.stock += 1
+    product.save
   end
 
 

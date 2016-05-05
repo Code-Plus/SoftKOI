@@ -9,21 +9,21 @@
         <th>Item</th>
         <th>Descripcion</th>
         <th>Precio</th>
-        <th>Agregar producto</th>
+        <th width="80px">Agregar</th>
       </tr>
     </thead>
 
     <tbody>
-      <% unless @available_items.blank? %>
-      	<% for product in @available_items %>
+      <% unless @available_products.blank? %>
+      	<% for product in @available_products %>
           <tr>
             <td><%= product.id %></td>
             <td><%= product.name %></td>
             <td><%= product.description %></td>
             <td><%= number_to_currency(product.price) %></td>
             <td class="add_to_current_sale">
-              <%= link_to url_for(:controller => 'sales', :action => 'create_line_item', :product_id => product.id,
-                :sale_id => @sale.id, :quantity => 1), :remote => true do %>
+              <%= link_to url_for(:controller => 'sales', :action => 'create_line_item',
+                :product_id => product.id, :sale_id => @sale.id, :quantity => 1), :remote => true do %>
                 <p><span class="glyphicon glyphicon-plus"></span></p>
               <% end %>
             </td>

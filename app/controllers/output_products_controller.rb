@@ -43,15 +43,15 @@ class OutputProductsController < ApplicationController
     if @output_product.product.stock <= @output_product.product.stock_min
       @output_product.product.create_activity key: 'se esta agotando', read_at: nil
     end
-    ends
-
-    private
-
-    def set_output_product
-      @output_product = OutputProduct.find(params[:id])
-    end
-
-    def output_product_params
-      params.require(:output_product).permit(:stock, :product_id)
-    end
   end
+
+  private
+
+  def set_output_product
+    @output_product = OutputProduct.find(params[:id])
+  end
+
+  def output_product_params
+    params.require(:output_product).permit(:stock, :product_id)
+  end
+end
