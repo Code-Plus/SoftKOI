@@ -71,7 +71,7 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
               }
             }
           }
-        },60000);
+        },30000);
 
     var res;
     var current_time = new Date;
@@ -137,6 +137,18 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
         });
 
       }
+    }
+
+    if (gon.console_name != null) {
+      $.alert({
+        title: '¡Reserva terminada!',
+        content: 'La reserva de la consola ' + gon.console_name + 'ha finalizado con éxito.',
+        confirm: function(){
+            $.alert('El precio es ' + gon.reserve_price_value);
+        }
+      });
+    }else {
+      $.alert('Error al finalizar la reserva.');
     }
 
 </script>
