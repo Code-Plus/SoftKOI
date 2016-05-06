@@ -15,6 +15,20 @@ class InputProductsController < ApplicationController
     end
   end
 
+  def generate_pdf
+    @search = Report.new(params[:search])
+    @inputproducts_to_pdf = @search.search_date_products
+    @date_from = @search.date_from.to_date
+    @date_to = @search.date_to.to_date
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf=InputinputproductPdf.new(@inputproducts_to_pdf,@date_from,@date_to)
+        send_data pdf.render, filename: 'entrada_productos.pdf',disposition: "inline",type: 'application/pdf'
+      end
+    end
+  end
+
 
   def new
     #Obtener el producto que se selecciono para la entrada

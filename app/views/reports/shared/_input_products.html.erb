@@ -1,0 +1,5 @@
+<%= form_tag generate_pdf_input_products_path(format: :pdf) ,:class => 'navbar-form navbar-left', method: "get" do %>
+  <%= text_field_tag 'search[date_from]',@search.date_from %>
+  <%= text_field_tag 'search[date_to]',@search.date_to  %>
+  <%= submit_tag 'Generar',class: 'btn btn-success'%>
+<% end %>
