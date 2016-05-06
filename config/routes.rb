@@ -32,12 +32,27 @@ Rails.application.routes.draw do
 	get 'reports/index'
 
 	devise_for :users
+
 	resources :customers
-	resources :output_products
+
+	resources :output_products do
+		collection do
+			get 'generate_pdf'
+		end
+	end
+
 	resources :categories
+
 	resources :type_products
-	resources :input_products
+
+	resources :input_products  do
+		collection do
+			get 'generate_pdf'
+		end
+	end
+
 	resources :reserve_prices
+	
 	resources :reservations do
 		collection do
 			get 'reservations_end'
