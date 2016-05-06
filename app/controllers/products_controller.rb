@@ -6,19 +6,19 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-
+    @search = Report.new(params[:search])
   end
 
-  def products_today
-    @products_for_pdf = Product.creados_hoy(Time.new.strftime("%F"))
-    @products_for_pdf.each do |product|
-      puts "El producto es #{product.name}"
-    end
+  def generate_pdf
+    @search = Report.new(params[:search])
+    @products_to_pdf = @search.search_date_products
+    @date_from = @search.date_from.to_date
+    @date_to = @search.date_to.to_date  
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = ProductPdf.new(@products_for_pdf)
-        send_data pdf.render, filename: 'productos.pdf',:disposition => 'inline',type: 'application/pdf'
+        pdf=ProductPdf.new(@products_to_pdf,@date_from,@date_to)
+        send_data pdf.render, filename: 'productos.pdf',disposition: "inline",type: 'application/pdf'
       end
     end
   end
