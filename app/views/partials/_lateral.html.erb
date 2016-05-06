@@ -29,7 +29,7 @@
 
 		<li id="ConsolasM" class="Mnormal McolorHoo"  menu-name="reservations">
 			<%= link_to reservations_path, class: classname(reservations_path) do%>
-				<%= image_tag("chema.png", size: '40x40') %><span>Consolas</span></a>
+				<%= image_tag("4-small.png") %><span>Consolas</span></a>
 			<% end %>
 		</li>
 
@@ -46,9 +46,8 @@
 		</li>
 
 		<li id="ReportesM" class="Mnormal McolorHoo">
-			<%= link_to  reports_index_path, :class => 'Modulos' do%>
+			<a class="Modulos" href="#">
 				<%= image_tag("documento-pdf.png") %><span>Reportes</span></a>
-			<% end %>
 		</li>
 
 		<li id="AgendaM" class="Mnormal McolorHoo">
