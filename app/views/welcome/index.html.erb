@@ -4,9 +4,4 @@
 	<h1>Bienvenido a SoftKOI APP <strong><%= current_user.name %></strong></h1>
 	<h4>Etapa de proyecto <h4> <span class="label label-info">Desarrollo</span></h4>
 	<h5><%= Time.now.strftime("%F") %></h5>
-	<% if browser.firefox? %>
-		<p>Estas en firefox</p>
-	<% else %>
-		<p>Estas en un navegador que no es firefox</p>
-	<% end %>
 </div>

@@ -1,41 +1,54 @@
 class ProductPdf < Prawn::Document
-  def initialize(products_for_pdf)
+  def initialize(products_for_pdf,date_from,date_to)
     super()
     @products_for_pdf = products_for_pdf
+    @date_from = date_from
+    @date_to = date_to
     header
     text_content
     table_content
+    footer
   end
   def header
-  	image "#{Rails.root}/app/assets/images/Perrito_p.png"
+  	image "#{Rails.root}/app/assets/images/white_logo.png", :position => 230, :height =>70
   end
 
   def text_content
-    y_position = cursor - 50
-    bounding_box([0, y_position], :width => 270, :height => 300) do
-      text "Lorem ipsum", size: 15, style: :bold
-      text "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum semper placerat. Aenean mattis fringilla risus ut fermentum. Fusce posuere dictum venenatis. Aliquam id tincidunt ante, eu pretium eros. Sed eget risus a nisl aliquet scelerisque sit amet id nisi. Praesent porta molestie ipsum, ac commodo erat hendrerit nec. Nullam interdum ipsum a quam euismod, at consequat libero bibendum. Nam at nulla fermentum, congue lectus ut, pulvinar nisl. Curabitur consectetur quis libero id laoreet. Fusce dictum metus et orci pretium, vel imperdiet est viverra. Morbi vitae libero in tortor mattis commodo. Ut sodales libero erat, at gravida enim rhoncus ut."
+    move_down 30
+    font("Courier") do
+      text "Reporte de registros de productos generados desde SOFTKOI APP.", :align => :center
+      move_down 30
+      text "Este reporte fue generado la fecha: #{Date.today}", :align =>:center
+      move_down 40
+        text "Productos registrados desde #{@date_from} hasta el #{@date_to}.", :align => :center
     end
-    bounding_box([300, y_position], :width => 270, :height => 300) do
-      text "Duis vel", size: 15, style: :bold
-      text "Duis vel tortor elementum, ultrices tortor vel, accumsan dui. Nullam in dolor rutrum, gravida turpis eu, vestibulum lectus. Pellentesque aliquet dignissim justo ut fringilla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut venenatis massa non eros venenatis aliquet. Suspendisse potenti. Mauris sed tincidunt mauris, et vulputate risus. Aliquam eget nibh at erat dignissim aliquam non et risus. Fusce mattis neque id diam pulvinar, fermentum luctus enim porttitor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
-    end
-
   end
 
   def table_content
+    move_down 10
     table product_rows do
       row(0).font_style = :bold
       self.header = true
       self.row_colors = ['DDDDDD', 'FFFFFF']
       self.column_widths = [40]
+      self.position = 80
     end
   end
 
   def product_rows
-    [['#']] +
+    [['#', 'Producto', 'Precio', 'Cantidad actual', 'Cantidad Mínima']] +
       @products_for_pdf.map do |product|
-      [product.id]
+      [product.id,product.name,product.price,product.stock, product.stock_min]
+    end
+  end
+
+  def footer
+    bounding_box [bounds.left, bounds.bottom + 35], :width  => bounds.width  do
+      font "Courier"
+      stroke_horizontal_rule
+      move_down(5)
+      number_pages "<page> de <total>", { :start_count_at => 0, :page_filter => :all, :at => [bounds.right - 50, 0], :align => :right, :size => 12 }
+      image "#{Rails.root}/app/assets/images/softkoifooter.png", :position => 250, :height =>25
     end
   end
 end

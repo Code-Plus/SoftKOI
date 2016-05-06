@@ -1,4 +1,4 @@
-class Report 
+class Report
   attr_reader :date_from, :date_to
 
   def initialize(params)
@@ -8,14 +8,18 @@ class Report
   end
 
   def search_date_products
-    puts @date_from
-    puts @date_to
     Product.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
   end
 
+  def search_date_outputproducts
+
+  end
+
+  def search_date_inputproducts
+
+  end
 
   private
-
   def parsed_date(date_string, default)
     DateTime.parse(date_string)
   rescue ArgumentError, TypeError

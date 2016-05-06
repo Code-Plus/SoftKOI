@@ -20,6 +20,17 @@ class ReservationsController < ApplicationController
       end
     end
 
+    unless @updateStateFinalizada.nil?
+      if @updateStateFinalizada.is_a?(Array)
+        query_finally = Reservation.where('id = ?', @updateStateFinalizada)
+        query_finally.each do |q|
+          r_id = q.reserve_price_id
+          name_and_value = ReservePrice.joins(:console).where('reserve_prices.id = ?', r_id).select("consoles.name, reserve_prices.value")
+          gon.console_name = name_and_value.pluck(:name)
+          gon.reserve_price_value = name_and_value.pluck(:value)
+        end
+      end
+    end
   end
 
   def ajaxnewconsole
@@ -27,11 +38,6 @@ class ReservationsController < ApplicationController
     @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
     @query_pluck = @query.pluck(:id, :time)
   end
-  # def query_console
-  #   @console_identify = params[:consol]
-  #   @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
-  #   @query_pluck = @query.pluck(:id, :time)
-  # end
 
   def reservations_end
     @reservations_end = Reservation.end_cancel_reservations
@@ -44,9 +50,6 @@ class ReservationsController < ApplicationController
       if @respons.to_i == 1
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'enProceso')
-        puts "Estoy aca"
-      #elsif @respons.to_i == 2
-      #  render :edit
       elsif @respons.to_i == 3
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'cancelada')
@@ -106,8 +109,6 @@ class ReservationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-
 
   #Métodos para los estados de la reserva.
   def activa
