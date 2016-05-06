@@ -1,5 +1,5 @@
-<%= form_tag({controller: "products", action: "generate_pdf"}, {:class => 'navbar-form navbar-left', method: "get"}) do %>
+<%= form_tag generate_pdf_products_path(format: :pdf) ,:class => 'navbar-form navbar-left', method: "get" do %>
   <%= text_field_tag 'search[date_from]',@search.date_from %>
   <%= text_field_tag 'search[date_to]',@search.date_to  %>
-  <%= link_to Product,  generate_pdf_products_path(@products_to_pdf,format: "pdf"), :class=> "btn btn-success" %>
+  <%= submit_tag 'Generar',class: 'btn btn-success'%>
 <% end %>

@@ -12,10 +12,12 @@ class ProductsController < ApplicationController
   def generate_pdf
     @search = Report.new(params[:search])
     @products_to_pdf = @search.search_date_products
+    @date_from = @search.date_from.to_date
+    @date_to = @search.date_to.to_date  
     respond_to do |format|
       format.html
       format.pdf do
-        pdf=ProductPdf.new(@products_to_pdf)
+        pdf=ProductPdf.new(@products_to_pdf,@date_from,@date_to)
         send_data pdf.render, filename: 'productos.pdf',disposition: "inline",type: 'application/pdf'
       end
     end
