@@ -27,12 +27,12 @@ gem 'email_validator'						          # Validacion emails
 gem 'nested_form'                         # Nested forms
 gem 'public_activity'                     # Public notifications
 gem 'bootstrap-datepicker-rails'       	  # Boostrap DatePicker
-gem 'bootstrap3-datetimepicker-rails'     # Boostrap DataTimePicker
 gem 'jquery-ui-rails'                     # UI
 gem 'flipclockjs-rails', '~> 0.7.7'       # Reloj en tiempo real.
 gem 'select2-rails'                       # Autocomplete
 gem 'gon', '~> 6.0', '>= 6.0.1'           # Llamar variables en archivos JS
 gem 'browser'
+
 
 
 group :development, :test do

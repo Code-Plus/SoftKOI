@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     @search = Report.new(params[:search])
     @products_to_pdf = @search.search_date_products
     @date_from = @search.date_from.to_date
-    @date_to = @search.date_to.to_date  
+    @date_to = @search.date_to.to_date
     respond_to do |format|
       format.html
       format.pdf do
