@@ -9,10 +9,10 @@ $(document).ready(function() {
 	});
 
 	// Datepicker
-	$('.input-group.date').datepicker({
+	$('.datepicker').datepicker({
    	autoclose: true,
 		orientation: "bottom auto",
-		format: "dd/mm/yyyy"
+		format: "mm/dd/yyyy"
 	});
 
 	// Tooltip y alerta

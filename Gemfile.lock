@@ -52,8 +52,6 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bootstrap3-datetimepicker-rails (4.17.37)
-      momentjs-rails (>= 2.8.1)
     browser (2.0.3)
     builder (3.2.2)
     byebug (8.2.5)
@@ -120,8 +118,6 @@ GEM
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    momentjs-rails (2.11.1)
-      railties (>= 3.1)
     multi_json (1.12.0)
     nested_form (0.3.2)
     nokogiri (1.6.7.2)
@@ -223,7 +219,6 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-datepicker-rails
   bootstrap-sass
-  bootstrap3-datetimepicker-rails
   browser
   byebug
   cancancan (~> 1.13, >= 1.13.1)
