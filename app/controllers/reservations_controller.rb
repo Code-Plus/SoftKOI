@@ -78,7 +78,8 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.create(reservation_params)
-
+    # @res = Reservation.validate_console_hour
+    # puts "------------------------_>>>>>>>>>>>>>>>>>>>>>#{@res}"
     respond_to do |format|
       if @reservation.save
          format.json { head :no_content }

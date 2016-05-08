@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_many :sales
 	belongs_to :role
 	belongs_to :type_document
+	has_many :calendar
 
 	devise :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
