@@ -107,7 +107,7 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resources :calendars
+	resources :calendar
 
 	patch "users/:id/update_profile", to: "users#update_profile"
 

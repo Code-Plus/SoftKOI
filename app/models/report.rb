@@ -12,11 +12,11 @@ class Report
   end
 
   def search_date_outputproducts
-
+    OutputProduct.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
   end
 
   def search_date_inputproducts
-
+    InputProduct.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
   end
 
   private

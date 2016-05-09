@@ -1,12 +1,23 @@
 <%= form_tag generate_pdf_output_products_path(format: :pdf) ,:class => 'navbar-form navbar-left', method: "get" do %>
   <div class="form-group">
-    <%= label_tag 'Fecha inicio:', nil, class: 'form-group'%>
-    <%= text_field_tag 'search[date_from]',@search.date_from, class: "form-control" %>
+    <div class='input-group date datepicker' >
+        <%= label_tag 'Fecha inicio:', nil, class: 'form-group'%>
+         <%= text_field_tag 'search[date_from]',@search.date_from, class: "form-control" %>
+         <span class="input-group-addon">
+             <span class="glyphicon glyphicon-calendar"></span>
+         </span>
+     </div>
+
   </div>
 
   <div class="form-group">
-    <%= label_tag 'Fecha final:', nil, class: 'form-group'%>
-    <%= text_field_tag 'search[date_to]',@search.date_to, class: "form-control"  %>
+    <div class='input-group date datepicker'>
+        <%= label_tag 'Fecha fin:', nil, class: 'form-group'%>
+         <%= text_field_tag 'search[date_to]',@search.date_to, class: "form-control"  %>
+         <span class="input-group-addon">
+             <span class="glyphicon glyphicon-calendar"></span>
+         </span>
+     </div>
   </div>
   <%= submit_tag 'Generar',class: 'btn btn-success'%>
 <% end %>
