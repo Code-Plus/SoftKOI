@@ -1,0 +1,48 @@
+<div style="margin: 0px 60px;">
+  <% content_for :title do -%>
+     Agenda
+  <% end -%>
+  <div class="panel panel-default">
+     <div class="panel-body table">
+       <div id="calendar" class="fc fc-ltr ui-widget"></div>
+     </div>
+     
+     <div class="ui modal" id="addNew-event" data-backdrop="static" data-keyboard="false">
+       <div class="header">Añadir evento</div>
+         <div class="content">
+           <form class="addEvent" role="form">
+             <div class="form-group">
+               <div class="form ui">
+                 <label for="eventName">Evento</label>
+                 <div class="fg-line">
+                   <input type="text" class="input-sm form-control" id="eventName" placeholder="Ejm: Ir al trabajo">
+                 </div>
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="eventName">Color</label>
+               <div class="event-tag">
+                 <span data-tag="bgm-teal" class="bgm-teal selected"></span>
+                 <span data-tag="bgm-red" class="bgm-red"></span>
+                 <span data-tag="bgm-pink" class="bgm-pink"></span>
+                 <span data-tag="bgm-blue" class="bgm-blue"></span>
+                 <span data-tag="bgm-lime" class="bgm-lime"></span>
+                 <span data-tag="bgm-green" class="bgm-green"></span>
+                 <span data-tag="bgm-cyan" class="bgm-cyan"></span>
+                 <span data-tag="bgm-orange" class="bgm-orange"></span>
+                 <span data-tag="bgm-purple" class="bgm-purple"></span>
+                 <span data-tag="bgm-gray" class="bgm-gray"></span>
+                 <span data-tag="bgm-black" class="bgm-black"></span>
+               </div>
+             </div>
+             <input type="hidden" id="getStart" />
+             <input type="hidden" id="getEnd" />
+           </form>
+         </div>
+         <div class="actions">
+           <button type="submit" class="ui positive right labeled icon button" id="addEvent">Añadir evento<i class="checkmark icon"></i></button>
+           <button type="button" class="ui cancel button" data-dismiss="modal">Cerrar</button>
+         </div>
+       </div>
+  </div>
+</div>

@@ -22,6 +22,8 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require moment
+//= require fullcalendar
 //= require turbolinks
 //= require_tree .
 
@@ -127,6 +129,22 @@ function activeconsole(){
 							break;
 						default:
 						softkoiurl();
+							break;
+					}
+					break;
+				case "translate":
+					switch (valsplit[1]) {
+						case "español":
+								transtaleurlespañol();
+							break;
+						case "ingles":
+							transtaleurlingles();
+							break;
+						case "help":
+							translatehelp();
+							break;
+						default:
+							translateerror();
 							break;
 					}
 					break;

@@ -1,4 +1,4 @@
-
+  $(document).ready(function() {
 
                 var date = new Date();
                 var d = date.getDate();
@@ -110,3 +110,4 @@
                     $(this).parent().addClass('active');
                     cId.fullCalendar('changeView', dataView);
                 });
+            });

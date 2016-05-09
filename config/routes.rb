@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
@@ -52,7 +50,7 @@ Rails.application.routes.draw do
 	end
 
 	resources :reserve_prices
-	
+
 	resources :reservations do
 		collection do
 			get 'reservations_end'
@@ -109,17 +107,15 @@ Rails.application.routes.draw do
 		end
 	end
 
+	resources :calendar
 
 	patch "users/:id/update_profile", to: "users#update_profile"
-
-
 
 	#Estados de la reserva.
 	put "/reservation/:id/activa", to: "reservations#activa"
 	put "/reservation/:id/enProceso", to: "reservations#enProceso"
 	put "/reservation/:id/finalizada", to: "reservations#finalizada"
 	put "/reservation/:id/cancelada", to: "reservations#cancelada"
-	#put "/reservation/:id/posponer", to: "reservations#postpone_reserve"
 
 	#Estados de producto
 	put "/product/:id/habilitar", to: "products#disponible"

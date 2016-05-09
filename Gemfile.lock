@@ -52,8 +52,6 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bootstrap3-datetimepicker-rails (4.17.37)
-      momentjs-rails (>= 2.8.1)
     browser (2.0.3)
     builder (3.2.2)
     byebug (8.2.5)
@@ -83,6 +81,10 @@ GEM
       jquery-rails (>= 1.0.17)
     font-awesome-sass (4.6.2)
       sass (>= 3.2)
+    fullcalendar-rails (2.6.1.0)
+      jquery-rails (>= 4.0.5, < 5.0.0)
+      jquery-ui-rails (>= 5.0.2)
+      momentjs-rails (>= 2.9.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     gon (6.0.1)
@@ -223,7 +225,6 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-datepicker-rails
   bootstrap-sass
-  bootstrap3-datetimepicker-rails
   browser
   byebug
   cancancan (~> 1.13, >= 1.13.1)
@@ -232,6 +233,7 @@ DEPENDENCIES
   email_validator
   flipclockjs-rails (~> 0.7.7)
   font-awesome-sass
+  fullcalendar-rails
   gon (~> 6.0, >= 6.0.1)
   jbuilder (~> 2.0)
   jc-validates_timeliness
@@ -239,6 +241,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  momentjs-rails
   nested_form
   prawn (~> 2.0, >= 2.0.2)
   prawn-table (~> 0.2.2)
@@ -256,4 +259,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.12.1
+   1.12.3

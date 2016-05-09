@@ -8,7 +8,6 @@ class ReservePricesController < ApplicationController
   end
 
 
-
   def new
     @reserve_price = ReservePrice.new
     @console = Console.disponible

@@ -3,6 +3,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :reserve_price
 
   include AASM
+
   #reservas en estado activas
   scope :activa, -> {find_by_sql('SELECT date, start_time, end_time, state FROM reservations WHERE state = "activa"')}
 
@@ -22,7 +23,7 @@ class Reservation < ActiveRecord::Base
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
   before_validation :validate_times
-  after_validation :validate_console_hour
+  after_save :validate_console_hour
 
   aasm column: "state" do
     state :activa, :initial => true
@@ -120,6 +121,8 @@ class Reservation < ActiveRecord::Base
     end
   end
 
+
+
 private
   def validate_times
     if self.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")
@@ -132,35 +135,55 @@ private
   end
 
   def validate_console_hour
-    c_time = Time.new.strftime("%F")
-    id_price = self.reserve_price_id
-    console_partial = ReservePrice.select("reserve_prices.console_id").where("id = ?", id_price)
-    console = console_partial.pluck(:id)
-    current_start_time = self.start_time
+    query_minimum_one = Reservation.where('state = "activa"')
+    v = query_minimum_one.size
 
-    start_console_id = Reservation.select("reservations.start_time").where('reserve_price_id = ? and state = "activa" and date = ?', id_price, c_time)
-    convert_start = start_console_id.pluck(:start_time)
+    if v >1
+      puts "Entre a esta WEADA"
+      c_time = Time.new.strftime("%F")
+      id_price = self.reserve_price_id
+      console_partial = ReservePrice.select("reserve_prices.console_id").where("id = ?", id_price)
+      console = console_partial.pluck(:id)
+      current_start_time = self.start_time
 
-    all_times = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
-    minimum_time = all_times.minimum(:time)
+      start_console_id = Reservation.select("reservations.start_time").where('reserve_price_id = ? and state = "activa" and date = ?', id_price, c_time)
+      convert_start = start_console_id.pluck(:start_time)
 
-    minutes_of_hour = current_start_time.strftime("%H").to_i * 60
-    minutes = current_start_time.strftime("%M").to_i
-    hour_finish = minutes_of_hour + minutes
+      all_times = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
+      minimum_time = all_times.minimum(:time)
 
-    convert_start.each do |t|
-      minutes_of_t = t.strftime("%H").to_i * 60
-      minutes_t = t.strftime("%M").to_i
-      hour_finish_t = minutes_of_t + minutes_t
-      minutes_of_compare = hour_finish - hour_finish_t
+      minutes_of_hour = current_start_time.strftime("%H").to_i * 60
+      minutes = current_start_time.strftime("%M").to_i
+      hour_finish = minutes_of_hour + minutes
+      puts  "Cancele el registro"
+      false
+      convert_start.each do |t|
 
-      if minutes_of_compare <= minimum_time
-        self.errors.add(:base ,"El horario seleccionado para la consola ha sido asignado.")
-      else
-        minutes_of_compare = 0
+        minutes_of_t = t.strftime("%H").to_i * 60
+        minutes_t = t.strftime("%M").to_i
+        hour_finish_t = minutes_of_t + minutes_t
+        minutes_of_compare = hour_finish - hour_finish_t
+
+        if minutes_of_compare <= minimum_time
+          puts "El horario seleccionado para la consola ha sido asignado."
+  				self.errors.add(:base, "El horario seleccionado para la consola ha sido asignado.")
+          raise ActiveRecord::Rollback,  self.errors.full_messages
+          return 0
+          break
+        else
+          if convert_start.last == t
+            break
+          else
+            minutes_of_t = 0
+            minutes_t = 0
+            hour_finish_t = 0
+            minutes_of_compare = 0
+          end
+        end
       end
     end
-
   end
+
+
 
 end

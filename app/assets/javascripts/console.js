@@ -20,7 +20,7 @@ function resetForm(withKittens){
 
 function exitform(){
   $('.container-console').addClass('hidden');
-  // $('.terminal').remove();
+  clearform();
 }
 
 function clearform(){
@@ -105,15 +105,63 @@ function clearform(){
 
   function consolehelp(){
     $('.terminal').append("<div class='consolehelp'>"+
-                 "<p class='prompt'>Los comandos que puedes ejecutar en la consola son</p>" +
+                 "<p class='prompt'>Los comandos que puedes ejecutar en la consola son: </p>" +
                  "<p class='prompt'> </p>" +
                  "<p class='prompt'>..[ url ].. Abrir sitios o probar metodos.</p>" +
                  "<p class='prompt'>..[ clear ].. Limpiar la consola.</p>" +
                  "<p class='prompt'>..[ exit ].. Salir de la consola.</p>" +
                  "<p class='prompt'>..[ reload ].. Recargar la pagina.</p>" +
+                 "<p class='prompt'>..[ translate...[ segundo nivel ].. ].. traducir palabras en este comando debes poner un segundo nivel.</p>" +
                  "<p class='prompt'>.</p>"+
                  "</div>");
           resetForm("null");
+  }
+
+  function transtaleurlespañol(){
+    var message = "Ingresa la palabra o frase que quieres traducir del Ingles al Español";
+    var input = $('.404-input');
+    $('.new-output').removeClass('new-output');
+    input.val('');
+    $('.terminal').append('<p class="prompt">' + message + '</p>'+
+    '<p class="prompt"> <input type="text" class="txttranslateurl"> <a href="#" class="btn btn-info" id="translateurla">Traducir</a> </p>'+
+    '<p class="prompt output new-output clickds"></p>');
+    $('#translateurla').click(function(){
+      var tex = $('.txttranslateurl').val();
+      window.open('https://translate.google.com/#en/es/'+tex,'_blank');
+    });
+  }
+
+  function transtaleurlingles(){
+    var message = "Ingresa la palabra o frase que quieres traducir del Español al Ingles";
+    var input = $('.404-input');
+    $('.new-output').removeClass('new-output');
+    input.val('');
+    $('.terminal').append('<p class="prompt">' + message + '</p>'+
+    '<p class="prompt"> <input type="text" class="txttranslateurl"> <a href="#" class="btn btn-info" id="translateurla">Traducir</a> </p>'+
+    '<p class="prompt output new-output clickds"></p>');
+    $('#translateurla').click(function(){
+      var tex = $('.txttranslateurl').val();
+      window.open('https://translate.google.com/#es/en/'+tex,'_blank');
+    });
+  }
+
+  function translatehelp(){
+    $('.terminal').append('<div class="trasnlatehelp">'+
+    '<p class="prompt">..[ translate.español ].. Utiliza este comando para traducir del Ingles al Español.</p>'+
+    '<p class="prompt">..[ translate.ingles ].. Utiliza este comando para traducir del Español al Ingles.</p>'+
+    '</div>');
+    resetForm("null");
+  }
+
+  function translateerror(){
+    $('.terminal').append('<div class="translateerror">'+
+    '<p class="prompt">Debes especificar un segundo nivel para este comando los cuales son</p>'+
+    '<p class="prompt">Español - Ingles</p>'+
+    '<p class="prompt">Ingles - Español</p>'+
+    '<p class="prompt"> </p>'+
+    '<p class="prompt">Ingresa ..[ translate.help ].. Para ver la estructura del comando </p>'+
+    '</div>');
+    resetForm("null");
   }
 
   function softkoiurlmethod(m){
