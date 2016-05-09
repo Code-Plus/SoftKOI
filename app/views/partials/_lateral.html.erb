@@ -46,8 +46,9 @@
 		</li>
 
 		<li id="ReportesM" class="Mnormal McolorHoo">
-			<a class="Modulos" href="#">
+			<%= link_to reports_index_path, :class => 'modulos' do%>
 				<%= image_tag("documento-pdf.png") %><span>Reportes</span></a>
+			<% end %>
 		</li>
 
 		<li id="AgendaM" class="Mnormal McolorHoo">
