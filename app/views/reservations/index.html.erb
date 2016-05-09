@@ -71,11 +71,8 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
               }
             }
           }
-<<<<<<< HEAD
         },30000);
-=======
-        },10000);
->>>>>>> 997389b85db0a0ecd466a593dac62de2485233f5
+
 
     var res;
     var current_time = new Date;
@@ -119,6 +116,7 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
                   $.alert('¡La reserva se ha cancelado!');
                   res = 3;
                   miajax(res, gon.reserve_id);
+                  location.reload();
               }
             });
           }
@@ -151,8 +149,6 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
             $.alert('El precio es ' + gon.reserve_price_value);
         }
       });
-    }else {
-      $.alert('Error al finalizar la reserva.');
     }
 
 </script>
