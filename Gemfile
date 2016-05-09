@@ -31,15 +31,10 @@ gem 'jquery-ui-rails'                     # UI
 gem 'flipclockjs-rails', '~> 0.7.7'       # Reloj en tiempo real.
 gem 'select2-rails'                       # Autocomplete
 gem 'gon', '~> 6.0', '>= 6.0.1'           # Llamar variables en archivos JS
-<<<<<<< HEAD
-gem 'browser'
-gem 'time_difference', '~> 0.4.2'         #Calcular la diferencia de las horas.
-=======
 gem 'browser'                             # Idenficar el navegador
+gem 'time_difference', '~> 0.4.2'         #Calcular la diferencia de las horas.
 gem 'fullcalendar-rails'                  # Calendario
 gem 'momentjs-rails'                      # No se que sea pero es necesario para que full calendar funcione
-
->>>>>>> c55093293bf15bca1ef86fef14ad713854b13d7a
 
 
 group :development, :test do
