@@ -172,9 +172,15 @@ span.last {
 }
 
 .dashboard-stats .left h3 {
-  font-size: 30px;
+  font-size: 28px;
   font-family: 'Helvetica Neue', 'Nunito', sans-serif;
-  font-weight: 300;
+  font-weight: bold;
+}
+
+.dashboard-stats .left h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .flatBluec {
@@ -184,6 +190,12 @@ span.last {
 .flatBlue {
   background-color: #34495e;
 }
+
+.dashboard-stats .right i {
+  vertical-align: middle;
+  line-height: 107px;
+}
+
 
 #DataTables_Table_0_wrapper .row{
   margin: 0px;
