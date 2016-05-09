@@ -23,7 +23,17 @@ class Reservation < ActiveRecord::Base
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
   before_validation :validate_times
-  after_save :validate_console_hour
+  before_save :validate_console_hour, :if => :condition_reservation?
+
+  def condition_reservation?
+    q = Reservation.where('state = "activa"')
+    testt = q.pluck(:id)
+    if testt.size > 1
+      return true
+    else
+      return false
+    end
+  end
 
   aasm column: "state" do
     state :activa, :initial => true
@@ -121,8 +131,6 @@ class Reservation < ActiveRecord::Base
     end
   end
 
-
-
 private
   def validate_times
     if self.start_time.strftime("%H:%M") >= Time.now.strftime("%H:%M")
@@ -135,55 +143,41 @@ private
   end
 
   def validate_console_hour
-    query_minimum_one = Reservation.where('state = "activa"')
-    v = query_minimum_one.size
-
-    if v >1
-      puts "Entre a esta WEADA"
-      c_time = Time.new.strftime("%F")
-      id_price = self.reserve_price_id
-      console_partial = ReservePrice.select("reserve_prices.console_id").where("id = ?", id_price)
-      console = console_partial.pluck(:id)
+    #raise ActiveRecord::Rollback
+    current_date = Time.new.strftime("%F")
+    reservations_where_state_activa = Reservation.where('state = "activa" and date = ?', current_date)
+    pointer = reservations_where_state_activa.size
+    #raise ActiveRecord::Rollback
+    if pointer >= 1
+      puts "PASÉ EL FILTRO"
       current_start_time = self.start_time
-
-      start_console_id = Reservation.select("reservations.start_time").where('reserve_price_id = ? and state = "activa" and date = ?', id_price, c_time)
-      convert_start = start_console_id.pluck(:start_time)
-
-      all_times = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
-      minimum_time = all_times.minimum(:time)
-
-      minutes_of_hour = current_start_time.strftime("%H").to_i * 60
-      minutes = current_start_time.strftime("%M").to_i
-      hour_finish = minutes_of_hour + minutes
-      puts  "Cancele el registro"
-      false
-      convert_start.each do |t|
-
-        minutes_of_t = t.strftime("%H").to_i * 60
-        minutes_t = t.strftime("%M").to_i
-        hour_finish_t = minutes_of_t + minutes_t
-        minutes_of_compare = hour_finish - hour_finish_t
-
-        if minutes_of_compare <= minimum_time
-          puts "El horario seleccionado para la consola ha sido asignado."
-  				self.errors.add(:base, "El horario seleccionado para la consola ha sido asignado.")
-          raise ActiveRecord::Rollback,  self.errors.full_messages
-          return 0
-          break
+      puts "ESTE ES EL TIEMPO DE INICIO QUE ESTÁ EN EL FORM#{current_start_time}"
+      id_price = self.reserve_price_id
+      substraction_hours = 0
+      get_console = ReservePrice.select("reserve_prices.console_id").where("id = ?", id_price)
+      console_selected = get_console.pluck(:id)
+      puts "ESTE ES EL ID DE LA CONSOLA QUE SELECCIONÓ#{console_selected}"
+      get_times_for_console = Reservation.joins(:reserve_price).where('reserve_prices.console_id = ?', console_selected).select("reserve_prices.time")
+      longer_registered = get_times_for_console.maximum(:time)
+      puts "ESTE ES EL MAYOR TIEMPO REGISTRADO PARA LA CONSOLA#{longer_registered}"
+      start_console_id = Reservation.joins(:reserve_price).where('reserve_prices.console_id = ?', console_selected).select("reservations.start_time")
+      array_times_registered = start_console_id.pluck(:start_time)
+      puts "ESTE ES EL ARREGLO DE LOS TIEMPOS REGISTRADOS PARA ESA CONSOLA#{array_times_registered}"
+      array_times_registered.each do |time|
+        substraction_hours = (TimeDifference.between(current_start_time, time).in_minutes).round
+        puts "ESTA ES LA PUTA RESTA :C #{substraction_hours}"
+        if substraction_hours <= longer_registered
+          puts "LLEGUÉ HASTA ACÁ"
+          self.errors.add(:base, "No se puede reservar a la hora elegida para esa consola")
+          #raise ActiveRecord::Rollback
         else
-          if convert_start.last == t
-            break
-          else
-            minutes_of_t = 0
-            minutes_t = 0
-            hour_finish_t = 0
-            minutes_of_compare = 0
-          end
+          puts "LLEGUÉ AL ELSE"
+          substraction_hours = 0
         end
       end
+    else
+      puts "Rompí el método"
     end
   end
-
-
 
 end

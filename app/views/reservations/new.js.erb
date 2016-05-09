@@ -98,7 +98,7 @@ function calculatehoursandminutes(){
 		$('.field_prices').val(price);
 		$('.field_prices_id').val(id_reserve_price);
 	}).error(function(errors){
-		alert(errors);
+		alert("Error en el ajax de /reservations/price_interval ubicado en el new.js.erb"+errors);
 	});
 
 

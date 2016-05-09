@@ -31,8 +31,11 @@ gem 'jquery-ui-rails'                     # UI
 gem 'flipclockjs-rails', '~> 0.7.7'       # Reloj en tiempo real.
 gem 'select2-rails'                       # Autocomplete
 gem 'gon', '~> 6.0', '>= 6.0.1'           # Llamar variables en archivos JS
-gem 'browser'                             # Detectar navegador
 gem 'ionicons-rails'                      # Pretty icons
+gem 'browser'                             # Idenficar el navegador
+gem 'time_difference', '~> 0.4.2'         # Calcular la diferencia de las horas.
+gem 'fullcalendar-rails'                  # Calendario - Agenda
+gem 'momentjs-rails'                      # Manejo de fechas avanzadas
 
 
 

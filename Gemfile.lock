@@ -81,6 +81,10 @@ GEM
       jquery-rails (>= 1.0.17)
     font-awesome-sass (4.6.2)
       sass (>= 3.2)
+    fullcalendar-rails (2.6.1.0)
+      jquery-rails (>= 4.0.5, < 5.0.0)
+      jquery-ui-rails (>= 5.0.2)
+      momentjs-rails (>= 2.9.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     gon (6.0.1)
@@ -119,6 +123,8 @@ GEM
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    momentjs-rails (2.11.1)
+      railties (>= 3.1)
     multi_json (1.12.0)
     nested_form (0.3.2)
     nokogiri (1.6.7.2)
@@ -192,6 +198,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
+    time_difference (0.4.2)
+      activesupport
     timeliness (0.3.8)
     ttfunk (1.4.0)
     turbolinks (2.5.3)
@@ -228,6 +236,7 @@ DEPENDENCIES
   email_validator
   flipclockjs-rails (~> 0.7.7)
   font-awesome-sass
+  fullcalendar-rails
   gon (~> 6.0, >= 6.0.1)
   ionicons-rails
   jbuilder (~> 2.0)
@@ -236,6 +245,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  momentjs-rails
   nested_form
   prawn (~> 2.0, >= 2.0.2)
   prawn-table (~> 0.2.2)
@@ -246,6 +256,7 @@ DEPENDENCIES
   select2-rails
   spring
   sqlite3
+  time_difference (~> 0.4.2)
   turbolinks
   uglifier
   web-console (~> 2.0)
