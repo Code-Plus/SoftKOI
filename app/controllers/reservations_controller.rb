@@ -37,6 +37,12 @@ class ReservationsController < ApplicationController
     @console_identify = params[:consol]
     @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
     @query_pluck = @query.pluck(:id, :time)
+    @query_final = @query_pluck.map { |i, t| [ i, t ] }
+    respond_to do |format|
+      format.json { render json: @query_final }
+    end
+
+
   end
 
   def reservations_end
@@ -68,9 +74,6 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     @reserve_prices = ReservePrice.all
     gon.console_id = 0
-    @console_identify = params[:consol]
-    @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
-    @query_pluck = @query.pluck(:id, :time)
   end
 
   def edit
@@ -138,6 +141,12 @@ class ReservationsController < ApplicationController
     @reserve_price_reserve = ReservePrice.find(params[:id_reserve_price_selected])
     respond_to do |format|
       format.json {render json: @reserve_price_reserve}
+    end
+  end
+
+  def ajaxscripts
+    respond_to do |format|
+      format.js {render 'scripts.js.erb'}
     end
   end
 

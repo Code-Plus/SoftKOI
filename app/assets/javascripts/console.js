@@ -13,9 +13,7 @@ function resetForm(withKittens){
   input.val('');
   $('.terminal').append('<p class="prompt">' + message + '</p><p class="prompt output new-output clickds"></p>');
 
-  $('.new-output').velocity(
-    'scroll'
-  ), {duration: 100}
+
 }
 
 function exitform(){

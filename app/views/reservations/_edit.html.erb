@@ -24,9 +24,9 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="field">
-            <%= f.label :interval,"Intervalo" %><br>
-            <%= collection_select(:reservation,:reserve_price_id, ReservePrice.all ,:id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
+            <div id="intervalrealtime" class="field" style="display:none;" attrdess="disabled_botton" realtimeprop="true">
+            <%= f.label :interval,"Intervalo (Minutos)" %><br>
+            <%= f.select(:interval, "" ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
           </div>
         </div>
       </div>
@@ -47,13 +47,25 @@
       <div class="field">
          <%= f.label :price_reserve_id," Precio" %><br>
          <%= f.text_field :reserve_price_id , :class => "form-control field_prices_id hidden" %>
-         <%= text_field_tag :field_prices,'',class:'form-control field_prices'  %>
+         <%= text_field_tag :field_prices,'',class:'form-control field_prices', readonly: true %>
       </div>
     </div>
     <div class="col-sm-12">
-       <hr style="border: 1; margin-top: 0px; ">
-       <div class="inline" style="margin-bottom: 0px;">
-          <%= f.submit "Editar Reserva", :class => "btn btn-success bold" %>
+       <hr style="border: 1; margin-top: 20px; ">
+       <div class="col-sm-4">
+         <div class="inline" style="margin-bottom: 0px;">
+            <%= f.submit "Editar Reserva", :class => "btn btn-success bold" %>
+         </div>
+       </div>
+       <div class="col-sm-5">
+         <p>
+           ¿Activar reloj en tiempo real?
+         </p>
+       </div>
+       <div class="col-sm-3">
+         <div class="form-group" style="margin-bottom: 0px;">
+            <%=  check_box_tag "real_time","realtimepass",checked: true %>
+         </div>
        </div>
     </div>
   </div>

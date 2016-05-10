@@ -11,3 +11,10 @@ $('#dialog').modal("show");
 $('#dialog').on('shown.bs.modal', function () {
 	$('.first_input').focus()
 })
+
+$.ajax({
+	url:'reservations/ajaxscripts',
+	datatype: 'js'
+}).error(function(){
+	console.log('En la B por favor mira el archivo de new.js.erb ubicado en reservations');
+});
