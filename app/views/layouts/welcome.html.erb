@@ -4,6 +4,7 @@
 	<title>SoftKOI App</title>
 	<%= favicon_link_tag 'favicon.ico' %>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag "https://www.google.com/jsapi" %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 </head>
@@ -75,9 +76,7 @@
 	<%= render "partials/lateral" %>
 
 	<div class="container1 normal">
-		<div class="container">
-			<%= yield %>
-		</div>
+		<%= yield %>
 	</div>
 
 	<%= javascript_tag "transformicons.add('.tcon')" %>
