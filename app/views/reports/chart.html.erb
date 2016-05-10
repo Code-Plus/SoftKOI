@@ -1,9 +1,9 @@
 <div style="margin: 0px 60px;">
   <% content_for :title do -%>
-      Reportes
+      Estadisticas
    <% end -%>
    <% content_for :menus do -%>
-     <li><h5 class="drop-title"><%= link_to "Estadisticas", chart_reports_path %></h5></li>
+     <li><h5 class="drop-title"><%= link_to "Reportes", reports_path %></h5></li>
    <% end -%>
 
   <div class="panel panel-default">
@@ -16,33 +16,28 @@
         <li><a href="#input_products" data-toggle="tab">Entrada de productos</a></li>
         <li><a href="#sales" data-toggle="tab">Ventas</a></li>
         <li><a href="#reservations" data-toggle="tab">Reservas</a></li>
-        <li><a href="#customers" data-toggle="tab">Clientes</a></li>
       </ul>
 
       <!-- Tab panes -->
       <div class="tab-content">
         <div class="tab-pane active" id="products">
-          <%= render :partial => 'reports/shared/products' %>
+          <%= render :partial => 'reports/shared/chart_products' %>
         </div>
 
         <div class="tab-pane" id="output_products">
-          <%= render :partial => 'reports/shared/output_products' %>
+          <%= render :partial => 'reports/shared/chart_output_products' %>
         </div>
 
         <div class="tab-pane" id="input_products">
-          <%= render :partial => 'reports/shared/input_products' %>
+          <%= render :partial => 'reports/shared/chart_input_products' %>
         </div>
 
         <div class="tab-pane" id="sales">
-          <%= render :partial => 'reports/shared/sales' %>
+          <%= render :partial => 'reports/shared/chart_sales' %>
         </div>
 
         <div class="tab-pane" id="reservations">
-          <%= render :partial => 'reports/shared/reservations' %>
-        </div>
-
-        <div class="tab-pane" id="customers">
-          <%= render :partial => 'reports/shared/customers' %>
+          <%= render :partial => 'reports/shared/chart_reservations' %>
         </div>
 
       </div>

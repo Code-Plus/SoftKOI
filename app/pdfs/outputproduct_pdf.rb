@@ -30,15 +30,15 @@ class OutputproductPdf < Prawn::Document
       row(0).font_style = :bold
       self.header = true
       self.row_colors = ['DDDDDD', 'FFFFFF']
-      self.column_widths = [40]
+      self.column_widths = [110,70]
       self.position = 80
     end
   end
 
   def outputproduct_rows
-    [['#', 'Producto', 'Precio', 'Cantidad de baja', 'Fecha']] +
+    [['Cantidad de baja', 'Producto', 'Fecha']] +
       @outputproducts_for_pdf.map do |outputproduct|
-      [outputproduct.id,outputproduct.product.name,outputproduct.stock, outputproduct.created_at]
+      [,outputproduct.stock, outputproduct.product.name, outputproduct.created_at.to_date]
     end
   end
 

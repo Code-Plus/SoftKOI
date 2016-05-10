@@ -33,6 +33,20 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def generate_pdf
+    @search = Report.new(params[:search])
+    @outputproducts_to_pdf = @search.search_date_products
+    @date_from = @search.date_from.to_date
+    @date_to = @search.date_to.to_date
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf=OutputproductPdf.new(@outputproducts_to_pdf,@date_from,@date_to)
+        send_data pdf.render, filename: 'salida_productos.pdf',disposition: "inline",type: 'application/pdf'
+      end
+    end
+  end
+  
   def ajaxnewconsole
     @console_identify = params[:consol]
     @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)

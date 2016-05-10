@@ -1,7 +1,7 @@
-class InputproductPdf < Prawn::Document
-  def initialize(inputproducts_for_pdf,date_from,date_to)
+class CustomerPdf < Prawn::Document
+  def initialize(products_for_pdf,date_from,date_to)
     super()
-    @inputproducts_for_pdf = inputproducts_for_pdf
+    @products_for_pdf = products_for_pdf
     @date_from = date_from
     @date_to = date_to
     header
@@ -10,23 +10,23 @@ class InputproductPdf < Prawn::Document
     footer
   end
   def header
-    image "#{Rails.root}/app/assets/images/white_logo.png", :position => 230, :height =>70
+  	image "#{Rails.root}/app/assets/images/white_logo.png", :position => 230, :height =>70
   end
 
   def text_content
     move_down 30
     font("Courier") do
-      text "Reporte de productos dados de  entrada generados desde SOFTKOI APP.", :align => :center
+      text "Reporte de registros de productos generados desde SOFTKOI APP.", :align => :center
       move_down 30
       text "Este reporte fue generado la fecha: #{Date.today}", :align =>:center
       move_down 40
-        text "Productos dados de baja  desde #{@date_from} hasta el #{@date_to}.", :align => :center
+        text "Productos registrados desde #{@date_from} hasta el #{@date_to}.", :align => :center
     end
   end
 
   def table_content
     move_down 10
-    table inputproduct_rows do
+    table product_rows do
       row(0).font_style = :bold
       self.header = true
       self.row_colors = ['DDDDDD', 'FFFFFF']
@@ -35,10 +35,10 @@ class InputproductPdf < Prawn::Document
     end
   end
 
-  def inputproduct_rows
-    [[ 'Cantidad de ingreso','producto']] +
-      @inputproducts_for_pdf.map do |inputproduct|
-      [inputproduct.stock,inputproduct.product.name]
+  def product_rows
+    [['#', 'Producto', 'Precio', 'Cantidad actual', 'Cantidad Mínima']] +
+      @products_for_pdf.map do |product|
+      [product.id,product.name,product.price,product.stock, product.stock_min]
     end
   end
 

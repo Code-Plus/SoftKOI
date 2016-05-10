@@ -5,14 +5,7 @@ class OutputProductsController < ApplicationController
 
   def index
     @output_products = OutputProduct.all
-
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = OutputproductPdf.new(@output_products)
-        send_data pdf.render, filename: 'salida_baja.pdf', type: 'application/pdf'
-      end
-    end
+    @search = Report.new(params[:search])
   end
 
 
@@ -25,7 +18,7 @@ class OutputProductsController < ApplicationController
 
   def generate_pdf
     @search = Report.new(params[:search])
-    @outputproducts_to_pdf = @search.search_date_products
+    @outputproducts_to_pdf = @search.search_date_outputproducts
     @date_from = @search.date_from.to_date
     @date_to = @search.date_to.to_date
     respond_to do |format|
