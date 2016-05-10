@@ -56,6 +56,7 @@ GEM
     builder (3.2.2)
     byebug (8.2.5)
     cancancan (1.13.1)
+    chartkick (1.5.2)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -92,6 +93,8 @@ GEM
       json
       multi_json
       request_store (>= 1.0)
+    groupdate (2.5.3)
+      activesupport (>= 3)
     i18n (0.7.0)
     ionicons-rails (2.0.0)
     jbuilder (2.4.1)
@@ -131,6 +134,7 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
     pdf-core (0.6.1)
+    pg (0.18.4)
     prawn (2.1.0)
       pdf-core (~> 0.6.1)
       ttfunk (~> 1.4.0)
@@ -163,6 +167,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (4.2.4)
       actionpack (= 4.2.4)
       activesupport (= 4.2.4)
@@ -231,6 +240,7 @@ DEPENDENCIES
   browser
   byebug
   cancancan (~> 1.13, >= 1.13.1)
+  chartkick
   coffee-rails (~> 4.1.0)
   devise (~> 3.5, >= 3.5.6)
   email_validator
@@ -238,6 +248,7 @@ DEPENDENCIES
   font-awesome-sass
   fullcalendar-rails
   gon (~> 6.0, >= 6.0.1)
+  groupdate
   ionicons-rails
   jbuilder (~> 2.0)
   jc-validates_timeliness
@@ -247,10 +258,12 @@ DEPENDENCIES
   jquery-ui-rails
   momentjs-rails
   nested_form
+  pg
   prawn (~> 2.0, >= 2.0.2)
   prawn-table (~> 0.2.2)
   public_activity
   rails (= 4.2.4)
+  rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   select2-rails
