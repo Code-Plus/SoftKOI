@@ -27,7 +27,11 @@ Rails.application.routes.draw do
 	get '/reservations/new', to: 'reservations#new', as: 'ajax_new_console'
 
 	#Pagina principal de reportes
-	get 'reports/index'
+	resources :reports do
+		collection do
+			get 'chart'
+		end
+	end
 
 	devise_for :users
 
@@ -54,6 +58,7 @@ Rails.application.routes.draw do
 	resources :reservations do
 		collection do
 			get 'reservations_end'
+			get 'generate_pdf'
 		end
 	end
 
@@ -82,6 +87,7 @@ Rails.application.routes.draw do
       get 'create_custom_customer'
       get 'add_comment'
       post 'sale_discount'
+			get 'generate_pdf'
 		end
 	end
 

@@ -12,7 +12,7 @@ $(document).ready(function() {
 	$('.datepicker').datepicker({
    	autoclose: true,
 		orientation: "bottom auto",
-		format: "mm/dd/yyyy"
+		format: "dd/mm/yyyy"
 	});
 
 	// Tooltip y alerta
