@@ -138,6 +138,73 @@ span.last {
 
 /*-----------------------------clases solas-------------------------*/
 
+.panel-custom {
+  box-shadow: 1px 1px 1px #34495E;
+}
+
+h3.welcome {
+  margin: 0;
+}
+
+.dashboard-stats {
+  background-color: #FFFFFF;
+  position: relative;
+  min-height: 107px;
+  padding: 3px;
+  padding-left: 5%;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  display: table;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.dashboard-stats .left {
+  float: left;
+  padding-top: 5px;
+}
+
+.dashboard-stats .right {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  width: 30%;
+  bottom: 3px;
+  border-radius: 2px;
+  font-size: 48px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.dashboard-stats .left h3 {
+  font-size: 28px;
+  font-family: 'Helvetica Neue', 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+.dashboard-stats .left h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.flatBluec {
+  color: #34495e !important;
+}
+
+.flatBlue {
+  background-color: #34495e;
+}
+
+.dashboard-stats .right i {
+  vertical-align: middle;
+  line-height: 107px;
+}
+
+
 #DataTables_Table_0_wrapper .row{
   margin: 0px;
 }

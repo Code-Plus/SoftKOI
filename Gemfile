@@ -1,16 +1,14 @@
 source 'http://rubygems.org'
 
 gem 'rails', '4.2.4'
-gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
-
 
 gem 'devise', '~> 3.5', '>= 3.5.6' 			  # Autenticacion de users
 gem 'prawn', '~> 2.0', '>= 2.0.2' 			  # Generar PDF
@@ -31,9 +29,13 @@ gem 'jquery-ui-rails'                     # UI
 gem 'flipclockjs-rails', '~> 0.7.7'       # Reloj en tiempo real.
 gem 'select2-rails'                       # Autocomplete
 gem 'gon', '~> 6.0', '>= 6.0.1'           # Llamar variables en archivos JS
+gem 'ionicons-rails'                      # Pretty icons
 gem 'browser'                             # Idenficar el navegador
-gem 'fullcalendar-rails'                  # Calendario
-gem 'momentjs-rails'                      # No se que sea pero es necesario para que full calendar funcione
+gem 'time_difference', '~> 0.4.2'         # Calcular la diferencia de las horas.
+gem 'fullcalendar-rails'                  # Calendario - Agenda
+gem 'momentjs-rails'                      # Manejo de fechas avanzadas
+gem 'groupdate'                           # Agrupar fechas
+gem "chartkick"                           # Charts estadisticas
 
 
 
@@ -44,6 +46,12 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'better_errors'
-  gem "binding_of_caller"
+  gem 'binding_of_caller'
   gem 'spring'
+  gem 'sqlite3'
+end
+
+group :production do
+	gem 'pg'
+	gem 'rails_12factor'
 end

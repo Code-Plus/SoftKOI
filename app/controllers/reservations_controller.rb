@@ -20,8 +20,7 @@ class ReservationsController < ApplicationController
       end
     end
 
-    unless @updateStateFinalizada.nil?
-      if @updateStateFinalizada.is_a?(Array)
+    unless @updateStateFinalizada.nil? or @updateStateFinalizada[0].equal?(0)
         query_finally = Reservation.where('id = ?', @updateStateFinalizada)
         query_finally.each do |q|
           r_id = q.reserve_price_id
@@ -29,6 +28,19 @@ class ReservationsController < ApplicationController
           gon.console_name = name_and_value.pluck(:name)
           gon.reserve_price_value = name_and_value.pluck(:value)
         end
+    end
+  end
+
+  def generate_pdf
+    @search = Report.new(params[:search])
+    @outputproducts_to_pdf = @search.search_date_products
+    @date_from = @search.date_from.to_date
+    @date_to = @search.date_to.to_date
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf=OutputproductPdf.new(@outputproducts_to_pdf,@date_from,@date_to)
+        send_data pdf.render, filename: 'salida_productos.pdf',disposition: "inline",type: 'application/pdf'
       end
     end
   end
@@ -81,8 +93,6 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.create(reservation_params)
-    # @res = Reservation.validate_console_hour
-    # puts "------------------------_>>>>>>>>>>>>>>>>>>>>>#{@res}"
     respond_to do |format|
       if @reservation.save
          format.json { head :no_content }
@@ -132,7 +142,6 @@ class ReservationsController < ApplicationController
 
   def cancelada
     @update_price = Reservation.cancel_reserve(Reservation.find(params[:id]), Time.now)
-    puts "HOLI ESTA ES LA VARIABLE #{@update_price}"
     @reservation.cancelada!
     redirect_to reservations_url
   end

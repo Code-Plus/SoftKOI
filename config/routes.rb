@@ -27,7 +27,11 @@ Rails.application.routes.draw do
 	get '/reservations/ajaxnewconsole', to: 'reservations#ajaxnewconsole', as: 'ajax_new_console'
 
 	#Pagina principal de reportes
-	get 'reports/index'
+	resources :reports do
+		collection do
+			get 'chart'
+		end
+	end
 
 	#Ajax para rederizar archivos js
 	get '/reservations/ajaxscripts', to: 'reservations#ajaxscripts', as: 'ajax_scripts'
@@ -59,6 +63,7 @@ Rails.application.routes.draw do
 	resources :reservations do
 		collection do
 			get 'reservations_end'
+			get 'generate_pdf'
 		end
 	end
 
@@ -87,6 +92,7 @@ Rails.application.routes.draw do
       get 'create_custom_customer'
       get 'add_comment'
       post 'sale_discount'
+			get 'generate_pdf'
 		end
 	end
 
