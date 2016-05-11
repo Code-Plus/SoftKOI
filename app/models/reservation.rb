@@ -23,10 +23,13 @@ class Reservation < ActiveRecord::Base
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
 
+<<<<<<< HEAD
   # before_validation :validate_console_hour,:validate_times
 
 
 
+=======
+>>>>>>> 279922c8564267bda04fa549be065ef307fd4293
   def condition_reservation?
     q = Reservation.where('state = "activa"')
     testt = q.pluck(:id)
@@ -138,32 +141,33 @@ private
       self.errors.add(:base ,"La hora de inicio debe ser mayor a la actual")
     end
   end
+=begin
+  def validate_console_hour
+    #raise ActiveRecord::Rollback
+    #strftime("%F") = yyyy-mm-dd
+    current_date = Time.new.strftime("%F")
+    self_date = self.date.strftime("%F")
+    self_start_time = self.start_time.strftime("%H:%M")
+    self_end_time = self.end_time.strftime("%H:%M")
+    self_console = reserve_price.console_id
+    reservations_number = 0
 
-  # def validate_console_hour
-  #   #raise ActiveRecord::Rollback
-  #   #strftime("%F") = yyyy-mm-dd
-  #   current_date = Time.new.strftime("%F")
-  #   self_date = self.date.strftime("%F")
-  #   self_start_time = self.start_time.strftime("%H:%M")
-  #   self_end_time = self.end_time.strftime("%H:%M")
-  #   self_console = reserve_price.console_id
-  #   reservations_number = 0
-  #
-  #   registered_reservations = Reservation.joins(:reserve_price).where(reserve_prices: {console_id: self_console}).where(date: self_date, state:  "activa")
-  #   count_registered_reservations = registered_reservations.count
-  #   puts "--------------------------El count del query #{count_registered_reservations}"
-  #
-  #   if count_registered_reservations >0
-  #     registered_reservations.each do |reservation|
-  #       unless ( ( self_start_time > reservation.start_time.strftime("%H:%M") && self_start_time > reservation.end_time.strftime("%H:%M") ) || (self_start_time < reservation.start_time.strftime("%H:%M")  && self_end_time < reservation.start_time.strftime("%H:%M") ) )
-  #         reservations_number += 1
-  #         puts "#{reservations_number}"
-  #       end
-  #     end
-  #     puts"------------------------------___>>>>>#{reservations_number}"
-  #   end
-  #   if reservations_number >0
-  #     self.errors.add(:base ,"El horario no esta disponible")
-  #   end
-  # end
+    registered_reservations = Reservation.joins(:reserve_price).where(reserve_prices: {console_id: self_console}).where(date: self_date, state:  "activa")
+    count_registered_reservations = registered_reservations.count
+    puts "--------------------------El count del query #{count_registered_reservations}"
+
+    if count_registered_reservations >0
+      registered_reservations.each do |reservation|
+        unless ( ( self_start_time > reservation.start_time.strftime("%H:%M") && self_start_time > reservation.end_time.strftime("%H:%M") ) || (self_start_time < reservation.start_time.strftime("%H:%M")  && self_end_time < reservation.start_time.strftime("%H:%M") ) )
+          reservations_number += 1
+          puts "#{reservations_number}"
+        end
+      end
+      puts"------------------------------___>>>>>#{reservations_number}"
+    end
+    if reservations_number >0
+      self.errors.add(:base ,"El horario no esta disponible")
+    end
+  end
+=end
 end
