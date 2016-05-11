@@ -589,11 +589,6 @@ ul.menu.desplegado{
 
 /* Alerts */
 #notice_wrapper {
-  display: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 999;
   .alert {
     background: rgba(231, 76, 60,1.0);
     border-radius: 0px !important;
@@ -613,11 +608,6 @@ ul.menu.desplegado{
 
 
 #notice_wrapper2{
-  display: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 999;
   background:rgba(26, 188, 156,1.0);
   color: #fff;
   font-size: 16px !important;
@@ -627,6 +617,14 @@ ul.menu.desplegado{
   padding: 20px 0;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.alerts_notice{
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
 }
 
 //Switcher
