@@ -40,7 +40,7 @@ gem 'groupdate'                           # Agrupar fechas
 gem 'chartkick'                           # Charts estadisticas
 gem 'activerecord_any_of', '~> 1.4'       # Usar OR en los querys
 gem 'bootswatch-rails'                    # Flatly theme
-
+gem 'simple_calendar', '~> 2.0'           # Calendario
 
 group :development, :test do
   gem 'byebug'
