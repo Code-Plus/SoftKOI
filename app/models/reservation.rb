@@ -95,7 +95,7 @@ class Reservation < ActiveRecord::Base
     interval = 0
     id_precio= 0
     if reserve.state == "activa"
-      Reservation.where(id: reserve.id).update_all(reserve_price_id: 0)
+      Reservation.where(id: reserve.id).update_all(reserve_price_id: nil)
     elsif reserve.state == "enProceso" && reserve.reserve_price.console_id == console
       all_times_one = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
       minimum_time = all_times_one.minimum(:time)
