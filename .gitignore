@@ -4,3 +4,5 @@
 !/log/.keep
 /tmp/*
 /tmp
+/vistas
+/vistas/*
