@@ -1,0 +1,152 @@
+Cargar_En_Reserva();
+function Cargar_En_Reserva(){
+
+  var muestraReloj;
+  muestraReloj = function() {
+		// console.log("El relog se esta actualizando en tiempo real");
+    var fechaHora, horas, minutos, segundos;
+    fechaHora = new Date;
+    horas = fechaHora.getHours();
+    minutosbefore = fechaHora.getMinutes();
+    // segundos = fechaHora.getSeconds();
+    // sufijo = ' AM';
+    // if (horas > 12) {
+    //   horas = horas - 12;
+    //   sufijo = ' PM';
+    // }
+    if (horas < 10) {
+      horas = '0' + horas;
+    }
+    if (minutosbefore < 10) {
+      minutosbefore = '0' + parseInt(minutosbefore + 1);
+			$('#reservation_start_time').val(horas + ':' + minutosbefore);
+    }else{
+			minutos = minutosbefore + 1;
+	    $('#reservation_start_time').val(horas + ':' + minutos);
+		}
+    // if (segundos < 10) {
+    //   segundos = '0' + segundos;
+    // }
+  };
+
+  setTimeout(function(){
+		muestraReloj()
+		setInterval(function(){
+				if($("#real_time").prop('checked')){
+					muestraReloj();
+					var intervalistrue = $('#intervalrealtime').attr('realtimeprop');
+					if( intervalistrue !== "true"){
+						var ckeckintervalvalue = $("#reservation_interval option:selected").val();
+						if(ckeckintervalvalue !== ""){
+							calculatehoursandminutes();
+						}else{
+						}
+					}else{
+					}
+				}else{
+				}
+		},3000);
+	}, 1);
+
+
+  $('#reservation_interval').change(function(){
+		$('#reservation_start_time').removeAttr('disabled');
+		$('#reservation_end_time').removeAttr('disabled');
+    $('#intervalrealtime').attr({'realtimeprop':"false"});
+		calculatehoursandminutes();
+	});
+}
+
+
+function calculatehoursandminutes(){
+	var fechaHora, fin, h_split, h_split_f, horas, inter, minutos, rel_fin, second_split, seconds, segundos, send_ini, split_time, split_time_f, sufijo, sum_rel_fin, var_start_time, var_id_interval;
+	fechaHora = new Date;
+	horas = fechaHora.getHours();
+	minutos = fechaHora.getMinutes();
+	segundos = fechaHora.getSeconds();
+
+	var id_reserve_price = $('#reservation_interval option:selected').val();
+
+	$.ajax({
+		url:'/reservations/price_interval',
+		data:{id_reserve_price_selected:id_reserve_price},
+		type:'get',
+		DataType:'json'
+	}).done(function(done){
+		var price = done['value'];
+		$('.field_prices').val(price);
+		$('.field_prices_id').val(id_reserve_price);
+	}).error(function(errors){
+		alert("Error en el ajax de /reservations/price_interval ubicado en el new.js.erb"+errors);
+	});
+	// if (horas > 12) {
+	//   horas = horas - 12;
+	//   sufijo = ' PM';
+	// }
+	if (horas < 10) {
+		horas = '0' + horas;
+	}
+	if (minutos < 10) {
+		minutos = '0' + minutos;
+	}
+	if (segundos < 10) {
+		segundos = '0' + segundos;
+	}
+	inter = parseInt($('#reservation_interval option:selected').text());
+	var_start_time = $('#reservation_start_time').val();
+	if (var_start_time !== '') {
+		split_time = var_start_time.split(':');
+		second_split = split_time[1];
+		split_time_f = second_split.split(' ');
+		rel_fin = parseInt(split_time_f[0]);
+		sum_rel_fin = rel_fin + inter;
+		if (sum_rel_fin >= '60') {
+			h_split = parseInt(split_time[0]);
+			h_split_f = h_split + 1;
+			fin = sum_rel_fin - 60;
+			send_ini = parseInt('00');
+			seconds = send_ini + fin;
+			if (seconds < 10) {
+				seconds = '0' + seconds;
+			}
+			$('#reservation_end_time').val(h_split_f + ':' + seconds);
+		} else {
+			h_split = parseInt(split_time[0]);
+			if (h_split < 10) {
+				h_split = '0' + h_split;
+			}
+			seconds = sum_rel_fin;
+			$('#reservation_end_time').val(h_split + ':' + seconds);
+		}
+	}
+}
+
+
+$('#reserve_price_console_id').change(function(){
+	var console_identify;
+	var varconsolename;
+	var frmcustomer;
+	var frmdate;
+	console_identify = $(this).val();
+	varconsolename = $('#reserve_price_console_id option:selected').text();
+	frmcustomer = $('#reservation_customer').val();
+	frmdate = $('#reservation_date').val();
+	$.ajax({
+		url:'/reservations/ajaxnewconsole',
+		data:{consol: console_identify},
+    datatype:'json',
+		type: 'get'
+	}).done(function(done){
+    var j = 0;
+    var html = "<option>Selecciona una opción</option>";
+    for (var i = 0; i < done.length; i++) {
+      html += "<option value='"+done[i][0]+"' >"+done[i][1]+"</option>";
+    }
+    $('#reservation_interval').html(html);
+		$('#reservation_interval').parent().show();
+	}).error(ajaxerror);
+});
+
+	function ajaxerror(error){
+		console.log("Ha ocurrido un error al conectar con el servidor en:");
+	}

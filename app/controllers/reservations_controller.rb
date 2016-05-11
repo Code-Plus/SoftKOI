@@ -20,8 +20,7 @@ class ReservationsController < ApplicationController
       end
     end
 
-    unless @updateStateFinalizada.nil?
-      if @updateStateFinalizada.is_a?(Array)
+    unless @updateStateFinalizada.nil? or @updateStateFinalizada[0].equal?(0)
         query_finally = Reservation.where('id = ?', @updateStateFinalizada)
         query_finally.each do |q|
           r_id = q.reserve_price_id
@@ -29,7 +28,6 @@ class ReservationsController < ApplicationController
           gon.console_name = name_and_value.pluck(:name)
           gon.reserve_price_value = name_and_value.pluck(:value)
         end
-      end
     end
   end
 
@@ -51,6 +49,12 @@ class ReservationsController < ApplicationController
     @console_identify = params[:consol]
     @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
     @query_pluck = @query.pluck(:id, :time)
+    @query_final = @query_pluck.map { |i, t| [ i, t ] }
+    respond_to do |format|
+      format.json { render json: @query_final }
+    end
+
+
   end
 
   def reservations_end
@@ -82,9 +86,6 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     @reserve_prices = ReservePrice.all
     gon.console_id = 0
-    @console_identify = params[:consol]
-    @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
-    @query_pluck = @query.pluck(:id, :time)
   end
 
   def edit
@@ -92,8 +93,6 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.create(reservation_params)
-      # @res = Reservation.validate_console_hour
-      #  puts "------------------------_>>>>>>>>>>>>>>>>>>>>>#{@res}"
     respond_to do |format|
 
       if @reservation.save
@@ -144,7 +143,6 @@ class ReservationsController < ApplicationController
 
   def cancelada
     @update_price = Reservation.cancel_reserve(Reservation.find(params[:id]), Time.now)
-    puts "HOLI ESTA ES LA VARIABLE #{@update_price}"
     @reservation.cancelada!
     redirect_to reservations_url
   end
@@ -153,6 +151,12 @@ class ReservationsController < ApplicationController
     @reserve_price_reserve = ReservePrice.find(params[:id_reserve_price_selected])
     respond_to do |format|
       format.json {render json: @reserve_price_reserve}
+    end
+  end
+
+  def ajaxscripts
+    respond_to do |format|
+      format.js {render 'scripts.js.erb'}
     end
   end
 

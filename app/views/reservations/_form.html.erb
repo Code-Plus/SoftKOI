@@ -30,8 +30,8 @@
           </div>
           <div class="col-sm-6">
             <div id="intervalrealtime" class="field" style="display:none;" attrdess="disabled_botton" realtimeprop="true">
-               <%= f.label :interval,"Intervalo (Min)"  %><br>
-               <%= f.select(:interval, @query_pluck.map { |i, t| [ t, i ] } ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
+               <%= f.label :interval,"Intervalo (Minutos)"  %><br>
+               <%= f.select(:interval, "" ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
                <%# collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:console_id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
             </div>
           </div>
@@ -57,7 +57,7 @@
         </div>
      </div>
      <div class="col-sm-12">
-        <hr style="border: 1; margin-top: 0px; ">
+        <hr style="border: 1; margin-top: 20px; ">
         <div class="col-sm-4">
           <div class="form-group" style="margin-bottom: 0px;">
              <%= f.submit "Registrar reserva", :class => "btn btn-success bold", :id=>"Btn_RReserve"%>
