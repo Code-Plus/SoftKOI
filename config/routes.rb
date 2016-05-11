@@ -9,38 +9,35 @@ Rails.application.routes.draw do
 	get '/home', to: 'welcome#index', as: 'home'
 
 
-	# Ruta para el ajax de reservas
+	# Ajax de reservas
 	get '/reservations/price_interval', to: 'reservations#reserve_ajax', as: 'interval_price'
 
-
-	# Ruta para el ajax de ventas
+	# Ajax de ventas
 	get '/sales/customer', to: 'sales#ajax_customer', as: 'ajax_customer'
 
-	#Ruta para el ajax de productos
+	# Ajax de productos
 	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
 
-
-	#Ajax para el cambio de estado cuando va a iniciar la reserva
+	# Ajax para el cambio de estado cuando va a iniciar la reserva
 	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
 
-	#Ajax para traer las consolas
+	# Ajax para traer las consolas
 	get '/reservations/ajaxnewconsole', to: 'reservations#ajaxnewconsole', as: 'ajax_new_console'
 
-	#Pagina principal de reportes
+	#Ajax para rederizar archivos js
+	get '/reservations/ajaxscripts', to: 'reservations#ajaxscripts', as: 'ajax_scripts'
+
+	devise_for :users
+	resources :customers
+	resources :categories
+	resources :type_products
+	resources :reserve_prices
+
 	resources :reports do
 		collection do
 			get 'chart'
 		end
 	end
-
-	#Ajax para rederizar archivos js
-	get '/reservations/ajaxscripts', to: 'reservations#ajaxscripts', as: 'ajax_scripts'
-
-
-
-	devise_for :users
-
-	resources :customers
 
 	resources :output_products do
 		collection do
@@ -48,17 +45,12 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resources :categories
-
-	resources :type_products
-
 	resources :input_products  do
 		collection do
 			get 'generate_pdf'
 		end
 	end
 
-	resources :reserve_prices
 
 	resources :reservations do
 		collection do
@@ -117,8 +109,6 @@ Rails.application.routes.draw do
 			patch 'update_password'
 		end
 	end
-
-	resources :calendar
 
 	patch "users/:id/update_profile", to: "users#update_profile"
 

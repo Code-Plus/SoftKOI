@@ -94,6 +94,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.create(reservation_params)
     respond_to do |format|
+
       if @reservation.save
          format.json { head :no_content }
             format.js {  flash[:notice] = "¡Reserva creada satisfactoriamente!" }
