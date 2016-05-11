@@ -46,7 +46,7 @@ class ReservationsController < ApplicationController
       end
     end
   end
-  
+
   def ajaxnewconsole
     @console_identify = params[:consol]
     @query = ReservePrice.select("reserve_prices.id, reserve_prices.time").where('console_id = ?', @console_identify)
@@ -92,9 +92,10 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.create(reservation_params)
-    # @res = Reservation.validate_console_hour
-    # puts "------------------------_>>>>>>>>>>>>>>>>>>>>>#{@res}"
+      # @res = Reservation.validate_console_hour
+      #  puts "------------------------_>>>>>>>>>>>>>>>>>>>>>#{@res}"
     respond_to do |format|
+
       if @reservation.save
          format.json { head :no_content }
             format.js {  flash[:notice] = "¡Reserva creada satisfactoriamente!" }

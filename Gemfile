@@ -36,6 +36,7 @@ gem 'fullcalendar-rails'                  # Calendario - Agenda
 gem 'momentjs-rails'                      # Manejo de fechas avanzadas
 gem 'groupdate'                           # Agrupar fechas
 gem "chartkick"                           # Charts estadisticas
+gem 'activerecord_any_of', '~> 1.4'       #usar "or" en los querys
 
 
 
