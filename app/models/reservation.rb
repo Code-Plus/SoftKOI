@@ -22,13 +22,10 @@ class Reservation < ActiveRecord::Base
   validates :end_time, presence: true
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
-<<<<<<< HEAD
+
   before_validation :validate_console_hour,:validate_times
 
-=======
-  before_validation :validate_times
-  #before_save :validate_console_hour, :if => :condition_reservation?
->>>>>>> 2b9b53df696a6c74fcd50413ba2fa9ee5d9fb474
+
 
   def condition_reservation?
     q = Reservation.where('state = "activa"')
