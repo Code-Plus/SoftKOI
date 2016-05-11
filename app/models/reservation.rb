@@ -22,8 +22,10 @@ class Reservation < ActiveRecord::Base
   validates :end_time, presence: true
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
-  before_validation :validate_times
-  before_save :validate_console_hour, :if => :condition_reservation?
+
+  before_validation :validate_console_hour,:validate_times
+
+
 
   def condition_reservation?
     q = Reservation.where('state = "activa"')
@@ -84,6 +86,8 @@ class Reservation < ActiveRecord::Base
               Reservation.where(id: var.id).update_all(state: 'finalizada')
               reserve_id = var.id.to_s
               return reserve_id
+            else
+              return 0
             end
          end
       end
@@ -91,26 +95,19 @@ class Reservation < ActiveRecord::Base
 
   def self.cancel_reserve(reserve, current_time)
     console = reserve.reserve_price.console_id
-    console_name = reserve.reserve_price.console.name
     s_number = 120
     interval = 0
     id_precio= 0
     if reserve.state == "activa"
       Reservation.where(id: reserve.id).update_all(reserve_price_id: 0)
-      #return console_name
     elsif reserve.state == "enProceso" && reserve.reserve_price.console_id == console
       all_times_one = ReservePrice.select("reserve_prices.id, reserve_prices.time").where("console_id = ?", console)
       minimum_time = all_times_one.minimum(:time)
       price = ReservePrice.where("time = ?", minimum_time).select("reserve_prices.value")
       if current_time.strftime("%H").to_i == reserve.start_time.strftime("%H").to_i
-        time_elapsed = current_time.strftime("%M").to_i - reserve.start_time.strftime("%M").to_i
+        time_elapsed = (TimeDifference.between(current_time, reserve.start_time).in_minutes).round
       elsif current_time.strftime("%H").to_i != reserve.start_time.strftime("%H").to_i
-        diference_for_hour = (current_time.strftime("%H").to_i - reserve.start_time.strftime("%H").to_i)
-        hour_in_minutes = diference_for_hour * 60
-        if current_time.strftime("%M").to_i == reserve.start_time.strftime("%M").to_i
-          diference_for_minutes = current_time.strftime("%M").to_i - reserve.start_time.strftime("%M").to_i
-          time_elapsed = hour_in_minutes + diference_for_minutes
-        end
+        time_elapsed = (TimeDifference.between(current_time, reserve.start_time).in_minutes).round
       end
       all_times_one.each do |t|
         if time_elapsed == t.time
@@ -144,40 +141,29 @@ private
 
   def validate_console_hour
     #raise ActiveRecord::Rollback
+    #strftime("%F") = yyyy-mm-dd
     current_date = Time.new.strftime("%F")
-    reservations_where_state_activa = Reservation.where('state = "activa" and date = ?', current_date)
-    pointer = reservations_where_state_activa.size
-    #raise ActiveRecord::Rollback
-    if pointer >= 1
-      puts "PASÉ EL FILTRO"
-      current_start_time = self.start_time
-      puts "ESTE ES EL TIEMPO DE INICIO QUE ESTÁ EN EL FORM#{current_start_time}"
-      id_price = self.reserve_price_id
-      substraction_hours = 0
-      get_console = ReservePrice.select("reserve_prices.console_id").where("id = ?", id_price)
-      console_selected = get_console.pluck(:id)
-      puts "ESTE ES EL ID DE LA CONSOLA QUE SELECCIONÓ#{console_selected}"
-      get_times_for_console = Reservation.joins(:reserve_price).where('reserve_prices.console_id = ?', console_selected).select("reserve_prices.time")
-      longer_registered = get_times_for_console.maximum(:time)
-      puts "ESTE ES EL MAYOR TIEMPO REGISTRADO PARA LA CONSOLA#{longer_registered}"
-      start_console_id = Reservation.joins(:reserve_price).where('reserve_prices.console_id = ?', console_selected).select("reservations.start_time")
-      array_times_registered = start_console_id.pluck(:start_time)
-      puts "ESTE ES EL ARREGLO DE LOS TIEMPOS REGISTRADOS PARA ESA CONSOLA#{array_times_registered}"
-      array_times_registered.each do |time|
-        substraction_hours = (TimeDifference.between(current_start_time, time).in_minutes).round
-        puts "ESTA ES LA PUTA RESTA :C #{substraction_hours}"
-        if substraction_hours <= longer_registered
-          puts "LLEGUÉ HASTA ACÁ"
-          self.errors.add(:base, "No se puede reservar a la hora elegida para esa consola")
-          #raise ActiveRecord::Rollback
-        else
-          puts "LLEGUÉ AL ELSE"
-          substraction_hours = 0
+    self_date = self.date.strftime("%F")
+    self_start_time = self.start_time.strftime("%H:%M")
+    self_end_time = self.end_time.strftime("%H:%M")
+    self_console = reserve_price.console_id
+    reservations_number = 0
+
+    registered_reservations = Reservation.joins(:reserve_price).where(reserve_prices: {console_id: self_console}).where(date: self_date, state:  "activa")
+    count_registered_reservations = registered_reservations.count
+    puts "--------------------------El count del query #{count_registered_reservations}"
+
+    if count_registered_reservations >0
+      registered_reservations.each do |reservation|
+        unless ( ( self_start_time > reservation.start_time.strftime("%H:%M") && self_start_time > reservation.end_time.strftime("%H:%M") ) || (self_start_time < reservation.start_time.strftime("%H:%M")  && self_end_time < reservation.start_time.strftime("%H:%M") ) )
+          reservations_number += 1
+          puts "#{reservations_number}"
         end
       end
-    else
-      puts "Rompí el método"
+      puts"------------------------------___>>>>>#{reservations_number}"
+    end
+    if reservations_number >0
+      self.errors.add(:base ,"El horario no esta disponible")
     end
   end
-
 end

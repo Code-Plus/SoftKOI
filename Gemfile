@@ -35,7 +35,9 @@ gem 'browser'                             # Idenficar el navegador
 gem 'time_difference', '~> 0.4.2'         # Calcular la diferencia de las horas.
 gem 'groupdate'                           # Agrupar fechas
 gem 'chartkick'                           # Charts estadisticas
-gem 'puma'
+gem 'puma'                                # Charts estadisticas
+gem 'activerecord_any_of', '~> 1.4'       # Usar OR en los querys
+
 
 group :development, :test do
   gem 'byebug'

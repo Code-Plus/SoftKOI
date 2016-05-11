@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
 
 	#Ajax para traer las consolas
-	get '/reservations/new', to: 'reservations#new', as: 'ajax_new_console'
+	get '/reservations/ajaxnewconsole', to: 'reservations#ajaxnewconsole', as: 'ajax_new_console'
 
 	#Pagina principal de reportes
 	resources :reports do
@@ -32,6 +32,11 @@ Rails.application.routes.draw do
 			get 'chart'
 		end
 	end
+
+	#Ajax para rederizar archivos js
+	get '/reservations/ajaxscripts', to: 'reservations#ajaxscripts', as: 'ajax_scripts'
+
+
 
 	devise_for :users
 
