@@ -23,10 +23,6 @@ class Reservation < ActiveRecord::Base
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
 
-  before_validation :validate_console_hour,:validate_times
-
-
-
   def condition_reservation?
     q = Reservation.where('state = "activa"')
     testt = q.pluck(:id)
@@ -138,7 +134,7 @@ private
       self.errors.add(:base ,"La hora de inicio debe ser mayor a la actual")
     end
   end
-
+=begin
   def validate_console_hour
     #raise ActiveRecord::Rollback
     #strftime("%F") = yyyy-mm-dd
@@ -166,4 +162,5 @@ private
       self.errors.add(:base ,"El horario no esta disponible")
     end
   end
+=end
 end
