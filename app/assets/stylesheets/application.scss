@@ -9,20 +9,19 @@
 *= require bootstrap-datepicker3
 */
 
-
 html.turbolinks-progress-bar::before {
   background-color: #29B765 !important;
-  height: 5px !important;
+  height: 4px !important;
 }
 
 span#select2-items_product_id-container {
-   font-size: 14px !important;
+  font-size: 14px !important;
 }
 .modal {
-   text-align: center;
+  text-align: center;
 }
 .pagination > li > a, .pagination > li > span {
-   padding: 8px 13px !important;
+  padding: 8px 13px !important;
 }
 
 div.dataTables_info {
@@ -63,13 +62,13 @@ div.dataTables_paginate ul.pagination{
 }
 
 .item_search, .customer_search, .sale_comments {
-    display: none !important;
+  display: none !important;
 }
 
 .modal-dialog {
-   display: inline-block;
-   text-align: left;
-   vertical-align: middle;
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }
 
 span.select2{
@@ -78,17 +77,20 @@ span.select2{
 
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9,
 .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-   position: static !important;
+  position: static !important;
 }
 
 .quantity_sale{
-   width: 20% !important;
-   display: inline !important;
-   height: 27px !important;
+  width: 20% !important;
+  display: inline !important;
+  height: 27px !important;
 }
 
 @import "bootstrap-sprockets";
-@import "bootstrap.scss";
+@import "bootswatch/flatly/variables";
+@import "bootstrap";
+@import "bootswatch/flatly/bootswatch";
+
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'template.scss';

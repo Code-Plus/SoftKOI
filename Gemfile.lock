@@ -54,6 +54,8 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootswatch-rails (3.3.5)
+      railties (>= 3.1)
     browser (2.1.0)
     builder (3.2.2)
     byebug (8.2.5)
@@ -235,6 +237,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-datepicker-rails
   bootstrap-sass
+  bootswatch-rails
   browser
   byebug
   cancancan (~> 1.13, >= 1.13.1)
@@ -271,6 +274,9 @@ DEPENDENCIES
   web-console (~> 2.0)
   will_paginate (~> 3.0.6)
   will_paginate-bootstrap
+
+RUBY VERSION
+   ruby 2.2.3p173
 
 BUNDLED WITH
    1.12.3

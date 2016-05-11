@@ -4,7 +4,34 @@
 }
 body{
   background: #EEF3FA !important;
+  font-family: sans-serif !important;
 }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.btn {
+  border-width: 0px !important;
+}
+
+.btn-success {
+  background-color: #2ECC71 !important;
+  border-color: #2ECC71 !important;
+}
+
+a {
+  color: #2C3E50;
+}
+
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
+  background-color: #18BC9C !important;
+}
+
+.label-success {
+  background-color: #2ECC71 !important;
+}
+
 header{
   margin-left: 82px;
   width: 100%;
