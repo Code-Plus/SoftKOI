@@ -4,7 +4,6 @@ class CreateReservePrices < ActiveRecord::Migration
       t.integer :value
       t.integer :time
       t.references :product, index: true, foreign_key: true
-
       t.timestamps null: false
     end
   end

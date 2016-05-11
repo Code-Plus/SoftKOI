@@ -7,8 +7,6 @@
 *= require select2
 *= require select2-bootstrap
 *= require bootstrap-datepicker3
-*= require fullcalendar
-*= require fullcalendar.print
 */
 
 
@@ -98,5 +96,3 @@ span.select2{
 @import 'jquery-confirm.min.css';
 @import 'ionicons';
 @import 'terminator.scss';
-@import 'calendar.scss';
-@import 'calendary.scss';

@@ -138,6 +138,12 @@ span.last {
 
 /*-----------------------------clases solas-------------------------*/
 
+.charts_home #chart-1, #chart-2 {
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
 .panel-custom {
   box-shadow: 1px 1px 1px #34495E;
 }

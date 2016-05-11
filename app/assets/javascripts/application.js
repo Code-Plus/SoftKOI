@@ -22,10 +22,10 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require moment
-//= require fullcalendar
+//= require jsapi
 //= require chartkick
 //= require turbolinks
+//= require turbolinks-c
 //= require_tree .
 
 $(document).ajaxError(function(event,xhr,options,exc) {

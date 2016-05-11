@@ -4,7 +4,6 @@
 	<title>SoftKOI App</title>
 	<%= favicon_link_tag 'favicon.ico' %>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag "https://www.google.com/jsapi" %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 </head>
@@ -55,7 +54,7 @@
 						<%= image_tag("tag.svg") %>
 					<% end %>
 				</div>
-				<%if current_user.role.name == "Administrador" %>
+				<% if current_user.role.name == "Administrador" %>
 					<div class="imgsize">
 						<a class="ALETCalendario"href="#"><%= image_tag("calendar.svg") %></a>
 					</div>

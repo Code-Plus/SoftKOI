@@ -38,7 +38,7 @@ class OutputproductPdf < Prawn::Document
   def outputproduct_rows
     [['Cantidad de baja', 'Producto', 'Fecha']] +
       @outputproducts_for_pdf.map do |outputproduct|
-      [,outputproduct.stock, outputproduct.product.name, outputproduct.created_at.to_date]
+      [outputproduct.stock, outputproduct.product.name, outputproduct.created_at.to_date]
     end
   end
 

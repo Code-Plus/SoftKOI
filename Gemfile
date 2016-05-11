@@ -4,8 +4,9 @@ gem 'rails', '4.2.4'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier'
 gem 'coffee-rails', '~> 4.1.0'
+gem 'pg'
 gem 'jquery-rails'
-gem 'turbolinks'
+gem 'turbolinks', '~> 5.0.0.beta2'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -32,12 +33,9 @@ gem 'gon', '~> 6.0', '>= 6.0.1'           # Llamar variables en archivos JS
 gem 'ionicons-rails'                      # Pretty icons
 gem 'browser'                             # Idenficar el navegador
 gem 'time_difference', '~> 0.4.2'         # Calcular la diferencia de las horas.
-gem 'fullcalendar-rails'                  # Calendario - Agenda
-gem 'momentjs-rails'                      # Manejo de fechas avanzadas
 gem 'groupdate'                           # Agrupar fechas
-gem "chartkick"                           # Charts estadisticas
-
-
+gem 'chartkick'                           # Charts estadisticas
+gem 'puma'
 
 group :development, :test do
   gem 'byebug'
@@ -48,10 +46,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'spring'
-  gem 'sqlite3'
 end
 
 group :production do
-	gem 'pg'
 	gem 'rails_12factor'
 end
