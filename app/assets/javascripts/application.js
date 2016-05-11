@@ -24,6 +24,7 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require jsapi
 //= require chartkick
+//= require jquery-confirm
 //= require turbolinks
 //= require turbolinks-c
 //= require_tree .
