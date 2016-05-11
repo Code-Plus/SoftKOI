@@ -4,7 +4,7 @@ function Cargar_En_Reserva(){
   var muestraReloj;
   muestraReloj = function() {
 		// console.log("El relog se esta actualizando en tiempo real");
-    var fechaHora, horas, minutos, segundos;
+    var fechaHora, horas, minutos, segundos , msuma;
     fechaHora = new Date;
     horas = fechaHora.getHours();
     minutosbefore = fechaHora.getMinutes();
@@ -18,12 +18,21 @@ function Cargar_En_Reserva(){
       horas = '0' + horas;
     }
     if (minutosbefore < 10) {
-      minutosbefore = '0' + parseInt(minutosbefore + 1);
-			$('#reservation_start_time').val(horas + ':' + minutosbefore);
-    }else{
-			minutos = minutosbefore + 1;
+      if(minutosbefore == 9){
+        minutosbefore = minutosbefore + 1;
+  			$('#reservation_start_time').val(horas + ':' + minutosbefore);
+      }else{
+        minutosbefore = '0' + parseInt(minutosbefore + 1);
+  			$('#reservation_start_time').val(horas + ':' + minutosbefore);
+      }
+    }else if(minutosbefore == 59){
+      msuma = minutosbefore + 1;
+			minutos = '0' + (msuma - 60);
+	    $('#reservation_start_time').val((horas + 1) + ':' + minutos);
+		}else{
+      minutos = minutosbefore + 1;
 	    $('#reservation_start_time').val(horas + ':' + minutos);
-		}
+    }
     // if (segundos < 10) {
     //   segundos = '0' + segundos;
     // }
@@ -77,7 +86,7 @@ function calculatehoursandminutes(){
 		$('.field_prices').val(price);
 		$('.field_prices_id').val(id_reserve_price);
 	}).error(function(errors){
-		alert("Error en el ajax de /reservations/price_interval ubicado en el new.js.erb"+errors);
+		// alert("Error en el ajax de /reservations/price_interval ubicado en el new.js.erb"+errors);
 	});
 	// if (horas > 12) {
 	//   horas = horas - 12;
