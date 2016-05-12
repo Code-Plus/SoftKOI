@@ -41,7 +41,7 @@ gem 'chartkick'                           # Charts estadisticas
 gem 'activerecord_any_of', '~> 1.4'       # Usar OR en los querys
 gem 'bootswatch-rails'                    # Flatly theme
 gem 'simple_calendar', '~> 2.0'           # Calendario
-gem 'toastr-rails'                        # Toast notifications
+gem 'toastr_rails'                        # Toast notifications
 
 group :development, :test do
   gem 'byebug'

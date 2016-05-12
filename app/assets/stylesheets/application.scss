@@ -7,8 +7,12 @@
 *= require select2
 *= require select2-bootstrap
 *= require bootstrap-datepicker3
-*= require toastr
+*= require toastr_rails
 */
+
+#toast-container{
+  top: 70px;
+}
 
 html.turbolinks-progress-bar::before {
   background-color: #29B765 !important;

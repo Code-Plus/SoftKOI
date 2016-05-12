@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508205742) do
+ActiveRecord::Schema.define(version: 20160511194748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20160508205742) do
     t.text     "description"
     t.string   "state"
     t.integer  "type_product_id"
-    t.datetime "created_at",                     null: false
+    t.date     "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.boolean  "can_change",      default: true
   end
@@ -82,6 +82,13 @@ ActiveRecord::Schema.define(version: 20160508205742) do
   end
 
   add_index "customers", ["type_document_id"], name: "index_customers_on_type_document_id", using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "start_time"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "input_products", force: :cascade do |t|
     t.integer  "stock",      default: 0

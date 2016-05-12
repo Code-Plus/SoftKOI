@@ -25,29 +25,25 @@
 //= require jsapi
 //= require chartkick
 //= require jquery-confirm
-//= require toastr
+//= require toastr_rails
 //= require turbolinks
 //= require turbolinks-c
 //= require_tree .
 
-	toastr.options = {
-	  "closeButton": true,
-	  "debug": false,
-	  "newestOnTop": false,
-	  "progressBar": true,
-	  "positionClass": "toast-bottom-right",
-	  "preventDuplicates": false,
-	  "onclick": null,
-	  "showDuration": "300",
-	  "hideDuration": "1000",
-	  "timeOut": "5000",
-	  "extendedTimeOut": "1000",
-	  "showEasing": "swing",
-	  "hideEasing": "linear",
-	  "showMethod": "slideDown",
-	  "hideMethod": "fadeOut"
-	}
-
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
 
 $(document).ajaxError(function(event,xhr,options,exc) {
 

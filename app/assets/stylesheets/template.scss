@@ -16,8 +16,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .btn-success {
-  background-color: #2ECC71 !important;
-  border-color: #2ECC71 !important;
+  background-color: #29b765 !important;
+  border-color: #29b765 !important;
+}
+
+.label {
+  padding: .3em .6em .4em !important;
+  vertical-align: bottom !important;
 }
 
 a {
@@ -164,6 +169,17 @@ span.last {
 }
 
 /*-----------------------------clases solas-------------------------*/
+
+
+.table-bordered {
+  border: 1px solid #DCE4EC !important;
+  border-radius: 3px;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+  border: 1px solid #DCE4EC !important;
+}
+
 
 .charts_home #chart-1, #chart-2 {
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
