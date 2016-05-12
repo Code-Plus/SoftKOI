@@ -12,13 +12,13 @@
 
 		<li id="InventarioM" class="Mnormal McolorHoo" menu-name="products">
 			<%= link_to products_path, class: classname(products_path) do%>
-				<%= image_tag("1-small.png") %><span>Control de existencias</span></a>
+				<%= image_tag("1-small.png") %><span>Control de existencias</span>
 			<% end %>
 		</li>
 
 		<li id="VentasM" class="Mnormal McolorHoo" menu-name="sales">
 			<%= link_to sales_path, class: classname(sales_path) do%>
-				<%= image_tag("2-small.png") %><span>Ventas</span></a>
+				<%= image_tag("2-small.png") %><span>Ventas</span>
 			<% end %>
 		</li>
 
@@ -29,7 +29,7 @@
 
 		<li id="ConsolasM" class="Mnormal McolorHoo"  menu-name="reservations">
 			<%= link_to reservations_path, class: classname(reservations_path) do%>
-				<%= image_tag("4-small.png") %><span>Consolas</span></a>
+				<%= image_tag("4-small.png") %><span>Consolas</span>
 			<% end %>
 		</li>
 
@@ -40,7 +40,7 @@
 
 		<li id="UsuariosM" class="Mnormal McolorHoo" menu-name="users">
 			<%= link_to users_path, class: classname(users_path) do%>
-				<%= image_tag("6-small.png") %><span>Usuarios</span></a>
+				<%= image_tag("6-small.png") %><span>Usuarios</span>
 			<% end %>
 
 		</li>
@@ -52,8 +52,9 @@
 		</li>
 
 		<li id="AgendaM" class="Mnormal McolorHoo">
-		<a class="Modulos" href="#">
-			<%= image_tag("9-small.png") %><span>Agenda</span></a>
+			<%= link_to events_path, class: classname(events_path) do%>
+				<%= image_tag("9-small.png") %><span>Agenda</span></a>
+			<% end %>
 		</li>
 
 
