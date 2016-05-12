@@ -2,6 +2,10 @@
 
 <h1>Listing Events</h1>
 
+<div id="events_calendar">
+  <%= render partial: "calendar", locals: {events: @events} %>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -23,10 +27,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= month_calendar(attribute: :starts_at) do |date| %>
-  <%= date %>
-<% end %>
 
 <br>
 
