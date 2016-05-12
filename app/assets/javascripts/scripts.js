@@ -2,11 +2,7 @@ $(document).ready(function() {
 
 	$('.day').click(function(){
 	  var values = $(this).text();
-		$.ajax({
-			url: "/events/new"
-		}).error(function(){
-			console.log('Error en el ajax que llama al registrar de agenda');
-		});
+		$('#myModal').modal();
 	});
 
 	// Select autocomplete

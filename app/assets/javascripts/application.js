@@ -176,3 +176,8 @@ function activeconsole(){
 function reloadpageoninterval(){
 	location.reload();
 }
+
+function showandhidenewmodal(){
+  $('#mostrar_eventos').addClass('hidden');
+  $('#nuevo_evento').removeClass('hidden');
+}

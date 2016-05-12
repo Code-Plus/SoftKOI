@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @event = Event.new
   end
 
   # GET /events/1
@@ -35,6 +36,20 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_event
+    @event = Event.create(event_params)
+
+    respond_to do |format|
+      if @event.save
+        format.html {redirect_to events_path,notice: 'Evento creado satisfactoriamente.'}
+      else
+        format.html {redirect_to events_path,notice: '¡Error al crear el evento!'}
+      end
+    end
+
+
   end
 
   # PATCH/PUT /events/1

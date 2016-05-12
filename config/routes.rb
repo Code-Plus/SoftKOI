@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :events
+
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
@@ -33,6 +33,11 @@ Rails.application.routes.draw do
 	resources :categories
 	resources :type_products
 	resources :reserve_prices
+  resources :events do
+    collection do
+      post 'create_event'
+    end
+  end
 
 	resources :reports do
 		collection do
