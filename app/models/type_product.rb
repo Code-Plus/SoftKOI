@@ -12,6 +12,9 @@ class TypeProduct < ActiveRecord::Base
 	#Seleccionar tipos de productos disponibles
 	scope :activos, -> { where(state: "disponible")}
 
+	#Tipo de productos con almenos 1 categoria asociadas
+	scope :with_category, -> {joins(:categories).activos}
+
 
 	aasm column: "state" do
 		state :disponible, :initial => true

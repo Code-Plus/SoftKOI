@@ -14,12 +14,12 @@ class OutputproductPdf < Prawn::Document
   end
 
   def text_content
-    move_down 30
+    move_down 20
     font("Courier") do
       text "Reporte de baja de productos generados desde SOFTKOI APP.", :align => :center
-      move_down 30
+      move_down 20
       text "Este reporte fue generado la fecha: #{Date.today}", :align =>:center
-      move_down 40
+      move_down 20
         text "Productos dados de baja desde #{@date_from} hasta el #{@date_to}.", :align => :center
     end
   end
@@ -46,8 +46,9 @@ class OutputproductPdf < Prawn::Document
     bounding_box [bounds.left, bounds.bottom + 35], :width  => bounds.width  do
       font "Courier"
       stroke_horizontal_rule
-      move_down(5)
+      move_down(10)
       number_pages "<page> de <total>", { :start_count_at => 0, :page_filter => :all, :at => [bounds.right - 50, 0], :align => :right, :size => 12 }
+      move_down(5)
       image "#{Rails.root}/app/assets/images/softkoifooter.png", :position => 250, :height =>25
     end
   end

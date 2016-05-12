@@ -24,8 +24,6 @@ class Product < ActiveRecord::Base
 
 
   include AASM
-  include PublicActivity::Model
-  tracked only: [:products_low]
 
   #Productos disponibles
   scope :activos, -> { where(state: "disponible")}
