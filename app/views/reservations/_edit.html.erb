@@ -10,9 +10,12 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="input-group date">
-            <%= f.label :date,"Fecha" %><br>
-            <%= f.text_field :date, class: 'form-control' %>
+          <%= f.label :date, "Fecha" %><br>
+          <div class="input-group input-group-md date datepicker">
+            <%= f.text_field :date, :class => "form-control input-md" %>
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-th"></i>
+            </span>
           </div>
         </div>
       </div>

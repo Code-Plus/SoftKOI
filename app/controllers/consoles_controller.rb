@@ -26,7 +26,7 @@ class ConsolesController < ApplicationController
         format.json { head :no_content }
             format.js {  flash[:notice] = "¡Consola creada satisfactoriamente!" }
       else
-        format.json { render json: @category.errors.full_messages,
+        format.json { render json: @console.errors.full_messages,
                status: :unprocessable_entity }
       end
     end
@@ -38,7 +38,7 @@ class ConsolesController < ApplicationController
        format.json { head :no_content }
             format.js {  flash[:notice] = "¡Consola actualizada satisfactoriamente!" }
       else
-        format.json { render json: @category.errors.full_messages,
+        format.json { render json: @console.errors.full_messages,
           status: :unprocessable_entity }
       end
     end
