@@ -7,6 +7,7 @@
 *= require select2
 *= require select2-bootstrap
 *= require bootstrap-datepicker3
+*= require simple_calendar
 */
 
 html.turbolinks-progress-bar::before {
@@ -90,7 +91,6 @@ span.select2{
 @import "bootswatch/flatly/variables";
 @import "bootstrap";
 @import "bootswatch/flatly/bootswatch";
-
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'template.scss';
