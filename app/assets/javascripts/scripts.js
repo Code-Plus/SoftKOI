@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	// Select autocomplete
 	$('#sale_customer_id').select2({
 		theme: "bootstrap"
