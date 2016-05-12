@@ -176,3 +176,7 @@ function activeconsole(){
 		}
 	});
 }
+
+function reloadpageoninterval(){
+	location.reload();
+}
