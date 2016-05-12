@@ -1,42 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div style="margin: 0px 60px;">
 
-<h1>Listing Customers</h1>
+   <% content_for :title do -%>
+      Clientes <i class="fa fa-caret-down"></i>
+   <% end -%>
 
-<table id="datatable">
-  <thead>
-    <tr>
-      <th>Document</th>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Phone</th>
-      <th>Cellphone</th>
-      <th>Birthday</th>
-      <th>Email</th>
-      <th>State</th>
-      <th>Type document</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
+   <% content_for :menus do -%>
+      <li><h5 class="drop-title"><%= link_to "Abonos", "#" %></h5></li>
+      <li><h5 class="drop-title"><%= link_to "Ventas", sales_path %></h5></li>
+   <% end -%>
 
-  <tbody>
-    <% @customers.each do |customer| %>
-      <tr>
-        <td><%= customer.document %></td>
-        <td><%= customer.firstname %></td>
-        <td><%= customer.lastname %></td>
-        <td><%= customer.phone %></td>
-        <td><%= customer.cellphone %></td>
-        <td><%= customer.birthday %></td>
-        <td><%= customer.email %></td>
-        <td><%= customer.state %></td>
-        <td><%= customer.type_document.blank? ? '-' : customer.type_document.description %></td>
-        <td>
-           <%= link_to 'Show', customer %>
-           <%= link_to 'Edit', edit_customer_path(customer) %>
-         </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+   <div class="panel panel-default">
+      <div class="panel-body table">
 
-<br>
+         <table id="datatable" class="table table-bordered table-hover table-striped">
+            <thead>
+               <tr>
+                 <th>Documento</th>
+                 <th>Nombre</th>
+                 <th>Apellido</th>
+                 <th>Telefono</th>
+                 <th>Celular</th>
+                 <th>Edad</th>
+                 <th>Email</th>
+                 <th>Estado</th>
+                 <th>Acción</th>
+               </tr>
+            </thead>
+
+            <tbody id="customers">
+               <%= render @customers %>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>

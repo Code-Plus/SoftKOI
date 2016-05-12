@@ -100,7 +100,7 @@ class Product < ActiveRecord::Base
   end
 
   def set_updated_at
-    self.update_at = Time.now.in_time_zone("Bogota")
+    self.updated_at = Time.now.in_time_zone("Bogota")
   end
 
 end

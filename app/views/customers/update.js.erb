@@ -1,0 +1,5 @@
+$('#dialog').modal('toggle');
+$('#cutomer_<%= @customer.id %>').replaceWith('<%= j render (@customer) %>')
+
+//Desplegar alerta
+$("#notice_wrapper2").html('<%= j flash[:notice] %>').slideDown(400).delay(2000).slideUp(400).fadeOut(1500);
