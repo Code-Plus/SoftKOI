@@ -6,7 +6,7 @@ class TypeProduct < ActiveRecord::Base
 	after_save :validar_estado
 	attr_accessor :flash_notice
 	validate :validar_estado
-	validates :name, presence: true
+	validates :name, presence: true, uniqueness: true
 	validates :description, presence: true, length: { in: 8..80 }
 
 	#Seleccionar tipos de productos disponibles

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 	#Ajax para rederizar archivos js
 	get '/reservations/ajaxscripts', to: 'reservations#ajaxscripts', as: 'ajax_scripts'
 
-	devise_for :users
+	devise_for :users, :skip => :registration
 	resources :customers
 	resources :categories
 	resources :type_products

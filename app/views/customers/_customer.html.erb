@@ -1,0 +1,22 @@
+<tr>
+  <td><%= customer.document%></td>
+  <td><%= customer.firstname%></td>
+  <td><%= customer.lastname%></td>
+  <td><%= customer.phone%></td>
+  <td><%= customer.cellphone%></td>
+  <td><%= customer.birthday%></td>
+  <td><%= customer.email%></td>
+   <td width="100px">
+      <% if customer.state == "siDeuda" %>
+         <span class="label label-danger span-table">Sin Deuda</span>
+      <% else %>
+         <span class="label label-success span-table">Deuda</span>
+      <% end %>
+   </td>
+   <td>
+     <%= link_to edit_customer_path(customer), remote: true, :class => 'btn btn-sm btn-info bold' do%>
+       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
+     <% end %>
+   </td>
+
+</tr>

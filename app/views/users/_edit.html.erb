@@ -100,7 +100,7 @@
 
 		<div class="inline">
 			<% if @user.may_disponible?%>
-				<%= link_to "Habilitar", "/user/#{@user.id}/disponible", method: :put, class:'btn btn-primary bold' %>
+				<%= link_to "Habilitar", "/user/#{@user.id}/habilitar", method: :put, class:'btn btn-primary bold' %>
 			<% else %>
 				<%= link_to "Inhabilitar", "/user/#{@user.id}/inhabilitar", method: :put, class:'btn btn-primary bold' %>
 			<% end %>

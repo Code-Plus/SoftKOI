@@ -21,7 +21,9 @@ class Category < ActiveRecord::Base
 		end
 	end
 
-	validates :name, :type_product_id, :state, presence: true
+	validates :name,presence: true, uniqueness: true
+	validates :type_product_id, presence: true
+	validates :state, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
 
 
