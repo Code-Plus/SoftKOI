@@ -10,13 +10,8 @@
 
 <body class="flat-blue login-page">
 
-	<div id="notice_wrapper">
-		<% if notice %>
-			<p class="notice"><%= notice %></p>
-		<% elsif alert %>
-			<p class="alert"><%= alert %></p>
-		<% end %>
-	</div>
+	<%= render 'toastr_rails/flash' %>
+
 	<div class="container">
 		<% if browser.webkit? %>
 		<div class="login-box">
