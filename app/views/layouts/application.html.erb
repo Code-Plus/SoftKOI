@@ -23,7 +23,14 @@
 		</div>
 	</div>
 
-	<%= render 'toastr_rails/flash' %>
+	<% unless flash.empty? %>
+		<script type="text/javascript">
+			<% flash.each do |f| %>
+			<% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
+			toastr['<%= type %>']('<%= f[1] %>');
+			<% end %>
+		</script>
+	<% end %>
 
 	<div id="notice_wrapper2" class="noticias alerts_notice">
 		<p class="notice"></p>
@@ -101,6 +108,7 @@
 		</div>
 
 		<%= yield %>
+
 	</div>
 	<%= javascript_tag "transformicons.add('.tcon')" %>
 

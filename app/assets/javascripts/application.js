@@ -1,4 +1,3 @@
-
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -25,24 +24,57 @@
 //= require jsapi
 //= require chartkick
 //= require jquery-confirm
-//= require toastr_rails
+//= require toastr.min
 //= require turbolinks
 //= require turbolinks-c
 //= require_tree .
 
+//Datatable
+function load_datatable(){
+  $('#datatable').DataTable({
+    "language": {
+      "sProcessing":     "Procesando...",
+      "sLengthMenu":     "Mostrar  _MENU_  registros",
+      "sZeroRecords":    "No se encontraron resultados",
+      "sEmptyTable":     "Ningún dato disponible en esta tabla",
+      "sInfo":           "_TOTAL_ registros en total.",
+      "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+      "sInfoPostFix":    "",
+      "sSearch":         "Buscar:",
+      "sUrl":            "",
+      "sInfoThousands":  ",",
+      "sLoadingRecords": "Cargando...",
+      "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente &nbsp;<i class='fa fa-angle-right'></i>",
+        "sPrevious": "<i class='fa fa-angle-left'></i>&nbsp; Anterior"
+      },
+      "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+      }
+    }
+  });
+}
+
 toastr.options = {
+  "positionClass": "toast-bottom-right",
   "closeButton": true,
   "debug": false,
+  "newestOnTop": false,
   "progressBar": true,
-  "positionClass": "toast-top-right",
+  "preventDuplicates": true,
+  "onclick": null,
   "showDuration": "300",
   "hideDuration": "1000",
-  "timeOut": "5000",
+  "timeOut": "3050",
   "extendedTimeOut": "1000",
   "showEasing": "swing",
   "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
+  "showMethod": "slideDown",
+  "hideMethod": "slideUp"
 };
 
 $(document).ajaxError(function(event,xhr,options,exc) {
@@ -92,6 +124,7 @@ function Products_category_function(){
 		$('#category_type_product_id').prop("disabled",true);
 	}
 }
+
 function activeconsole(){
 	var inputReady = true;
 	var input = $('.404-input');
@@ -171,8 +204,4 @@ function activeconsole(){
 				break;
 		}
 	});
-}
-
-function reloadpageoninterval(){
-	location.reload();
 }

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   # Route protection
   before_filter :authenticate_user!
 
+  after_filter { flash.discard if request.xhr? }
+
   protect_from_forgery with: :exception
   before_filter :update_sanitized_params, if: :devise_controller?
 

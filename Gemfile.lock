@@ -210,7 +210,6 @@ GEM
     time_difference (0.4.2)
       activesupport
     timeliness (0.3.8)
-    toastr_rails (2.1.1)
     ttfunk (1.4.0)
     turbolinks (5.0.0.beta2)
       turbolinks-source
@@ -273,7 +272,6 @@ DEPENDENCIES
   simple_calendar (~> 2.0)
   spring
   time_difference (~> 0.4.2)
-  toastr_rails
   turbolinks (~> 5.0.0.beta2)
   uglifier
   web-console (~> 2.0)

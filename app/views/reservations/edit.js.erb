@@ -7,6 +7,12 @@ $('.modal-body').html('<%= j render("edit") %>');
 // Show the dynamic dialog
 $('#dialog').modal("show");
 
+$('.datepicker').datepicker({
+	autoclose: true,
+	orientation: "bottom auto",
+	format: "yyyy-mm-dd"
+});
+
 // Set focus to the first element
 $('#dialog').on('shown.bs.modal', function () {
 	$('.first_input').focus()
