@@ -1,8 +1,8 @@
 <%= month_calendar events: events do |date, events| %>
-  <%= date %>
+  <%= date.day %>
 
   <% events.each do |event| %>
-    <div>
+    <div class="event_description">
       <%= event.description %>
     </div>
   <% end %>

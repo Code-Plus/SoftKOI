@@ -15,6 +15,14 @@
   top: 70px;
 }
 
+.event_description{
+  cursor:pointer;
+}
+
+.event_description:hover{
+  background-color: rgba(255, 255, 255, 0.47);
+}
+
 html.turbolinks-progress-bar::before {
   background-color: #29B765 !important;
   height: 4px !important;

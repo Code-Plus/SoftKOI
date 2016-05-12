@@ -1,5 +1,14 @@
 $(document).ready(function() {
 
+	$('.day').click(function(){
+	  var values = $(this).text();
+		$.ajax({
+			url: "/events/new"
+		}).error(function(){
+			console.log('Error en el ajax que llama al registrar de agenda');
+		});
+	});
+
 	// Select autocomplete
 	$('#sale_customer_id').select2({
 		theme: "bootstrap"
