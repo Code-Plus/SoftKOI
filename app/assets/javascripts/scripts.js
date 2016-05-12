@@ -1,6 +1,11 @@
 $(document).ready(function() {
 
+
 	load_datatable();
+
+	$('.day').click(function(){
+	  var values = $(this).text();
+	});
 
 	// Select autocomplete
 	$('#sale_customer_id').select2({
