@@ -1,20 +1,19 @@
 <%# Parcial donde muestra el cliente asociado a la venta (cambiar) %>
 <% unless @sale.customer.blank? %>
 	<h4 class="text-primary">
-		<span class="glyphicon glyphicon-user"></span> Customer #Version beta
+		<span class="glyphicon glyphicon-user"></span> Cliente asociado
 	</h4>
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
-          <th>Document</th>
+          <th>Documento</th>
           <th>Nombre </th>
           <th>Apellido</th>
-          <th>phone</th>
-          <th>cellphone</th>
-          <th>birthday</th>
-          <th>email</th>
-          <th>estado</th>
+          <th>Teléfono</th>
+          <th>Celular</th>
+          <th>Fecha Nacimiento</th>
+          <th>Email</th>
         </tr>
       </thead>
 
@@ -29,7 +28,6 @@
               <td><%= e.text_field :cellphone, :class => "form-control", :readonly => true %></td>
               <td><%= e.text_field :birthday, :class => "form-control", :readonly => true %></td>
               <td><%= e.text_field :email, :class => "form-control", :readonly => true %></td>
-              <td><%= e.text_field :state, :class => "form-control",:readonly => true %></td>
             </tr>
           <% end %>
         <% end %>

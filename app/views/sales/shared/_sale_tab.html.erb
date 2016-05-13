@@ -1,7 +1,7 @@
 <%# Tab donde esta todo el contenido de la venta %>
 <div class="row item_search_wrapper hidden-print">
   <div class="col-sm-4">
-    <h4 class="text-primary"><span class="glyphicon glyphicon-search"></span> Buscar productos</h4>
+    <h4 class="text-primary"><span class="glyphicon glyphicon-search"></span>  Buscar productos</h4>
     <hr>
     <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_line_item_options", :format => :js), :method => "get", :remote => true do |f| %>
 
@@ -25,7 +25,7 @@
 <%= form_for(@sale) do |f| %>
   <%# render :partial => 'template/form_errors', :object => @sale %>
 
-  <h4 class="text-primary"><span class="glyphicon glyphicon-tags"></span> Productos</h4>
+  <h4 class="text-primary"><span class="glyphicon glyphicon-tags"></span>  Productos</h4>
   <hr class="hidden-print" />
 
   <div class="added_items">
@@ -46,4 +46,3 @@
   </div>
   <%= f.submit 'Update Sale', :class => "btn btn-success btn-lg sale_submit" %>
 <% end %>
-
