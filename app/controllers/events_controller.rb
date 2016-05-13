@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  # before_action :day_of_event, only:[:index]
+  after_action :day_of_event, only:[:index]
 
   # GET /events
   # GET /events.json
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Se ha creado el evento satisfactoriamente' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -48,27 +48,25 @@ class EventsController < ApplicationController
         format.html {redirect_to events_path,notice: '¡Error al crear el evento!'}
       end
     end
-
-
   end
 
-  # def day_of_event
-  #   unless @events.nil?
-  #     @events.each do |event|
-  #       # if event.start_time.strftime("%F") == Date.today.strftime("%F")
-  #         event.create_activity key: 'tiene un evento', read_at: nil
-  #       # end
-  #     end
-  #   end
-  #
-  # end
+  def day_of_event
+    unless @events.nil?
+      @events.each do |event|
+        # if event.start_time.strftime("%F") == Date.today.strftime("%F")
+          event.create_activity key: 'tiene un evento', read_at: nil
+        # end
+      end
+    end
+
+  end
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'El evento ha sido actualizado.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }

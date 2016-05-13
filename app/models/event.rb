@@ -9,6 +9,7 @@ class Event < ActiveRecord::Base
   validates :description, presence: true
   validates :start_time, presence: true
 
+
   private
 
   def set_date
