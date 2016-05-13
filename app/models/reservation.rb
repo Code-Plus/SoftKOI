@@ -17,12 +17,13 @@ class Reservation < ActiveRecord::Base
   scope :end_cancel_reservations, -> {where ("state = 'cancelada' OR state = 'finalizada'")}
 
   #Validaciones para los campos.
-  # validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
+  validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
-  #before_validation :validate_console_hour,:validate_times
+  before_validation :validate_times
+  #before_validation :validate_console_hour
   before_save :set_date
 
   aasm column: "state" do
@@ -143,10 +144,11 @@ private
     self.created_at= Time.now.in_time_zone("Bogota")
     self.updated_at= Time.now.in_time_zone("Bogota")
   end
-=begin
+
   def validate_console_hour
     #raise ActiveRecord::Rollback
     #strftime("%F") = yyyy-mm-dd
+    puts"-----------------ENTRE AL METODO--------------"
     current_date = Time.new.strftime("%F")
     self_date = self.date.strftime("%F")
     self_start_time = self.start_time.strftime("%H:%M")
@@ -167,9 +169,11 @@ private
       end
       puts"------------------------------___>>>>>#{reservations_number}"
     end
-    if reservations_number >0
-      self.errors.add(:base ,"El horario no esta disponible")
+    if reservations_number == 1
+      puts "<<<------------------------Estoy en el Rollback------------------------------_>>>"
+      # self.errors.add(:base ,"El horario no esta disponible")
+      raise ActiveRecord::Rollback , "El horario no esta disponible"
     end
   end
-=end
+
 end
