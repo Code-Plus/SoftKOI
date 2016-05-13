@@ -25,6 +25,8 @@ class Category < ActiveRecord::Base
 	validates :type_product_id, presence: true
 	validates :state, presence: true
 	validates :description, presence: true, length: { in: 8..80 }
+	before_create :set_date
+	before_update :set_updated_at
 
 
 	#Seleccionar Categorías disponibles
@@ -44,6 +46,17 @@ class Category < ActiveRecord::Base
 		event :noDisponible do
 			transitions from: :disponible, to: :noDisponible
 		end
+	end
+
+	private
+
+	def set_date
+		self.created_at = Time.now.in_time_zone("Bogota")
+		self.updated_at = Time.now.in_time_zone("Bogota")
+	end
+
+	def set_updated_at
+		self.updated_at = Time.now.in_time_zone("Bogota")
 	end
 
 

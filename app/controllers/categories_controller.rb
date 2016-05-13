@@ -40,10 +40,9 @@ class CategoriesController < ApplicationController
       else
         format.json { render json: @category.errors.full_messages,
           status: :unprocessable_entity }
-        end
       end
     end
-
+  end
 
   #Cambia el estado a disponible
   def disponible

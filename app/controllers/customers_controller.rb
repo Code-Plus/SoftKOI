@@ -1,14 +1,12 @@
 class CustomersController < ApplicationController
 
-  before_action :set_customer, only: [:show, :edit, :update, :sinDeuda, :conDeuda]
+  before_action :set_customer, only: [ :edit, :update, :sinDeuda, :conDeuda]
   load_and_authorize_resource
 
   def index
     @customers = Customer.all
   end
 
-  def show
-  end
 
   def generate_pdf
     @search = Report.new(params[:search])
@@ -50,7 +48,7 @@ class CustomersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @customer.update(category_params)
+      if @customer.update(customer_params)
         format.json { head :no_content }
         format.js {  flash[:notice] = "¡Cliente actualizado satisfactoriamente!" }
       else
