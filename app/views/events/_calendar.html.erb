@@ -4,6 +4,7 @@
   <% events.each do |event| %>
     <div class="event_description">
       <%= event.description %>
+      <%= link_to 'X', event, method: :delete, data: { confirm: 'Are you sure?' }, style: 'float: right;' %>
     </div>
   <% end %>
 <% end %>
