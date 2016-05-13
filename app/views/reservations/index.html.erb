@@ -87,6 +87,7 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
               $.alert('¡La reserva ha iniciado!');
               res = 1;
               miajax(res, gon.reserve_id);
+              location.reload();
           },
           cancel: function(){
             $.confirm({
@@ -96,8 +97,8 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
               content: '¿Qué desea?',
               confirm: function(){
                 //Redireccionar a editar la reserva
-                  // res = 2;
-                  // miajax(res, gon.reserve_id);
+                  res = 2;
+                  miajax(res, gon.reserve_id);
                   $.ajax({
                     url:'/reservations/'+gon.reserve_id+'/edit'
                   }).error(function(error){
@@ -123,7 +124,7 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
           data:{respuesta: respuesta, id: identify},
           type: 'get'
         }).done(function(done){
-          location.reload();
+
         }).error(function(error){
           console.log('Ha ocurrido un error '+ error);
         });
@@ -134,7 +135,7 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
     if (gon.console_name != null) {
       $.alert({
         title: '¡Reserva terminada!',
-        content: 'La reserva de la consola ' + gon.console_name + 'ha finalizado con éxito.',
+        content: 'La reserva de la consola ' + gon.console_name + ' ha finalizado con éxito.',
         confirm: function(){
             $.alert('El precio es ' + '$' + gon.reserve_price_value);
         }

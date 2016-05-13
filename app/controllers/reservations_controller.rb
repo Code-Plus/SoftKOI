@@ -7,11 +7,11 @@ class ReservationsController < ApplicationController
     @reservationsActivas = Reservation.activas_proceso
     @updateStateProceso = Reservation.validates_hour_start(Reservation.all)
     @updateStateFinalizada = Reservation.validates_hour_finish(Reservation.all)
-
+    
     if @updateStateProceso.is_a?(Array)
-      gon.reserve_id = @updateStateProceso[0]
-    else
       gon.reserve_id = nil
+    else
+      gon.reserve_id = @updateStateProceso
     end
 
     unless @updateStateFinalizada.nil? or @updateStateFinalizada[0].equal?(0)
