@@ -41,7 +41,6 @@ class EventsController < ApplicationController
 
   def create_event
     @event = Event.create(event_params)
-
     respond_to do |format|
       if @event.save
         format.html {redirect_to events_path,notice: 'Evento creado satisfactoriamente.'}

@@ -73,10 +73,10 @@
   <%# Charts Estadisticas  %>
   <div class="row">
     <div class="col-sm-6 charts_home">
-      <%= line_chart Product.group_by_day(:created_at).count %>
+      <%= line_chart Product.group_by_day(:created_at).count, :library => {:hAxis => {:format => "yyyy/MM/dd"}}, discrete: true, xtitle: "Fecha", ytitle: "Cantidad" %>
     </div>
     <div class="col-sm-6 charts_home">
-      <%= line_chart Reservation.group_by_day(:created_at).count %>
+      <%= line_chart Reservation.group_by_day(:created_at).count, :library => {:hAxis => {:format => "yyyy/MM/dd"}}, discrete: true, xtitle: "Fecha", ytitle: "Cantidad" %>
     </div>
   </div>
 
