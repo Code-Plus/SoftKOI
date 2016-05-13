@@ -10,13 +10,6 @@
 
 <body class="flat-blue login-page">
 
-	<div id="notice_wrapper">
-		<% if notice %>
-			<p class="notice"><%= notice %></p>
-		<% elsif alert %>
-			<p class="alert"><%= alert %></p>
-		<% end %>
-	</div>
 	<div class="container">
 		<% if browser.webkit? %>
 		<div class="login-box">
@@ -28,6 +21,16 @@
 
 					<div class="col-sm-12">
 						<%= yield %>
+
+						<% unless flash.empty? %>
+							<script type="text/javascript">
+								<% flash.each do |f| %>
+								<% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
+								toastr['<%= type %>']('<%= f[1] %>');
+								<% end %>
+							</script>
+						<% end %>
+						
 					</div>
 				</div>
 			</div>

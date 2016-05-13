@@ -5,6 +5,8 @@ class Product < ActiveRecord::Base
   has_many :input_products
   has_many :items
 
+  before_create :set_date
+  before_update :set_updated_at
   before_validation :validate_category_change
   after_update do
     if self.state == "noDisponible" || self.state == "disponible"
@@ -24,8 +26,6 @@ class Product < ActiveRecord::Base
 
 
   include AASM
-  include PublicActivity::Model
-  tracked only: [:products_low]
 
   #Productos disponibles
   scope :activos, -> { where(state: "disponible")}
@@ -92,6 +92,15 @@ class Product < ActiveRecord::Base
         self.errors.add(:base ,"Esta Categoría no permite cambios")
       end
     end
+  end
+
+  def set_date
+    self.created_at = Time.now.in_time_zone("Bogota")
+    self.updated_at = Time.now.in_time_zone("Bogota")
+  end
+
+  def set_updated_at
+    self.updated_at = Time.now.in_time_zone("Bogota")
   end
 
 end

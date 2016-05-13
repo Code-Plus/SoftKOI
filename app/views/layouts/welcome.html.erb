@@ -21,13 +21,15 @@
 				<p class="prompt output new-output click"></p>
 		</div>
 	</div>
-	<div id="notice_wrapper">
-		<% if notice %>
-			<p class="notice"><%= notice %></p>
-		<% elsif alert %>
-			<p class="alert"><%= alert %></p>
-		<% end %>
-	</div>
+
+	<% unless flash.empty? %>
+		<script type="text/javascript">
+			<% flash.each do |f| %>
+			<% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+			toastr['<%= type %>']('<%= f[1] %>');
+			<% end %>
+		</script>
+	<% end %>
 
 	<header>
 		<!-- Barra superior -->
@@ -45,6 +47,7 @@
 			<!-- Centro de la barra superior -->
 			<div class="centro">
 				<!-- Espacio para futuros logos o assets -->
+				<%= Time.now %>
 			</div>
 
 			<!-- Notificaciones y boton de perfil -->

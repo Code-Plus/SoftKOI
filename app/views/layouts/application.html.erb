@@ -22,15 +22,17 @@
 				<p class="prompt output new-output click"></p>
 		</div>
 	</div>
-	<div id="notice_wrapper">
-		<% if notice %>
-			<p class="notice"><%= notice %></p>
-		<% elsif alert %>
-			<p class="alert"><%= alert %></p>
-		<% end %>
-	</div>
 
-	<div id="notice_wrapper2" class="noticias">
+	<% unless flash.empty? %>
+		<script type="text/javascript">
+			<% flash.each do |f| %>
+			<% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
+			toastr['<%= type %>']('<%= f[1] %>');
+			<% end %>
+		</script>
+	<% end %>
+
+	<div id="notice_wrapper2" class="noticias alerts_notice">
 		<p class="notice"></p>
 	</div>
 
@@ -50,7 +52,7 @@
 
 			<!-- Centro de la barra superior -->
 			<div class="centro">
-				<!-- Espacio para futuros logos o assets -->
+				<%= Time.now %>
 			</div>
 
 			<!-- Notificaciones y boton de perfil -->
@@ -106,6 +108,7 @@
 		</div>
 
 		<%= yield %>
+
 	</div>
 	<%= javascript_tag "transformicons.add('.tcon')" %>
 

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160513020718) do
+=======
+ActiveRecord::Schema.define(version: 20160513012453) do
+>>>>>>> 668900efdfbf8f571535320ef0707081dca5bdf3
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +71,12 @@ ActiveRecord::Schema.define(version: 20160513020718) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "coupons", force: :cascade do |t|
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string   "document"
     t.string   "firstname"
@@ -83,6 +93,13 @@ ActiveRecord::Schema.define(version: 20160513020718) do
 
   add_index "customers", ["type_document_id"], name: "index_customers_on_type_document_id", using: :btree
 
+  create_table "events", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "start_time"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "input_products", force: :cascade do |t|
     t.integer  "stock",      default: 0
     t.integer  "product_id"
@@ -91,6 +108,16 @@ ActiveRecord::Schema.define(version: 20160513020718) do
   end
 
   add_index "input_products", ["product_id"], name: "index_input_products_on_product_id", using: :btree
+
+  create_table "item_coupons", force: :cascade do |t|
+    t.integer  "sale_id"
+    t.integer  "coupon_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "item_coupons", ["coupon_id"], name: "index_item_coupons_on_coupon_id", using: :btree
+  add_index "item_coupons", ["sale_id"], name: "index_item_coupons_on_sale_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.integer  "product_id"
@@ -231,6 +258,8 @@ ActiveRecord::Schema.define(version: 20160513020718) do
   add_foreign_key "categories", "type_products"
   add_foreign_key "customers", "type_documents"
   add_foreign_key "input_products", "products"
+  add_foreign_key "item_coupons", "coupons"
+  add_foreign_key "item_coupons", "sales"
   add_foreign_key "items", "products"
   add_foreign_key "items", "sales"
   add_foreign_key "output_products", "products"

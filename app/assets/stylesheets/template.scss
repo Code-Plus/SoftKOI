@@ -7,6 +7,11 @@ body{
   font-family: sans-serif !important;
 }
 
+a.no-hover:hover {
+  color: white;
+  color: white;
+}
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
@@ -16,8 +21,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .btn-success {
-  background-color: #2ECC71 !important;
-  border-color: #2ECC71 !important;
+  background-color: #29b765 !important;
+  border-color: #29b765 !important;
+}
+
+.label {
+  padding: .3em .6em .4em !important;
+  vertical-align: bottom !important;
 }
 
 a {
@@ -164,6 +174,17 @@ span.last {
 }
 
 /*-----------------------------clases solas-------------------------*/
+
+
+.table-bordered {
+  border: 1px solid #DCE4EC !important;
+  border-radius: 3px;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+  border: 1px solid #DCE4EC !important;
+}
+
 
 .charts_home #chart-1, #chart-2 {
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
@@ -589,11 +610,6 @@ ul.menu.desplegado{
 
 /* Alerts */
 #notice_wrapper {
-  display: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 999;
   .alert {
     background: rgba(231, 76, 60,1.0);
     border-radius: 0px !important;
@@ -613,11 +629,6 @@ ul.menu.desplegado{
 
 
 #notice_wrapper2{
-  display: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 999;
   background:rgba(26, 188, 156,1.0);
   color: #fff;
   font-size: 16px !important;
@@ -627,6 +638,14 @@ ul.menu.desplegado{
   padding: 20px 0;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.alerts_notice{
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
 }
 
 //Switcher
@@ -683,4 +702,7 @@ input.switch:checked ~ p.switch:nth-of-type(1) {
 
 input.switch:not(:checked) ~ p.switch:nth-of-type(2) {
   display: block;
+}
+.hidden{
+  display: none;
 }

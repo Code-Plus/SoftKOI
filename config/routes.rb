@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+  resources :item_coupons
+  resources :coupons
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
@@ -27,11 +30,16 @@ Rails.application.routes.draw do
 	#Ajax para rederizar archivos js
 	get '/reservations/ajaxscripts', to: 'reservations#ajaxscripts', as: 'ajax_scripts'
 
-	devise_for :users
+	devise_for :users, :skip => :registration
 	resources :customers
 	resources :categories
 	resources :type_products
 	resources :reserve_prices
+  resources :events do
+    collection do
+      post 'create_event'
+    end
+  end
 
 	resources :reports do
 		collection do

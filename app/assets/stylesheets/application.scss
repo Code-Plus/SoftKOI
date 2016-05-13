@@ -7,7 +7,20 @@
 *= require select2
 *= require select2-bootstrap
 *= require bootstrap-datepicker3
+*= require simple_calendar
 */
+
+#toast-container > div {
+  opacity: .99 !important;
+}
+
+.event_description{
+  cursor:pointer;
+}
+
+.event_description:hover{
+  background-color: rgba(255, 255, 255, 0.47);
+}
 
 html.turbolinks-progress-bar::before {
   background-color: #29B765 !important;
@@ -90,7 +103,6 @@ span.select2{
 @import "bootswatch/flatly/variables";
 @import "bootstrap";
 @import "bootswatch/flatly/bootswatch";
-
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'template.scss';
@@ -98,3 +110,4 @@ span.select2{
 @import 'jquery-confirm.scss';
 @import 'ionicons';
 @import 'terminator.scss';
+@import 'toastr.min.css';
