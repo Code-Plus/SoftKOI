@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   after_action :day_of_event, only:[:index]
+  # after_action :day_of_event, only:[:create]
 
   # GET /events
   # GET /events.json
@@ -53,12 +54,11 @@ class EventsController < ApplicationController
   def day_of_event
     unless @events.nil?
       @events.each do |event|
-        # if event.start_time.strftime("%F") == Date.today.strftime("%F")
-          event.create_activity key: 'tiene un evento', read_at: nil
-        # end
-      end
-    end
-
+      #  if event.start_time.strftime("%F") == Date.today.strftime("%F")
+           event.create_activity key: 'tiene un evento', read_at: nil
+      # end
+       end
+     end
   end
 
   # PATCH/PUT /events/1
