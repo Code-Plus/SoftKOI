@@ -6,14 +6,14 @@
       <div class="col-sm-12">
         <div class="row">
           <div class="col-sm-6">
-            <div class="field" id="m_r_reserves">
-              <%= f.label :customer,"Cliente" %><br>
+            <div class="form-group required" id="m_r_reserves">
+              <span style="color:red;">*</span><%= f.label :customer,"Cliente" %><br>
               <%= f.text_field :customer , :class => "form-control"%>
             </div>
           </div>
           <div class="col-sm-6">
-            <%= f.label :date, "Fecha" %><br>
-            <div class="input-group input-group-md date datepicker">
+            <span style="color:red;">*</span><%= f.label :date, "Fecha" %><br>
+            <div class="input-group input-group-md date datepicker required">
               <%= f.text_field :date, :class => "form-control input-md" %>
               <span class="input-group-addon">
                 <i class="glyphicon glyphicon-th"></i>
@@ -23,14 +23,14 @@
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <div class="field">
-              <%= f.label :consoles, "Consola" %><br>
+            <div class="field required">
+              <span style="color:red;">*</span><%= f.label :consoles, "Consola" %><br>
               <%= collection_select(:reserve_price, :console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, {:class=>'form-control type_product_id'}) %>
            </div>
           </div>
           <div class="col-sm-6">
-            <div id="intervalrealtime" class="field" style="display:none;" attrdess="disabled_botton" realtimeprop="true">
-               <%= f.label :interval,"Intervalo (Minutos)"  %><br>
+            <div id="intervalrealtime" class="field required" style="display:none;" attrdess="disabled_botton" realtimeprop="true">
+               <span style="color:red;">*</span><%= f.label :interval,"Intervalo (Minutos)"  %><br>
                <%= f.select(:reserve_price_id, "" ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
                <%# collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:console_id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
             </div>
@@ -38,21 +38,21 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-              <div class="field">
-                 <%= f.label :start_time,"Hora de incio" %><br>
+              <div class="field required">
+                 <span style="color:red;">*</span><%= f.label :start_time,"Hora de incio" %><br>
                  <%= f.time_field :start_time ,:class => "form-control", :onkeyup => "price_console_function()" , :disabled => "true"%>
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="field">
-                 <%= f.label :end_time,"Hora de finalizacion" %><br>
+              <div class="field required">
+                 <span style="color:red;">*</span><%= f.label :end_time,"Hora de finalizacion" %><br>
                  <%= f.time_field :end_time, :class => "form-control", :disabled => "true"%>
               </div>
             </div>
         </div>
-        <div class="field">
-           <%= f.label :price_reserve_id," Precio" %><br>
-           <%= f.text_field :reserve_price_id , :class => "form-control field_prices_id hidden" %>
+        <div class="field required">
+           <span style="color:red;">*</span><%= f.label :price_reserve_id," Precio" %><br>
+           <%= f.text_field :reserve_price_id , :class => "form-control field_prices_id hidden required" %>
            <%= text_field_tag :field_prices,'',class:'form-control field_prices', readonly: true%>
         </div>
      </div>
