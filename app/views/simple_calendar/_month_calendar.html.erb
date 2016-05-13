@@ -1,6 +1,6 @@
 <div class="simple-calendar">
   <div class="panel panel-success">
-      <div class="panel-heading text-center">
+      <div class="panel-heading text-center upbar">
         <%= link_to I18n.t('simple_calendar.previous', :default => "Anterior"), calendar.url_for_previous_view, class:'no-hover' %>
         <%= I18n.t("date.month_names")[start_date.month].capitalize %>
         <%= link_to I18n.t('simple_calendar.next', :default => "Siguiente"), calendar.url_for_next_view, class:'no-hover' %>
