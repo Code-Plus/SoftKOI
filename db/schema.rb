@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20160513020718) do
     t.text     "description"
     t.string   "state"
     t.integer  "type_product_id"
-    t.date     "created_at",                     null: false
+    t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.boolean  "can_change",      default: true
   end
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 20160513020718) do
     t.integer  "amount",       default: 0
     t.integer  "total_amount", default: 0
     t.integer  "discount",     default: 0
-    t.date     "limit_date",   default: '2016-05-10'
+    t.date     "limit_date",   default: '2016-05-11'
     t.text     "comment"
     t.integer  "user_id"
     t.integer  "customer_id"
