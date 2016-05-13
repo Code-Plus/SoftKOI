@@ -22,18 +22,8 @@ class Reservation < ActiveRecord::Base
   validates :end_time, presence: true
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
-
+  #before_validation :validate_console_hour,:validate_times
   before_save :set_date
-
-  def condition_reservation?
-    q = Reservation.where('state = "activa"')
-    testt = q.pluck(:id)
-    if testt.size > 1
-      return true
-    else
-      return false
-    end
-  end
 
   aasm column: "state" do
     state :activa, :initial => true
@@ -68,20 +58,18 @@ class Reservation < ActiveRecord::Base
           hour_start_sum = hour_start + 5.minutes
           hour_system = Time.now
           if hour_system.strftime("%H").to_i == hour_start_sum.strftime("%H").to_i
-            while hour_system.strftime("%M").to_i <= hour_start_sum.strftime("%M").to_i
-              reserve_id = var.id.to_s
-              return reserve_id
-            end
-            if hour_system.strftime("%M").to_i > hour_start_sum.strftime("%M").to_i
+            if hour_system.strftime("%M").to_i <= hour_start_sum.strftime("%M").to_i
+                reserve_id = var.id
+                return reserve_id
+            elsif hour_system.strftime("%M").to_i > hour_start_sum.strftime("%M").to_i
               Reservation.where(id: var.id).update_all(state: 'cancelada')
             end
           elsif hour_system.strftime("%H").to_i != hour_start_sum.strftime("%H").to_i
             resta = hour_system.strftime("%H").to_i - hour_start_sum.strftime("%H").to_i
-            while (hour_system.strftime("%M").to_i) + resta <= (hour_start_sum.strftime("%M").to_i) + resta
-              reserve_id = var.id.to_s
+            if (hour_system.strftime("%M").to_i) + resta <= (hour_start_sum.strftime("%M").to_i) + resta
+              reserve_id = var.id
               return reserve_id
-            end
-            if (hour_system.strftime("%M").to_i) + resta > (hour_start_sum.strftime("%M").to_i) + resta
+            elsif (hour_system.strftime("%M").to_i) + resta > (hour_start_sum.strftime("%M").to_i) + resta
               Reservation.where(id: var.id).update_all(state: 'cancelada')
             end
           end
