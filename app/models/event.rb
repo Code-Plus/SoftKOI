@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
 
   validates :description, presence: true
   validates :start_time, presence: true
+  validates :name, presence: true
 
 
   private

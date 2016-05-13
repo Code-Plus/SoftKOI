@@ -10,13 +10,16 @@
       </ul>
     </div>
   <% end %>
-  
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :name, "Nombre" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Descripción" %><br>
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :start_time %><br>
+    <%= f.label :start_time, "Hora" %><br>
     <%= f.datetime_select :start_time %>
   </div>
   <div class="actions">

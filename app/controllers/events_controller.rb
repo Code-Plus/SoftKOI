@@ -54,10 +54,10 @@ class EventsController < ApplicationController
   def day_of_event
     unless @events.nil?
       @events.each do |event|
-      #  if event.start_time.strftime("%F") == Date.today.strftime("%F")
-           event.create_activity key: 'tiene un evento', read_at: nil
-      # end
-       end
+      if event.start_time.strftime("%F") == DateTime.now.strftime("%F")
+        event.create_activity key: 'es su evento para hoy', read_at: nil
+      end
+      end
      end
   end
 
@@ -93,6 +93,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:description, :start_time)
+      params.require(:event).permit(:description, :start_time, :name)
     end
 end
