@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
 
   before_create :set_date
   before_update :set_updated_at
+
   before_validation :validate_category_change
   after_update do
     if self.state == "noDisponible" || self.state == "disponible"

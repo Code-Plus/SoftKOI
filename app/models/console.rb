@@ -9,10 +9,12 @@ class Console < ActiveRecord::Base
   validates :state, presence: true
 
   scope :drop, -> { where(state: "baja")}
-
   scope :uso, -> { where("state = 'disponible' OR state = 'noDisponible'")	 }
-
   scope :disponible, -> { where(state: "disponible")}
+
+  before_create :set_date
+  before_update :set_updated_at
+
 
 
   aasm column: "state" do
@@ -34,5 +36,15 @@ class Console < ActiveRecord::Base
 			transitions  from: :noDisponible, to: :baja
 		end
 	end
+
+  private
+  def set_date
+    self.created_at = Time.now.in_time_zone("Bogota")
+    self.updated_at = Time.now.in_time_zone("Bogota")
+  end
+
+  def set_updated_at
+    self.updated_at = Time.now.in_time_zone("Bogota")
+  end
 
 end

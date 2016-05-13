@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
 	validates :type_document_id,  presence: true
 	before_create :validate_pass
 
+	before_create :set_date
+	before_update :set_updated_at
+
+
 	devise :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
 
@@ -55,5 +59,14 @@ class User < ActiveRecord::Base
 
 	def validate_pass
 			validates :password,  presence: true
+	end
+	
+	def set_date
+		self.created_at = Time.now.in_time_zone("Bogota")
+		self.updated_at = Time.now.in_time_zone("Bogota")
+	end
+
+	def set_updated_at
+		self.updated_at = Time.now.in_time_zone("Bogota")
 	end
 end
