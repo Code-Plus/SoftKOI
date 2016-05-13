@@ -1,13 +1,14 @@
+<tr id="customer_<%= customer.id %>">
 <tr>
   <td><%= customer.document%></td>
   <td><%= customer.firstname%></td>
   <td><%= customer.lastname%></td>
   <td><%= customer.phone%></td>
   <td><%= customer.cellphone%></td>
-  <td><%= customer.birthday%></td>
+  <td><%= customer.age%></td>
   <td><%= customer.email%></td>
    <td width="100px">
-      <% if customer.state == "siDeuda" %>
+      <% if customer.state == "sinDeuda" %>
          <span class="label label-danger span-table">Sin Deuda</span>
       <% else %>
          <span class="label label-success span-table">Deuda</span>

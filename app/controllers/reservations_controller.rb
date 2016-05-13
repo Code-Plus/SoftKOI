@@ -9,15 +9,9 @@ class ReservationsController < ApplicationController
     @updateStateFinalizada = Reservation.validates_hour_finish(Reservation.all)
 
     if @updateStateProceso.is_a?(Array)
-      @updateStateProceso.each do |u|
-        if u.is_a?(Numeric)
-          gon.reserve_id = @updateStateProceso[0]
-          gon.hour_start = @updateStateProceso[1]
-        else
-          gon.reserve_id = nil
-          gon.hour_start = nil
-        end
-      end
+      gon.reserve_id = @updateStateProceso[0]
+    else
+      gon.reserve_id = nil
     end
 
     unless @updateStateFinalizada.nil? or @updateStateFinalizada[0].equal?(0)
@@ -53,8 +47,6 @@ class ReservationsController < ApplicationController
     respond_to do |format|
       format.json { render json: @query_final }
     end
-
-
   end
 
   def reservations_end
@@ -71,12 +63,8 @@ class ReservationsController < ApplicationController
       elsif @respons.to_i == 3
         @identify = @id.to_i
         @r = Reservation.where(id: @identify).update_all(state: 'cancelada')
-      elsif @respons.to_i == 0
-        @identify = @id.to_i
-        @r = Reservation.where(id: @identify).update_all(state: 'cancelada')
       end
     end
-
   end
 
   def show
@@ -94,10 +82,9 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.create(reservation_params)
     respond_to do |format|
-
       if @reservation.save
          format.json { head :no_content }
-            format.js {  flash[:notice] = "¡Reserva creada satisfactoriamente!" }
+         format.js {  flash[:notice] = "¡Reserva creada satisfactoriamente!" }
       else
         format.json { render json: @reservation.errors.full_messages,status: :unprocessable_entity }
       end

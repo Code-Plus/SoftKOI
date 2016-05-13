@@ -8,7 +8,8 @@ class Sale < ActiveRecord::Base
 	has_many :payments, dependent: :destroy
 
 	before_validation :verificar_estado
-	before_create :default_date
+	before_create :default_date, :set_date
+	before_update :set_updated_at
 
 	accepts_nested_attributes_for :items, allow_destroy: true
 	accepts_nested_attributes_for :products, allow_destroy: true
@@ -100,6 +101,15 @@ class Sale < ActiveRecord::Base
 		if self.limit_date.nil?
 			self.limit_date = Time.now
 		end
+	end
+
+	def set_date
+		self.created_at = Time.now.in_time_zone("Bogota")
+		self.updated_at = Time.now.in_time_zone("Bogota")
+	end
+
+	def set_updated_at
+		self.updated_at = Time.now.in_time_zone("Bogota")
 	end
 
 end
