@@ -23,7 +23,7 @@ class Reservation < ActiveRecord::Base
   validates :customer, presence: true
   validates :reserve_price_id, presence: true
 
-  # before_validation :validate_console_hour,:validate_times
+  before_save :set_date
 
   def condition_reservation?
     q = Reservation.where('state = "activa"')
@@ -63,15 +63,29 @@ class Reservation < ActiveRecord::Base
    def self.validates_hour_start(search)
       search = search.where(state: 'activa').select("id, date, start_time, state")
       search.each do |var|
-         if var.date.strftime("%F") == Time.new.strftime("%F")
-            if var.start_time.strftime("%H:%M") == Time.now.strftime("%H:%M")
-               reserve_id = var.id.to_s
-               minutes_of_hour = var.start_time.strftime("%H").to_i * 60
-               minutes = var.start_time.strftime("%M").to_i
-               hour_finish = minutes_of_hour + minutes
-               return reserve_id, hour_finish
+        if var.date.strftime("%F") == Time.new.strftime("%F")
+          hour_start = var.start_time
+          hour_start_sum = hour_start + 5.minutes
+          hour_system = Time.now
+          if hour_system.strftime("%H").to_i == hour_start_sum.strftime("%H").to_i
+            while hour_system.strftime("%M").to_i <= hour_start_sum.strftime("%M").to_i
+              reserve_id = var.id.to_s
+              return reserve_id
             end
-         end
+            if hour_system.strftime("%M").to_i > hour_start_sum.strftime("%M").to_i
+              Reservation.where(id: var.id).update_all(state: 'cancelada')
+            end
+          elsif hour_system.strftime("%H").to_i != hour_start_sum.strftime("%H").to_i
+            resta = hour_system.strftime("%H").to_i - hour_start_sum.strftime("%H").to_i
+            while (hour_system.strftime("%M").to_i) + resta <= (hour_start_sum.strftime("%M").to_i) + resta
+              reserve_id = var.id.to_s
+              return reserve_id
+            end
+            if (hour_system.strftime("%M").to_i) + resta > (hour_start_sum.strftime("%M").to_i) + resta
+              Reservation.where(id: var.id).update_all(state: 'cancelada')
+            end
+          end
+        end
       end
    end
 
@@ -135,6 +149,11 @@ private
     else
       self.errors.add(:base ,"La hora de inicio debe ser mayor a la actual")
     end
+  end
+
+  def set_date
+    self.created_at= Time.now.in_time_zone("Bogota")
+    self.updated_at= Time.now.in_time_zone("Bogota")
   end
 =begin
   def validate_console_hour
