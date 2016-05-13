@@ -2,4 +2,4 @@ $('#dialog').modal('toggle');
 $('#reservation_<%= @reservation.id %>').replaceWith('<%= j render (@reservation) %>')
 
 //Desplegar alerta
-$("#notice_wrapper2").html('<%= j flash[:notice] %>').slideDown(400).delay(2000).slideUp(400).fadeOut(1500);
+toastr.success('¡Se ha actualizado satisfactoriamente!')

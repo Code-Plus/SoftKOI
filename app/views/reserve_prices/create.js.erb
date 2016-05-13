@@ -6,4 +6,4 @@ $('#dialog').modal('toggle');
 $('#reserve_prices').append('<%= j render (@reserve_price) %>');
 
 //Desplegar alerta
-$("#notice_wrapper2").html('<%= j flash[:notice] %>').slideDown(400).delay(2000).slideUp(400).fadeOut(1500);
+toastr.success('¡Se ha registrado satisfactoriamente!')
