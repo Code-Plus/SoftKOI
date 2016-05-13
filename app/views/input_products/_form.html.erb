@@ -11,41 +11,47 @@
       </ul>
    </div>
    <% end %>
-   <div class="row">
-      <div class="col-sm-12">
-         <div class="form-group required">
-            <!--Se ingresa la cantidad de productos que entraran al inventario-->
-            <%= f.label :stock, "Cantidad", :class => "control-label"%>
-            <%= f.number_field :stock, :class => "form-control first_input" %>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+         <div class="col-sm-12">
+            <div class="form-group required">
+               <!--Se ingresa la cantidad de productos que entraran al inventario-->
+               <%= f.label :stock, "Cantidad", :class => "control-label"%>
+               <%= f.number_field :stock, :class => "form-control first_input" %>
+            </div>
+
+            <div class="form-group required">
+               <!--Se trae la información del id del producto-->
+               <%= f.label :product_id, "Código del producto", :class => "control-label" %>
+               <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
+            </div>
+
+            <div class="form-group">
+               <!--Se trae la información del id del producto-->
+               <%= label_tag "Producto" %>
+               <%= text_field_tag @input_product.product.name,@input_product.product.name, readonly: true, :class => "form-control" %>
+            </div>
+
+            <div class="form-group">
+               <!--Se trae la información del precio del produto-->
+               <%= label_tag "Precio" %><br>
+               <%= text_field_tag @input_product.product.price,@input_product.product.price, readonly: true, :class => "form-control" %>
+            </div>
+
          </div>
 
-         <div class="form-group required">
-            <!--Se trae la información del id del producto-->
-            <%= f.label :product_id, "Código del producto", :class => "control-label" %>
-            <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
+         <div class="col-sm-12">
+            <hr style="border: 1; margin-top: 0px; ">
+            <div class="form-group" style="margin-bottom: 0px;">
+               <%= f.submit "Registrar Entrada", :class => "btn btn-success bold" %>
+            </div>
          </div>
-
-         <div class="form-group">
-            <!--Se trae la información del id del producto-->
-            <%= label_tag "Producto" %>
-            <%= text_field_tag @input_product.product.name,@input_product.product.name, readonly: true, :class => "form-control" %>
-         </div>
-
-         <div class="form-group">
-            <!--Se trae la información del precio del produto-->
-            <%= label_tag "Precio" %><br>
-            <%= text_field_tag @input_product.product.price,@input_product.product.price, readonly: true, :class => "form-control" %>
-         </div>
-
       </div>
+    </div>
+  </div>
 
-      <div class="col-sm-12">
-         <hr style="border: 1; margin-top: 0px; ">
-         <div class="form-group" style="margin-bottom: 0px;">
-            <%= f.submit "Registrar Entrada", :class => "btn btn-success bold" %>
-         </div>
-      </div>
-   </div>
 </div>
 
 <% end %>

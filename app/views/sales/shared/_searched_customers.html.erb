@@ -1,15 +1,15 @@
 <%# Tabla donde se muestran todos los clientes y se puede asociar %>
-<h4 class="text-primary"><span class="glyphicon glyphicon-tags"></span> Clientes</h4>
+<h4 class="text-primary"><span class="glyphicon glyphicon-tags"></span>  Clientes</h4>
 <hr />
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
         <th>Documento</th>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Phone Number</th>
-        <th>Email Address</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Telefono</th>
+        <th>Email</th>
         <th>Agregar a la venta</th>
       </tr>
     </thead>
@@ -19,8 +19,8 @@
         <% for customer in @available_customers %>
           <tr>
             <td><%= customer.document %></td>
-            <td><%= customer.lastname %></td>
             <td><%= customer.firstname %></td>
+            <td><%= customer.lastname %></td>
             <td><%= customer.phone %></td>
             <td><%= customer.email %></td>
             <td class="add_to_current_sale">

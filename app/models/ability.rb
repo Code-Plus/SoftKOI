@@ -6,6 +6,7 @@ class Ability
     if user.role.name == 'Empleado'
 
       can [:update_password, :update_profile, :edit], [User]
+      can :read, Sale
 
       if user.can_inventory == true
         can :manage, Product
@@ -30,7 +31,7 @@ class Ability
       end
 
       if user.can_customers == true
-        can :manage, Customer
+        can [:read, :edit], [Customer]
       end
 
     else
