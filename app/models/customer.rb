@@ -8,7 +8,7 @@ class Customer < ActiveRecord::Base
   before_create :set_date
   before_update :set_updated_at
 
-=begin
+
   validates :document, presence: true, uniqueness: true
   validates :firstname, presence: true
   validates :lastname, presence: true
@@ -18,7 +18,7 @@ class Customer < ActiveRecord::Base
   validates :email, email: true
   validates :state, presence: true
   validates :type_document_id, presence: true
-=end
+
 
   aasm column: "state" do
     state :sinDeuda, :initial => true
