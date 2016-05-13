@@ -75,15 +75,8 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
 
 
     var res;
-    var current_time = new Date;
     if (gon.reserve_id != null) {
-      var minutes_hour = current_time.getHours() * 60;
-      var minutes = current_time.getMinutes();
-      var sum_hour = minutes_hour + minutes;
-      var subtraction = sum_hour - gon.hour_start;
-      if (subtraction <= 5) {
-
-        $.confirm({
+      $.confirm({
           confirmButton: 'Sí',
           cancelButton: 'No',
           title: 'Inicio Reserva',
@@ -103,8 +96,8 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
               content: '¿Qué desea?',
               confirm: function(){
                 //Redireccionar a editar la reserva
-                  res = 2;
-                  miajax(res, gon.reserve_id);
+                  // res = 2;
+                  // miajax(res, gon.reserve_id);
                   $.ajax({
                     url:'/reservations/'+gon.reserve_id+'/edit'
                   }).error(function(error){
@@ -122,11 +115,6 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
           }
         });
 
-      }else {
-        res = 0;
-        miajax(res, gon.reserve_id);
-      }
-
     function miajax(resp, id){
         respuesta = resp;
         identify = id;
@@ -134,7 +122,9 @@ Reservar Consolas <i class="fa fa-caret-down"></i>
           url:'/reservations/change_state',
           data:{respuesta: respuesta, id: identify},
           type: 'get'
-        }).done().error(function(error){
+        }).done(function(done){
+          location.reload();
+        }).error(function(error){
           console.log('Ha ocurrido un error '+ error);
         });
 
