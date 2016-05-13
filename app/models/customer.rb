@@ -5,6 +5,9 @@ class Customer < ActiveRecord::Base
 
   include AASM
 
+  before_create :set_date
+  before_update :set_updated_at
+
 =begin
   validates :document, presence: true, uniqueness: true
   validates :firstname, presence: true
@@ -43,5 +46,16 @@ class Customer < ActiveRecord::Base
     age = Date.today.year - birthday.year
     age -= 1 if Date.today < birthday + age.years #for days before birthday
   end
+
+  private
+
+    def set_date
+      self.created_at = Time.now.in_time_zone("Bogota")
+      self.updated_at = Time.now.in_time_zone("Bogota")
+    end
+
+    def set_updated_at
+      self.updated_at = Time.now.in_time_zone("Bogota")
+    end
 
 end

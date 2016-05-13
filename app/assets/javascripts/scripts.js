@@ -3,8 +3,7 @@ $(document).ready(function() {
 
 	load_datatable();
 
-	$('.day').click(function(){
-	  var values = $(this).text();
+	$('#registerevent').click(function(){
 		$('#myModal').modal();
 	});
 

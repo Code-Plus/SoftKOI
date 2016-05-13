@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-
+    include PublicActivity::Model
   belongs_to :category
   has_many :output_products
   has_many :input_products
