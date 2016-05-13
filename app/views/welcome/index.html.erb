@@ -69,13 +69,15 @@
       </a>
     </div>
   </div>
-
+<hr style="border: 0.2px solid #dcdcdc; margin-top: 10px; margin-bottom:10px !important;">
   <%# Charts Estadisticas  %>
   <div class="row">
     <div class="col-sm-6 charts_home">
+      <h4 class="bold upper" style="text-decoration:uppercase;">Productos registrados por días</h4>
       <%= line_chart Product.group_by_day(:created_at).count, :library => {:hAxis => {:format => "yyyy/MM/dd"}}, discrete: true, xtitle: "Fecha", ytitle: "Cantidad" %>
     </div>
     <div class="col-sm-6 charts_home">
+      <h4 class="bold upper" style="text-decoration:uppercase;">Reservas registradas por días</h4>
       <%= line_chart Reservation.group_by_day(:created_at).count, :library => {:hAxis => {:format => "yyyy/MM/dd"}}, discrete: true, xtitle: "Fecha", ytitle: "Cantidad" %>
     </div>
   </div>
