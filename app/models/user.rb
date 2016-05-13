@@ -58,9 +58,9 @@ class User < ActiveRecord::Base
 	private
 
 	def validate_pass
-			validates :password,  presence: true
+		validates_presence_of :password
 	end
-	
+
 	def set_date
 		self.created_at = Time.now.in_time_zone("Bogota")
 		self.updated_at = Time.now.in_time_zone("Bogota")
