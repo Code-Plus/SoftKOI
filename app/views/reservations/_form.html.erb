@@ -31,7 +31,7 @@
           <div class="col-sm-6">
             <div id="intervalrealtime" class="field" style="display:none;" attrdess="disabled_botton" realtimeprop="true">
                <%= f.label :interval,"Intervalo (Minutos)"  %><br>
-               <%= f.select(:interval, "" ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
+               <%= f.select(:reserve_price_id, "" ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
                <%# collection_select(:reservation, :reserve_price_id, ReservePrice.all ,:console_id, :time, {prompt: "Selecciona una opción"}, :class => "form-control") %>
             </div>
           </div>
