@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  after_action :day_of_event, only:[:index]
 
   # GET /events
   # GET /events.json
@@ -50,6 +51,14 @@ class EventsController < ApplicationController
     end
 
 
+  end
+
+  def day_of_event
+    @events.each do |event|
+      if event.start_time.strftime("%F") == Date.today.strftime("%F")
+        event.create_activity key: 'tiene un evento', read_at: nil
+      end
+    end
   end
 
   # PATCH/PUT /events/1
