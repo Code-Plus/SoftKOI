@@ -1,7 +1,7 @@
 <%# Parcial donde se muestra el formulario para ir filtrando en la tabla de clientes %>
 <div class="row item_search_wrapper hidden-print">
   <div class="col-sm-4">
-    <h4 class="text-primary"><span class="glyphicon glyphicon-search"></span> Find</h4>
+    <h4 class="text-primary"><span class="glyphicon glyphicon-search"></span>  Buscar cliente </h4>
     <hr>
 
     <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_customer_options",
@@ -12,9 +12,9 @@
       <%= submit_tag "search", :class => "btn btn-primary btn-lg customer_search" %>
     <% end %>
 
-    <p>O</p>
-    <button class="btn" data-toggle="modal" data-target="#customCustomer">
-      Create Customer
+    <br><br>
+    <button class="btn btn-success bold" data-toggle="modal" data-target="#customCustomer">
+      Crear cliente
     </button>
   </div>
 
