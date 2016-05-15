@@ -59,18 +59,10 @@ class Reservation < ActiveRecord::Base
           hour_start_sum = hour_start + 5.minutes
           hour_system = Time.now
           if hour_system.strftime("%H").to_i == hour_start_sum.strftime("%H").to_i
-            if hour_system.strftime("%M").to_i <= hour_start_sum.strftime("%M").to_i
+            if hour_system.strftime("%M").to_i <= hour_start_sum.strftime("%M").to_i and hour_system.strftime("%M").to_i >= hour_start.strftime("%M").to_i
                 reserve_id = var.id
                 return reserve_id
             elsif hour_system.strftime("%M").to_i > hour_start_sum.strftime("%M").to_i
-              Reservation.where(id: var.id).update_all(state: 'cancelada')
-            end
-          elsif hour_system.strftime("%H").to_i != hour_start_sum.strftime("%H").to_i
-            resta = hour_system.strftime("%H").to_i - hour_start_sum.strftime("%H").to_i
-            if (hour_system.strftime("%M").to_i) + resta <= (hour_start_sum.strftime("%M").to_i) + resta
-              reserve_id = var.id
-              return reserve_id
-            elsif (hour_system.strftime("%M").to_i) + resta > (hour_start_sum.strftime("%M").to_i) + resta
               Reservation.where(id: var.id).update_all(state: 'cancelada')
             end
           end
