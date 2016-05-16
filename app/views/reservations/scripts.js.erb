@@ -118,6 +118,7 @@ function calculatehoursandminutes(){
 			if (seconds < 10) {
 				seconds = '0' + seconds;
 			}
+
 			$('#reservation_end_time').val("0"+h_split_f + ':' + seconds);
 		} else {
 			h_split = parseInt(split_time[0]);
@@ -125,6 +126,9 @@ function calculatehoursandminutes(){
 				h_split = '0' + h_split;
 			}
 			seconds = sum_rel_fin;
+      if(seconds < 10){
+        seconds = '0' + seconds;
+      }
 			$('#reservation_end_time').val(h_split + ':' + seconds);
 		}
 	}
