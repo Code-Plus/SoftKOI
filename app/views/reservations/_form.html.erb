@@ -59,18 +59,18 @@
      </div>
      <div class="col-sm-12">
         <hr style="border: 1; margin-top: 20px; ">
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="padding-left:0px;">
           <div class="form-group" style="margin-bottom: 0px;">
              <%= f.submit "Registrar reserva", :class => "btn btn-success bold", :id=>"Btn_RReserve"%>
           </div>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-5" style="padding-top: 7px;">
           <p>
             ¿Activar reloj en tiempo real?
           </p>
         </div>
         <div class="col-sm-3">
-          <div class="form-group" style="margin-bottom: 0px;">
+          <div class="form-group" style="margin-bottom: 0px;margin-top: 8px;">
              <%=  check_box_tag "real_time","realtimepass",checked: true %>
           </div>
         </div>
