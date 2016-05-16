@@ -66,6 +66,8 @@ class Reservation < ActiveRecord::Base
               Reservation.where(id: var.id).update_all(state: 'cancelada')
             end
           end
+        elsif var.date.strftime("%F") < Time.new.strftime("%F")
+          Reservation.where(id: var.id).update_all(state: 'cancelada')
         end
       end
    end
@@ -82,6 +84,8 @@ class Reservation < ActiveRecord::Base
             else
               return 0
             end
+          elsif var.date.strftime("%F") < Time.new.strftime("%F")
+            Reservation.where(id: var.id).update_all(state: 'cancelada')
          end
       end
    end
