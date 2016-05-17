@@ -53,18 +53,19 @@ class ProductsController < ApplicationController
 
   def change_state
     answer = params[:answer]
-    if answer.to_i == 1
-      category_product = Category.find(params[:id])
-        product_by_category = Product.where(category_id: category_product.id)
-        product_by_category.each do |product|
-          puts "#{product.stock} ----------------_>stock del product"
-          OutputProduct.create stock: product.stock, product_id: product.id
-
-        end
-    end
-
     respond_to do |format|
-      format.json { head :no_content}
+      if answer.to_i == 1
+        category_product = Category.find(params[:id])
+          product_by_category = Product.where(category_id: category_product.id)
+          product_by_category.each do |product|
+            OutputProduct.create stock: product.stock, product_id: product.id
+            product.update stock:  0 ,state: "noDisponible"
+            product.update state: "noDisponible"
+          end
+        category_product.state = "noDisponible"
+        category_product.save!
+        format.json { head :no_content}
+      end
     end
   end
 
@@ -78,10 +79,6 @@ class ProductsController < ApplicationController
       end
     end
   end
-
-
-
-
 
   def disponible
     @product.disponible!

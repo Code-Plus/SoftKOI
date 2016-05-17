@@ -34,11 +34,7 @@ Rails.application.routes.draw do
 
 	devise_for :users, :skip => :registration
 	resources :customers
-	resources :categories do
-	  collection do
-      get 'change_state_noDisponible'
-	  end
-	end
+	resources :categories 
 	resources :type_products
 	resources :reserve_prices
   resources :events do

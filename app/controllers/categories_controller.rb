@@ -31,7 +31,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-
   def update
     gon.category_id = @category.id
     respond_to do |format|
@@ -57,11 +56,7 @@ class CategoriesController < ApplicationController
       if answer.to_i == 1
         @category.noDisponible!
       end
-
-      respond_to do |format|
-        format.json { head :no_content }
-        format.js {  flash[:notice] = "¡Categoría actualizada satisfactoriamente!" }
-      end
+      redirect_to categories_url
     end
 
   private

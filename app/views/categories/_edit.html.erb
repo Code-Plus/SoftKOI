@@ -58,13 +58,12 @@ $('.class_inhabilitar').click(function(){
       title: 'Confirmación',
       content: 'Al cambiar el estado todos los productos tambie cambiaran, y su stock se volvera 0, ¿esta seguro?',
       confirm: function(){
-        //Cambiar a estado "enProceso"
         resp = 1;
-        ajax_alert_category(resp, id_val);
         ajax_change_state_product(resp, id_val);
+				location.reload();
+				toastr.success('¡Se ha actualizado satisfactoriamente!')
       },
       cancel: function(){
-        ajax_alert_category(resp, id_val);
         ajax_change_state_product(resp, id_val);
       }
   });
@@ -86,23 +85,6 @@ function ajax_change_state_product(resp, id){
       console.log('Ha ocurrido un error '+ error);
     });
   }
-
-
-function ajax_alert_category(resp, id){
-    answer = resp;
-    identify = id;
-    $.ajax({
-      url:'/category/'+identify+'/inhabilitar',
-      data:{answer: answer, id: identify},
-      type: 'put'
-    }).done(function(done){
-
-    }).error(function(error){
-      console.log('Ha ocurrido un error '+ error);
-    });
-
-  }
-
 
 
 
