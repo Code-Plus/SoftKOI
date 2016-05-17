@@ -60,7 +60,7 @@ class SalesController < ApplicationController
 		set_sale
 		populate_products
 
-		@available_products = Product.active_quantity.where("name LIKE ? OR description LIKE ?",
+		@available_products = Product.active_quantity.where("name ILIKE ? OR description ILIKE ?",
 		params[:search][:item_name],
 		params[:search][:item_name])
 
@@ -75,8 +75,8 @@ class SalesController < ApplicationController
 		set_sale
 		populate_products
 
-		@available_customers = Customer.all.where("document LIKE ?  OR firstname LIKE ?
-			OR email LIKE ? OR phone LIKE ?",
+		@available_customers = Customer.all.where("document ILIKE ?  OR firstname ILIKE ?
+			OR email ILIKE ? OR phone LIKE ?",
 			params[:search][:customer_name],
 			params[:search][:customer_name],
 			params[:search][:customer_name],
@@ -244,7 +244,11 @@ class SalesController < ApplicationController
     if @sale.discount == 0
       @sale.total_amount = total_amount
     else
-      @sale.total_amount -= @sale.discount
+			if @sale.discount.nil?
+				@sale.total_amount -= 0
+			else
+      	@sale.total_amount -= @sale.discount
+			end
     end
 
     @sale.save
@@ -301,13 +305,10 @@ class SalesController < ApplicationController
 	# Reducir el stock de un producto
 	def remove_item_from_stock(product_id)
     product = Product.find(product_id)
-		puts"El producto #{product.name} tiene un total de #{product.stock}"
 		if product.stock - 1 < 0
-			puts"El producto #{product.name} quedo con un total de 0"
 			render :json => "No hay suficientes productos"
 		else
 			product.stock -= 1
-			puts"El producto #{product.name} quedo con un total de #{product.stock}"
 	    product.save
 		end
 
@@ -317,9 +318,7 @@ class SalesController < ApplicationController
   #Devolver producto a stock
   def return_item_to_stock(product_id)
     product = Product.find(product_id)
-		puts"El producto #{product.name} tiene un total de #{product.stock}"
     product.stock += 1
-		puts"El producto #{product.name} quedo con un total de #{product.stock}"
     product.save
   end
 
