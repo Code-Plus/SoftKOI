@@ -54,11 +54,14 @@
          </div>
 
          <div class="inline">
-            <% if @product.may_disponible? %>
-               <%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put, class:'btn btn-primary bold' %>
-            <% else %>
-               <%= link_to "Inhabilitar", "/product/#{@product.id}/inhabilitar", method: :put, class:'btn btn-primary bold' %>
-            <% end %>
+           <% @category.each do |category|%>
+              <% if  category == "noDisponible"%>
+              <% elsif @product.may_disponible? %>
+                 <%= link_to "Habilitar", "/product/#{@product.id}/habilitar", method: :put, class:'btn btn-primary bold' %>
+              <% else %>
+                 <%= link_to "Inhabilitar", "/product/#{@product.id}/inhabilitar", method: :put, class:'btn btn-primary bold' %>
+              <% end %>
+          <% end %>
          </div>
       </div>
    </div>
