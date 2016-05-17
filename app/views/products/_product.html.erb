@@ -6,7 +6,7 @@
    <td width="10px" class="<%= product.stock <= product.stock_min ? 'text-danger bold': '' %>">
       <%= product.stock %>
     </td>
-    
+
    <td><%= number_to_currency product.price %></td>
 
    <td width="105px">
@@ -23,18 +23,19 @@
       <%= link_to edit_product_path(product), remote: true, :class => 'btn btn-sm btn-info bold' do %>
          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp; Editar
       <% end %>
-
-      <span class="has-tooltip" data-toggle="tooltip" title="Entrada de productos">
-      <%= link_to new_input_product_path(product_id: product.id), class: 'btn btn-sm btn-primary bold' do %>
-      	<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+      <% unless product.state == "noDisponible" %>
+        <span class="has-tooltip" data-toggle="tooltip" title="Entrada de productos">
+        <%= link_to new_input_product_path(product_id: product.id), class: 'btn btn-sm btn-primary bold' do %>
+        	<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+        <% end %>
+          </span>
+        <span class="has-tooltip" data-toggle="tooltip" title="Salida de productos">
+        <%= link_to new_output_product_path(product_id: product.id), class: 'btn btn-sm btn-primary bold' do %>
+          <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+        <% end %>
+          </span>
       <% end %>
-      </span>
 
-      <span class="has-tooltip" data-toggle="tooltip" title="Salida de productos">
-      <%= link_to new_output_product_path(product_id: product.id), class: 'btn btn-sm btn-primary bold' do %>
-            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-      <% end %>
-      </span>
 
    </td>
 </tr>

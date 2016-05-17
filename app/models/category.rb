@@ -4,15 +4,13 @@ class Category < ActiveRecord::Base
 
 	belongs_to :type_product
 	has_many :products
-
-
 	#Inhabilitar productos si la Categoría se inhabilita
-	after_save do
-		if self.state == "noDisponible"
-			#Actualizar productos con la Categoría asociada a estado noDisponible
-			products.update_all state: "noDisponible"
-		end
-	end
+	# after_update do
+	# 	if self.state == "noDisponible"
+	# 		#Actualizar productos con la Categoría asociada a estado noDisponible
+	# 		products.update_all  state: "noDisponible"
+	# 	end
+	# end
 
 	#Actualizar a "false" el "can_change" de los productos asociados
 	after_save do
@@ -46,6 +44,10 @@ class Category < ActiveRecord::Base
 		event :noDisponible do
 			transitions from: :disponible, to: :noDisponible
 		end
+	end
+
+	def self.validate_change_state
+
 	end
 
 	private

@@ -3,7 +3,7 @@ class OutputProduct < ActiveRecord::Base
   belongs_to :product
   validates :product_id, presence: true
   validates :stock, presence: true, numericality: {greater_than: 0}
-  before_validation :update_stock
+  before_validation :update_stock, :validate_state_product
   before_create :set_date
   before_update :set_updated_at
 
@@ -20,7 +20,7 @@ class OutputProduct < ActiveRecord::Base
     subtraction = (stock_product-self.stock)
     if self.stock.nil?
     elsif subtraction<0
-      self.errors.add(:base ,"No hay suficientes productos para dar de baja")
+      self.errors.add(:base ,"No hay suficientes productos para dar de baja, la cantidad actual es #{stock_product}")
     elsif subtraction == 0
       product.update(stock: stock_product - self.stock,state: "sinCantidad")
     else
@@ -35,6 +35,13 @@ class OutputProduct < ActiveRecord::Base
 
   def set_updated_at
     self.updated_at = Time.now.in_time_zone("Bogota")
+  end
+
+  def validate_state_product
+    product_state = product.state
+    if product_state == "noDisponible"
+      self.errors.add(:base ,"No se permiten salidas de este producto, su estado es 'no disponible' ")
+    end
   end
 
 end

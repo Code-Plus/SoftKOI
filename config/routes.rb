@@ -30,9 +30,15 @@ Rails.application.routes.draw do
 	#Ajax para rederizar archivos js
 	get '/reservations/ajaxscripts', to: 'reservations#ajaxscripts', as: 'ajax_scripts'
 
+
+
 	devise_for :users, :skip => :registration
 	resources :customers
-	resources :categories
+	resources :categories do
+	  collection do
+      get 'change_state_noDisponible'
+	  end
+	end
 	resources :type_products
 	resources :reserve_prices
   resources :events do
@@ -102,6 +108,7 @@ Rails.application.routes.draw do
 			get 'generate_pdf'
 			get 'search'
 			get 'products_low'
+      get 'change_state'
 		end
 	end
 

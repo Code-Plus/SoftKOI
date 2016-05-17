@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+
   end
 
 
@@ -13,10 +14,9 @@ class CategoriesController < ApplicationController
     @type_products = TypeProduct.activos
   end
 
-
   def edit
-  end
 
+  end
 
   def create
     @category = Category.create(category_params)
@@ -33,6 +33,7 @@ class CategoriesController < ApplicationController
 
 
   def update
+    gon.category_id = @category.id
     respond_to do |format|
       if @category.update(category_params)
         format.json { head :no_content }
@@ -51,10 +52,17 @@ class CategoriesController < ApplicationController
   end
 
   #Cambia el estado a no disponible
-  def noDisponible
-    @category.noDisponible!
-    redirect_to categories_url
-  end
+    def noDisponible
+      answer = params[:answer]
+      if answer.to_i == 1
+        @category.noDisponible!
+      end
+
+      respond_to do |format|
+        format.json { head :no_content }
+        format.js {  flash[:notice] = "¡Categoría actualizada satisfactoriamente!" }
+      end
+    end
 
   private
 
