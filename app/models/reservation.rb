@@ -16,6 +16,9 @@ class Reservation < ActiveRecord::Base
   #Reservas en estado finalizada o cancelada
   scope :end_cancel_reservations, -> {where ("state = 'cancelada' OR state = 'finalizada'")}
 
+  #Reservas realizadas en la ultima semana
+  scope :registered_last_week, ->{group("reservations.created_at::date").where("created_at >= ? ", 1.week.ago ).count}
+
   #Validaciones para los campos.
   validates_date :date, presence: true, :on_or_after => lambda { Date.current }, :on_or_after_message => ' debe ser mayor a la actual'
   validates :start_time, presence: true
