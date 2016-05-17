@@ -4,69 +4,69 @@
     <div class="col-sm-12">
       <div class="row">
         <div class="col-sm-6">
-          <div class="field" id="m_r_reserves">
-            <%= f.label :customer,"Cliente" %><br>
+          <div class="form-group required" id="m_r_reserves">
+            <%= f.label :customer,"Cliente", :class => "control-label" %><br>
             <%= f.text_field :customer , :class => "form-control" , :disabled => "true"%>
           </div>
         </div>
         <div class="col-sm-6">
-          <%= f.label :date, "Fecha" %><br>
-          <div class="input-group input-group-md date datepicker">
-            <%= f.text_field :date, :class => "form-control input-md" %>
-            <span class="input-group-addon">
-              <i class="glyphicon glyphicon-th"></i>
-            </span>
+          <div class="form-group required" id="m_r_reserves">
+            <%= f.label :date, "Fecha", :class => "control-label" %><br>
+            <div class="input-group input-group-md date datepicker">
+              <%= f.text_field :date, :class => "form-control input-md" %>
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-th"></i>
+              </span>
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6">
-          <div class="field">
-            <%= f.label :consoles,"Consola" %><br>
+          <div class="form-group required">
+            <%= f.label :consoles,"Consola", :class => "control-label" %><br>
             <%= collection_select(:reserve_price,:console_id, Console.all, :id, :name, {prompt: "Selecciona una opción"}, :class => "form-control") %>
           </div>
         </div>
         <div class="col-sm-6">
-            <div id="intervalrealtime" class="field" style="display:none;" attrdess="disabled_botton" realtimeprop="true">
-            <%= f.label :interval,"Intervalo (Minutos)" %><br>
-            <%= f.select(:interval, "" ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
+            <div id="intervalrealtime" class="form-group required" style="display:none;" attrdess="disabled_botton" realtimeprop="true">
+            <%= f.label :reserve_price,"Intervalo (minutos)", :class => "control-label" %><br>
+            <%= f.select(:reserve_price_id, "" ,{prompt: "Selecciona una opción"}, :class => "form-control") %>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6">
-          <div class="field">
-             <%= f.label :start_time,"Hora de incio" %><br>
+          <div class="form-group required">
+             <%= f.label :start_time,"Hora de incio", :class => "control-label" %><br>
              <%= f.text_field :start_time ,:class => "form-control", :value => @reservation.start_time.strftime("%I:%M %p")%>
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="field">
-             <%= f.label :end_time,"Hora de finalizacion" %><br>
+          <div class="form-group required">
+             <%= f.label :end_time,"Hora de finalizacion", :class => "control-label" %><br>
              <%= f.text_field :end_time, :class => "form-control", :value => @reservation.end_time.strftime("%I:%M %p") %>
           </div>
         </div>
       </div>
-      <div class="field">
-         <%= f.label :price_reserve_id," Precio" %><br>
+      <div class="form-group required">
+         <%= f.label :price_reserve_id," Precio", :class => "control-label" %><br>
          <%= f.text_field :reserve_price_id , :class => "form-control field_prices_id hidden" %>
          <%= text_field_tag :field_prices,'',class:'form-control field_prices', readonly: true %>
       </div>
     </div>
     <div class="col-sm-12">
        <hr style="border: 1; margin-top: 20px; ">
-       <div class="col-sm-4">
+       <div class="col-sm-4" style="padding-left:0px;">
          <div class="inline" style="margin-bottom: 0px;">
             <%= f.submit "Editar Reserva", :class => "btn btn-success bold" %>
          </div>
        </div>
-       <div class="col-sm-5">
-         <p>
-           ¿Activar reloj en tiempo real?
-         </p>
+       <div class="col-sm-5" style="padding-top: 7px;">
+         <p>¿Activar reloj en tiempo real?</p>
        </div>
        <div class="col-sm-3">
-         <div class="form-group" style="margin-bottom: 0px;">
+         <div class="form-group" style="margin-bottom: 0px;margin-top: 8px;">
             <%=  check_box_tag "real_time","realtimepass",checked: true %>
          </div>
        </div>
