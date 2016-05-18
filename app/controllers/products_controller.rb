@@ -69,6 +69,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  def ajaxnewcategory
+    @type_prduct_identify = params[:type_product]
+    @query = Category.where(type_product_id: @type_prduct_identify, state: "disponible")
+    @query_pluck = @query.pluck(:id, :name)
+    @query_final = @query_pluck.map { |i, t| [ i, t ] }
+    respond_to do |format|
+      format.json { render json: @query_final }
+    end
+  end
+
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -94,6 +104,13 @@ class ProductsController < ApplicationController
   def sinCantidad
     @product.sinCantidad!
     redirect_to products_url
+  end
+
+  def ajaxscripts
+    respond_to do |format|
+      format.js {render 'scripts.js.erb'}
+    end
+    puts "ESTOY EN EL ajaxscripts ------------------------------"
   end
 
 

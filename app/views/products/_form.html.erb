@@ -36,14 +36,14 @@
       <div class="col-sm-6">
          <div class="form-group required">
             <%= f.label :type_product, "Tipo de producto", :class => "control-label" %>
-            <%= collection_select(:category, :type_product_id, TypeProduct.with_category.order(name: :asc).distinct, :id, :name, {prompt: "Seleccione un tipo..."}, {:class=>'form-control type_product_id',:onchange =>"Products_category_function()"}) %>
+            <%= collection_select(:category, :type_product_id, TypeProduct.with_category.order(name: :asc).distinct, :id, :name, {prompt: "Seleccione un tipo..."}, {:class=>'form-control type_product_id'}) %>
          </div>
       </div>
 
       <div class="col-sm-6">
          <div class="form-group required" style="display:none" attrdess="disabled_botton">
             <%= f.label :category_id, "Categoría" %>
-            <%= f.grouped_collection_select(:category_id, TypeProduct.with_category.order(name: :asc), :categories, :name, :id, :name, {prompt: "Seleccione una categoría..."}, {:class=>'form-control category_id'}) %>
+            <%= f.select(:category_id, "",{prompt: "Seleccione una categoría..."}, {:class=>'form-control category_id'}) %>
          </div>
       </div>
 
