@@ -15,7 +15,11 @@ Rails.application.routes.draw do
 	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
 
 	devise_for :users, :skip => :registration
-	resources :customers
+	resources :customers do
+	  collection do
+	    get 'generate_pdf'
+	  end
+	end
 	resources :categories
 	resources :type_products
 	resources :reserve_prices

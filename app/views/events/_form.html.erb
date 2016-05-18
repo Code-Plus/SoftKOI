@@ -11,7 +11,13 @@
     <div class="col-sm-6">
       <div class="form-group">
         <%= f.label 'Fecha' %><br>
-        <%= f.datetime_select :start_time, :class => "form-control input-md" %>
+        <div class='input-group date datetimepicker '>
+          <%= f.text_field :start_time, :class => "form-control" %>
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </span>
+        </div>
+
       </div>
     </div>
     <div class="col-sm-12">

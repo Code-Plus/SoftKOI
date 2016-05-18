@@ -41,7 +41,8 @@ gem 'chartkick'                           # Charts estadisticas
 gem 'activerecord_any_of', '~> 1.4'       # Usar OR en los querys
 gem 'bootswatch-rails'                    # Flatly theme
 gem 'simple_calendar', '~> 2.0'           # Calendario
-
+gem 'momentjs-rails', '>= 2.9.0'          #Se necesita para el datetimepicker
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'   #DataTime picker
 
 group :development, :test do
   gem 'byebug'

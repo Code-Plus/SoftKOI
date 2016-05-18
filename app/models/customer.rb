@@ -19,6 +19,8 @@ class Customer < ActiveRecord::Base
   validates :state, presence: true
   validates :type_document_id, presence: true
 
+  before_validation :validate_age_typeDocument
+
 
   aasm column: "state" do
     state :sinDeuda, :initial => true
@@ -58,4 +60,10 @@ class Customer < ActiveRecord::Base
       self.updated_at = Time.now.in_time_zone("Bogota")
     end
 
+    def validate_age_typeDocument
+      typeDocument = type_document.description
+      unless (typeDocument == "Cedula" && self.age >= 18) || (typeDocument == "Tarjeta Identidad" && self.age < 18)
+          self.errors.add(:base ,"No se tiene la edad requerida para ese tipo de documento")
+      end
+    end
 end
