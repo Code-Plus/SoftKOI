@@ -19,3 +19,10 @@ $('#category_type_product_id').select2({
 $('#product_category_id').select2({
 	theme: "bootstrap"
 });
+
+$.ajax({
+	url:'/products/ajaxscripts',
+	datatype: 'js'
+}).error(function(){
+	console.log('En la B por favor mira el archivo de new.js.erb ubicado en products');
+});

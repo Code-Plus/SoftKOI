@@ -11,30 +11,12 @@ Rails.application.routes.draw do
 	# welcome/index como home_path
 	get '/home', to: 'welcome#index', as: 'home'
 
-
-	# Ajax de reservas
-	get '/reservations/price_interval', to: 'reservations#reserve_ajax', as: 'interval_price'
-
-	# Ajax de ventas
-	get '/sales/customer', to: 'sales#ajax_customer', as: 'ajax_customer'
-
 	# Ajax de productos
 	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
 
-	# Ajax para el cambio de estado cuando va a iniciar la reserva
-	get '/reservations/change_state', to: 'reservations#change_state', as: 'change_state'
-
-	# Ajax para traer las consolas
-	get '/reservations/ajaxnewconsole', to: 'reservations#ajaxnewconsole', as: 'ajax_new_console'
-
-	#Ajax para rederizar archivos js
-	get '/reservations/ajaxscripts', to: 'reservations#ajaxscripts', as: 'ajax_scripts'
-
-
-
 	devise_for :users, :skip => :registration
 	resources :customers
-	resources :categories 
+	resources :categories
 	resources :type_products
 	resources :reserve_prices
   resources :events do
@@ -66,6 +48,10 @@ Rails.application.routes.draw do
 		collection do
 			get 'reservations_end'
 			get 'generate_pdf'
+      get 'ajaxnewconsole'
+      get 'ajaxscripts'
+      get 'change_state'
+      get 'price_interval'
 		end
 	end
 
@@ -95,6 +81,7 @@ Rails.application.routes.draw do
       get 'add_comment'
       post 'sale_discount'
 			get 'generate_pdf'
+      get 'customer'
 		end
 	end
 
@@ -105,6 +92,8 @@ Rails.application.routes.draw do
 			get 'search'
 			get 'products_low'
       get 'change_state'
+      get 'ajaxscripts'
+      get 'ajaxnewcategory'
 		end
 	end
 

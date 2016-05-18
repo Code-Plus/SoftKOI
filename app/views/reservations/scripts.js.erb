@@ -137,13 +137,7 @@ function calculatehoursandminutes(){
 
 $('#reserve_price_console_id').change(function(){
 	var console_identify;
-	var varconsolename;
-	var frmcustomer;
-	var frmdate;
 	console_identify = $(this).val();
-	varconsolename = $('#reserve_price_console_id option:selected').text();
-	frmcustomer = $('#reservation_customer').val();
-	frmdate = $('#reservation_date').val();
 	$.ajax({
 		url:'/reservations/ajaxnewconsole',
 		data:{consol: console_identify},

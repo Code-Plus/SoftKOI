@@ -1,0 +1,22 @@
+$('#category_type_product_id').change(function(){
+	var type_product_identify;
+	type_product_identify = $(this).val();
+	$.ajax({
+		url:'/products/ajaxnewcategory',
+		data:{type_product: type_product_identify},
+    datatype:'json',
+		type: 'get'
+	}).done(function(done){
+    var j = 0;
+    var html = "<option>Selecciona una categoría</option>";
+    for (var i = 0; i < done.length; i++) {
+      html += "<option value='"+done[i][0]+"' >"+done[i][1]+"</option>";
+    }
+    $('#product_category_id').html(html);
+		$('#product_category_id').parent().show();
+	}).error(ajaxerror);
+});
+
+function ajaxerror(error){
+	console.log("Ha ocurrido un error al conectar con el servidor en:");
+}
