@@ -41,6 +41,7 @@ gem 'chartkick'                           # Charts estadisticas
 gem 'activerecord_any_of', '~> 1.4'       # Usar OR en los querys
 gem 'bootswatch-rails'                    # Flatly theme
 gem 'simple_calendar', '~> 2.0'           # Calendario
+gem 'rails-observers'                     # Observador en modelos
 
 
 group :development, :test do
