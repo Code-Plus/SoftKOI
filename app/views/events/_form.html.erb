@@ -1,28 +1,31 @@
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<%= form_for(@event, remote: true, :html => { :role => "form" })  do |f| %>
+  <div id="error_explanation" class="text-danger modal-errors"></div>
 
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group input-md">
+        <%= f.label 'Nombre' %><br>
+        <%= f.text_field :name, :class => "form-control"  %>
+      </div>
     </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :name, "Nombre" %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description, "Descripción" %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :start_time, "Hora" %><br>
-    <%= f.datetime_select :start_time %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label 'Fecha' %><br>
+        <%= f.datetime_select :start_time, :class => "form-control input-md" %>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="form-group input-md">
+        <%= f.label 'Evento' %><br>
+        <%= f.text_field :description, :class => "form-control"  %>
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <hr style="border: 1; margin-top: 0px; ">
+      <div class="form-group" style="margin-bottom: 0px;">
+        <%= f.submit "Registrar", :class => "btn btn-success bold" %>
+      </div>
+    </div>
   </div>
 <% end %>

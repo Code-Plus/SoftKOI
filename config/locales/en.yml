@@ -133,6 +133,10 @@ en:
         can_customers: "Permisos a clientes"
         state: "Estado"
         type_document_id: "Tipo de documento"
+      event:
+        name: "Nombre"
+        start_time: "Fecha"
+        description: "Descripción"
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"

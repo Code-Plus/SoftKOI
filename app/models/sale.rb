@@ -7,6 +7,8 @@ class Sale < ActiveRecord::Base
 	has_many :products, through: :items
 	has_many :payments, dependent: :destroy
 
+	has_many :item_coupons
+
 	before_validation :verificar_estado
 	before_create :default_date, :set_date
 	before_update :set_updated_at
