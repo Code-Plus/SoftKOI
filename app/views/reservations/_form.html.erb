@@ -61,7 +61,8 @@
         <hr style="border: 1; margin-top: 20px; ">
         <div class="col-sm-4">
           <div class="form-group" style="margin-bottom: 0px;">
-             <%= f.submit "Registrar reserva", :class => "btn btn-success bold", :id=>"Btn_RReserve"%>
+            <div class="btn btn-success bold" id="Btn_RReserve" onclick="validatereservations()" disabled="disabled">Registrar reserva</div>
+             <%# f.submit "Registrar reserva", :class => "btn btn-success bold", :id=>"Btn_RReserve"%>
           </div>
         </div>
         <div class="col-sm-5">

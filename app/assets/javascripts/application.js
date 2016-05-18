@@ -58,6 +58,9 @@ function load_datatable(){
     }
   });
 }
+function distroydatatables(){
+  $('#datatable').DataTable().Destroy();
+}
 
 toastr.options = {
   "positionClass": "toast-bottom-right",

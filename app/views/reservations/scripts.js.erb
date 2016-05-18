@@ -61,7 +61,9 @@ function Cargar_En_Reserva(){
   $('#reservation_reserve_price_id').change(function(){
 		$('#reservation_start_time').removeAttr('disabled');
 		$('#reservation_end_time').removeAttr('disabled');
+    $('#Btn_RReserve').removeAttr('disabled');
     $('#intervalrealtime').attr({'realtimeprop':"false"});
+
 		calculatehoursandminutes();
 	});
 }
@@ -119,7 +121,7 @@ function calculatehoursandminutes(){
 				seconds = '0' + seconds;
 			}
 
-			$('#reservation_end_time').val("0"+h_split_f + ':' + seconds);
+			$('#reservation_end_time').val(h_split_f + ':' + seconds);
 		} else {
 			h_split = parseInt(split_time[0]);
 			if (h_split < 10) {
@@ -163,3 +165,51 @@ $('#reserve_price_console_id').change(function(){
 	function ajaxerror(error){
 		console.log("Ha ocurrido un error al conectar con el servidor en:");
 	}
+
+
+function validatereservations(){
+  if ($('#Btn_RReserve').attr('disabled')) {
+    //Esto es para que no pase nada mientras el boton este deshabilitado.
+  }else{
+    var modaldate,modalstart_time,modalendtime ;
+    modaldate = $('#reservation_date').val();
+    modalstart_time = $('#reservation_start_time').val();
+    modalendtime = $('#reservation_end_time').val();
+    $('#datatable tbody tr').each(function(index){
+      var campo1,campo2,campo3,campo4,campo5,campo6,timesplide3,timesplide3_end;
+      $(this).children('td').each(function(index2){
+        switch (index2) {
+          case 2:
+              campo2 = $(this).text();
+            break;
+          case 3:
+              timesplide3 = $(this).text();
+              timesplide3_end = timesplide3.split(' ');
+              campo3 = timesplide3_end[0];
+            break;
+          case 4:
+              campo4 = $(this).text();
+            break;
+          case 6:
+              campo6 = $(this).text();
+            break;
+          default:
+        }
+      });
+      if(modaldate == campo2){
+        if(campo6 != "Cancelada" || campo6 != "Finalizada"){
+          if(modalstart_time >= campo3 && modalstart_time <= campo4){
+            $('#error_explanation').html("<ul><li>La consola ya se encuentra reservada para la hora seleccionada.</li></ul>");
+          }else{
+            alert("la hora esta disponible "+ modaldate + " "+campo3+" " + modalstart_time + " " + campo6);
+            // $('#new_reservation').submit();
+          }
+        }
+      }else{
+        // $('#new_reservation').submit();
+        distroydatatables();
+        alert("la fecha es igual a la que esta reservada"+ modaldate + " "+campo3+" " + modalstart_time + " " + campo6);
+      }
+    });
+  }
+}
