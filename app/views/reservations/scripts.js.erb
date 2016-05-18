@@ -136,7 +136,6 @@ function calculatehoursandminutes(){
 	}
 }
 
-
 $('#reserve_price_console_id').change(function(){
 	var console_identify;
 	var varconsolename;
@@ -168,27 +167,53 @@ $('#reserve_price_console_id').change(function(){
 
 
 function validatereservations(){
+  var campo1,campo2,campo3,campo4,campo5,campo6,timesplide3,timesplide3_end,timesplide4,timesplide4_end;
+  var split_pm_medium3,split_hora_hard3,split_modal_start_time_initial,split_modal_start_time_final;
+  var split_pm_medium4,split_hora_hard4;
+  var count_reserves = 0;
   if ($('#Btn_RReserve').attr('disabled')) {
     //Esto es para que no pase nada mientras el boton este deshabilitado.
   }else{
-    var modaldate,modalstart_time,modalendtime ;
+    var modaldate,modalstart_time,modalendtime,modalconsole ;
+
     modaldate = $('#reservation_date').val();
-    modalstart_time = $('#reservation_start_time').val();
     modalendtime = $('#reservation_end_time').val();
+    modalconsole =  $('#reserve_price_console_id option:selected').text();
+    split_modal_start_time_initial = $('#reservation_start_time').val();
+    split_modal_start_time_final = split_modal_start_time_initial.split(':');
+    modalstart_time = parseInt(split_modal_start_time_final[0] + split_modal_start_time_final[1]);
+
     $('#datatable tbody tr').each(function(index){
-      var campo1,campo2,campo3,campo4,campo5,campo6,timesplide3,timesplide3_end;
+
       $(this).children('td').each(function(index2){
         switch (index2) {
+          case 1:
+              campo1 = $(this).text();
+            break;
           case 2:
               campo2 = $(this).text();
             break;
           case 3:
               timesplide3 = $(this).text();
               timesplide3_end = timesplide3.split(' ');
-              campo3 = timesplide3_end[0];
+              if(timesplide3_end[1] == "PM"){
+                split_pm_medium3 = timesplide3_end[0].split(':');
+                split_hora_hard3 = parseInt(split_pm_medium3[0]);
+                campo3 = parseInt((split_hora_hard3 + 12) + split_pm_medium3[1]);
+              }else{
+                campo3 = timesplide3_end[0];
+              }
             break;
           case 4:
+          timesplide4 = $(this).text();
+          timesplide4_end = timesplide4.split(' ');
+            if(timesplide4_end[1] == "PM"){
+              split_pm_medium4 = timesplide4_end[0].split(':');
+              split_hora_hard4 = parseInt(split_pm_medium4[0]);
+              campo4 = (split_hora_hard4 + 12) + split_pm_medium4[1];
+            }else{
               campo4 = $(this).text();
+            }
             break;
           case 6:
               campo6 = $(this).text();
@@ -196,20 +221,17 @@ function validatereservations(){
           default:
         }
       });
-      if(modaldate == campo2){
-        if(campo6 != "Cancelada" || campo6 != "Finalizada"){
-          if(modalstart_time >= campo3 && modalstart_time <= campo4){
-            $('#error_explanation').html("<ul><li>La consola ya se encuentra reservada para la hora seleccionada.</li></ul>");
-          }else{
-            alert("la hora esta disponible "+ modaldate + " "+campo3+" " + modalstart_time + " " + campo6);
-            // $('#new_reservation').submit();
-          }
-        }
+
+      if((modalconsole == campo1) && (modaldate == campo2) && (modalstart_time >= campo3 && modalstart_time <= campo4)){
+        count_reserves = count_reserves + 1;
       }else{
-        // $('#new_reservation').submit();
-        distroydatatables();
-        alert("la fecha es igual a la que esta reservada"+ modaldate + " "+campo3+" " + modalstart_time + " " + campo6);
+
       }
     });
+    if(count_reserves > 0){
+      $('#error_explanation').html("<ul><li>La consola ya se encuentra reservada para la hora seleccionada.</li></ul>");
+    }else{
+      $('#new_reservation').submit();
+    }
   }
 }

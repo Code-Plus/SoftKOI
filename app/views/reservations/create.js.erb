@@ -3,13 +3,11 @@ $('#dialog').modal('toggle');
 
 //Añadir el registro que acabamos de crear en la tabla
 //Este ID corresponde al de la etiqueta tbody en el index
-// $('#reservations').append('<%= j render (@reservation) %>');
+$('#datatable').dataTable().fnDestroy();
+$('#reservations').append('<%= j render (@reservation) %>');
+load_datatable();
 
 
 
 //Desplegar alerta
 toastr.success('¡Se ha registrado satisfactoriamente!');
-
-//refrescar datatable
-
-// load_datatable();

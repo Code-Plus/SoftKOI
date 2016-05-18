@@ -58,9 +58,6 @@ function load_datatable(){
     }
   });
 }
-function distroydatatables(){
-  $('#datatable').DataTable().Destroy();
-}
 
 toastr.options = {
   "positionClass": "toast-bottom-right",
@@ -130,6 +127,7 @@ function Products_category_function(){
 		$('#category_type_product_id').prop("disabled",true);
 	}
 }
+
 
 function activeconsole(){
 	var inputReady = true;

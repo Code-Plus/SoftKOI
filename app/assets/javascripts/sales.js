@@ -24,5 +24,10 @@ $(document).ready(function() {
       	console.log('Se ha efectuado el descuento.');
       }
     });
+		var valor = $(this).val();
+		if(valor == ""){
+			$(this).val(0);
+		}else{
+		}
 	});
 });

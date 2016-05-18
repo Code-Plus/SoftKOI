@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
 	devise_for :users, :skip => :registration
 	resources :customers
-	resources :categories 
+	resources :categories
 	resources :type_products
 	resources :reserve_prices
   resources :events do
