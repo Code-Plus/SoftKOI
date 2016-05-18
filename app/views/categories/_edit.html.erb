@@ -32,12 +32,13 @@
 			<div class="inline" style="margin-bottom: 0px;">
 				<%= f.submit "Editar Categotria", :class => "btn btn-success bold" %>
 			</div>
-
+			<input type="hidden" id="category__id" value="<%="#{@category.id}"%>">
 			<div class="inline">
 				<% if @category.may_disponible?%>
 					<%= link_to "Habilitar", "/category/#{@category.id}/habilitar", method: :put, class: 'btn btn-primary bold' %>
 				<% else %>
-				  <%= link_to "Inhabilitar", "/category/#{@category.id}/inhabilitar", method: :put, class: 'btn btn-primary bold' %>
+					<div class= "btn btn-primary bold class_inhabilitar" >Inhabilitar</div>
+				  <%# link_to "Inhabilitar", "", class: 'btn btn-primary bold class_inhabilitar' %>
 				<% end %>
 			</div>
       </div>
@@ -45,3 +46,46 @@
 
 
 <% end %>
+
+<script>
+
+$('.class_inhabilitar').click(function(){
+	var id_val = $('#category__id').val();
+	var resp = 0;
+  $.confirm({
+      confirmButton: 'Sí',
+      cancelButton: 'No',
+      title: 'Confirmación',
+      content: 'Al cambiar el estado todos los productos tambie cambiaran, y su stock se volvera 0, ¿esta seguro?',
+      confirm: function(){
+        resp = 1;
+        ajax_change_state_product(resp, id_val);
+				location.reload();
+				toastr.success('¡Se ha actualizado satisfactoriamente!')
+      },
+      cancel: function(){
+        ajax_change_state_product(resp, id_val);
+      }
+  });
+
+});
+
+
+function ajax_change_state_product(resp, id){
+    respuesta = resp;
+    identify = id;
+    $.ajax({
+      url:'/products/change_state',
+      data:{answer: respuesta, id: identify},
+      type: 'get',
+			datatype: 'json'
+    }).done(function(done){
+
+    }).error(function(error){
+      console.log('Ha ocurrido un error '+ error);
+    });
+  }
+
+
+
+</script>

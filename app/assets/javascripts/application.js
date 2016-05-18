@@ -94,6 +94,7 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 	$("#error_explanation").html(kk);
 });
 
+/*
 $("html").keyup(function(key){
 	var up = key.keyCode;
 	if(up == 220){
@@ -101,7 +102,7 @@ $("html").keyup(function(key){
 		activeconsole();
 	}
 });
-
+*/
 
 var categoriesI ;
 var var_attr ;
@@ -210,12 +211,3 @@ function activeconsole(){
 		}
 	});
 }
-
-function reloadpageoninterval(){
-	location.reload();
-}
-
-// function showandhidenewmodal(){
-//   $('#mostrar_eventos').addClass('hidden');
-//   $('#nuevo_evento').removeClass('hidden');
-// }

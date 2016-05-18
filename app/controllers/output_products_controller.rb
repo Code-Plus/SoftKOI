@@ -4,7 +4,7 @@ class OutputProductsController < ApplicationController
   after_action :products_low, only:[:create]
 
   def index
-    @output_products = OutputProduct.all
+    @output_products = OutputProduct.all.order(created_at: :desc)
     @search = Report.new(params[:search])
   end
 

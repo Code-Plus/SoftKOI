@@ -16,7 +16,7 @@
         <table id="datatable" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>Identificador</th>
+              <th>Fecha</th>
               <th>Cantidad de baja</th>
               <th>Producto</th>
               <th>Precio</th>
@@ -26,7 +26,7 @@
           <tbody id="output_products">
             <% @output_products.each do |output_product| %>
               <tr>
-                <td><%= output_product.id%></td>
+                <td><%= output_product.created_at.strftime("%F")%></td>
                 <td><%= output_product.stock %></td>
                 <td><%= output_product.product.name %></td>
                 <td><%= number_to_currency output_product.product.price %></td>

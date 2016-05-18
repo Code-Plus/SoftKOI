@@ -1,12 +1,14 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, only: [:edit, :update, :disponible, :noDisponible, :bajas]
+  before_action :set_product, only: [:edit, :update, :disponible, :noDisponible]
   load_and_authorize_resource
 
   def index
-    @products = Product.all
+    @products = Product.all.order(stock: :desc)
     @search = Report.new(params[:search])
   end
+
+
 
   def generate_pdf
     @search = Report.new(params[:search])
@@ -31,6 +33,8 @@ class ProductsController < ApplicationController
 
 
   def edit
+    @category = Category.select(:state).where(id: @product.category_id)
+    @category = @category.pluck(:state)
   end
 
 
@@ -47,6 +51,24 @@ class ProductsController < ApplicationController
   end
 
 
+  def change_state
+    answer = params[:answer]
+    respond_to do |format|
+      if answer.to_i == 1
+        category_product = Category.find(params[:id])
+          product_by_category = Product.where(category_id: category_product.id)
+          product_by_category.each do |product|
+            OutputProduct.create stock: product.stock, product_id: product.id
+            product.update stock:  0 ,state: "noDisponible"
+            product.update state: "noDisponible"
+          end
+        category_product.state = "noDisponible"
+        category_product.save!
+        format.json { head :no_content}
+      end
+    end
+  end
+
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -58,18 +80,15 @@ class ProductsController < ApplicationController
     end
   end
 
-
-
-
-
   def disponible
     @product.disponible!
     redirect_to products_url
   end
 
   def noDisponible
-    @product.noDisponible!
-    redirect_to products_url
+      OutputProduct.create stock: @product.stock, product_id: @product.id
+      @product.noDisponible!
+      redirect_to products_url
   end
 
   def sinCantidad

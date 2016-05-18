@@ -8,15 +8,8 @@ class Product < ActiveRecord::Base
   before_create :set_date
   before_update :set_updated_at
 
-  before_validation :validate_category_change
-  after_update do
-    if self.state == "noDisponible" || self.state == "disponible"
-      if self.stock == 0
-        self.update(state: "sinCantidad")
-      end
-    end
-  end
-
+  before_validation :validate_category_change, :validate_category_state
+  after_update :change_state_to_sinCantidad
 
   validates :name, presence: true
   validates :price, presence: true, numericality: {greater_than_or_equal_to: 0}
@@ -39,6 +32,10 @@ class Product < ActiveRecord::Base
 
   #Productos que se crearon en la fecha actual
   scope :creados_hoy, ->{where("created_at.strftime('%Y-%d-%m') => Time.now.strftime('%Y-%d-%m')")}
+
+  #Productos registrados en la ultima semana
+  scope :registered_last_week, ->{group("products.created_at::date").where("created_at >= ? ", 1.week.ago ).count}
+
 
   def self.creados_hoy(current_time)
     product_created = Product.select("products.id, products.created_at")
@@ -103,5 +100,21 @@ class Product < ActiveRecord::Base
   def set_updated_at
     self.updated_at = Time.now.in_time_zone("Bogota")
   end
+
+  def change_state_to_sinCantidad
+    if self.state == "noDisponible" || self.state == "disponible"
+      if self.stock == 0
+        self.update(state: "sinCantidad")
+      end
+    end
+  end
+
+  def validate_category_state
+    category_state = category.state
+    if category_state == "noDisponible"
+      self.errors.add(:base ,"No se puede habilitar el producto, la categoria no esta disponible")
+    end
+  end
+
 
 end

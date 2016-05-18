@@ -4,7 +4,7 @@ class InputProductsController < ApplicationController
   after_action :products_low, only:[:create]
 
   def index
-    @input_products = InputProduct.all
+    @input_products = InputProduct.all.order(created_at: :desc)
     @search = Report.new(params[:search])
   end
 
