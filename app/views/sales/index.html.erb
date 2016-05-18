@@ -36,7 +36,7 @@
             <tbody>
                <% @sales.each do |sale| %>
                <tr>
-                  <td><%= sale.created_at %></td>
+                  <td><%= sale.created_at.strftime("%d/%m/%Y") %></td>
                   <td><%= sale.customer.blank? ? ' - ' : sale.customer.name %></td>
                   <td><%= number_to_currency sale.amount %></td>
                   <td><%= number_to_currency sale.discount %></td>
