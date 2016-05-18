@@ -24,6 +24,7 @@
 
 ### License
 
-Not yet 
+The MIT License (MIT)
 
-##### 2016 CodePlus
+##### Copyright (c) 2015,2016 CodePlus
+
