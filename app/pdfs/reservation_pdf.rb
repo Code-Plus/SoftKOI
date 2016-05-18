@@ -1,7 +1,7 @@
-class CustomerPdf < Prawn::Document
-  def initialize(customers_for_pdf,date_from,date_to)
+class ReservationPdf < Prawn::Document
+  def initialize(reservations_for_pdf,date_from,date_to)
     super()
-    @products_for_pdf = customers_for_pdf
+    @reservations_for_pdf = reservations_for_pdf
     @date_from = date_from
     @date_to = date_to
     header
@@ -10,17 +10,17 @@ class CustomerPdf < Prawn::Document
     footer
   end
   def header
-  	image "#{Rails.root}/app/assets/images/white_logo.png", :position => 230, :height =>70
+  	image "#{Rails.root}/app/assets/images/softkoi.png", :position => 230, :height =>70
   end
 
   def text_content
     move_down 20
     font("Courier") do
-      text "Reporte de registros de clientes generados desde SOFTKOI APP.", :align => :center
+      text "Reporte de registros de reservas generados desde SOFTKOI APP.", :align => :center
       move_down 20
-      text "Este reporte fue generado la fecha: #{Date.today}", :align =>:center
+      text "Este reporte fue generado el día: #{Date.today}", :align =>:center
       move_down 20
-        text "Clientes registrados desde #{@date_from} hasta el #{@date_to}.", :align => :center
+        text "Reservas registrados desde #{@date_from} hasta  #{@date_to}.", :align => :center
     end
   end
 
@@ -30,15 +30,15 @@ class CustomerPdf < Prawn::Document
       row(0).font_style = :bold
       self.header = true
       self.row_colors = ['DDDDDD', 'FFFFFF']
-      self.column_widths = [80,60]
+      self.column_widths = [60]
       self.position = 80
     end
   end
 
   def product_rows
-    [['Documento', 'Nombre', 'Edad', 'Email', 'Telefono']] +
+    [['#', 'Producto', 'Precio', 'Cantidad actual', 'Cantidad Mínima']] +
       @products_for_pdf.map do |product|
-      [customer.document,customer.name,customer.age,customer.email, customer.phone]
+      [product.id,product.name,product.price,product.stock, product.stock_min]
     end
   end
 
@@ -46,8 +46,9 @@ class CustomerPdf < Prawn::Document
     bounding_box [bounds.left, bounds.bottom + 35], :width  => bounds.width  do
       font "Courier"
       stroke_horizontal_rule
-      move_down(5)
+      move_down(10)
       number_pages "<page> de <total>", { :start_count_at => 0, :page_filter => :all, :at => [bounds.right - 50, 0], :align => :right, :size => 12 }
+      move_down(5)
       image "#{Rails.root}/app/assets/images/softkoifooter.png", :position => 250, :height =>25
     end
   end

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  
+
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   after_action :day_of_event, only:[:index]
   # after_action :day_of_event, only:[:create]
@@ -24,15 +24,14 @@ class EventsController < ApplicationController
 
 
   def create
-    @event = Event.new(event_params)
+    @event = Event.create(event_params)
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Se ha creado el evento satisfactoriamente' }
-        format.json { render :show, status: :created, location: @event }
+        format.json { head :no_content }
+        format.js {  flash[:notice] = "¡Evento creada satisfactoriamente!" }
       else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.json { render json: @event.errors.full_messages,status: :unprocessable_entity }
       end
     end
   end

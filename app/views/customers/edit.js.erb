@@ -11,3 +11,10 @@ $('#dialog').modal("show");
 $('#dialog').on('shown.bs.modal', function () {
 	$('.first_input').focus()
 })
+
+// Datepicker
+$('.datepicker').datepicker({
+	autoclose: true,
+	orientation: "bottom auto",
+	format: "dd/mm/yyyy"
+});

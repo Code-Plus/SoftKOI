@@ -4,61 +4,15 @@
 <% end -%>
 
 <% content_for :button do -%>
-    <div class='btn btn-success bold registrar' id="registerevent">
-      <i class="fa fa-plus"></i>&nbsp;Nuevo evento
-    </div>
+  <%= link_to new_event_path, remote: true, class: 'btn btn-success bold' do %>
+     <i class="fa fa-plus"></i>
+     &nbsp;Nuevo Evento
+  <% end %>
 <% end -%>
 
   <div id="events_calendar">
     <%= render partial: "calendar", locals: {events: @events} %>
   </div>
   <br>
-  <%# link_to 'New Event', new_event_path %>
+   <%= render 'dialog' %>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div id="nuevo_evento">
-        <%= form_for(@event, :url => { :action => "create_event" } ) do |f| %>
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel"><i class="fa fa-pencil"></i> Crear evento</h4>
-          </div>
-          <div class="col-sm-12">
-            <div id="error_explanation" class="text-danger modal-errors"></div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group input-md">
-                  <%= f.label 'Nombre' %><br>
-                  <%= f.text_field :name, :class => "form-control"  %>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <%= f.label 'Fecha' %><br>
-                  <%= f.datetime_select :start_time, :class => "form-control input-md" %>
-                </div>
-              </div>
-              <div class="col-sm-12">
-                <div class="form-group input-md">
-                  <%= f.label 'Evento' %><br>
-                  <%= f.text_field :description, :class => "form-control"  %>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <div class="modal-footer">
-            <%= f.submit "Crear evento", class:"btn btn-success bold inline" %>
-            <button type="button" class="btn btn-default bold inline" data-dismiss="modal">Cerrar</button>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ########################################## -->

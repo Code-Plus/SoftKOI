@@ -23,6 +23,9 @@ $(document).ready(function() {
 		format: "dd/mm/yyyy"
 	});
 
+	//datetimepicker
+  $('.datetimepicker').datetimepicker();
+
 	// Tooltip y alerta
 	$('[data-toggle="tooltip"]').tooltip();
 	$("#notice_wrapper").slideDown(400).delay(2000).slideUp("slow");

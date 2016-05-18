@@ -54,6 +54,8 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap3-datetimepicker-rails (4.17.37)
+      momentjs-rails (>= 2.8.1)
     bootswatch-rails (3.3.5)
       railties (>= 3.1)
     browser (2.1.0)
@@ -126,6 +128,8 @@ GEM
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    momentjs-rails (2.11.1)
+      railties (>= 3.1)
     multi_json (1.12.0)
     nested_form (0.3.2)
     nokogiri (1.6.7.2)
@@ -166,6 +170,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -239,6 +245,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-datepicker-rails
   bootstrap-sass
+  bootstrap3-datetimepicker-rails (~> 4.17.37)
   bootswatch-rails
   browser
   byebug
@@ -258,6 +265,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  momentjs-rails (>= 2.9.0)
   nested_form
   pg
   prawn (~> 2.0, >= 2.0.2)
@@ -265,6 +273,7 @@ DEPENDENCIES
   public_activity
   puma
   rails (= 4.2.4)
+  rails-observers
   rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

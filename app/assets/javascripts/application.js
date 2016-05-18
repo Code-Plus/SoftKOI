@@ -19,6 +19,8 @@
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
+//= require moment
+//= require bootstrap-datetimepicker
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require jsapi
@@ -101,32 +103,6 @@ $("html").keyup(function(key){
 });
 */
 
-var categoriesI ;
-var var_attr ;
-
-categoriesI = $('#product_category_id').html();
-
-function Products_category_function(){
-	var categoriesF;
-	categoriesF = $('#product_category_id').html();
-	$('#product_category_id').parent().show();
-	var escaped_type_product, options, type_product, finalvalue;
-	type_product = $('#category_type_product_id :selected').text();
-	escaped_type_product = type_product.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-	options = $(categoriesF).filter("optgroup[label='" + escaped_type_product + "']").html();
-  finalvalue = "<option></option>";
-	if (options) {
-    finalvalue += options;
-		$('#product_category_id').html(finalvalue);
-		$('#category_type_product_id').prop("disabled",true);
-		$('#Btn_RProduct').removeClass('disabled');
-		$('#Btn_RProduct').removeClass('btn-primary');
-		$('#Btn_RProduct').addClass('btn-success');
-		return $('#product_category_id').parent().show();
-	} else {
-		$('#category_type_product_id').prop("disabled",true);
-	}
-}
 
 
 function activeconsole(){

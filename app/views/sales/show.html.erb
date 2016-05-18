@@ -15,50 +15,89 @@
 <div style="margin: 0px 60px;">
    <div class="panel panel-default">
       <div class="panel-body">
-         <p>
-           <strong>Estado:</strong>
-           <%= @sale.state %>
-         </p>
+        <div class="col-sm-6">
+          <h4 class="bold">Información de la venta</h4>
+          <hr style="border: 1; margin-top: 0px; ">
 
-         <p>
-           <strong>Monto:</strong>
-           <%= number_to_currency @sale.amount %>
-         </p>
+          <p>
+            <strong style="vertical-align: text-top;">Estado:</strong>
+            <label class="label label-success bold" style="vertical-align:initial !important;">
+              <% if @sale.state == "pago" %>
+                Cancelada
+              <% else %>
+                En deuda
+              <% end %>
+            </label>
+          </p>
 
-         <p>
-           <strong>Descuento:</strong>
-           <%= number_to_currency @sale.discount %>
-         </p>
+          <p>
+            <strong>Monto:</strong>
+            <%= number_to_currency @sale.amount %>
+          </p>
 
-         <p>
-           <strong>Monto total:</strong>
-           <%= number_to_currency @sale.total_amount %>
-         </p>
+          <p>
+            <strong>Descuento:</strong>
+            <%= number_to_currency @sale.discount %>
+          </p>
+
+          <p>
+            <strong>Monto total:</strong>
+            <%= number_to_currency @sale.total_amount %>
+          </p>
 
 
-         <p>
-           <strong>Fecha límite</strong>
-           <%= @sale.limit_date %>
-         </p>
+          <p>
+            <strong>Fecha límite</strong>
+            <%= @sale.limit_date %>
+          </p>
 
-         <p>
-           <strong>Usuario:</strong>
-           <%= @sale.user.name %>
-         </p>
+          <p>
+            <strong>Usuario:</strong>
+            <%= @sale.user.name %>
+          </p>
+          <% unless @sale.comment.nil? %>
+            <p>
+              <strong>Comentario:</strong>
+              <%= @sale.comment  %>
+            </p>
+          <% end %>
 
-         <p>
-           <strong>Comentario:</strong>
-           <%= @sale.comment %>
-         </p>
+          <p>
+            <strong>Cliente:</strong>
+            <%= @sale.customer.name %>
+          </p>
+          <br>
+          <%= link_to sales_path, class:'btn btn-info btn-sm bold' do %>
+             <i class="fa fa-arrow-left"></i> &nbsp; Volver
+          <% end %>
+        </div>
 
-         <p>
-           <strong>Cliente:</strong>
-           <%= @sale.customer.name %>
-         </p>
+        <div class="col-sm-6">
+          <h4 class="bold">Productos adquiridos</h4>
+          <hr style="border: 1; margin-top: 0px; ">
 
-         <%= link_to sales_path, class:'btn btn-info btn-sm bold' do %>
-            <i class="fa fa-arrow-left"></i> &nbsp; Volver
-         <% end %>
+          <table class="table table-bordered table-hover table-striper">
+            <thead>
+              <tr>
+                <th>Nombre del producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Precio total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @sale_items.each do |sale_items| %>
+                <tr>
+                  <td><%= sale_items.product.name %></td>
+                  <td><%= sale_items.quantity %></td>
+                  <td><%= number_to_currency sale_items.price %></td>
+                  <td><%= number_to_currency sale_items.total_price %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
       </div>
    </div>
 </div>
