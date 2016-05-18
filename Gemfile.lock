@@ -170,6 +170,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -271,6 +273,7 @@ DEPENDENCIES
   public_activity
   puma
   rails (= 4.2.4)
+  rails-observers
   rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

@@ -29,6 +29,7 @@ class SalesController < ApplicationController
 
 	def show
 		set_sale
+		@sale_items = Item.all.where(sale_id: @sale)
 	end
 
 
