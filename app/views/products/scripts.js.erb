@@ -14,6 +14,9 @@ $('#category_type_product_id').change(function(){
     }
     $('#product_category_id').html(html);
 		$('#product_category_id').parent().show();
+		$('#Btn_RProduct').removeClass('disabled');
+ 		$('#Btn_RProduct').removeClass('btn-primary');
+ 		$('#Btn_RProduct').addClass('btn-success');
 	}).error(ajaxerror);
 });
 
