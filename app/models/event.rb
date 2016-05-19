@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   before_update :set_updated_at
 
   validates :description, presence: true
-  validates_date :start_time, presence: true, :on_or_after => lambda { Date.current } ,:on_or_after_message => " no debe ser menor a la actual"
+  validates_datetime :start_time, presence: true, :on_or_after => lambda { Date.current } ,:on_or_after_message => " no debe ser menor a la actual"
   validates :name, presence: true
 
 
