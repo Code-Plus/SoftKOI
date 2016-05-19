@@ -117,6 +117,9 @@ function calculatehoursandminutes(){
 			fin = sum_rel_fin - 60;
 			send_ini = parseInt('00');
 			seconds = send_ini + fin;
+      if (h_split_f < 10) {
+    		h_split_f = '0' + h_split_f;
+    	}
 			if (seconds < 10) {
 				seconds = '0' + seconds;
 			}
@@ -162,8 +165,9 @@ $('#reserve_price_console_id').change(function(){
 
 function validatereservations(){
   var campo1,campo2,campo3,campo4,campo5,campo6,timesplide3,timesplide3_end,timesplide4,timesplide4_end;
-  var split_pm_medium3,split_hora_hard3,split_modal_start_time_initial,split_modal_start_time_final;
-  var split_pm_medium4,split_hora_hard4;
+  var split_modal_start_time_initial,split_modal_start_time_final;
+  var split_pm_medium3,split_hora_hard3,split_am_medium3;
+  var split_pm_medium4,split_hora_hard4,split_am_medium4;
   var count_reserves = 0;
   if ($('#Btn_RReserve').attr('disabled')) {
     //Esto es para que no pase nada mientras el boton este deshabilitado.
@@ -195,7 +199,10 @@ function validatereservations(){
                 split_hora_hard3 = parseInt(split_pm_medium3[0]);
                 campo3 = parseInt((split_hora_hard3 + 12) + split_pm_medium3[1]);
               }else{
-                campo3 = timesplide3_end[0];
+                split_am_medium3 = timesplide3_end[0].split(':');
+                split_hora_hard3 = parseInt(split_am_medium3[0]);
+                campo3 = split_hora_hard3 + split_am_medium3[1];
+
               }
             break;
           case 4:
@@ -206,7 +213,9 @@ function validatereservations(){
               split_hora_hard4 = parseInt(split_pm_medium4[0]);
               campo4 = (split_hora_hard4 + 12) + split_pm_medium4[1];
             }else{
-              campo4 = $(this).text();
+              split_am_medium4 = timesplide4_end[0].split(':');
+              split_hora_hard4 = parseInt(split_am_medium4[0]);
+              campo4 = split_hora_hard4 + split_am_medium4[1];
             }
             break;
           case 6:
@@ -216,6 +225,7 @@ function validatereservations(){
         }
       });
 
+      
       if((modalconsole == campo1) && (modaldate == campo2) && (modalstart_time >= campo3 && modalstart_time <= campo4)){
         count_reserves = count_reserves + 1;
       }else{

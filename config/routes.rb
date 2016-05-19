@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
 	# Ajax de productos
 	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
+  # Ajax para el precio de reserva (No tocar se putea reservas)
+  get '/reservations/price_interval', to: 'reservations#reserve_ajax', as: 'interval_price'
 
 	devise_for :users, :skip => :registration
 
@@ -57,7 +59,7 @@ Rails.application.routes.draw do
       get 'ajaxnewconsole'
       get 'ajaxscripts'
       get 'change_state'
-      get 'price_interval'
+
 		end
 	end
 
