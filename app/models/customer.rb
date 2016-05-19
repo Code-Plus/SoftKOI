@@ -19,6 +19,8 @@ class Customer < ActiveRecord::Base
   validates :state, presence: true
   validates :type_document_id, presence: true
 
+  #after_validation :validate_age_typeDocument
+
   before_validation :validate_age_typeDocument
 
 
@@ -45,8 +47,8 @@ class Customer < ActiveRecord::Base
   end
 
   def age
-    age = Date.today.year - birthday.year
-    age -= 1 if Date.today < birthday + age.years #for days before birthday
+    age = (Date.today - birthday) / 365.25
+    age = age.to_i
   end
 
   private
@@ -61,9 +63,9 @@ class Customer < ActiveRecord::Base
     end
 
     def validate_age_typeDocument
-      typeDocument = type_document.description
-      unless (typeDocument == "Cedula" && self.age >= 18) || (typeDocument == "Tarjeta Identidad" && self.age < 18)
-          self.errors.add(:base ,"No se tiene la edad requerida para ese tipo de documento")
+      typeDocument = self.type_document.description
+      unless(typeDocument == "Cédula de ciudadania" && self.age >= 18) || (typeDocument == "Tarjeta de identidad" && self.age < 17 )
+        self.errors.add(:base ,"No se tiene la edad requerida para ese tipo de documento")
       end
     end
 end

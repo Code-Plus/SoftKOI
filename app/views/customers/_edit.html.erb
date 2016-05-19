@@ -54,14 +54,14 @@
   <div class="col-sm-6">
     <div class="form-group required">
       <%= f.label :type_document_id,"Tipo de Documento" ,:class => "control-label"%><br>
-      <%= collection_select(:custom_customer, :type_document_id, TypeDocument.all, :id, :description, {prompt: "Seleccione una opcion"})%>
+      <%= collection_select(:customer, :type_document_id, TypeDocument.all, :id, :description, {prompt: "Seleccione una opcion"})%>
     </div>
   </div>
 
   <div class="col-sm-12">
     <hr style="border: 1; margin-top: 0px; ">
     <div class="form-group" style="margin-bottom: 0px;">
-      <%= f.submit "Editar Cliente", :class => "btn btn-success bold " %>
+      <%= f.submit "Editar", :class => "btn btn-success bold " %>
     </div>
   </div>
 
