@@ -5,6 +5,7 @@ class CouponsController < ApplicationController
   # GET /coupons.json
   def index
     @coupons = Coupon.all
+    @search = Coupon.new(params[:search])
   end
 
   # GET /coupons/1
@@ -51,6 +52,18 @@ class CouponsController < ApplicationController
     end
   end
 
+  #Ingresa el codigo de una venta y generar el formulario con ese codigo
+  def log_in_new_coupon
+    @search = params[:search]
+    @coupon = Coupon.new
+  end
+
+  #Calcular el valor del bono
+  def calculate_amount_coupon
+
+  end
+
+
   # DELETE /coupons/1
   # DELETE /coupons/1.json
   def destroy
@@ -61,6 +74,7 @@ class CouponsController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_coupon
@@ -69,6 +83,6 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:amount, :integer)
+      params.require(:coupon).permit(:amount)
     end
 end

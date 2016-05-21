@@ -22,6 +22,14 @@ class Report
   def search_date_customers
     Customers.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
   end
+
+  def search_date_reservations
+
+  end
+
+  def search_date_sales
+
+  end
   private
   def parsed_date(date_string, default)
     DateTime.parse(date_string)

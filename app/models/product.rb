@@ -36,6 +36,9 @@ class Product < ActiveRecord::Base
   #Productos registrados en la ultima semana
   scope :registered_last_week, ->{group("products.created_at::date").where("created_at >= ? ", 1.week.ago ).count}
 
+  #Productos que se puedan cambiar
+  scope :product_can_change, -> {where(can_change: true)}
+
 
   def self.creados_hoy(current_time)
     product_created = Product.select("products.id, products.created_at")

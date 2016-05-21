@@ -1,0 +1,37 @@
+<%= form_for(@coupon) do |f| %>
+  <div style="margin: 0px 60px;">
+    <% if @coupon.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@coupon.errors.count, "error") %> prohibited this coupon from being saved:</h2>
+
+        <ul>
+        <% @coupon.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+           <div class="col-sm-12">
+              <div class="form-group required">
+                 <!--Se ingresa la cantidad de productos que entraran al inventario-->
+                 <%= f.label :amount %><br>
+                 <%= f.text_field :amount %>
+              </div>
+           </div>
+
+           <div class="col-sm-12">
+              <hr style="border: 1; margin-top: 0px; ">
+              <div class="form-group" style="margin-bottom: 0px;">
+                 <%= f.submit "Registrar Cambio", :class => "btn btn-success bold" %>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<% end %>
