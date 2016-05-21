@@ -24,10 +24,9 @@ class ConsolesController < ApplicationController
     respond_to do |format|
       if @console.save
         format.json { head :no_content }
-            format.js {  flash[:notice] = "¡Consola creada satisfactoriamente!" }
+        format.js {  flash[:notice] = "¡Consola creada satisfactoriamente!" }
       else
-        format.json { render json: @console.errors.full_messages,
-               status: :unprocessable_entity }
+        format.json { render json: @console.errors.full_messages,status: :unprocessable_entity }
       end
     end
   end
@@ -35,18 +34,17 @@ class ConsolesController < ApplicationController
   def update
     respond_to do |format|
       if @console.update(console_params)
-       format.json { head :no_content }
-            format.js {  flash[:notice] = "¡Consola actualizada satisfactoriamente!" }
+        format.json { head :no_content }
+        format.js {  flash[:notice] = "¡Consola actualizada satisfactoriamente!" }
       else
-        format.json { render json: @console.errors.full_messages,
-          status: :unprocessable_entity }
+        format.json { render json: @console.errors.full_messages,status: :unprocessable_entity }
       end
     end
   end
 
   def disponible
-      @console.disponible!
-      redirect_to consoles_url
+    @console.disponible!
+    redirect_to consoles_url
   end
 
   def noDisponible
@@ -57,7 +55,7 @@ class ConsolesController < ApplicationController
         @cont = @cont + 1
       end
     end
-    if @cont >0
+    if @cont > 0
       flash[:alert] = "No se puede inhabilitar, tiene reservas asociadas"
       redirect_to consoles_url
     else
