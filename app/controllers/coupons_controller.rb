@@ -55,7 +55,16 @@ class CouponsController < ApplicationController
   #Ingresa el codigo de una venta y generar el formulario con ese codigo
   def log_in_new_coupon
     @search = params[:search]
-    @coupon = Coupon.new
+    sale = Sale.where(id: @search)
+    respond_to do |format|
+      if sale.ids.empty?
+          format.html { redirect_to coupons_url, alert: 'La venta no existe.' }
+          format.json { head :no_content }
+      else
+        #Tiene que redireccionar a la pagina de cambio
+        @coupon = Coupon.new
+      end
+    end
   end
 
   #Calcular el valor del bono
