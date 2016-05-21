@@ -62,7 +62,9 @@ class CouponsController < ApplicationController
           format.json { head :no_content }
       else
         #Tiene que redireccionar a la pagina de cambio
+        @detail_of_products = []
         @coupon = Coupon.new
+        format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
       end
     end
   end
@@ -70,6 +72,10 @@ class CouponsController < ApplicationController
   #Calcular el valor del bono
   def calculate_amount_coupon
 
+  end
+
+  def detail_products
+    @sale_id = params[:id]
   end
 
 
