@@ -42,7 +42,7 @@
                                     <%=product.product.name%></th>
                                     <th><%=product.product.price%></th>
                                     <th><%=(product.quantity.to_i)*(product.product.price.to_i)%></th>
-                                    <th><%= text_field_tag 'info_product_quantity[]','0', class: "form-control"%></th>
+                                    <th><%= number_field_tag 'info_product_quantity[]','0', class: "form-control"%></th>
                                    </th>
                                  </tr>
                               <%end%>
