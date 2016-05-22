@@ -39,12 +39,6 @@
       <%= render :partial => 'sales/shared/added_items', :locals=>{:f=>f} %>
     </div>
 
-    <div class="row">
-      <div class="sale_payments col-sm-12">
-        <%# render :partial => 'sales/shared/sale_payments', :locals => {:f => f} %>
-      </div>
-
-    </div>
     <%= f.submit 'Update Sale', :class => "btn btn-success btn-lg sale_submit" %>
   <% end %>
   </div>
