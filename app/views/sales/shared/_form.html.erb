@@ -1,34 +1,36 @@
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="panel-heading">#<span class="sale_id"><%= @sale.id %>, Created: <%= @sale.created_at.strftime("%m/%d/%y %I:%M:%S %p")  %>, Last Edited: <%= @sale.updated_at.strftime("%m/%d/%y %I:%M:%S %p")  %></span></div> 
+<% content_for :title do -%>
+   Registrar venta de productos
+<% end -%>
 
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs hidden-print">
-        <li class="active"><a href="#sale" data-toggle="tab">Venta</a></li>
-        <li><a href="#customer" data-toggle="tab">Cliente</a></li>
-        <li><a href="#comments" data-toggle="tab">Comentarios</a></li>
-      </ul>
+<% content_for :button do -%>
+  <div class="btn btn-primary bold">
+    Venta N° <span class="sale_id"><%= @sale.id %></span>
+  </div>
+<% end -%>
 
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div class="tab-pane active" id="sale">
-          <%= render :partial => 'sales/shared/sale_tab' %>
-        </div>
+<div style="margin: 0px 60px;">
+  <div class="row">
 
-        <div class="tab-pane" id="customer">
+    <div class="col-sm-9">
+      <%= render :partial => 'sales/shared/sale_tab' %>
+      <%= render :partial => 'sales/shared/modals' %>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
           <%= render :partial => 'sales/shared/customer_info', :object => @sale %>
 
-          <div class="added_customer">
-            <%= render :partial => 'sales/shared/added_customer' %>
+          <div class="sale_totals hidden-print">
+            <%# Info de el precio de la venta, descuento, etc. %>
+            <%= form_for(@sale) do |f| %>
+              <%= render :partial => 'sales/shared/sale_totals', :locals=>{:f=>f} %>
+            <% end %>
           </div>
         </div>
-
-        <div class="tab-pane" id="comments">
-          <%= render :partial => 'sales/shared/comments', :object => @sale %>
-        </div>
-
-        <%= render :partial => 'sales/shared/modals' %>
-
+      </div>
     </div>
+
   </div>
 </div>

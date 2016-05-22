@@ -17,7 +17,6 @@
 //= require select2
 //= require select2_locale_es
 //= require bootstrap-datepicker
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require moment
 //= require bootstrap-datetimepicker
 //= require dataTables/jquery.dataTables

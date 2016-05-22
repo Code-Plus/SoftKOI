@@ -21,7 +21,7 @@ class Customer < ActiveRecord::Base
 
   #after_validation :validate_age_typeDocument
 
-  before_validation :validate_age_typeDocument
+  #before_validation :validate_age_typeDocument
 
 
   aasm column: "state" do

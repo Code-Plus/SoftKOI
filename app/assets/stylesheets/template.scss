@@ -7,6 +7,20 @@ body{
   font-family: sans-serif !important;
 }
 
+
+span.select2-selection--single {
+  height: 41px !important;
+}
+
+span.select2-selection.select2-selection--single {
+  padding: 11px 24px 6px 12px !important;
+}
+
+div.btn-block {
+  border-width: 2px !important;
+  font-size: 16px !important;
+}
+
 a.no-hover:hover {
   color: white;
   color: white;
@@ -175,6 +189,39 @@ span.last {
 
 /*-----------------------------clases solas-------------------------*/
 
+.ion-android-remove-circle, .ion-android-add-circle {
+  font-size: 22px !important;
+
+}
+
+
+a.sale_product_quantity {
+  display: inline;
+  vertical-align: middle;
+
+  &:first-child {
+    padding-right:10px;
+    color: #E74C3C !important;
+  }
+  &:last-child {
+    padding-left:10px;
+    color: #18BC9C !important;
+
+  }
+}
+
+td.amount {
+  width: 170px !important;
+}
+
+div.adjust.hidden-print {
+  text-align: center;
+}
+
+input#item_quantity {
+  display: inline !important;
+  width: 35% !important;
+}
 
 .table-bordered {
   border: 1px solid #DCE4EC !important;

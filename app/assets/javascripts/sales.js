@@ -4,7 +4,7 @@ $(document).ready(function() {
 	  $('.item_search').click();
 	});
 
-	$(document).on("keypress", '.customer_search_input', function(){
+	$(document).on("keypress", '.customer_input', function(){
 	  $('.customer_search').click();
 	});
 

@@ -16,13 +16,13 @@
   <% end %>
 
 
-  <td width="105px">
+  <td width="105px" >
      <% if reservation.state == "enProceso" %>
         <span class="label label-primary span-table">En Proceso</span>
      <% elsif reservation.state == "finalizada" %>
         <span class="label label-warning span-table">Finalizada</span>
      <% elsif reservation.state == "cancelada" %>
-        <span class="label label-danger span-table">Cancelada</span>
+        <span class="label label-danger span-table"style="vertical-align: baseline !important;">Cancelada</span>
      <% else %>
         <span class="label label-success span-table">Activa</span>
      <% end %>
