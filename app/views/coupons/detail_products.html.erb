@@ -2,91 +2,65 @@
    Realizar cambio
 <% end -%>
 
-<% content_for :menus do -%>
-   <li><h5 class="drop-title"><%= link_to "Abonos", "#" %></h5></li>
-   <li><h5 class="drop-title"><%= link_to "Clientes", "#" %></h5></li>
-<% end -%>
-
 <div style="margin: 0px 60px;">
-   <%# form_for @coupons do |f| %>
    <div class="row">
       <div class="col-sm-9">
          <div class="panel panel-default">
             <div class="panel-body table">
-
-               <%# f.fields_for :items do |item|%>
-                  <div class="items_fields">
-
-                     <div class="col-sm-6 required">
-                        <%#item.label :product_id, "Producto", :class => "control-label"%>
-                        <label for="">Producto</label>
-                        <div class="input-group input-group-sm">
-                           <%# collection_select(:items, :product_id, Product.activos_con_cantidad, :id, :name, {prompt: "Selecciona un cliente..."}, :class => "form-control input-sm") %>
-                           <select class="form-control input-sm" name="">
-                             <option>Seleccione un opcion</option>
-                             <option>Camisa polo</option>
-                             <option>Boxers tarrao</option>
-                             <option>Pantalon vaqueros</option>
-                             <option>Corbata negra</option>
-                           </select>
-                           <span class="input-group-btn">
-                             <button id="addtotable" class="btn btn-sm btn-success input-sm"><i class="fa fa-plus"></i></button>
-                           </span>
-                        </div>
+                <div class="items_fields">
+                     <div class="col-sm-3 required">
+                        <div class="input-group input-group-sm"></div>
                      </div>
-
-                     <div class="col-sm-6 required">
-                        <%# f.label :limit_date, :class => "control-label" %>
-                        <label for="">Limite</label>
+                     <div class="col-sm-6 required text-center">
+                       <h2>Productos</h2>
+                     </div>
+                     <div class="col-sm-3 required">
                         <br>
-                        <div class="input-group input-group-sm date">
-                           <%# f.text_field :limit_date, :class => "form-control input-sm" %>
-                           <input type="text" name="name" value="" class="form-control input-sm">
-                           <span class="input-group-addon">
-                              <i class="glyphicon glyphicon-th"></i>
-                           </span>
-                        </div>
+                        <div class="input-group input-group-sm date"></div>
                      </div>
                      <br><br><br>
                      <div class="col-sm-12">
                         <hr>
                      </div>
                      <div class="col-sm-12">
+                        <%= form_tag calculate_amount_coupon_coupons_path ,:class => 'navbar-form ',:id => 'frm_coupons_products', method: "get" do %>
+                        <%= text_field_tag 'sale_id_coupon',@sale_id, class: "form-control hidden"%>
                         <table id="products" class="table table-bordered table-hover table-striped">
                            <thead>
                               <tr>
                                  <th>Nombre</th>
-                                 <th>Precio</th>
-                                 <th>Cantidad</th>
+                                 <th>Precio unitario</th>
+                                 <th>Precio de venta</th>
+                                 <th>Cantidad a cambiar</th>
                               </tr>
                            </thead>
+                           <tbody>
+                             <%@products_sale.each do |product|%>
+                                 <tr>
+                                    <th>
+                                    <%= text_field_tag 'info_product_id[]',product.product.id, class: "form-control hidden"%>
+                                    <%=product.product.name%></th>
+                                    <th><%=product.product.price%></th>
+                                    <th><%=(product.quantity.to_i)*(product.product.price.to_i)%></th>
+                                    <th><%= text_field_tag 'info_product_quantity[]','0', class: "form-control"%></th>
+                                   </th>
+                                 </tr>
+                              <%end%>
+                           </tbody>
                         </table>
+                        <% end %>
                      </div>
-
                   </div>
-               <%#end%>
-
-               <div class="col-sm-12">
-                  <%# f.label :comment %><br>
-                  <%# f.text_area :comment, class:'form-control' %>
-               </div>
-
+               <div class="col-sm-12"></div>
             </div>
          </div>
       </div>
-
       <div class="col-sm-3">
          <div class="panel panel-default">
             <div class="panel-body table">
-
                <div id="inf_customer_start">
-                  <div class="form-group required">
-                     <%# f.label "Cliente", :class => "control-label" %>
-
-                     <%# collection_select(:sale,:customer_id, Customer.all, :id, :document, {prompt: "Seleccione un cliente"}, :class => "form-control") %>
-                  </div>
+                  <div class="form-group required"></div>
                </div>
-
                <div id="inf_customer_end" class="hiddens">
                   <div class="well well-sm">
                     <label>
@@ -104,47 +78,12 @@
                      </label>
                   </div>
                </div>
-
-               <!-- <div class="form-group">
-                  <%# f.label :amount %>
-                  <label for="">Cantidad</label>
-                  <div class="input-group input-group-sm required">
-                     <span class="input-group-addon"><i class="fa fa-usd"></i></span>
-                     <input type="text" name="name" value="" class="form-control input-sm">
-                     <%# f.text_field :amount, class:'form-control input-sm', readonly: true %>
-                  </div>
-               </div>
-
-               <div class="form-group">
-                  <%# f.label :discount %>
-                  <label for="">Descuento</label>
-                  <div class="input-group input-group-sm required">
-                     <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                     <input type="text" name="name" value="" class="form-control input-sm">
-                     <%# f.text_field :discount, class:'form-control input-sm', value: '0' %>
-                  </div>
-               </div>
-
-               <div class="form-group">
-                  <%# f.label :total_amount %>
-                  <label for="">Total</label>
-                  <div class="input-group input-group-sm required">
-                     <span class="input-group-addon"><i class="fa fa-usd"></i></span>
-                     <input type="text" name="name" value="" class="form-control input-sm">
-                     <%# f.text_field :total_amount, class:'form-control input-sm', readonly: true %>
-                  </div>
-               </div>  -->
-
                <br>
                <div class="actions">
-                 <input type="button" name="name" value="Realizar cambio" class="btn btn-success btn-block bold">
-                  <%# f.submit "INGRESAR PAGO", :class => "btn btn-success btn-block bold" %>
+                 <input type="button" name="change_register" id="change_register" value="Realizar cambio" class="btn btn-success btn-block bold">
                </div>
-
             </div>
          </div>
       </div>
-
    </div>
-   <%# end %>
 </div>

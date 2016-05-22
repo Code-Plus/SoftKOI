@@ -71,11 +71,19 @@ class CouponsController < ApplicationController
 
   #Calcular el valor del bono
   def calculate_amount_coupon
-
+    sales_id = params[:sale_id_coupon]
+    products_ids = params[:info_product_id]
+    products_qualitys = params[:info_product_quantity]
+    products_end_var = Array.new
+    count = 0
+    puts "este es el id de la venta ====================> #{sales_id}"
+    puts "estos son los id de los productos ===========================>   #{products_ids}"
+    puts "estos son las cantidades de los productos ========================>  #{products_qualitys}"
   end
 
   def detail_products
     @sale_id = params[:id]
+    @products_sale = Item.where(sale_id: @sale_id)
   end
 
 

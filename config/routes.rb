@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :coupons do
     collection do
       get 'log_in_new_coupon'
+			get 'calculate_amount_coupon'
     end
   end
 	resources :categories
@@ -153,6 +154,6 @@ Rails.application.routes.draw do
 	put "/console/:id/baja", to: "consoles#baja"
 
 	#Cupons venta id
-	get "/coupons/:id/detail_products", to: "coupons#detail_products" 
+	get "/coupons/:id/detail_products", to: "coupons#detail_products"
 
 end
