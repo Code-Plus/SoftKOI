@@ -158,11 +158,11 @@ class CouponsController < ApplicationController
                   #@sale_old.update state: "anulada"
                   @sale.save
                 end
-                @item_created = Item.create product_id: p.id, product_id: p.id ,quantity: new_item_quantitys
+                @item_created = Item.create product_id: p.id, product_id: p.id ,quantity: new_item_quantity
                 @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: coupon.id , quantity: value_product
                 @new_item_coupon.save
                 @item_created.save
-                sale_amount += p.price * new_item_quantitys
+                sale_amount += p.price * new_item_quantity
               end
             end
           end

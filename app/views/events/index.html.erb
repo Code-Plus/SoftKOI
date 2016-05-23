@@ -16,3 +16,23 @@
   <br>
    <%= render 'dialog' %>
 </div>
+
+<!-- modal para los eventos del dia -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modals_events">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title day_numbeer"></h4>
+      </div>
+      <div class="modal-body evenets">
+        <p id="body_evenet"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

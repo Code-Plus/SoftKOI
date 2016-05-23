@@ -1,10 +1,11 @@
 <%= month_calendar events: events do |date, events| %>
-  <%= date.day %>
+  <p class="day_of_mount"><%= date.day %></p>
 
   <% events.each do |event| %>
     <div class="event_description">
-      <%= event.description %>
-      <%= link_to 'X', event, method: :delete, data: { confirm: 'Are you sure?' }, style: 'float: right;' %>
+      <p class="events_descriptions_data"><%= event.description %></p>
+      <%= event.id %>
+      <span class="events_options"><%= link_to 'X', event, method: :delete, data: { confirm: 'Estas seguro?' }, style: 'float: right;' %></span>
     </div>
   <% end %>
 <% end %>
