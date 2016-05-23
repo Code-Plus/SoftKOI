@@ -173,7 +173,7 @@ class CouponsController < ApplicationController
                     #@sale_old.update state: "anulada"
                     @sale.save
                   end
-                  @item_created = Item.create product_id: p.id, product_id: p.id ,quantity: new_item_quantity
+                  @item_created = Item.create product_id: p.id, sale_id: @sale.id ,quantity: new_item_quantity
                   @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: coupon.id , quantity: value_product
                   @new_item_coupon.save
                   @item_created.save
@@ -181,24 +181,13 @@ class CouponsController < ApplicationController
                 else
                   #Mensaje de error --------------------------->Cambio mas productos de los que compro
                   unless @sale.nil?
-                    puts"#{@sale.id}-------------------------------------__>ID sale"
                     Sale.last.destroy
                   end
-                  puts "#{coupon.id}-------------------------------------->ID coupon"
                   Coupon.last.destroy
                   format.html { redirect_to coupons_url, alert: 'Cambio mas productos de los que compro.' }
                   format.json { head :no_content }
                   #raise ActiveRecord::Rollback
                 end
-<<<<<<< HEAD
-
-=======
-                @item_created = Item.create product_id: p.id, product_id: p.id ,quantity: new_item_quantity
-                @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: coupon.id , quantity: value_product
-                @new_item_coupon.save
-                @item_created.save
-                sale_amount += p.price * new_item_quantity
->>>>>>> a2dd02b25b40845a8e4f8c84752b9ff65057f00f
               end
             end
           end
@@ -221,7 +210,15 @@ class CouponsController < ApplicationController
   #Redirecciona a la pagina de cambio
   def detail_products
     @sale_id = params[:id]
+    customer_id = Sale.where(id: @sale_id)
+    customer_id = customer_id.pluck(:customer_id)
+    customers = Customer.where(id: customer_id[0].to_i)
+    customers.each do |c|
+      @customer = c.name
+      @document = c.document
+    end
     @products_sale = Item.where(sale_id: @sale_id)
+
   end
 
 
@@ -244,6 +241,6 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:amount)
+      params.require(:coupon).permit(:amount, :user_id)
     end
 end
