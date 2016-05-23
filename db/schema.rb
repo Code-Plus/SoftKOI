@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513050728) do
+ActiveRecord::Schema.define(version: 20160523133124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,10 @@ ActiveRecord::Schema.define(version: 20160513050728) do
     t.integer  "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "coupons", ["user_id"], name: "index_coupons_on_user_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.string   "document"
@@ -95,7 +98,10 @@ ActiveRecord::Schema.define(version: 20160513050728) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "name"
+    t.integer  "user_id"
   end
+
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "input_products", force: :cascade do |t|
     t.integer  "stock",      default: 0
@@ -111,6 +117,7 @@ ActiveRecord::Schema.define(version: 20160513050728) do
     t.integer  "coupon_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "quantity"
   end
 
   add_index "item_coupons", ["coupon_id"], name: "index_item_coupons_on_coupon_id", using: :btree
@@ -196,7 +203,7 @@ ActiveRecord::Schema.define(version: 20160513050728) do
     t.integer  "amount",       default: 0
     t.integer  "total_amount", default: 0
     t.integer  "discount",     default: 0
-    t.date     "limit_date",   default: '2016-05-20'
+    t.date     "limit_date",   default: '2016-05-16'
     t.text     "comment"
     t.integer  "user_id"
     t.integer  "customer_id"
@@ -253,7 +260,9 @@ ActiveRecord::Schema.define(version: 20160513050728) do
 
   add_foreign_key "calendars", "users"
   add_foreign_key "categories", "type_products"
+  add_foreign_key "coupons", "users"
   add_foreign_key "customers", "type_documents"
+  add_foreign_key "events", "users"
   add_foreign_key "input_products", "products"
   add_foreign_key "item_coupons", "coupons"
   add_foreign_key "item_coupons", "sales"
