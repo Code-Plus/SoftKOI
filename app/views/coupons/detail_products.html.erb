@@ -1,0 +1,89 @@
+<% content_for :title do -%>
+   Realizar cambio
+<% end -%>
+
+<div style="margin: 0px 60px;">
+   <div class="row">
+      <div class="col-sm-9">
+         <div class="panel panel-default">
+            <div class="panel-body table">
+                <div class="items_fields">
+                     <div class="col-sm-3 required">
+                        <div class="input-group input-group-sm"></div>
+                     </div>
+                     <div class="col-sm-6 required text-center">
+                       <h2>Productos</h2>
+                     </div>
+                     <div class="col-sm-3 required">
+                        <br>
+                        <div class="input-group input-group-sm date"></div>
+                     </div>
+                     <br><br><br>
+                     <div class="col-sm-12">
+                        <hr>
+                     </div>
+                     <div class="col-sm-12">
+                        <%= form_tag calculate_amount_coupon_coupons_path ,:class => 'navbar-form ',:id => 'frm_coupons_products', method: "get" do %>
+                        <%= text_field_tag 'sale_id_coupon',@sale_id, class: "form-control hidden"%>
+                        <table id="products" class="table table-bordered table-hover table-striped">
+                           <thead>
+                              <tr>
+                                 <th>Nombre</th>
+                                 <th>Precio unitario</th>
+                                 <th>Precio de venta</th>
+                                 <th>Cantidad a cambiar</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                             <%@products_sale.each do |product|%>
+                                 <tr>
+                                    <th>
+                                    <%= text_field_tag 'info_product_id[]',product.product.id, class: "form-control hidden"%>
+                                    <%=product.product.name%></th>
+                                    <th><%=product.product.price%></th>
+                                    <th><%=(product.quantity.to_i)*(product.product.price.to_i)%></th>
+                                    <th><%= number_field_tag 'info_product_quantity[]','0', class: "form-control"%></th>
+                                   </th>
+                                 </tr>
+                              <%end%>
+                           </tbody>
+                        </table>
+                        <% end %>
+                     </div>
+                  </div>
+               <div class="col-sm-12"></div>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-3">
+         <div class="panel panel-default">
+            <div class="panel-body table">
+               <div id="inf_customer_start">
+                  <div class="form-group required"></div>
+               </div>
+               <div id="inf_customer_end" class="hiddens">
+                  <div class="well well-sm">
+                    <label>
+                       <i class="fa fa-qrcode"></i>  Codigo de venta:
+                       <span id="info_customer_finish_doc">#<%= @sale_id %></span>
+                    </label>
+                     <label>
+                        <i class="fa fa-user"></i> Nombre:
+                        <span id="info_customer_finish_name">Jesus francisco</span>
+                     </label><br>
+
+                     <label>
+                        <i class="fa fa-list-alt"></i>  Documento:
+                        <span id="info_customer_finish_doc">123456789</span>
+                     </label>
+                  </div>
+               </div>
+               <br>
+               <div class="actions">
+                 <input type="button" name="change_register" id="change_register" value="Realizar cambio" class="btn btn-success btn-block bold">
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

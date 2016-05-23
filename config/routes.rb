@@ -27,6 +27,13 @@ Rails.application.routes.draw do
 	  end
 	end
 
+  resources :coupons do
+    collection do
+      get 'log_in_new_coupon'
+			get 'calculate_amount_coupon'
+    end
+  end
+
   resources :events do
     collection do
       post 'create_event'
@@ -145,5 +152,8 @@ Rails.application.routes.draw do
 	put "/console/:id/habilitar", to: "consoles#disponible"
 	put "/console/:id/inhabilitar", to: "consoles#noDisponible"
 	put "/console/:id/baja", to: "consoles#baja"
+
+	#Cupons venta id
+	get "/coupons/:id/detail_products", to: "coupons#detail_products"
 
 end
