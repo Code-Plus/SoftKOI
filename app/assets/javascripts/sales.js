@@ -50,7 +50,7 @@ $(document).ready(function() {
 	});
 
 	// Asociar un cliente a la venta
-	var input = $('#search_item_name')[0]
+	var input = $('#search_product_name')[0]
 	var sale_id = parseInt($('#search_sale_id')[0].value)
   Awesomplete.$.bind(input, {
 	  "awesomplete-selectcomplete": function(evt) {

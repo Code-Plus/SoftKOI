@@ -10,8 +10,17 @@
     <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_customer_options",
       :format => :js), :method => "get", :remote => true do |f| %>
 
+      <%# Input autocomplete para buscar productos %>
       <div class="input-group">
-        <%= f.text_field :customer_name, :class => "form-control customer_input", :placeholder => "Buscar cliente" %>
+        <%= f.text_field :customer_name, :class => "form-control customer_input awesomplete input-sm", list: 'customers-list', :placeholder => "Buscar cliente..." %>
+
+        <datalist id="customers-list">
+          <% @available_customers.each do |customer| %>
+            <%= link_to "link1", "#",{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
+            <option value=""><%= customer.id %>.| <%= customer.name %></option>
+          <% end %>
+        </datalist>
+
         <span class="input-group-btn">
           <button class="btn btn-success bold" data-toggle="modal" data-target="#customCustomer" style="    border-width: 2px !important;">
             <i class="fa fa-plus"></i>
@@ -23,8 +32,5 @@
       <%= submit_tag "search", :class => "btn btn-primary btn-lg customer_search" %>
     <% end %>
 
-
-
-    <br>
   </div>
 </div>
