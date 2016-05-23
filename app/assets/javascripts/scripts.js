@@ -53,7 +53,8 @@ $(document).ready(function() {
 	// Agenda
 
 	$('.day').click(function(){
-		var data_of_tb = $(this).children('.event_description').children('.events_descriptions_data').text();
+		var data_of_tb = $(this).children('.event_description').children('.events_descriptions_data').html();
+		alert(data_of_tb);
 		var dia_of_tb = $(this).children('.day_of_mount').text();
 		var modal = $('#modals_events');
 		if(data_of_tb == ""){
