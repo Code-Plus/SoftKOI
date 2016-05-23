@@ -2,7 +2,6 @@ $(document).ready(function() {
 
 
 	load_datatable();
-
 	$('#registerevent').click(function(){
 		$('#myModal').modal();
 	});
@@ -63,7 +62,10 @@ $(document).ready(function() {
 		}else{
 			modal.modal();
 			$('.day_numbeer').text("Eventos para el dia #"+dia_of_tb);
-			$('.evenets').children('#body_evenet').text(data_of_tb);
+			$(this).children('.event_description').children('.events_descriptions_data').each(function(){
+				$('.evenets').append('<p id="body_evenet">'+$(this).text()+'</p>');
+			});
+
 		}
 	});
 });
