@@ -55,12 +55,16 @@
             <strong>Usuario:</strong>
             <%= @sale.user.name %>
           </p>
-          <% unless @sale.comment.nil? %>
-            <p>
+
+          <p>
+            <% if @sale.comment.nil? %>
+              <strong>Comentario:</strong>
+              No se ha ingresado un comentario.
+            <% else %>
               <strong>Comentario:</strong>
               <%= @sale.comment  %>
-            </p>
-          <% end %>
+            <% end %>
+          </p>
 
           <p>
             <strong>Cliente:</strong>
