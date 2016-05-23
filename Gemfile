@@ -12,7 +12,6 @@ gem 'turbolinks', '~> 5.0.0.beta2'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'puma'
 
 gem 'devise', '~> 3.5', '>= 3.5.6' 			  # Autenticacion de users
 gem 'prawn', '~> 2.0', '>= 2.0.2' 			  # Generar PDF
@@ -44,7 +43,6 @@ gem 'simple_calendar', '~> 2.0'           # Calendario
 gem 'momentjs-rails', '>= 2.9.0'          #Se necesita para el datetimepicker
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'   #DataTime picker
 gem 'rails-observers'                     # Observador en modelos
-
 
 group :development, :test do
   gem 'byebug'

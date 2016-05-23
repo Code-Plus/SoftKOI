@@ -3,9 +3,8 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-        <th>#</th>
+        <th width="120px">Código</th>
         <th>Producto</th>
-        <th>Descripción</th>
         <th>Precio unitario</th>
         <th>Cantidad</th>
         <th>Precio total</th>
@@ -16,37 +15,40 @@
       <%= fields_for @sale do |f|%>
         <%= f.fields_for :products do |e| %>
           <% unless e.object.nil? %>
-            <% @item = Item.where(:sale_id => @sale.id, :product_id => e.object.id).first %>
-            <tr>
+          <% @item = Item.where(:sale_id => @sale.id, :product_id => e.object.id).first %>
+          <tr>
+            <td><%= e.text_field :id, :class => "form-control product_id", :readonly => true %></td>
+            <td><%= e.text_field :name, :class => "form-control", :readonly => true %></td>
 
-              <td><%= e.text_field :id, :class => "form-control item_id", :readonly => true %></td>
-              <td><%= e.text_field :name, :class => "form-control", :readonly => true %></td>
-              <td><%= e.text_area :description, :class => "form-control", :readonly => true %></td>
+            <td>
+              <input type="text" id="line_item_price" class='form-control price_control' value="<%= number_to_currency(@item.price) %>">
+            </td>
 
-              <td>
-                <input type="text" id="line_item_price" class='form-control price_control' value="<%= number_to_currency(@item.price) %>">
-              </td>
+            <td class="amount">
 
-              <td class="amount">
+              <div class="adjust hidden-print">
+
+                <%= link_to url_for(:controller => 'sales', :action => 'remove_item', :product_id =>
+                  e.object.id, :sale_id => @sale.id), :remote => true, :class => 'sale_product_quantity' do %>
+                  <i class="ion-android-remove-circle"></i>
+                <% end %>
+
                 <%= text_field(:item, :quantity, :class => 'form-control price_control', :readonly => 'readonly') %>
 
-                <div class="adjust hidden-print">
-                  <%= link_to url_for(:controller => 'sales', :action => 'add_item', :product_id => e.object.id, :sale_id => @sale.id), :remote => true do %>
-                    <span class="glyphicon glyphicon-plus"></span>
-                  <% end %>
+                <%= link_to url_for(:controller => 'sales', :action => 'add_item', :product_id => e.object.id,
+                  :sale_id => @sale.id), :remote => true, :class => 'sale_product_quantity' do %>
+                  <i class="ion-android-add-circle"></i>
+                <% end %>
 
-                  <%= link_to url_for(:controller => 'sales', :action => 'remove_item', :product_id => e.object.id, :sale_id => @sale.id), :remote => true do %>
-                    <span class="glyphicon glyphicon-minus"></span>
-                  <% end %>
-                </div>
+              </div>
 
-              </td>
+            </td>
 
-              <td>
-                <input class="form-control" type="text" value="<%= number_to_currency(@item.total_price) %>" placeholder="Precio Total" readonly="readonly">
-              </td>
+            <td>
+              <input class="form-control" type="text" value="<%= number_to_currency(@item.total_price) %>" placeholder="Precio Total" readonly="readonly">
+            </td>
 
-            </tr>
+          </tr>
           <% end %>
         <% end %>
       <% end %>

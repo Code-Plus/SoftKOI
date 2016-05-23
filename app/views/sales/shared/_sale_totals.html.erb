@@ -1,22 +1,32 @@
 <%# Sección donde se muestra los valores parciales y totales de la venta, asi como el descuento. %>
-<h4 class="text-primary"><span class="glyphicon glyphicon-usd"></span> Valor de la venta</h4>
-<hr />
 
+<h5 class="text-primary bold" style="text-transform:uppercase; font-size: 16px;">
+  <i class="fa fa-usd"></i> Valor de la venta
+</h5>
+<hr style="border: 1; margin-top: 0px; margin-bottom: 10px;">
 <label>Precio base</label>
-<div class="input-group">
-  <span class="input-group-addon">$</span>
-  <input type="text" class="form-control" readonly value=<%= @sale.amount %>>
+<div class="input-group"  style="padding-bottom:10px;">
+  <span class="input-group-addon input-sm">$</span>
+  <input type="text" class="form-control input-sm" readonly value="<%=number_to_currency(@sale.amount, unit:'')  %>">
 </div>
 
 <label>Descuento</label>
-<div class="input-group">
-  <span class="input-group-addon">$</span>
-  <input type="number" id="sale_discount" class="form-control" value=<%= @sale.discount %>>
+<div class="input-group" style="padding-bottom:10px;">
+  <span class="input-group-addon input-sm">$</span>
+  <input type="number" id="sale_discount" class="form-control input-sm" value="<%= @sale.discount %>">
 </div>
 
 
-<label class="text-success">Precio total</label>
+<label class="text-success" style="text-transform:uppercase;">Precio total</label>
 <div class="input-group has-success total_price_output">
   <span class="input-group-addon price_output">$</span>
-  <input type="text" class="form-control price_output" readonly value=<%= @sale.total_amount %>>
+  <input type="text" class="form-control price_output bold" readonly value="<%= number_to_currency(@sale.total_amount, unit:'') %>">
 </div>
+
+<hr class="hidden-print" style="border-top: 2px solid #ccc; margin: 15px 0px !important;" />
+
+<% unless @sale.total_amount.blank? %>
+  <div class="btn btn-success btn-block bold hidden-print" data-toggle="modal" data-target="#makePayment">
+    INGRESAR PAGO
+  </div>
+<% end %>

@@ -21,7 +21,7 @@ class Customer < ActiveRecord::Base
 
   #after_validation :validate_age_typeDocument
 
-  before_validation :validate_age_typeDocument
+  #before_validation :validate_age_typeDocument
 
 
   aasm column: "state" do
@@ -44,6 +44,13 @@ class Customer < ActiveRecord::Base
 
   def name
     "#{firstname} #{lastname}"
+  end
+
+  def doc_label
+    "Documento:  #{document}"
+  end
+    def name_label
+    "Nombre:   #{firstname} #{lastname}"
   end
 
   def age

@@ -14,6 +14,10 @@
   opacity: .99 !important;
 }
 
+.input-sm {
+  font-size: 14px !important;
+}
+
 // agenda ------>
 
 .event_description{
@@ -132,3 +136,4 @@ span.select2{
 @import 'ionicons';
 @import 'terminator.scss';
 @import 'toastr.min.scss';
+@import 'awesomplete.scss';

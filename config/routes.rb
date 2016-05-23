@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
 	# root_path (/) configurado para el login
 	devise_scope :user do
 		root to: 'devise/sessions#new' , :as => "login"
@@ -12,10 +10,16 @@ Rails.application.routes.draw do
 
 	# Ajax de productos
 	get '/items/product', to: 'items#ajax_product', as: 'ajax_product'
-  # Ajax para el precio de reserva (No tocar se putea reservas)
+
+  # Ajax para precio de reserva
   get '/reservations/price_interval', to: 'reservations#reserve_ajax', as: 'interval_price'
 
-	devise_for :users, :skip => :registration
+	devise_for :users
+  resources :item_coupons
+  resources :coupons
+	resources :categories
+	resources :type_products
+	resources :reserve_prices
 
 	resources :customers do
 	  collection do
@@ -23,16 +27,13 @@ Rails.application.routes.draw do
 	  end
 	end
 
-  resources :item_coupons
   resources :coupons do
     collection do
       get 'log_in_new_coupon'
 			get 'calculate_amount_coupon'
     end
   end
-	resources :categories
-	resources :type_products
-	resources :reserve_prices
+
   resources :events do
     collection do
       post 'create_event'
@@ -65,7 +66,6 @@ Rails.application.routes.draw do
       get 'ajaxnewconsole'
       get 'ajaxscripts'
       get 'change_state'
-
 		end
 	end
 

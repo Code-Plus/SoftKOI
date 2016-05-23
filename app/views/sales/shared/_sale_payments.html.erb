@@ -36,11 +36,5 @@
       <%= number_to_currency @sale.remaining_balance %>
     </div>
 
-    <hr class="hidden-print" />
 
-    <% unless @sale.total_amount.blank? %>
-      <button class="btn btn-success btn-lg hidden-print" data-toggle="modal" data-target="#makePayment">
-        INGRESAR PAGO
-      </button>
-    <% end %>
   <% end %>
