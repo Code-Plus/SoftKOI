@@ -1,13 +1,22 @@
 <%# Modal para realizar el pago de la venta %>
 <div class="make_payment">
-	<h4 class="text-primary"><span class="glyphicon glyphicon-usd"></span>Realizar pago</h4>
-	<hr>
+
 	<%= form_for :payments, :url => url_for(:controller => "payments", :action => "make_payment"),
 		:method => "get", :remote => true do |f| %>
-		<label>Pago></label>
-		<%= f.text_field :amount, :class => "form-control", :placeholder => "Amount", :value => @sale.remaining_balance %>
+
+		<h4>Valor total venta: <strong><%= number_to_currency @sale.remaining_balance %></strong></h4>
+		<hr>
+		<label>Pago</label>
+
+		<div class="input-group" style="padding-bottom:10px;">
+  		<span class="input-group-addon input-sm"><i class="fa fa-money"></i></span>
+			<input class="form-control" value="<%= number_to_currency(@sale.remaining_balance, unit:'') %>" 
+			type="text" name="payments[amount]" id="payments_amount">
+		</div>
+
 		<%= f.hidden_field :sale_id, :value => @sale.id %>
+
 		<br>
-		<%= submit_tag "Registrar pago", :class => "btn btn-primary btn-lg" %>
+		<%= submit_tag "Registrar pago", :class => "btn btn-success bold" %>
 	<% end %>
 </div>
