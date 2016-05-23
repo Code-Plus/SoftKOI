@@ -65,8 +65,5 @@ $(document).ready(function() {
 			$('.day_numbeer').text("Eventos para el dia #"+dia_of_tb);
 			$('.evenets').children('#body_evenet').text(data_of_tb);
 		}
-
 	});
-
-
 });
