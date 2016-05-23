@@ -10,7 +10,7 @@
    <% end -%>
 
    <% content_for :button do -%>
-      <%= link_to new_sale_path, class: 'btn btn-success bold' do %>
+      <%= link_to new_sale_path, class: 'btn btn-success bold', 'data-turbolinks' => false  do %>
          <i class="fa fa-plus"></i>
          &nbsp;Nueva venta
       <% end %>

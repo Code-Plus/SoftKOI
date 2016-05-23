@@ -183,7 +183,32 @@ div.menusuperior div.alerts a.ALETNotificacion {
   letter-spacing: 1.2px;
   font-weight: 700;
 }
-span.last {
+
+.notifications_active{
+  position: fixed;
+  z-index: 99;
+  top: 8px;
+  left: 87.2%;
+  color: white;
+  border-radius: 50%;
+  padding-right: 0 !important;
+  background-color: red;
+  width: 21px;
+  text-align: center;
+}
+.notifications{
+  position: fixed;
+  z-index: 99;
+  top: 0.9px;
+  left: 87.5%;
+  color: white;
+  border-radius: 50%;
+  padding-right: 0 !important;
+  width: 21px;
+  text-align: center;
+}
+
+.last {
   padding-right: 40px;
 }
 
