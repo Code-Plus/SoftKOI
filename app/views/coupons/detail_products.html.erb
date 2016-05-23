@@ -42,7 +42,12 @@
                                     <%=product.product.name%></th>
                                     <th><%=product.product.price%></th>
                                     <th><%=(product.quantity.to_i)*(product.product.price.to_i)%></th>
-                                    <th><%= number_field_tag 'info_product_quantity[]','0', class: "form-control"%></th>
+                                   <th><%if product.product.can_change == true%>
+                                     <center><%= number_field_tag 'info_product_quantity[]','0', class: "form-control"%></center>
+                                     <%else%>
+                                     <center><p style="color: red; cursor: not-allowed; " class="has-tooltip" data-toggle="tooltip" title="Este producto no se puede cambiar"><i class="fa fa-ban" aria-hidden="true"></i></p></center>
+                                     <%= number_field_tag 'info_product_quantity[]','0', class: "form-control hidden"%>
+                                     <%end%>
                                    </th>
                                  </tr>
                               <%end%>
@@ -53,6 +58,7 @@
                   </div>
                <div class="col-sm-12"></div>
             </div>
+
          </div>
       </div>
       <div class="col-sm-3">
