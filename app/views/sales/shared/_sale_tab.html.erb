@@ -14,7 +14,7 @@
             <datalist id="items-list">
               <% @available_products.each do |itm| %>
                 <%= link_to "link1", "#",{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
-                <option value=""><%= itm.id %>.| <%= itm.name %> | stock: <%= itm.stock %></option>
+                <option value=""><%= itm.id %>.| <%= itm.name %> &nbsp;&nbsp;&nbsp;Cantidad actual: <%= itm.stock %></option>
               <% end %>
             </datalist>
           </div>

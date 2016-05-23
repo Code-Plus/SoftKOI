@@ -46,6 +46,13 @@ class Customer < ActiveRecord::Base
     "#{firstname} #{lastname}"
   end
 
+  def doc_label
+    "Documento:  #{document}"
+  end
+    def name_label
+    "Nombre:   #{firstname} #{lastname}"
+  end
+
   def age
     age = (Date.today - birthday) / 365.25
     age = age.to_i

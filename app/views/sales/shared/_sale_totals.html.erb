@@ -6,14 +6,14 @@
 <hr style="border: 1; margin-top: 0px; margin-bottom: 10px;">
 <label>Precio base</label>
 <div class="input-group"  style="padding-bottom:10px;">
-  <span class="input-group-addon">$</span>
-  <input type="text" class="form-control" readonly value="<%=number_to_currency(@sale.amount, unit:'')  %>">
+  <span class="input-group-addon input-sm">$</span>
+  <input type="text" class="form-control input-sm" readonly value="<%=number_to_currency(@sale.amount, unit:'')  %>">
 </div>
 
 <label>Descuento</label>
 <div class="input-group" style="padding-bottom:10px;">
-  <span class="input-group-addon">$</span>
-  <input type="number" id="sale_discount" class="form-control" value="<%= @sale.discount %>">
+  <span class="input-group-addon input-sm">$</span>
+  <input type="number" id="sale_discount" class="form-control input-sm" value="<%= @sale.discount %>">
 </div>
 
 

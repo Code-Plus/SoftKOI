@@ -50,14 +50,13 @@ $(document).ready(function() {
 	});
 
 	// Asociar un cliente a la venta
-	var input = $('#search_product_name')[0]
-	var sale_id = parseInt($('#search_sale_id')[0].value)
-  Awesomplete.$.bind(input, {
+	var input_customer = $('#search_customer_name')[0]
+  Awesomplete.$.bind(input_customer, {
 	  "awesomplete-selectcomplete": function(evt) {
 	   $.ajax({
 	      type: "GET",
 	      url: '/sales/create_customer_association',
-	      data: { customer_id: parseInt(input.value.split(".|")[0]), sale_id: sale_id},
+	      data: { customer_id: parseInt(input_customer.value.split(".|")[0]), sale_id: sale_id},
 	      dataType: "script",
 	      success: function() {
 	      	input.value = "";

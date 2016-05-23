@@ -1,36 +1,40 @@
-<%# Parcial donde se muestra el formulario para ir filtrando en la tabla de clientes %>
-<div class="row item_search_wrapper hidden-print">
-  <div class="col-sm-12">
-    <h5 class="text-primary bold" style="text-transform:uppercase; font-size: 16px; margin-top: 3px;">
-      <i class="fa fa-search"></i>  Buscar cliente
-    </h5>
+<% if @sale.customer.blank? %>
+  <%# Parcial donde se muestra el formulario para ir filtrando en la tabla de clientes %>
+  <div class="row item_search_wrapper hidden-print">
+    <div class="col-sm-12">
+      <h5 class="text-primary bold" style="text-transform:uppercase; font-size: 16px; margin-top: 3px;">
+        <i class="fa fa-search"></i>  Buscar cliente
+      </h5>
 
-    <hr style="border: 1; margin-top: 0px; margin-bottom: 10px;">
+      <hr style="border: 1; margin-top: 0px; margin-bottom: 10px;">
 
-    <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_customer_options",
-      :format => :js), :method => "get", :remote => true do |f| %>
+      <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_customer_options",
+        :format => :js), :method => "get", :remote => true do |f| %>
 
-      <%# Input autocomplete para buscar productos %>
-      <div class="input-group">
-        <%= f.text_field :customer_name, :class => "form-control customer_input awesomplete input-sm", list: 'customers-list', :placeholder => "Buscar cliente..." %>
+        <%# Input autocomplete para buscar productos %>
+        <div class="form-group form-group-sm">
+          <%= f.text_field :customer_name, :class => "form-control customer_input awesomplete input-sm", list: 'customers-list', :placeholder => "Buscar cliente..." %>
 
-        <datalist id="customers-list">
-          <% @available_customers.each do |customer| %>
-            <%= link_to "link1", "#",{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
-            <option value=""><%= customer.id %>.| <%= customer.name %></option>
-          <% end %>
-        </datalist>
+          <datalist id="customers-list">
+            <% @available_customers.each do |customer| %>
+              <%= link_to "link1", "#",{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
+              <option value=""><%= customer.id %>.| <%= customer.name %></option>
+            <% end %>
+          </datalist>
 
-        <span class="input-group-btn">
-          <button class="btn btn-success bold" data-toggle="modal" data-target="#customCustomer" style="    border-width: 2px !important;">
+        </div>
+
+        <span style="padding-left: 8px;">
+          <button class="btn btn-success bold btn-sm" data-toggle="modal" data-target="#customCustomer" style="border-width: 2px !important;">
             <i class="fa fa-plus"></i>
           </button>
         </span>
-      </div>
 
-      <%= f.hidden_field :sale_id, :value => @sale.id %>
-      <%= submit_tag "search", :class => "btn btn-primary btn-lg customer_search" %>
-    <% end %>
+        <%= f.hidden_field :sale_id, :value => @sale.id %>
+        <%= submit_tag "search", :class => "btn btn-primary btn-lg customer_search" %>
+      <% end %>
 
+    </div>
   </div>
-</div>
+
+<% end %>
