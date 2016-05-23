@@ -56,39 +56,6 @@ class SalesController < ApplicationController
 	end
 
 
-	# Filtrar en la tabla de productos
-	def update_line_item_options
-		set_sale
-		populate_products
-
-		@available_products = Product.active_quantity.where("name ILIKE ? OR description ILIKE ?",
-		params[:search][:item_name],
-		params[:search][:item_name])
-
-		respond_to do |format|
-			format.js { ajax_refresh }
-		end
-	end
-
-
-	# Filtrar en la tabla de clientes
-	def update_customer_options
-		set_sale
-		populate_products
-
-		@available_customers = Customer.all.where("document ILIKE ?  OR firstname ILIKE ?
-			OR email ILIKE ? OR phone LIKE ?",
-			params[:search][:customer_name],
-			params[:search][:customer_name],
-			params[:search][:customer_name],
-			params[:search][:customer_name])
-
-		respond_to do |format|
-			format.js { ajax_refresh }
-		end
-	end
-
-
 	# Asociar cliente a la venta
 	def create_customer_association
 		set_sale
@@ -316,7 +283,7 @@ class SalesController < ApplicationController
   end
 
 
-  #Devolver producto a stock
+  # Devolver producto a stock
   def return_item_to_stock(product_id)
     product = Product.find(product_id)
     product.stock += 1
