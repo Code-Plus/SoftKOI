@@ -19,15 +19,21 @@
     <div class="col-sm-3">
       <div class="panel panel-default">
         <div class="panel-body">
-
+          <%# Form para asociar un cliente %>
           <%= render :partial => 'sales/shared/customer_info', :object => @sale %>
+          
+          <%# Info del cliente una vez asociado %>
+          <div class="added_customer">
+            <%= render :partial => 'sales/shared/added_customer' %>
+          </div>
 
+          <%# Info de el precio de la venta, descuento, etc. %>
           <div class="sale_totals hidden-print">
-            <%# Info de el precio de la venta, descuento, etc. %>
             <%= form_for(@sale) do |f| %>
               <%= render :partial => 'sales/shared/sale_totals', :locals=>{:f=>f} %>
             <% end %>
           </div>
+
         </div>
       </div>
     </div>
