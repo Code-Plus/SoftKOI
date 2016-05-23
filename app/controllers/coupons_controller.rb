@@ -55,15 +55,29 @@ class CouponsController < ApplicationController
   #Ingresa el codigo de una venta y generar el formulario con ese codigo
   def log_in_new_coupon
     @search = params[:search]
-    sale = Sale.where(id: @search)
+    sale = Sale.where(id: @search, state: "pago")
     respond_to do |format|
       if sale.ids.empty?
           format.html { redirect_to coupons_url, alert: 'La venta no existe.' }
           format.json { head :no_content }
       else
-        @detail_of_products = []
-        @coupon = Coupon.new
-        format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
+        sale.each do |s|
+          @created_at=s.created_at
+        end
+        created_at_more_3 = @created_at + 3.days
+        if created_at_more_3.strftime('%F') <= Date.today.strftime('%F')
+          @detail_of_products = []
+          @coupon = Coupon.new
+          format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
+        else
+          # format.html { redirect_to coupons_url, alert: 'Se agoto la fecha limite para realizar el cambio.' }
+          # format.json { head :no_content }
+          #<-------------------------------------TEMPORAL----------------------------------------_>
+          @detail_of_products = []
+          @coupon = Coupon.new
+          format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
+        end
+
       end
     end
   end
@@ -150,19 +164,30 @@ class CouponsController < ApplicationController
               else
                 new_item_quantity = i.quantity - value_product
                 #Validar que no puede ser negativo-------------------------------------->VALIDACION
-                unless @sale.nil?
-                  @sale = Sale.new
-                  @sale.user_id = current_user.id
-                  @sale.discount = 0
-                  @sale.limit_date = limit_date.strftime('%F')
-                  #@sale_old.update state: "anulada"
-                  @sale.save
+                if new_item_quantity >= 0
+                  if @sale.nil?
+                    @sale = Sale.new
+                    @sale.user_id = current_user.id
+                    @sale.discount = 0
+                    @sale.limit_date = limit_date.strftime('%F')
+                    #@sale_old.update state: "anulada"
+                    @sale.save
+                  end
+                  @item_created = Item.create product_id: p.id, sale_id: @sale.id ,quantity: new_item_quantity
+                  @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: coupon.id , quantity: value_product
+                  @new_item_coupon.save
+                  @item_created.save
+                  sale_amount += p.price * new_item_quantity
+                else
+                  #Mensaje de error --------------------------->Cambio mas productos de los que compro
+                  unless @sale.nil?
+                    Sale.last.destroy
+                  end
+                  Coupon.last.destroy
+                  format.html { redirect_to coupons_url, alert: 'Cambio mas productos de los que compro.' }
+                  format.json { head :no_content }
+                  #raise ActiveRecord::Rollback
                 end
-                @item_created = Item.create product_id: p.id, product_id: p.id ,quantity: new_item_quantity
-                @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: coupon.id , quantity: value_product
-                @new_item_coupon.save
-                @item_created.save
-                sale_amount += p.price * new_item_quantity
               end
             end
           end
@@ -170,13 +195,12 @@ class CouponsController < ApplicationController
         coupon.amount = coupon_amount
         coupon.user_id = current_user.id
         coupon.save
-        @sale.amount = sale_amount
-        @sale.total_amount = sale_amount
-        @sale.save
-
+        unless @sale.nil?
+          @sale.amount = sale_amount
+          @sale.total_amount = sale_amount
+          @sale.save
+        end
       end
-
-
       format.html { redirect_to coupons_url, notice: 'Cambio realizado con exito.' }
       format.json { head :no_content }
     end
@@ -186,7 +210,15 @@ class CouponsController < ApplicationController
   #Redirecciona a la pagina de cambio
   def detail_products
     @sale_id = params[:id]
+    customer_id = Sale.where(id: @sale_id)
+    customer_id = customer_id.pluck(:customer_id)
+    customers = Customer.where(id: customer_id[0].to_i)
+    customers.each do |c|
+      @customer = c.name
+      @document = c.document
+    end
     @products_sale = Item.where(sale_id: @sale_id)
+
   end
 
 
@@ -209,6 +241,6 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:amount)
+      params.require(:coupon).permit(:amount, :user_id)
     end
 end

@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
 	devise_for :users
   resources :item_coupons
-  resources :coupons
 	resources :categories
 	resources :type_products
 	resources :reserve_prices
