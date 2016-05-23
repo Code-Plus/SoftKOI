@@ -26,5 +26,6 @@ class Notifications
 
     $("[data-behavior='unread-count']").text(items.length)
     $("[data-behavior= 'notifications-items']").html(items)
+    checknotification()
 jQuery ->
   new Notifications

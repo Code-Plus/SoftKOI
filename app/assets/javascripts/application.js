@@ -101,6 +101,16 @@ $("html").keyup(function(key){
 */
 
 
+function checknotification(){
+  var valnotifi = $('#notifi').text();
+  if(valnotifi != "0"){
+    $('#notifi').removeClass('notifications');
+    $('#notifi').addClass('notifications_active');
+  }else{
+    $('#notifi').removeClass('notifications_active');
+    $('#notifi').addClass('notifications');
+  }
+}
 
 function activeconsole(){
 	var inputReady = true;

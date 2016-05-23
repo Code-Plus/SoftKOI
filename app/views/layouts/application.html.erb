@@ -68,9 +68,9 @@
 						<a class="ALETCalendario"href="#" class="has-tooltip" data-toggle="tooltip"  data-placement="bottom" title="Copia de seguridad"><%= image_tag("backup.svg") %></a>
 					</div>
 						<li class="nav-item btn-group" data-behavior="notifications">
-							<a class="dropdown-toggle nav-link"href="#" type="button" data-behavior="notifications-link" id="DropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
+							<a class="dropdown-toggle nav-link last"href="#" type="button" data-behavior="notifications-link" id="DropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
 								<%= image_tag("notifications.svg") %>
-								<span class="last" data-behavior="unread-count"></span>
+								<span id="notifi" class="notifications" data-behavior="unread-count"></span>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="DropdownMenu1" data-behavior="notifications-items"></div>
 						</li>
