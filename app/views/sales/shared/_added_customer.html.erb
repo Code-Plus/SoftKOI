@@ -1,38 +1,17 @@
 <%# Parcial donde muestra el cliente asociado a la venta (cambiar) %>
 <% unless @sale.customer.blank? %>
-	<h4 class="text-primary">
-		<span class="glyphicon glyphicon-user"></span> Cliente asociado
-	</h4>
-  <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>Documento</th>
-          <th>Nombre </th>
-          <th>Apellido</th>
-          <th>Teléfono</th>
-          <th>Celular</th>
-          <th>Fecha Nacimiento</th>
-          <th>Email</th>
-        </tr>
-      </thead>
+	<div style="padding-bottom:5px;">
+		<h5 class="text-primary bold" style="text-transform:uppercase; font-size: 16px; margin-top: 3px;">
+	    <i class="fa fa-search"></i> Datos del cliente
+	  </h5>
 
-      <tbody>
-        <%= fields_for @sale do |f|%>
-          <%= f.fields_for :customer, Customer.find(@sale.customer.id) do |e| %>
-            <tr>
-              <td><%= e.text_field :document, :class => "form-control", :readonly => true %></td>
-              <td><%= e.text_field :firstname, :class => "form-control", :readonly => true %></td>
-              <td><%= e.text_field :lastname, :class => "form-control", :readonly => true %></td>
-              <td><%= e.text_field :phone, :class => "form-control", :readonly => true %></td>
-              <td><%= e.text_field :cellphone, :class => "form-control", :readonly => true %></td>
-              <td><%= e.text_field :birthday, :class => "form-control", :readonly => true %></td>
-              <td><%= e.text_field :email, :class => "form-control", :readonly => true %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+	  <%= fields_for @sale do |f|%>
+	    <%= f.fields_for :customer, Customer.find(@sale.customer.id) do |e| %>
+	      <p><%= e.text_field :doc_label, :class => "form-control input-sm", :readonly => true %></p>
+	      <p><%= e.text_field :name_label, :class => "form-control input-sm", :readonly => true %></p>
+	    <% end %>
+	  <% end %>
+	</div>
+
 
 <% end %>

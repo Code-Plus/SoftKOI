@@ -14,6 +14,10 @@
   opacity: .99 !important;
 }
 
+.input-sm {
+  font-size: 14px !important;
+}
+
 // agenda ------>
 
 .event_description{
@@ -27,6 +31,8 @@
 .hidden{
   display: none;
 }
+
+
 .upbar{
   font-size: 26px;
 }
@@ -35,6 +41,8 @@
     height: 150px !important;
   }
 }
+
+
 
 // <------ agenda
 
@@ -128,3 +136,4 @@ span.select2{
 @import 'ionicons';
 @import 'terminator.scss';
 @import 'toastr.min.scss';
+@import 'awesomplete.scss';

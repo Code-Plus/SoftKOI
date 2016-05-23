@@ -40,7 +40,7 @@ class CustomersController < ApplicationController
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
+        format.json { render json: @customer.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end

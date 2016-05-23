@@ -17,8 +17,6 @@
 //= require select2
 //= require select2_locale_es
 //= require bootstrap-datepicker
-//= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require moment
 //= require bootstrap-datetimepicker
 //= require dataTables/jquery.dataTables
@@ -28,7 +26,6 @@
 //= require jquery-confirm
 //= require toastr.min
 //= require turbolinks
-//= require turbolinks-c
 //= require_tree .
 
 //Datatable

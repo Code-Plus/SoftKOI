@@ -4,7 +4,7 @@ $(document).ready(function() {
 	  $('.item_search').click();
 	});
 
-	$(document).on("keypress", '.customer_search_input', function(){
+	$(document).on("keypress", '.customer_input', function(){
 	  $('.customer_search').click();
 	});
 
@@ -20,14 +20,15 @@ $(document).ready(function() {
       url: '/sales/sale_discount',
       data: { sale_discount: { discount: $(this).val(), sale_id: $(document).find('.sale_id').html() }},
       dataType: "script",
-      success: function() {
-      	console.log('Se ha efectuado el descuento.');
-      }
+      success: function() { console.log('Se ha efectuado el descuento.'); }
     });
+
 		var valor = $(this).val();
 		if(valor == ""){
 			$(this).val(0);
 		}else{
+			//Nothing to do here jiji
 		}
 	});
+
 });

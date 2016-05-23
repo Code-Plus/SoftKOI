@@ -1,48 +1,74 @@
 <%# Tab donde esta todo el contenido de la venta %>
-<div class="row item_search_wrapper hidden-print">
-  <div class="col-sm-4">
-    <h4 class="text-primary"><span class="glyphicon glyphicon-search"></span>  Buscar productos</h4>
-    <hr>
-    <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_line_item_options", :format => :js), :method => "get", :remote => true do |f| %>
+<div class="panel panel-default">
+  <div class="panel-body"  style="padding-bottom: 5px !important;padding-top: 10px !important;">
 
-      <div class="form-group">
-        <%= f.text_field :item_name, :class => "form-control item_search_input", :placeholder => "Search Items" %>
+    <div class="row hidden-print">
+      <div class="col-sm-6">
+        <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_line_item_options", :format => :js), :method => "get", :remote => true do |f| %>
+
+          <%# Input autocomplete para buscar productos %>
+          <div class="form-group">
+            <%= f.label :item_name, "Añadir productos", :class => "control-label" %><br>
+            <%= f.text_field :item_name, :class => "form-control item_search_input awesomplete input-sm", list: 'items-list', :placeholder => "Buscar productos..." %>
+
+            <datalist id="items-list">
+              <% @available_products.each do |itm| %>
+                <%= link_to "link1", "#",{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
+                <option value=""><%= itm.id %>.| <%= itm.name %> &nbsp;&nbsp;&nbsp;Cantidad actual: <%= itm.stock %></option>
+              <% end %>
+            </datalist>
+          </div>
+
+          <%= f.hidden_field :sale_id, :value => @sale.id %>
+          <%= submit_tag "search", :class => "btn btn-primary btn-lg item_search" %>
+        <% end %>
       </div>
 
-      <%= f.hidden_field :sale_id, :value => @sale.id %>
-      <%= submit_tag "search", :class => "btn btn-primary btn-lg item_search" %>
-    <% end %>
-  </div>
-  <div class="col-sm-8">
-    <div class="searched_items">
-      <%# Tabla para agregar productos a la venta %>
-      <%= render :partial => 'sales/shared/searched_items' %>
+      <%= form_for(@sale) do |f| %>
+      
+      <%# Input fecha limite %>
+      <div class="col-sm-6 required">
+        <%= f.label :limit_date, :class => "control-label" %><br>
+        <div class="input-group input-group-sm date datepicker">
+          <%= f.text_field :limit_date, :class => "form-control input-sm", value: Time.now.strftime("%d/%m/%Y") %>
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </span>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 
+<div class="panel panel-default">
+  <div class="panel-body">
 
-<%= form_for(@sale) do |f| %>
-  <%# render :partial => 'template/form_errors', :object => @sale %>
-
-  <h4 class="text-primary"><span class="glyphicon glyphicon-tags"></span>  Productos</h4>
-  <hr class="hidden-print" />
-
-  <div class="added_items">
-    <%# Tabla con los productos asociados a la venta %>
-    <%= render :partial => 'sales/shared/added_items', :locals=>{:f=>f} %>
-  </div>
-
-  <div class="row">
-    <div class="sale_totals col-sm-4 hidden-print">
-      <%# Info de el precio de la venta, descuento, etc. %>
-      <%= render :partial => 'sales/shared/sale_totals', :locals=>{:f=>f} %>
+    <div class="added_items">
+      <%# Tabla con los productos asociados a la venta %>
+      <%= render :partial => 'sales/shared/added_items', :locals=>{:f=>f} %>
     </div>
 
-    <div class="sale_payments col-sm-8">
-      <%= render :partial => 'sales/shared/sale_payments', :locals => {:f => f} %>
-    </div>
-
+    <%= f.submit 'Update Sale', :class => "btn btn-success btn-lg sale_submit" %>
+  <% end %>
   </div>
-  <%= f.submit 'Update Sale', :class => "btn btn-success btn-lg sale_submit" %>
-<% end %>
+</div>
+
+<script>
+  // Asociar un cliente a la venta
+  var input_customer = $('#search_customer_name')[0]
+  var sale_id = parseInt($('#search_sale_id')[0].value)
+  Awesomplete.$.bind(input_customer, {
+    "awesomplete-selectcomplete": function(evt) {
+     $.ajax({
+        type: "GET",
+        url: '/sales/create_customer_association',
+        data: { customer_id: parseInt(input_customer.value.split(".|")[0]), sale_id: sale_id},
+        dataType: "script",
+        success: function() {
+          input.value = "";
+        }
+      });
+    }
+  });
+</script>

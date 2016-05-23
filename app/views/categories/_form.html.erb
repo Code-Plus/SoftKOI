@@ -8,6 +8,7 @@
 		<div class="form-group required">
 			<%= f.label :name, "Nombre", :class => "control-label" %>
 			<%= f.text_field :name, :class => "form-control first_input" %>
+			<label for=""></label>
 		</div>
 
 		<div class="form-group required">
@@ -20,7 +21,6 @@
 			<%= f.label "Tipo de Producto", :class => "control-label"%>
 			<%= collection_select(:category, :type_product_id, TypeProduct.activos, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
 		</div>
-
 
 		<hr style="border: 1; margin-top: 0px; margin-bottom:15px !important;">
 		<label>Cambios:</label>
@@ -41,6 +41,5 @@
 		</div>
 	</div>
 </div>
-
 
 <% end %>

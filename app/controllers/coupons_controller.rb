@@ -190,7 +190,15 @@ class CouponsController < ApplicationController
                   format.json { head :no_content }
                   #raise ActiveRecord::Rollback
                 end
+<<<<<<< HEAD
 
+=======
+                @item_created = Item.create product_id: p.id, product_id: p.id ,quantity: new_item_quantity
+                @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: coupon.id , quantity: value_product
+                @new_item_coupon.save
+                @item_created.save
+                sale_amount += p.price * new_item_quantity
+>>>>>>> a2dd02b25b40845a8e4f8c84752b9ff65057f00f
               end
             end
           end
