@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
     @reservationsActivas = Reservation.activas_proceso
     @updateStateProceso = Reservation.validates_hour_start(Reservation.all)
     @updateStateFinalizada = Reservation.validates_hour_finish(Reservation.all)
-    
+
     if @updateStateProceso.is_a?(Array)
       gon.reserve_id = nil
     else
@@ -37,6 +37,17 @@ class ReservationsController < ApplicationController
         send_data pdf.render, filename: 'salida_productos.pdf',disposition: "inline",type: 'application/pdf'
       end
     end
+  end
+
+  def generate_chart
+    @search = Report.new(params[:search])
+    @products_to_pdf = @search.search_date_products
+    @date_from = @search.date_from.to_date
+    @date_to = @search.date_to.to_date
+    @element = "Reservas"
+    @verb = "registradas"
+    @element_by_query = "Reserva"
+    redirect_to url_for(:controller => :reports, :action => :generate_chart, :param1 => @date_from, :param2 => @date_to, :param3 =>@element, :param4 => @verb, :param5 => @element_by_query)
   end
 
   def ajaxnewconsole

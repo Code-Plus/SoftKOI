@@ -42,18 +42,21 @@ Rails.application.routes.draw do
 	resources :reports do
 		collection do
 			get 'chart'
+			get 'generate_chart'
 		end
 	end
 
 	resources :output_products do
 		collection do
 			get 'generate_pdf'
+			get 'generate_chart'
 		end
 	end
 
 	resources :input_products  do
 		collection do
 			get 'generate_pdf'
+			get 'generate_chart'
 		end
 	end
 
@@ -65,6 +68,7 @@ Rails.application.routes.draw do
       get 'ajaxnewconsole'
       get 'ajaxscripts'
       get 'change_state'
+			get 'generate_chart'
 		end
 	end
 
@@ -107,6 +111,7 @@ Rails.application.routes.draw do
       get 'change_state'
       get 'ajaxscripts'
       get 'ajaxnewcategory'
+			get 'generate_chart'
 		end
 	end
 
