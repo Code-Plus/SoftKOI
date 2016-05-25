@@ -32,13 +32,13 @@ class Sale < ActiveRecord::Base
 		state :pago
 		state :sinpagar, :initial => true
 
-		#Eventos de movimiento o transiciones para los estados.
+		# Eventos de movimiento o transiciones para los estados.
 		event :pago do
 			transitions from: :sinpagar, to: :pago
 		end
 	end
 
-	#Obtener valor de la venta por cada pago
+	# Obtener valor de la venta por cada pago
 	def remaining_balance
     if self.total_amount.blank?
       balance = 0.00
@@ -49,35 +49,35 @@ class Sale < ActiveRecord::Base
     if balance < 0
       return 0
     else
-      return balance.round(2)
+      return balance
     end
   end
 
-  #Obtener el valor descontado de una venta
+  # Obtener el valor descontado de una venta
   def get_discounted_amount
     self.total_amount - self.discount
   end
 
   # Valor total en todos los pagos
   def paid_total
-    paid_total = 0.00
+    paid_total = 0
     unless self.payments.blank?
       for payment in self.payments
-        paid_total += payment.amount.blank? ? 0.00 : payment.amount
+        paid_total += payment.amount.blank? ? 0 : payment.amount
       end
     end
     return paid_total
   end
 
-  #Devuelta
+  # Devuelta
   def change_due
     if self.total_amount.blank?
-      return 0.00
+      return 0
     else
       if paid_total > self.total_amount
         return paid_total - self.total_amount
       else
-        return 0.00
+        return 0
       end
     end
   end
@@ -99,7 +99,7 @@ class Sale < ActiveRecord::Base
 	end
 
 	# Fecha por defecto
-	def default_date
+	gef default_date
 		if self.limit_date.nil?
 			self.limit_date = Time.now
 		end
