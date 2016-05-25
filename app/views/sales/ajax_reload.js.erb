@@ -1,10 +1,12 @@
 // Secciones actualizadas
-$('.added_items').html("<%= escape_javascript render(:file => 'sales/shared/_added_items.html.erb') %>");
-$('.sale_totals').html("<%= escape_javascript render(:file => 'sales/shared/_sale_totals.html.erb') %>");
-$('.sale_payments').html("<%= escape_javascript render(:file => 'sales/shared/_sale_payments.html.erb') %>");
-$('.added_customer').html("<%= escape_javascript render(:file => 'sales/shared/_added_customer.html.erb') %>");
-$('#makePayment .modal-body').html("<%= escape_javascript render(:file => 'sales/shared/_payment.html.erb') %>");
-$('#customCustomer .modal-body').html("<%= escape_javascript render(:file => 'sales/shared/_create_custom_customer.html.erb') %>");
+$('.added_items').html("<%= j render(:file => 'sales/shared/_added_items.html.erb') %>");
+$('.sale_totals').html("<%= j render(:file => 'sales/shared/_sale_totals.html.erb') %>");
+$('.sale_payments').html("<%= j render(:file => 'sales/shared/_sale_payments.html.erb') %>");
+$('.added_customer').html("<%= j render(:file => 'sales/shared/_added_customer.html.erb') %>");
+$('#makePayment .modal-body').html("<%= j render(:file => 'sales/shared/_payment.html.erb') %>");
+$('#customCustomer .modal-body').html("<%= j render(:file => 'sales/shared/_create_custom_customer.html.erb') %>");
 
+$('#makePayment').modal('hide');
+$('#customCustomer').modal('hide');
 
 $('.edit_sale').show();

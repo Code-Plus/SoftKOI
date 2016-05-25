@@ -82,8 +82,6 @@ Rails.application.routes.draw do
 
 	resources :sales do
 		collection do
-			get 'update_line_item_options'
-      get 'update_customer_options'
       get 'create_line_item'
       get 'update_totals'
       get 'add_item'
