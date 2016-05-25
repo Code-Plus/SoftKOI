@@ -52,7 +52,10 @@ class EventsController < ApplicationController
     unless @events.nil?
       @events.each do |event|
       if event.start_time.strftime("%F") == DateTime.now.strftime("%F")
-        event.create_activity key: 'es su evento para hoy', read_at: nil
+        activities = PublicActivity::Activity.where(trackable_id: event.id)
+        if activities.nil?
+          event.create_activity key: 'es su evento para hoy', read_at: nil
+        end
       end
       end
      end

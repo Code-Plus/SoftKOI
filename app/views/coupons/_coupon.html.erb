@@ -1,4 +1,9 @@
 <tr id="coupon_<%= coupon.id %>">
 	<td><%= coupon.id %></td>
 	<td><%= coupon.amount %></td>
+	<% coupon.item_coupons.each do |sale_id|%>
+		<td><%= sale_id.sale_id%></td>
+	<%end%>
+	<td><%= coupon.user_id%></td>
+	<td><%= coupon.created_at.strftime('%F') %></td>
 </tr>
