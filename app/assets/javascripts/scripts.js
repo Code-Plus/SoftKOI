@@ -54,12 +54,23 @@ $(document).ready(function() {
 	$('.day').click(function(){
 		var data_of_tb = $(this).children('.event_description').children('.events_descriptions_data').text();
 		var dia_of_tb = $(this).children('.day_of_mount').text();
+		var split_date_start, split_date_final;
+		split_date_start = $(this).children('#tb_date_finish').val();
+		split_date_final = split_date_start.split('-');
+		var date_tb = split_date_final[0]+'-'+split_date_final[1]+'-'+split_date_final[2];
 		var modal = $('#modals_events');
 		if(data_of_tb == ""){
 			modal.modal();
 			$('.day_numbeer').text("Eventos para el dia #"+dia_of_tb);
-			$('.evenets').children('#body_evenet').text('No hay eventos para este dia...');
+			$('.evenets').html('<p>No hay eventos para este dia...</p>');
+			$('#btn_new_event_ss').removeClass('hidden');
+			$('#btn_new_event_sss').click(function(){
+				$('#modals_news_events').modal();
+				$('#event_start_time').val(date_tb+'T'+'12:00');
+			});
+
 		}else{
+			$('#btn_new_event_ss').addClass('hidden');
 			modal.modal();
 			$('.day_numbeer').text("Eventos para el dia #"+dia_of_tb);
 			$(this).children('.event_description').children('.events_descriptions_data').each(function(){

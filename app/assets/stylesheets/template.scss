@@ -187,8 +187,8 @@ div.menusuperior div.alerts a.ALETNotificacion {
 .notifications_active{
   position: fixed;
   z-index: 99;
-  top: 8px;
-  left: 87.2%;
+  top: 9px;
+  margin-left: 10px;
   color: white;
   border-radius: 50%;
   padding-right: 0 !important;
@@ -211,6 +211,7 @@ div.menusuperior div.alerts a.ALETNotificacion {
 .last {
   padding-right: 40px;
 }
+
 
 /*-----------------------------clases solas-------------------------*/
 
@@ -367,8 +368,34 @@ table a:not(.btn), .table a:not(.btn) {
 }
 
 .dropdown-menu{
+  top: 40px !important;
   padding-right: 20px !important;
+  left: -180% !important;
+  min-width: 290px !important;
+  padding: 8px !important;
+  max-height: 210px;
+  overflow-y: auto;
 }
+.dropdown-menu::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+.dropdown-menu::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #1ABC9C;
+}
+
+
 
 .drop-title{
   padding-left: 10px;

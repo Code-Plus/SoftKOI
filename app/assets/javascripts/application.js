@@ -102,15 +102,20 @@ $("html").keyup(function(key){
 
 
 function checknotification(){
-  var valnotifi = $('#notifi').text();
+  var valnotifi = $('.notifi').text();
   if(valnotifi != "0"){
-    $('#notifi').removeClass('notifications');
-    $('#notifi').addClass('notifications_active');
+    $('.notifi').removeClass('notifications');
+    $('.notifi').addClass('notifications_active');
   }else{
-    $('#notifi').removeClass('notifications_active');
-    $('#notifi').addClass('notifications');
+    $('.notifi').removeClass('notifications_active');
+    $('.notifi').addClass('notifications');
   }
 }
+
+function clean_modal(){
+  	setTimeout(function(){$('.evenets').empty()},2);
+}
+
 
 function activeconsole(){
 	var inputReady = true;
