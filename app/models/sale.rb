@@ -99,7 +99,7 @@ class Sale < ActiveRecord::Base
 	end
 
 	# Fecha por defecto
-	gef default_date
+	def default_date
 		if self.limit_date.nil?
 			self.limit_date = Time.now
 		end
