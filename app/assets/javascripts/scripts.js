@@ -2,6 +2,7 @@ $(document).ready(function() {
 
 
 	load_datatable();
+
 	$('#registerevent').click(function(){
 		$('#myModal').modal();
 	});
@@ -50,7 +51,6 @@ $(document).ready(function() {
 	});
 
 	// Agenda
-
 	$('.day').click(function(){
 		var data_of_tb = $(this).children('.event_description').children('.events_descriptions_data').text();
 		var dia_of_tb = $(this).children('.day_of_mount').text();
@@ -63,20 +63,28 @@ $(document).ready(function() {
 			modal.modal();
 			$('.day_numbeer').text("Eventos para el dia #"+dia_of_tb);
 			$('.evenets').html('<p>No hay eventos para este dia...</p>');
-			$('#btn_new_event_ss').removeClass('hidden');
 			$('#btn_new_event_sss').click(function(){
-				$('#modals_news_events').modal();
-				$('#event_start_time').val(date_tb+'T'+'12:00');
+				setTimeout(function(){
+					$('#event_start_time').val(date_tb+'T'+'12:00');
+				},100);
 			});
-
 		}else{
-			$('#btn_new_event_ss').addClass('hidden');
 			modal.modal();
 			$('.day_numbeer').text("Eventos para el dia #"+dia_of_tb);
-			$(this).children('.event_description').children('.events_descriptions_data').each(function(){
-				$('.evenets').append('<p id="body_evenet">'+$(this).text()+'</p>');
-			});
 
+			var data_of_modal = '';
+			$(this).children('.event_description').children('.events_descriptions_data').each(function(){
+			var id_modal_data = $(this).parent('.event_description').children('.events_descriptions_data_id').text();
+			var start_time = $(this).parent('.event_description').children('.events_descriptions_data_start_time').text();
+				data_of_modal += '<p id="body_evenet" style="height:40px;">'+start_time+' - '+$(this).text()+'<a class="options_modal_events" data-confirm="Estas seguro?" data-method="delete" href="/events/'+id_modal_data+'" style="float: right; color:red;">Eliminar</a></p>';
+			});
+			$('.evenets').html(data_of_modal);
+
+			$('#btn_new_event_sss').click(function(){
+				setTimeout(function(){
+					$('#event_start_time').val(date_tb+'T'+'12:00');
+				},100);
+			});
 		}
 	});
 });

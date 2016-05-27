@@ -4,8 +4,9 @@
   <% events.each do |event| %>
     <div class="event_description">
       <p class="events_descriptions_data"><%= event.description %></p>
-      <%# event.id %>
-      <span class="events_options"><%= link_to 'X', event, method: :delete, data: { confirm: 'Estas seguro?' }, style: 'float: right;' %></span>
+      <p class="events_descriptions_data_start_time hidden"><%=event.start_time.strftime("%H:%M %p")%></p>
+      <p class="events_descriptions_data_id hidden"><%= event.id %></p>
+
     </div>
   <% end %>
 <% end %>

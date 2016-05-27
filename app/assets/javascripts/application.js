@@ -112,10 +112,6 @@ function checknotification(){
   }
 }
 
-function clean_modal(){
-  	setTimeout(function(){$('.evenets').empty()},2);
-}
-
 
 function activeconsole(){
 	var inputReady = true;
