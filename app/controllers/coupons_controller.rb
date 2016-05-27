@@ -13,6 +13,47 @@ class CouponsController < ApplicationController
   def show
   end
 
+  def generate_pdf
+    @coupon_to_pdf = params[:param1].to_i
+    @sale_to_pdf = params[:param2].to_i
+    @sale_old_to_pdf = params[:param3].to_i
+    @products_to_coupon = Hash.new("products to coupon")
+    @hash_products_to_coupon = Hash.new("hash products to coupon")
+
+    @detail_coupon = ItemCoupon.where(coupon_id: @coupon_to_pdf, sale_id: @sale_old_to_pdf)
+    @detail_sale = Item.where(sale_id: @sale_to_pdf)
+    item_old = Item.where(sale_id: @sale_old_to_pdf)
+    product_different = Item.where('sale_id = ? and product_id NOT IN (select product_id from items where sale_id = ?)', @sale_old_to_pdf, @sale_to_pdf)
+
+    item_old.each do |old|
+      @detail_sale.each do |new|
+        if old.product_id == new.product_id
+          unless old.quantity == new.quantity
+            substraction = old.quantity - new.quantity
+            @products_to_coupon[new.product_id] = substraction
+          end
+        end
+      end
+    end
+
+    product_different.each do |product|
+      @products_to_coupon[product.product_id] = product.quantity
+    end
+
+    @products_to_coupon.each_with_index do |(key, value), index|
+      products = Product.where(id: key).first
+      @hash_products_to_coupon[products.name] = value
+    end
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf=CouponPdf.new(@detail_coupon,@detail_sale,@hash_products_to_coupon)
+        send_data pdf.render, filename: 'cupon.pdf',disposition: "inline",type: 'application/pdf'
+      end
+    end
+  end
+
   # GET /coupons/new
   def new
     @coupon = Coupon.new
@@ -145,9 +186,9 @@ class CouponsController < ApplicationController
       #Se crea el coupon y los item_coupons
       unless products_coupon.empty?
         coupon_amount = 0
-        coupon = Coupon.new
-        coupon.amount = 1
-        coupon.save
+        @coupon = Coupon.new
+        @coupon.amount = 1
+        @coupon.save
         products_coupon.each_with_index do |(key, value), index|
           id_product= key.to_i
           value_product = value.to_i
@@ -159,7 +200,7 @@ class CouponsController < ApplicationController
             item = Item.where sale_id: sales_id.to_i, product_id: p.id
             item.each do |i|
               if i.quantity == value_product
-                @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: coupon.id, quantity: value_product
+                @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: @coupon.id, quantity: value_product
                 @new_item_coupon.save
               else
                 new_item_quantity = i.quantity - value_product
@@ -174,36 +215,36 @@ class CouponsController < ApplicationController
                     @sale.save
                   end
                   @item_created = Item.create product_id: p.id, sale_id: @sale.id ,quantity: new_item_quantity
-                  @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: coupon.id , quantity: value_product
+                  @new_item_coupon = ItemCoupon.create sale_id: @sale_old_id, coupon_id: @coupon.id , quantity: value_product
                   @new_item_coupon.save
                   @item_created.save
                   sale_amount += p.price * new_item_quantity
                 else
-                  #Mensaje de error --------------------------->Cambio mas productos de los que compro
                   unless @sale.nil?
                     Sale.last.destroy
                   end
                   Coupon.last.destroy
                   format.html { redirect_to coupons_url, alert: 'Cambio mas productos de los que compro.' }
                   format.json { head :no_content }
-                  #raise ActiveRecord::Rollback
                 end
               end
             end
           end
         end
-        coupon.amount = coupon_amount
-        coupon.user_id = current_user.id
-        coupon.save
+        @coupon.amount = coupon_amount
+        @coupon.user_id = current_user.id
+        @coupon.save
         unless @sale.nil?
           @sale.amount = sale_amount
           @sale.total_amount = sale_amount
           @sale.save
         end
       end
-      format.html { redirect_to coupons_url, notice: 'Cambio realizado con exito.' }
-      format.json { head :no_content }
+      format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id)}
     end
+
+
+
 
   end
 

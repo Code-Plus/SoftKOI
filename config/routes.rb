@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     collection do
       get 'log_in_new_coupon'
 			get 'calculate_amount_coupon'
+			get 'generate_pdf'
     end
   end
 

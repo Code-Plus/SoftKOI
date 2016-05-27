@@ -1,6 +1,6 @@
 class InputproductPdf < Prawn::Document
   def initialize(inputproducts_for_pdf,date_from,date_to)
-    super()
+    super(:background => "#{Rails.root}/app/assets/images/mrcadeagua.png")
     @inputproducts_for_pdf = inputproducts_for_pdf
     @date_from = date_from
     @date_to = date_to

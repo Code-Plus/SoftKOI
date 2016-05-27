@@ -1,7 +1,7 @@
 class CustomerPdf < Prawn::Document
   def initialize(customers_for_pdf,date_from,date_to)
-    super()
-    @products_for_pdf = customers_for_pdf
+    super(:background => "#{Rails.root}/app/assets/images/mrcadeagua.png")
+    @customers_for_pdf = customers_for_pdf
     @date_from = date_from
     @date_to = date_to
     header
@@ -26,7 +26,7 @@ class CustomerPdf < Prawn::Document
 
   def table_content
     move_down 10
-    table product_rows do
+    table customer_rows do
       row(0).font_style = :bold
       self.header = true
       self.row_colors = ['DDDDDD', 'FFFFFF']
@@ -35,9 +35,9 @@ class CustomerPdf < Prawn::Document
     end
   end
 
-  def product_rows
+  def customer_rows
     [['Documento', 'Nombre', 'Edad', 'Email', 'Telefono']] +
-      @products_for_pdf.map do |product|
+      @customers_for_pdf.map do |customer|
       [customer.document,customer.name,customer.age,customer.email, customer.phone]
     end
   end
