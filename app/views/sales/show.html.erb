@@ -68,7 +68,7 @@
 
           <p>
             <strong>Cliente:</strong>
-            <%= @sale.customer.name %>
+            <%= @sale.customer.name if @sale.customer.name %>
           </p>
           <br>
           <%= link_to sales_path, class:'btn btn-info btn-sm bold' do %>

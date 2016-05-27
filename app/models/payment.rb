@@ -4,8 +4,21 @@ class Payment < ActiveRecord::Base
   validates :amount , presence: true
   validates :sale_id, presence: true
 
-=begin
+  before_create :set_date
+  before_update :set_updated_at
+
   private
+
+  def set_date
+    self.created_at = Time.now.in_time_zone("Bogota")
+    self.updated_at = Time.now.in_time_zone("Bogota")
+  end
+
+  def set_updated_at
+    self.updated_at = Time.now.in_time_zone("Bogota")
+  end
+
+=begin
   #Validar si la suma de todos los pagos es igual al valor total de la venta
   def validate_amount
     amount = sale.total_amount

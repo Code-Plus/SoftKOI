@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     collection do
       get 'log_in_new_coupon'
 			get 'calculate_amount_coupon'
+			get 'generate_pdf'
     end
   end
 
@@ -42,18 +43,21 @@ Rails.application.routes.draw do
 	resources :reports do
 		collection do
 			get 'chart'
+			get 'generate_chart'
 		end
 	end
 
 	resources :output_products do
 		collection do
 			get 'generate_pdf'
+			get 'generate_chart'
 		end
 	end
 
 	resources :input_products  do
 		collection do
 			get 'generate_pdf'
+			get 'generate_chart'
 		end
 	end
 
@@ -65,6 +69,7 @@ Rails.application.routes.draw do
       get 'ajaxnewconsole'
       get 'ajaxscripts'
       get 'change_state'
+			get 'generate_chart'
 		end
 	end
 
@@ -82,8 +87,6 @@ Rails.application.routes.draw do
 
 	resources :sales do
 		collection do
-			get 'update_line_item_options'
-      get 'update_customer_options'
       get 'create_line_item'
       get 'update_totals'
       get 'add_item'
@@ -107,6 +110,7 @@ Rails.application.routes.draw do
       get 'change_state'
       get 'ajaxscripts'
       get 'ajaxnewcategory'
+			get 'generate_chart'
 		end
 	end
 
