@@ -10,8 +10,7 @@
 
 		<div class="input-group" style="padding-bottom:10px;">
   		<span class="input-group-addon input-sm"><i class="fa fa-money"></i></span>
-			<input class="form-control" value="<%= number_to_currency(@sale.remaining_balance, unit:'') %>" 
-			type="text" name="payments[amount]" id="payments_amount">
+  		<%= f.text_field :amount, :class => "form-control", :value => @sale.remaining_balance %>
 		</div>
 
 		<%= f.hidden_field :sale_id, :value => @sale.id %>

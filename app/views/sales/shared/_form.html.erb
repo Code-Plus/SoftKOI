@@ -20,7 +20,9 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <%# Form para asociar un cliente %>
-          <%= render :partial => 'sales/shared/customer_info', :object => @sale %>
+          <div class="customer_info">
+            <%= render :partial => 'sales/shared/customer_info', :object => @sale %>
+          </div>
           
           <%# Info del cliente una vez asociado %>
           <div class="added_customer">

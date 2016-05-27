@@ -4,7 +4,8 @@
 
     <div class="row hidden-print">
       <div class="col-sm-6">
-        <%= form_for :search, :url => url_for(:controller => "sales", :action => "update_line_item_options", :format => :js), :method => "get", :remote => true do |f| %>
+        <%= form_for :search, :format => :js, :method => "get", :remote => true do |f| %>
+
 
           <%# Input autocomplete para buscar productos %>
           <div class="form-group">

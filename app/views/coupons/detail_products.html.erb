@@ -31,6 +31,7 @@
                                  <th>Nombre</th>
                                  <th>Precio unitario</th>
                                  <th>Precio de venta</th>
+                                 <th>Cantidad comprada</th>
                                  <th>Cantidad a cambiar</th>
                               </tr>
                            </thead>
@@ -42,6 +43,7 @@
                                     <%=product.product.name%></th>
                                     <th><%=product.product.price%></th>
                                     <th><%=(product.quantity.to_i)*(product.product.price.to_i)%></th>
+                                    <th><%=product.quantity%></th>
                                    <th><%if product.product.can_change == true%>
                                      <center><%= number_field_tag 'info_product_quantity[]','0', class: "form-control"%></center>
                                      <%else%>
@@ -72,15 +74,15 @@
                     <label>
                        <i class="fa fa-qrcode"></i>  Codigo de venta:
                        <span id="info_customer_finish_doc">#<%= @sale_id %></span>
-                    </label>
+                    </label><br>
                      <label>
                         <i class="fa fa-user"></i> Nombre:
-                        <span id="info_customer_finish_name">Jesus francisco</span>
+                        <span id="info_customer_finish_name"><%=@customer%></span>
                      </label><br>
 
                      <label>
                         <i class="fa fa-list-alt"></i>  Documento:
-                        <span id="info_customer_finish_doc">123456789</span>
+                        <span id="info_customer_finish_doc"><%=@document%></span>
                      </label>
                   </div>
                </div>

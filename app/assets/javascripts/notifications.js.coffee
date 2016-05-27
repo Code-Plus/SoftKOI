@@ -22,7 +22,7 @@ class Notifications
     )
   handleSuccess: (data) =>
     items = $.map data, (notification) ->
-      "<a class='dropdown-item' href='#'> #{notification.trackable} #{notification.key}</a>"
+      "<i class='fa fa-flag' aria-hidden='true'></i>&nbsp;<a class='dropdown-item' href='#'> #{notification.trackable} #{notification.key}</a><hr style='border: 1; margin-top: 9px; margin-bottom: 0px;'><br>"
 
     $("[data-behavior='unread-count']").text(items.length)
     $("[data-behavior= 'notifications-items']").html(items)
