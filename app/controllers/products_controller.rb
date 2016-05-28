@@ -24,6 +24,17 @@ class ProductsController < ApplicationController
     end
   end
 
+  def generate_chart
+    @search = Report.new(params[:search])
+    @products_to_pdf = @search.search_date_products
+    @date_from = @search.date_from.to_date
+    @date_to = @search.date_to.to_date
+    @element = "Productos"
+    @verb = "registrados"
+    @element_by_query = "Producto"
+    redirect_to url_for(:controller => :reports, :action => :generate_chart, :param1 => @date_from, :param2 => @date_to, :param3 =>@element, :param4 => @verb, :param5 => @element_by_query)
+  end
+
 
   def new
     @product = Product.new

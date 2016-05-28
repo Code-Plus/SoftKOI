@@ -15,6 +15,9 @@ class InputProduct < ActiveRecord::Base
     @product=value
   end
 
+  #Entradas registradas en la ultima semana
+  scope :registered_last_week, ->{group("input_products.created_at::date").where("created_at >= ? ", 1.week.ago ).count}
+
 
   private
   #Actualizar el stock del producto al que se le hace la entrada

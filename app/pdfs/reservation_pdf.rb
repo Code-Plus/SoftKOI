@@ -1,6 +1,6 @@
 class ReservationPdf < Prawn::Document
   def initialize(reservations_for_pdf,date_from,date_to)
-    super()
+    super(:background => "#{Rails.root}/app/assets/images/mrcadeagua.png")
     @reservations_for_pdf = reservations_for_pdf
     @date_from = date_from
     @date_to = date_to

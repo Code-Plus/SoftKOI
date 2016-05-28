@@ -14,6 +14,9 @@ class OutputProduct < ActiveRecord::Base
     @product=value
   end
 
+  #Salidas registradas en la ultima semana
+  scope :registered_last_week, ->{group("output_products.created_at::date").where("created_at >= ? ", 1.week.ago ).count}
+
   private
   def update_stock
     stock_product= product.stock
