@@ -5,9 +5,9 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Nuevo cambio.</h4>
-        <%= form_tag  log_in_new_coupon_coupons_path ,:class => 'navbar-form navbar-left', :id => '_cupons_form', method: "get" do %>
       </div>
       <div class="modal-body">
+        <%= form_tag  log_in_new_coupon_coupons_path ,:class => '', :id => '_cupons_form', method: "get" do %>
         <div class="form-group">
           <%= label_tag 'Codigo de la venta', nil, class: 'form-group'%>
           <%=text_field_tag 'search',@search.sale_id, class: "form-control"%>
@@ -15,8 +15,8 @@
       </div>
       <div class="modal-footer">
         <%= submit_tag 'Siguente',class: 'btn btn-success bold',:onclick => '$("#_cupons_form").submit();'%>
-      <% end %>
       </div>
+      <%end%>
     </div>
   </div>
 </div>
