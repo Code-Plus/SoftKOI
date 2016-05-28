@@ -109,6 +109,7 @@ function checknotification(){
   }else{
     $('.notifi').removeClass('notifications_active');
     $('.notifi').addClass('notifications');
+    $("[data-behavior= 'notifications-items']").html('<p style="text-align:center;">No hay notificaciones</p>')
   }
 }
 
