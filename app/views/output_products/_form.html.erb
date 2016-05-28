@@ -20,7 +20,7 @@
                <%= f.number_field :stock, :class => "form-control first_input" %>
             </div>
 
-            <div class="form-group required">
+            <div class="form-group required hidden">
                <!--Se trae la información del id del producto-->
                <%= f.label :product_id, "Código del producto", :class => "control-label" %>
                <%= f.text_field :product_id, readonly: true, :class => "form-control" %>
