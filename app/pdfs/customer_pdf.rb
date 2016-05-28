@@ -10,7 +10,7 @@ class CustomerPdf < Prawn::Document
     footer
   end
   def header
-  	image "#{Rails.root}/app/assets/images/white_logo.png", :position => 230, :height =>70
+  	image "#{Rails.root}/app/assets/images/softkoi.png", :position => 230, :height =>70
   end
 
   def text_content
