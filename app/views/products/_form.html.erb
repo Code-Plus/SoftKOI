@@ -36,14 +36,14 @@
       <div class="col-sm-6">
          <div class="form-group required">
             <%= f.label :type_product, "Tipo de producto", :class => "control-label" %>
-            <%= collection_select(:category, :type_product_id, TypeProduct.with_category.order(name: :asc).distinct, :id, :name, {prompt: "Seleccione un tipo..."}, {:class=>'form-control type_product_id'}) %>
+            <%= collection_select(:category, :type_product_id, TypeProduct.with_category.order(name: :asc).distinct, :id, :name, {prompt: "Seleccione un tipo"}, {:class=>'form-control type_product_id'}) %>
          </div>
       </div>
 
       <div class="col-sm-6">
          <div class="form-group required" style="display:none" attrdess="disabled_botton">
             <%= f.label :category_id, "Categoría" %>
-            <%= f.select(:category_id, "",{prompt: "Seleccione una categoría..."}, {:class=>'form-control category_id'}) %>
+            <%= f.select(:category_id, "",{prompt: "Seleccione una categoría"}, {:class=>'form-control category_id'}) %>
          </div>
       </div>
 
@@ -65,7 +65,7 @@
       <div class="col-sm-12">
          <hr style="border: 1; margin-top: 0px; ">
          <div class="form-group" style="margin-bottom: 0px;">
-            <%= f.submit "Registrar Producto", :class => "btn btn-primary bold disabled", :id => "Btn_RProduct" %>
+            <%= f.submit "Registrar", :class => "btn btn-primary bold disabled", :id => "Btn_RProduct" %>
          </div>
       </div>
    </div>

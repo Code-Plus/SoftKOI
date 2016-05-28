@@ -30,7 +30,7 @@
 		<div class="col-sm-12">
 			<hr style="border: 1; margin-top: 0px; ">
 			<div class="inline" style="margin-bottom: 0px;">
-				<%= f.submit "Editar Categotria", :class => "btn btn-success bold" %>
+				<%= f.submit "Editar", :class => "btn btn-success bold" %>
 			</div>
 			<input type="hidden" id="category__id" value="<%="#{@category.id}"%>">
 			<div class="inline">
@@ -56,7 +56,7 @@ $('.class_inhabilitar').click(function(){
       confirmButton: 'Sí',
       cancelButton: 'No',
       title: 'Confirmación',
-      content: 'Al cambiar el estado todos los productos tambie cambiaran, y su stock se volvera 0, ¿esta seguro?',
+      content: 'Al cambiar el estado, todos los productos también cambiarán, y su stock se volvera 0, ¿está seguro?',
       confirm: function(){
         resp = 1;
         ajax_change_state_product(resp, id_val);

@@ -8,7 +8,7 @@
     <div class="form-group required">
       <!-- Crea una etiqueta select con los registros de la tabla asociada -->
       <%= f.label :console_id ,"Consola", :class => "control-label"%>
-      <%= collection_select(:reserve_price, :console_id, Console.disponible, :id, :name, {prompt: "Seleccione una opcion"}, :class => "form-control") %>
+      <%= collection_select(:reserve_price, :console_id, Console.disponible, :id, :name, {prompt: "Seleccione una opción"}, :class => "form-control") %>
     </div>
 
     <div class="form-group required">
@@ -17,7 +17,7 @@
     </div>
 
     <div class="form-group required">
-      <%= f.label :time, "Intervalo", :class => "control-label" %>
+      <%= f.label :time, "Intervalo (minutos)", :class => "control-label" %>
       <%= f.number_field :time, :class => "form-control" %>
     </div>
 
