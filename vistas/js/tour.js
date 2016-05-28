@@ -67,7 +67,7 @@
     },
     {
       element: "#ventasE",
-      title: "Estadisticas Ventas",
+      title: "Estadísticas Ventas",
       content: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla  ......."
     },
     {
