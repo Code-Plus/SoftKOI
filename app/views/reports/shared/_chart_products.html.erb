@@ -24,7 +24,7 @@
 <div class="row">
   <div class="col-sm-12">
     <h4 class="bold upper" style="text-decoration:uppercase;">Productos registrados la ultima semana</h4>
-    <%= line_chart Product.registered_last_week, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true}}%>
+    <%= line_chart Product.registered_last_week, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true},width: "100%"}%>
   </div>
 
 </div>
