@@ -156,6 +156,10 @@ Rails.application.routes.draw do
 	put "/console/:id/inhabilitar", to: "consoles#noDisponible"
 	put "/console/:id/baja", to: "consoles#baja"
 
+	#Estados de la venta
+	put "/sales/:id/pago", to: "sales#pago"
+	put "/sales/:id/cancelada", to: "sales#cancelada"
+
 	#Cupons venta id
 	get "/coupons/:id/detail_products", to: "coupons#detail_products"
 

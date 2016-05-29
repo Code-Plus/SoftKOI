@@ -31,11 +31,17 @@ class Sale < ActiveRecord::Base
 	aasm column: "state" do
 		state :pago
 		state :sinpagar, :initial => true
+		state :anulada
 
 		# Eventos de movimiento o transiciones para los estados.
 		event :pago do
 			transitions from: :sinpagar, to: :pago
 		end
+
+		event :anulada do
+			transitions from :pago, to: :anulada
+		end
+
 	end
 
 	# Obtener valor de la venta por cada pago
