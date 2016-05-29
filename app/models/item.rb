@@ -12,6 +12,7 @@ class Item < ActiveRecord::Base
   before_create :set_date
   before_update :set_updated_at
 
+
   private
   def set_date
     self.created_at = Time.now.in_time_zone("Bogota")

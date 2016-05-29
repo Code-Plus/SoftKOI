@@ -17,8 +17,10 @@ class CouponsController < ApplicationController
     @coupon_to_pdf = params[:param1].to_i
     @sale_to_pdf = params[:param2].to_i
     @sale_old_to_pdf = params[:param3].to_i
+    @coupon_amount = params[:param4].to_i
     @products_to_coupon = Hash.new("products to coupon")
     @hash_products_to_coupon = Hash.new("hash products to coupon")
+
 
     @detail_coupon = ItemCoupon.where(coupon_id: @coupon_to_pdf, sale_id: @sale_old_to_pdf)
     @detail_sale = Item.where(sale_id: @sale_to_pdf)
@@ -48,7 +50,7 @@ class CouponsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf=CouponPdf.new(@detail_coupon,@detail_sale,@hash_products_to_coupon)
+        pdf=CouponPdf.new(@detail_coupon,@detail_sale,@hash_products_to_coupon,@coupon_to_pdf,@sale_to_pdf,@coupon_amount)
         send_data pdf.render, filename: 'cupon.pdf',disposition: "inline",type: 'application/pdf'
       end
     end
@@ -240,7 +242,7 @@ class CouponsController < ApplicationController
           @sale.save
         end
       end
-      format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id)}
+      format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
     end
 
 
