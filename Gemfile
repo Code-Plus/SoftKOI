@@ -45,6 +45,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'   #DataTime picker
 gem 'rails-observers'                     # Observador en modelos
 
 group :development, :test do
+	gem 'awesome_print', '~> 1.6', '>= 1.6.1'
   gem 'byebug'
 end
 
