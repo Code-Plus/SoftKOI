@@ -20,9 +20,14 @@ class SalesController < ApplicationController
 		end
 	end
 
-	# Estado
+	# Estados
 	def pago
 		@sale.pago!
+		redirect_to sales_url
+	end
+
+	def anulada
+		@sale.anulada!
 		redirect_to sales_url
 	end
 
