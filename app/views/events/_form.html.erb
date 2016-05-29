@@ -4,19 +4,19 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group input-md">
-        <%= f.label 'Nombre' %><br>
+        <%= f.label 'Nombre' %><span style="color:red;">*</span><br>
         <%= f.text_field :name, :class => "form-control"  %>
       </div>
     </div>
     <div class="col-sm-6">
       <div class="form-group">
-        <%= f.label 'Fecha' %><br>
+        <%= f.label 'Fecha' %><span style="color:red;">*</span><br>
           <%= f.datetime_local_field :start_time, :class => "form-control" %>
       </div>
     </div>
     <div class="col-sm-12">
       <div class="form-group input-md">
-        <%= f.label 'Descripción' %><br>
+        <%= f.label 'Descripción' %><span style="color:red;">*</span><br>
         <%= f.text_field :description, :class => "form-control"  %>
       </div>
     </div>

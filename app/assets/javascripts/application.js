@@ -90,15 +90,14 @@ $(document).ajaxError(function(event,xhr,options,exc) {
 	$("#error_explanation").html(kk);
 });
 
-/*
 $("html").keyup(function(key){
 	var up = key.keyCode;
-	if(up == 220){
-		$('.container-console').removeClass('hidden');
+	if(up == 119){
+		$('.container-console').toggleClass('hidden');
 		activeconsole();
 	}
 });
-*/
+
 
 
 function checknotification(){

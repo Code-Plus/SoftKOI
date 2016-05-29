@@ -7,15 +7,15 @@
 <div class="row">
   <div class="col-sm-12">
     <% if @query == "Producto" %>
-      <%= line_chart Product.group("products.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true}}%>
+      <%= line_chart Product.group("products.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true,width: "100%"}}%>
     <%elsif @query == "Salida"%>
-      <%= line_chart OutputProduct.group("output_products.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true}}%>
+      <%= line_chart OutputProduct.group("output_products.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true,width: "100%"}}%>
     <%elsif @query == "Entrada"%>
-      <%= line_chart InputProduct.group("input_products.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true}}%>
+      <%= line_chart InputProduct.group("input_products.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true,width: "100%"}}%>
     <%elsif @query == "Venta"%>
-      <%= line_chart Sale.group("sales.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true}}%>
+      <%= line_chart Sale.group("sales.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true,width: "100%"}}%>
     <%elsif @query == "Reserva"%>
-      <%= line_chart Reservation.group("reservations.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true}}%>
+      <%= line_chart Reservation.group("reservations.created_at::date").where("created_at BETWEEN ? AND  ? ", @date_from, @date_to  ).count, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true,width: "100%"}}%>
     <% end %>
 
   </div>
