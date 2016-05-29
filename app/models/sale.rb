@@ -39,7 +39,7 @@ class Sale < ActiveRecord::Base
 		end
 
 		event :anulada do
-			transitions from :pago, to: :anulada
+			transitions from: :pago, to: :anulada
 		end
 
 	end
