@@ -6,18 +6,31 @@ class SalesController < ApplicationController
 		@sales = Sale.all
 	end
 
+	#Generar informe
 	def generate_pdf
 		@search = Report.new(params[:search])
-		@outputproducts_to_pdf = @search.search_date_products
+		@sales_to_pdf = @search.search_date_sales
 		@date_from = @search.date_from.to_date
 		@date_to = @search.date_to.to_date
 		respond_to do |format|
 			format.html
 			format.pdf do
-				pdf=OutputproductPdf.new(@outputproducts_to_pdf,@date_from,@date_to)
-				send_data pdf.render, filename: 'salida_productos.pdf',disposition: "inline",type: 'application/pdf'
+				pdf=SalePdf.new(@sales_to_pdf,@date_from,@date_to)
+				send_data pdf.render, filename: 'ventas.pdf',disposition: "inline",type: 'application/pdf'
 			end
 		end
+	end
+
+	#Generar estadisticas
+	def generate_chart
+		@search = Report.new(params[:search])
+		@products_to_pdf = @search.search_date_sales
+		@date_from = @search.date_from.to_date
+		@date_to = @search.date_to.to_date
+		@element = "Ventas"
+		@verb = "registradas"
+		@element_by_query = "Venta"
+		redirect_to url_for(:controller => :reports, :action => :generate_chart, :param1 => @date_from, :param2 => @date_to, :param3 =>@element, :param4 => @verb, :param5 => @element_by_query)
 	end
 
 	# Estados

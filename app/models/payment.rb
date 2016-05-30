@@ -36,6 +36,10 @@ class Payment < ActiveRecord::Base
     if total_payment == total_amount_sale
       sale.customer.update(state: "sinDeuda")
       sale.pago!
+    else
+      unless sale.customer.state == "conDeuda"
+        sale.customer.update(state: "conDeuda")
+      end
     end
   end
 

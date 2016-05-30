@@ -24,11 +24,11 @@ class Report
   end
 
   def search_date_reservations
-
+    Reservation.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
   end
 
   def search_date_sales
-
+    Sale.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
   end
   private
   def parsed_date(date_string, default)

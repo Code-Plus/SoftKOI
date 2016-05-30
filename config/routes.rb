@@ -99,6 +99,7 @@ Rails.application.routes.draw do
       post 'sale_discount'
 			get 'generate_pdf'
       get 'customer'
+			get 'generate_chart'
 		end
 	end
 
