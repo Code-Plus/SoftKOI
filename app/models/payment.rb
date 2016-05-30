@@ -7,7 +7,7 @@ class Payment < ActiveRecord::Base
   before_create :set_date
   after_create :validate_amount
   before_update :set_updated_at
-  before_validation :validate_due
+  before_validation :validate_due, :validate_age
 
 
   private
@@ -56,7 +56,16 @@ class Payment < ActiveRecord::Base
     if customer_due - customer_pay > 50000
       self.errors.add(:base ,"Ha exedido el limite de prestamo.")
     end
+  end
 
+  #Validar que un menor de edad no deba
+  def validate_age
+    customer_age = sale.customer.age
+    unless customer_age > 18
+      unless self.amount == sale.amount
+        self.errors.add(:base ,"Es menor de edad, no esta permitido darle prestamos.")
+      end
+    end
 
   end
 =begin

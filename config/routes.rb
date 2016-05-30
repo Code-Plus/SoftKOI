@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   resources :payments do
   	collection do
       get 'make_payment'
+			get 'generate_sale_pdf'
     end
   end
 
