@@ -12,8 +12,17 @@
 
 <label>Descuento</label>
 <div class="input-group" style="padding-bottom:10px;">
-  <span class="input-group-addon input-sm">$</span>
-  <input type="number" id="sale_discount" class="form-control input-sm" value="<%= @sale.discount %>">
+  <select id="sale_discount" class="form-control sale-discount input-sm">
+    <% 0.step(100, 5) do |disc| %>
+      <% dec_discount = (disc.to_d / 100).to_s %>
+      <option value="<%= dec_discount %>" <%= @sale.discount.to_s == dec_discount ? "selected" : nil %>>
+          <%= disc.to_s + "%" %>
+      </option>
+    <% end %>
+  </select>
+  <span class="input-group-addon input-sm">
+    <%= @sale.discount.blank? ? 0 : number_to_currency(@sale.get_discounted_amount, unit: '') %>
+  </span>
 </div>
 
 
