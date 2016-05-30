@@ -37,6 +37,8 @@ class PaymentsController < ApplicationController
     end
   end
 
+
+
   private
 
     def set_payment

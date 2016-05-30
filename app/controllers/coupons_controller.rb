@@ -113,11 +113,10 @@ class CouponsController < ApplicationController
           @coupon = Coupon.new
           format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
         else
-          # format.html { redirect_to coupons_url, alert: 'Se agoto la fecha limite para realizar el cambio.' }
-          # format.json { head :no_content }
-          #<-------------------------------------TEMPORAL----------------------------------------_>
-          @detail_of_products = []
-          @coupon = Coupon.new
+           format.html { redirect_to coupons_url, alert: 'Se agoto la fecha limite para realizar el cambio.' }
+           format.json { head :no_content }
+          # @detail_of_products = []
+          # @coupon = Coupon.new
           format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
         end
 
@@ -213,7 +212,7 @@ class CouponsController < ApplicationController
                     @sale.user_id = current_user.id
                     @sale.discount = 0
                     @sale.limit_date = limit_date.strftime('%F')
-                    #@sale_old.update state: "anulada"
+                    @sale_old.update state: "anulada"
                     @sale.save
                   end
                   @item_created = Item.create product_id: p.id, sale_id: @sale.id ,quantity: new_item_quantity
@@ -226,7 +225,7 @@ class CouponsController < ApplicationController
                     Sale.last.destroy
                   end
                   Coupon.last.destroy
-                  format.html { redirect_to coupons_url, alert: 'Cambio mas productos de los que compro.' }
+                  format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, la cantidad de productos a cambiar es invalida.' }
                   format.json { head :no_content }
                 end
               end

@@ -7,6 +7,7 @@ class Payment < ActiveRecord::Base
   before_create :set_date
   after_create :validate_amount
   before_update :set_updated_at
+  before_validation :validate_due
 
 
   private
@@ -36,6 +37,27 @@ class Payment < ActiveRecord::Base
       sale.customer.update(state: "sinDeuda")
       sale.pago!
     end
+  end
+
+  #Validar que no deba mas de 50.000
+  def validate_due
+    customer_due = 0
+    customer_pay = 0
+    sales_id = sale.id
+    customer_info = sale.customer_id
+    query_sale = Sale.where(customer_id: customer_info)
+    query_sale.each do |sale|
+      customer_due += sale.total_amount
+      query_payment = Payment.where(sale_id: sale.id)
+      query_payment.each do |pay|
+        customer_pay += pay.amount
+      end
+    end
+    if customer_due - customer_pay > 50000
+      self.errors.add(:base ,"Ha exedido el limite de prestamo.")
+    end
+
+
   end
 =begin
   #Validar si la fecha actual es menor a la fecha limite de pago de la venta
