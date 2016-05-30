@@ -214,14 +214,11 @@ class SalesController < ApplicationController
 
     total_amount = @sale.amount
 
-    if @sale.discount == 0
+    if @sale.discount.blank?
       @sale.total_amount = total_amount
     else
-			if @sale.discount.nil?
-				@sale.total_amount -= 0
-			else
-      	@sale.total_amount -= @sale.discount
-			end
+      discount_amount = total_amount * @sale.discount
+      @sale.total_amount = total_amount - discount_amount
     end
 
     @sale.save

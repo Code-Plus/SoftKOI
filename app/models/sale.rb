@@ -46,7 +46,7 @@ class Sale < ActiveRecord::Base
 	# Obtener valor de la venta por cada pago
 	def remaining_balance
     if self.total_amount.blank?
-      balance = 0.00
+      balance = 0
     else
       balance = self.total_amount - paid_total
     end
@@ -60,7 +60,7 @@ class Sale < ActiveRecord::Base
 
   # Obtener el valor descontado de una venta
   def get_discounted_amount
-    self.total_amount - self.discount
+    self.amount * self.discount
   end
 
   # Valor total en todos los pagos

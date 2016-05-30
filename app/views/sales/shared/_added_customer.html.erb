@@ -1,18 +1,27 @@
 <%# Parcial donde muestra el cliente asociado a la venta %>
 <% unless @sale.customer.blank? %>
-<script type="text/javascript">
-	  $('.customer_info').addClass('hidden');
-</script>
-	<div style="padding-bottom:5px;">
-		<h5 class="text-primary bold" style="text-transform:uppercase; font-size: 16px; margin-top: 3px;">
-	    <i class="fa fa-search"></i> Datos del cliente
-	  </h5>
+	<script type="text/javascript">
+		  $('.customer_info').addClass('hidden');
+	</script>
 
-	  <%= fields_for @sale do |f|%>
-	    <%= f.fields_for :customer, Customer.find(@sale.customer.id) do |e| %>
-	      <p><%= e.text_field :doc_label, :class => "form-control input-sm", :readonly => true %></p>
-	      <p><%= e.text_field :name_label, :class => "form-control input-sm", :readonly => true %></p>
-	    <% end %>
-	  <% end %>
+
+	<div class="col-sm-12" style="padding:0;">
+		<div class="customer_wrapper">
+			<div class="col-sm-4">
+				<%= image_tag 'sokoi.png', width: '50px' %>
+			</div>
+			<div class="col-sm-8" style="padding-top:3px; padding-left: 0;">
+				<label>
+					<i class="fa fa-user"></i>
+					<span><%= @sale.customer.name %></span>
+				</label><br>
+
+				<label>
+					<i class="fa fa-list-alt"></i>
+					<span><%= @sale.customer.document %></span>
+				</label>
+			</div>
+		</div>
 	</div>
+
 <% end %>
