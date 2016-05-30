@@ -11,7 +11,6 @@ class Sale < ActiveRecord::Base
 	has_many :payments, dependent: :destroy
 	has_many :item_coupons
 
-	before_validation :verificar_estado
 
 	accepts_nested_attributes_for :items, allow_destroy: true
 	accepts_nested_attributes_for :products, allow_destroy: true
@@ -29,13 +28,13 @@ class Sale < ActiveRecord::Base
 	include AASM
 
 	aasm column: "state" do
+		state :sinPagar, :initial => true
 		state :pago
-		state :sinpagar, :initial => true
 		state :anulada
 
 		# Eventos de movimiento o transiciones para los estados.
 		event :pago do
-			transitions from: :sinpagar, to: :pago
+			transitions from: :sinPagar, to: :pago
 		end
 
 		event :anulada do
@@ -96,13 +95,7 @@ class Sale < ActiveRecord::Base
 
 	private
 
-	def verificar_estado
-		if self.amount == self.total_amount
-			self.state = "pago"
-		else
-			self.state = "sinpagar"
-		end
-	end
+
 
 	# Fecha por defecto
 	def default_date

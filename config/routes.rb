@@ -158,7 +158,7 @@ Rails.application.routes.draw do
 
 	#Estados de la venta
 	put "/sales/:id/pago", to: "sales#pago"
-	put "/sales/:id/cancelada", to: "sales#cancelada"
+	put "/sales/:id/anulada", to: "sales#anulada"
 
 	#Cupons venta id
 	get "/coupons/:id/detail_products", to: "coupons#detail_products"
