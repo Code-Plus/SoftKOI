@@ -5,7 +5,9 @@ class Payment < ActiveRecord::Base
   validates :sale_id, presence: true
 
   before_create :set_date
+  after_create :validate_amount
   before_update :set_updated_at
+
 
   private
 
@@ -18,24 +20,24 @@ class Payment < ActiveRecord::Base
     self.updated_at = Time.now.in_time_zone("Bogota")
   end
 
-=begin
+
   #Validar si la suma de todos los pagos es igual al valor total de la venta
   def validate_amount
     amount = sale.total_amount
-    sale = sale.id
-    penalty = sale.penalty
+    sales_id = sale.id
+    #sale_penalty = sale.penalty
     total_payment = 0
-    total_amount_sale = amount + penalty
-    payments_query = Payment.where("sale_id = ?"sale).SELECT("payment.id")
-    payments = payments_query.pluck(:id)
-    payments.each do |payment|
-      total_payment + = payment
+    total_amount_sale = amount# + sale_penalty
+    payments_query = Payment.where(sale_id: sales_id)
+    payments_query.each do |payment|
+      total_payment += payment.amount
     end
     if total_payment == total_amount_sale
       sale.customer.update(state: "sinDeuda")
+      sale.pago!
     end
   end
-
+=begin
   #Validar si la fecha actual es menor a la fecha limite de pago de la venta
   #Si no es asi se le cobra un 10% por cada mes que se pase de la fehca limite de pago
   def validate_penality
