@@ -13,7 +13,6 @@ class SalePdf < Prawn::Document
 		repeat :all do
 			image "#{Rails.root}/app/assets/images/softkoi.png", :position => 230, :height =>70
 		end
-
   end
 
   def text_content
@@ -59,6 +58,5 @@ class SalePdf < Prawn::Document
 	      image "#{Rails.root}/app/assets/images/softkoifooter.png", :position => 250, :height =>25,  :page_filter => :all
 	    end
 		end
-
   end
 end

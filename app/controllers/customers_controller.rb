@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
 
   def generate_pdf
     @search = Report.new(params[:search])
-    @customers_to_pdf = @search.search_date_products
+    @customers_to_pdf = @search.search_date_customers
     @date_from = @search.date_from.to_date
     @date_to = @search.date_to.to_date
     respond_to do |format|

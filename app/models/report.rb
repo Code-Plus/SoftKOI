@@ -12,19 +12,19 @@ class Report
   end
 
   def search_date_outputproducts
-    OutputProduct.where('created_at BETWEEN ? AND ?',@date_from,@date_to).order(created_at: :desc )#.group('product_id').sum('stock')
+    OutputProduct.where('created_at BETWEEN ? AND ?',@date_from,@date_to).order(product_id: :asc )#.group('product_id').sum('stock')
   end
 
   def search_date_inputproducts
-    InputProduct.where('created_at BETWEEN ? AND ?',@date_from,@date_to).order(created_at: :desc )#.group('product_id')
+    InputProduct.where('created_at BETWEEN ? AND ?',@date_from,@date_to).order(product_id: :asc )#.group('product_id')
   end
 
   def search_date_customers
-    Customers.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
+    Customer.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
   end
 
   def search_date_reservations
-    Reservation.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
+    Reservation.where('created_at BETWEEN ? AND ? ',@date_from,@date_to)
   end
 
   def search_date_sales
