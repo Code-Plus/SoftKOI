@@ -1,6 +1,6 @@
 class Sale < ActiveRecord::Base
 
-	before_create :set_date
+	before_create :set_date, :default_date
 	before_update :set_updated_at
 
 	belongs_to :user
@@ -24,6 +24,11 @@ class Sale < ActiveRecord::Base
 	# validates :customer_id, presence: true
 	# validates_date :limit_date, presence: true, :afer => lambda { Date.current }
 
+	#Ventas registradas en la ultima semana
+	scope :registered_last_week, ->{group("sales.created_at::date").where("created_at >= ? ", 1.week.ago ).count}
+
+	#total_amount mayor que 0
+	scope :total_amount_more_0, ->{where("total_amount > 0")}
 
 	include AASM
 
@@ -60,7 +65,10 @@ class Sale < ActiveRecord::Base
 
   # Obtener el valor descontado de una venta
   def get_discounted_amount
-    self.amount * self.discount
+		unless self.discount.nil?
+			self.amount * self.discount
+		end
+
   end
 
   # Valor total en todos los pagos
@@ -99,8 +107,9 @@ class Sale < ActiveRecord::Base
 
 	# Fecha por defecto
 	def default_date
-		if self.limit_date.nil?
-			self.limit_date = Time.now
+		if self.limit_date.strftime("%F") < Time.now.strftime("%F")
+			new_limit_date = Time.now + 3.days
+			self.limit_date = new_limit_date.strftime("%F")
 		end
 	end
 

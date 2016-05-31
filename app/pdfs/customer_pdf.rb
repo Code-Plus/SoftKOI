@@ -10,28 +10,33 @@ class CustomerPdf < Prawn::Document
     footer
   end
   def header
-  	image "#{Rails.root}/app/assets/images/softkoi.png", :position => 230, :height =>70
+    repeat :all do
+			image "#{Rails.root}/app/assets/images/softkoi.png", :position => 230, :height =>70
+		end
   end
 
   def text_content
-    move_down 20
-    font("Courier") do
-      text "Reporte de registros de clientes generados desde SOFTKOI APP.", :align => :center
+    repeat :all do
       move_down 20
-      text "Este reporte fue generado la fecha: #{Date.today}", :align =>:center
-      move_down 20
-        text "Clientes registrados desde #{@date_from} hasta el #{@date_to}.", :align => :center
+      font("Courier") do
+        text "Reporte de registros de clientes generados desde SOFTKOI APP.", :align => :center
+        move_down 20
+        text "Este reporte fue generado la fecha: #{Date.today}", :align =>:center
+        move_down 20
+          text "Clientes registrados desde #{@date_from} hasta el #{@date_to}.", :align => :center
+      end
     end
   end
 
   def table_content
-    move_down 10
-    table customer_rows do
-      row(0).font_style = :bold
-      self.header = true
-      self.row_colors = ['DDDDDD', 'FFFFFF']
-      self.column_widths = [80,60]
-      self.position = 80
+    bounding_box([10, 540], :width => 540, :height => 500) do
+      table customer_rows do
+        row(0).font_style = :bold
+        self.header = true
+        self.row_colors = ['DDDDDD', 'FFFFFF']
+        self.column_widths = [80,120,40,120]
+        self.position = 50
+      end
     end
   end
 
@@ -44,11 +49,14 @@ class CustomerPdf < Prawn::Document
 
   def footer
     bounding_box [bounds.left, bounds.bottom + 35], :width  => bounds.width  do
-      font "Courier"
-      stroke_horizontal_rule
-      move_down(5)
-      number_pages "<page> de <total>", { :start_count_at => 0, :page_filter => :all, :at => [bounds.right - 50, 0], :align => :right, :size => 12 }
-      image "#{Rails.root}/app/assets/images/softkoifooter.png", :position => 250, :height =>25
+        font "Courier"
+        move_down(10)
+        number_pages "<page> de <total>", { :start_count_at => 0, :page_filter => :all, :at => [bounds.right - 50, 0], :align => :right, :size => 12 }
+      repeat :all do
+        stroke_horizontal_rule
+        move_down(5)
+        image "#{Rails.root}/app/assets/images/softkoifooter.png", :position => 250, :height =>25,  :page_filter => :all
+      end
     end
   end
 end

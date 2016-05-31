@@ -22,6 +22,7 @@ class CouponsController < ApplicationController
     @hash_products_to_coupon = Hash.new("hash products to coupon")
 
 
+
     @detail_coupon = ItemCoupon.where(coupon_id: @coupon_to_pdf, sale_id: @sale_old_to_pdf)
     @detail_sale = Item.where(sale_id: @sale_to_pdf)
     item_old = Item.where(sale_id: @sale_old_to_pdf)
@@ -46,11 +47,11 @@ class CouponsController < ApplicationController
       products = Product.where(id: key).first
       @hash_products_to_coupon[products.name] = value
     end
-
+    @user_do_coupon = current_user.name
     respond_to do |format|
       format.html
       format.pdf do
-        pdf=CouponPdf.new(@detail_coupon,@detail_sale,@hash_products_to_coupon,@coupon_to_pdf,@sale_to_pdf,@coupon_amount)
+        pdf=CouponPdf.new(@detail_coupon,@detail_sale,@hash_products_to_coupon,@coupon_to_pdf,@sale_to_pdf,@coupon_amount,@user_do_coupon)
         send_data pdf.render, filename: 'cupon.pdf',disposition: "inline",type: 'application/pdf'
       end
     end
@@ -113,11 +114,10 @@ class CouponsController < ApplicationController
           @coupon = Coupon.new
           format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
         else
-          # format.html { redirect_to coupons_url, alert: 'Se agoto la fecha limite para realizar el cambio.' }
-          # format.json { head :no_content }
-          #<-------------------------------------TEMPORAL----------------------------------------_>
-          @detail_of_products = []
-          @coupon = Coupon.new
+           format.html { redirect_to coupons_url, alert: 'Se agoto la fecha limite para realizar el cambio.' }
+           format.json { head :no_content }
+          # @detail_of_products = []
+          # @coupon = Coupon.new
           format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
         end
 
@@ -213,7 +213,7 @@ class CouponsController < ApplicationController
                     @sale.user_id = current_user.id
                     @sale.discount = 0
                     @sale.limit_date = limit_date.strftime('%F')
-                    #@sale_old.update state: "anulada"
+                    @sale_old.update state: "anulada"
                     @sale.save
                   end
                   @item_created = Item.create product_id: p.id, sale_id: @sale.id ,quantity: new_item_quantity
@@ -226,7 +226,7 @@ class CouponsController < ApplicationController
                     Sale.last.destroy
                   end
                   Coupon.last.destroy
-                  format.html { redirect_to coupons_url, alert: 'Cambio mas productos de los que compro.' }
+                  format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, la cantidad de productos a cambiar es invalida.' }
                   format.json { head :no_content }
                 end
               end

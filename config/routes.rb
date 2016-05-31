@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   resources :payments do
   	collection do
       get 'make_payment'
+			get 'generate_sale_pdf'
     end
   end
 
@@ -98,6 +99,7 @@ Rails.application.routes.draw do
       post 'sale_discount'
 			get 'generate_pdf'
       get 'customer'
+			get 'generate_chart'
 		end
 	end
 
