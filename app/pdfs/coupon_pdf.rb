@@ -1,11 +1,12 @@
 class CouponPdf < Prawn::Document
-	def initialize(detail_coupon,detail_sale, hash_products_to_coupon,coupon_to_pdf,sale_to_pdf,coupon_amount)
+	def initialize(detail_coupon,detail_sale, hash_products_to_coupon,coupon_to_pdf,sale_to_pdf,coupon_amount,user_do_coupon)
 		@detail_coupon = detail_coupon
 		@detail_sale = detail_sale
 		@hash_products_to_coupon = hash_products_to_coupon
 		@coupon_to_pdf =coupon_to_pdf
 		@sale_to_pdf =sale_to_pdf
 		@coupon_amount = coupon_amount
+		@user_do_coupon= user_do_coupon
 		super(:background => "#{Rails.root}/app/assets/images/mrcadeagua.png")
 		header
 		text_coupon
@@ -27,6 +28,7 @@ class CouponPdf < Prawn::Document
 			text "Comprobante de cambio generado desde  SOFTKOI APP.", :align => :center
       move_down 20
       text "Este comprobante fue generado la fecha: #{Date.today}", :align =>:center
+			text "Usuario encargado: #{@user_do_coupon}", :align =>:center
 			move_down 20
 			text "Estos son los productos que cambio.", :align =>:center
 		end

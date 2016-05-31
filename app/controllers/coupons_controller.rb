@@ -22,6 +22,7 @@ class CouponsController < ApplicationController
     @hash_products_to_coupon = Hash.new("hash products to coupon")
 
 
+
     @detail_coupon = ItemCoupon.where(coupon_id: @coupon_to_pdf, sale_id: @sale_old_to_pdf)
     @detail_sale = Item.where(sale_id: @sale_to_pdf)
     item_old = Item.where(sale_id: @sale_old_to_pdf)
@@ -46,11 +47,11 @@ class CouponsController < ApplicationController
       products = Product.where(id: key).first
       @hash_products_to_coupon[products.name] = value
     end
-
+    @user_do_coupon = current_user.name
     respond_to do |format|
       format.html
       format.pdf do
-        pdf=CouponPdf.new(@detail_coupon,@detail_sale,@hash_products_to_coupon,@coupon_to_pdf,@sale_to_pdf,@coupon_amount)
+        pdf=CouponPdf.new(@detail_coupon,@detail_sale,@hash_products_to_coupon,@coupon_to_pdf,@sale_to_pdf,@coupon_amount,@user_do_coupon)
         send_data pdf.render, filename: 'cupon.pdf',disposition: "inline",type: 'application/pdf'
       end
     end

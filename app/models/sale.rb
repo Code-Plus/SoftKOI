@@ -27,6 +27,9 @@ class Sale < ActiveRecord::Base
 	#Ventas registradas en la ultima semana
 	scope :registered_last_week, ->{group("sales.created_at::date").where("created_at >= ? ", 1.week.ago ).count}
 
+	#total_amount mayor que 0
+	scope :total_amount_more_0, ->{where("total_amount > 0")}
+
 	include AASM
 
 	aasm column: "state" do

@@ -28,7 +28,7 @@ class Report
   end
 
   def search_date_sales
-    Sale.where('created_at BETWEEN ? AND ?',@date_from,@date_to)
+    Sale.where('created_at BETWEEN ? AND ? AND total_amount != 0',@date_from,@date_to)
   end
   private
   def parsed_date(date_string, default)
