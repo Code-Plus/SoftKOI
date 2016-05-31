@@ -1,6 +1,6 @@
 class Sale < ActiveRecord::Base
 
-	before_create :set_date
+	before_create :set_date, :default_date
 	before_update :set_updated_at
 
 	belongs_to :user
@@ -107,8 +107,9 @@ class Sale < ActiveRecord::Base
 
 	# Fecha por defecto
 	def default_date
-		if self.limit_date.nil?
-			self.limit_date = Time.now
+		if self.limit_date.strftime("%F") < Time.now.strftime("%F")
+			new_limit_date = Time.now + 3.days
+			self.limit_date = new_limit_date.strftime("%F")
 		end
 	end
 
