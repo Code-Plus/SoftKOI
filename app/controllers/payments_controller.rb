@@ -30,6 +30,7 @@ class PaymentsController < ApplicationController
       @sale_limit_date = sale.limit_date
 			@sale_total_amount = sale.total_amount
       @sale_customer = sale.customer.name
+      @sale_penalty = sale.penalty
 		end
     all_payments.each do |pay|
       @pay_amount += pay.amount
@@ -37,7 +38,7 @@ class PaymentsController < ApplicationController
 		respond_to do |format|
 			format.js
 			format.pdf do
-				pdf=PaymentPdf.new(@sale_to_pdf,@detail_sale,@payment_to_pdf,@user_do_payment,@sale_id,@sale_limit_date,@sale_amount,@sale_discount,@sale_total_amount,@pay_amount,@sale_customer)
+				pdf=PaymentPdf.new(@sale_to_pdf,@detail_sale,@payment_to_pdf,@user_do_payment,@sale_id,@sale_limit_date,@sale_amount,@sale_discount,@sale_total_amount,@pay_amount,@sale_customer,@sale_penalty)
 				send_data pdf.render, filename: 'pago.pdf',:disposition => "inline",type: 'application/pdf'
 			end
 		end

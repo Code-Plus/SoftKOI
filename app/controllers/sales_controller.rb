@@ -77,14 +77,24 @@ class SalesController < ApplicationController
 	# Asociar cliente a la venta
 	def create_customer_association
 		set_sale
-
+		@message ="no"
 		unless @sale.blank? || params[:customer_id].blank?
 			@sale.customer_id = params[:customer_id]
+			customer_info = Customer.where(id: @sale.customer_id)
+			customer_info.each do |customer|
+				if customer.state == "conDeuda"
+					@message = "si"
+				end
+			end
 			@sale.save
 		end
 
+		#No me esta saliendo el flash
 		respond_to do |format|
 			format.js { ajax_refresh }
+			if @message == "si"
+				format.js {flash[:notice] = "El cliente tiene deudas pendientes" }
+			end
 		end
 	end
 
@@ -170,6 +180,7 @@ class SalesController < ApplicationController
 	def create_custom_customer
 		set_sale
 		populate_products
+		@message = "no"
 
 		custom_customer = Customer.new
 		custom_customer.document = params[:custom_customer][:document]
@@ -185,9 +196,19 @@ class SalesController < ApplicationController
 		@sale.add_customer(custom_customer.id)
 
 		update_totals
+		customer_info = Customer.where(id: custom_customer.id)
+		customer_info.each do |customer|
+			if customer.state == "conDeuda"
+				@message = "si"
+			end
+		end
 
 		respond_to do |format|
 			format.js { ajax_refresh }
+			if @message == "si"
+				format.js {flash[:notice] = "El cliente tiene deudas pendientes" }
+			end
+
 		end
 	end
 

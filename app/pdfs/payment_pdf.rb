@@ -1,5 +1,5 @@
 class PaymentPdf < Prawn::Document
-  def initialize(sale_to_pdf,detail_sale,payment_to_pdf,user_do_payment,sale_id,sale_limit_date,sale_amount,sale_discount,sale_total_amount,pay_amount,sale_customer)
+  def initialize(sale_to_pdf,detail_sale,payment_to_pdf,user_do_payment,sale_id,sale_limit_date,sale_amount,sale_discount,sale_total_amount,pay_amount,sale_customer,sale_penalty)
     super(:background => "#{Rails.root}/app/assets/images/mrcadeagua.png")
     @sale_to_pdf = sale_to_pdf
     @detail_sale = detail_sale
@@ -12,6 +12,7 @@ class PaymentPdf < Prawn::Document
     @sale_total_amount =sale_total_amount
     @pay_amount =pay_amount
     @sale_customer = sale_customer
+    @sale_penalty = sale_penalty
     header
     text_content
     table_content
@@ -63,6 +64,9 @@ class PaymentPdf < Prawn::Document
         text "Total de la venta: #{@sale_total_amount} "
         unless @sale_total_amount - @pay_amount == 0
         text "Fecha limite: #{@sale_limit_date}"
+        end
+        unless @sale_penalty == 0
+          text "Multa: #{@sale_penalty}"
         end
       end
     end
