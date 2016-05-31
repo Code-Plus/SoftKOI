@@ -99,17 +99,24 @@ class CouponsController < ApplicationController
   #Ingresa el codigo de una venta y generar el formulario con ese codigo
   def log_in_new_coupon
     @search = params[:search]
-    sale = Sale.where(id: @search, state: "pago")
+    sale = Sale.where(id: @search)
+    sale.each do |sale|
+      @sale_state = sale.state
+    end
     respond_to do |format|
       if sale.ids.empty?
-          format.html { redirect_to coupons_url, alert: 'La venta no existe.' }
-          format.json { head :no_content }
+        format.html { redirect_to coupons_url, alert: 'La venta no existe.' }
+        format.json { head :no_content }
+      elsif @sale_state == "sinPagar"
+        format.html { redirect_to coupons_url, alert: 'La venta no esta cancelada en su totalidad.' }
+        format.json { head :no_content }
       else
         sale.each do |s|
           @created_at=s.created_at
         end
         created_at_more_3 = @created_at + 3.days
-        if created_at_more_3.strftime('%F') <= Date.today.strftime('%F')
+        puts "#{created_at_more_3}----------------->"
+        if Date.today.strftime('%F') <= created_at_more_3.strftime('%F') 
           @detail_of_products = []
           @coupon = Coupon.new
           format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }

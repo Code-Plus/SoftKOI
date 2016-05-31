@@ -33,6 +33,7 @@ class Coupon < ActiveRecord::Base
   def validate_date_sale
     sale_date = item_coupons.sale.created_at
     sale_date_more_3 = sale_date + 3.days
+    puts "#{sale_date_more_3}---------------->"
     unless sale_date_more_3 <= Time.now
       self.errors.add(:base, "Se ha excedido en la fecha para realizar un cambio." )
     end
