@@ -65,7 +65,7 @@ class Payment < ActiveRecord::Base
   #Validar que un menor de edad no deba
   def validate_age
     customer_age = sale.customer.age
-    unless customer_age > 18
+    if customer_age < 18
       unless self.amount == sale.amount
         self.errors.add(:base ,"Es menor de edad, no esta permitido darle prestamos.")
       end
