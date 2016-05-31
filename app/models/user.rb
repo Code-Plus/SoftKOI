@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
 
-	#Valida que el usuario tenga estado "disponible" para iniciar sesion
+	# Valida que el usuario tenga estado "disponible" para iniciar sesion
 	def active_for_authentication?
     super and self.disponible?
   end

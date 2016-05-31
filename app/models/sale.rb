@@ -16,13 +16,13 @@ class Sale < ActiveRecord::Base
 	accepts_nested_attributes_for :products, allow_destroy: true
 	accepts_nested_attributes_for :payments, allow_destroy: true
 
-	# validates :state, presence: true
-	# validates :amount, presence: true,  numericality: { only_integer: true, greater_than: 0 }
-	# validates :total_amount, presence: true, numericality: { only_integer: true, greater_than: 0 }
-	# validates :discount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-	# validates :user_id, presence: true
-	# validates :customer_id, presence: true
-	# validates_date :limit_date, presence: true, :afer => lambda { Date.current }
+	validates :state, presence: true
+	validates :amount, presence: true,  numericality: { only_integer: true, greater_than: 0 }
+	validates :total_amount, presence: true, numericality: { only_integer: true, greater_than: 0 }
+	validates :discount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+	validates :user_id, presence: true
+	validates :customer_id, presence: true
+	validates_date :limit_date, presence: true, :afer => lambda { Date.current }
 
 	#Ventas registradas en la ultima semana
 	scope :registered_last_week, ->{group("sales.created_at::date").where("created_at >= ? ", 1.week.ago ).count}

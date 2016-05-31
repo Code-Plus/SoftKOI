@@ -93,7 +93,7 @@ class SalesController < ApplicationController
 		respond_to do |format|
 			format.js { ajax_refresh }
 			if @message == "si"
-				format.js {flash[:notice] = "El cliente tiene deudas pendientes" }
+				format.js { flash[:notice] = "El cliente tiene deudas pendientes" }
 			end
 		end
 	end
@@ -206,7 +206,7 @@ class SalesController < ApplicationController
 		respond_to do |format|
 			format.js { ajax_refresh }
 			if @message == "si"
-				format.js {flash[:notice] = "El cliente tiene deudas pendientes" }
+				format.js { flash[:notice] = "El cliente tiene deudas pendientes" }
 			end
 
 		end

@@ -203,7 +203,7 @@ ActiveRecord::Schema.define(version: 20160531033500) do
     t.integer  "amount",                               default: 0
     t.integer  "total_amount",                         default: 0
     t.decimal  "discount",     precision: 8, scale: 2
-    t.date     "limit_date",                           default: '2016-05-16'
+    t.date     "limit_date",                           default: '2016-05-27'
     t.text     "comment"
     t.integer  "user_id"
     t.integer  "customer_id"
