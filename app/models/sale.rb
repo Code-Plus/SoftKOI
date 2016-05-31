@@ -65,7 +65,9 @@ class Sale < ActiveRecord::Base
 
   # Obtener el valor descontado de una venta
   def get_discounted_amount
-		unless self.discount.nil?
+		if self.discount.nil?
+			0
+		else
 			self.amount * self.discount
 		end
 

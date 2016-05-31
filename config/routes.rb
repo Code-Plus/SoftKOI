@@ -162,6 +162,9 @@ Rails.application.routes.draw do
 	put "/sales/:id/pago", to: "sales#pago"
 	put "/sales/:id/anulada", to: "sales#anulada"
 
+	#Estdo del cupon
+	put "/coupons/:id/utilizado", to: "sales#utilizado"
+
 	#Cupons venta id
 	get "/coupons/:id/detail_products", to: "coupons#detail_products"
 

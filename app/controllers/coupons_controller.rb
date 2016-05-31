@@ -275,6 +275,12 @@ class CouponsController < ApplicationController
     end
   end
 
+  #Estado
+  def utilizado
+    @coupon.utilizado!
+    #Cambiar el redirect de acuerdo a la necesidad
+    redirect_to coupons_url
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -284,6 +290,6 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:amount, :user_id)
+      params.require(:coupon).permit(:amount, :user_id, :state)
     end
 end

@@ -4,15 +4,22 @@ class Coupon < ActiveRecord::Base
   before_create :set_date
 	before_update :set_updated_at
 
-  #before_validation :validate_date_sale
+  before_validation :validate_date_sale
 
-  # def initialize(params)
-  #   params ||={}
-  #     @sale_id = 0
-  # end
 
   validates :amount, presence: true
 
+  include AASM
+    aasm column: "state" do
+
+      state :noUtilizado, :initial => true
+      state :utilizado
+
+
+      event :utilizado do
+        transitions from: :noUtilizado, to: :utilizado
+      end
+    end
   private
   def set_date
     self.created_at = Time.now.in_time_zone("Bogota")
