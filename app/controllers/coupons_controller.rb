@@ -22,6 +22,7 @@ class CouponsController < ApplicationController
     @hash_products_to_coupon = Hash.new("hash products to coupon")
 
 
+
     @detail_coupon = ItemCoupon.where(coupon_id: @coupon_to_pdf, sale_id: @sale_old_to_pdf)
     @detail_sale = Item.where(sale_id: @sale_to_pdf)
     item_old = Item.where(sale_id: @sale_old_to_pdf)
@@ -46,11 +47,11 @@ class CouponsController < ApplicationController
       products = Product.where(id: key).first
       @hash_products_to_coupon[products.name] = value
     end
-
+    @user_do_coupon = current_user.name
     respond_to do |format|
       format.html
       format.pdf do
-        pdf=CouponPdf.new(@detail_coupon,@detail_sale,@hash_products_to_coupon,@coupon_to_pdf,@sale_to_pdf,@coupon_amount)
+        pdf=CouponPdf.new(@detail_coupon,@detail_sale,@hash_products_to_coupon,@coupon_to_pdf,@sale_to_pdf,@coupon_amount,@user_do_coupon)
         send_data pdf.render, filename: 'cupon.pdf',disposition: "inline",type: 'application/pdf'
       end
     end
@@ -98,17 +99,24 @@ class CouponsController < ApplicationController
   #Ingresa el codigo de una venta y generar el formulario con ese codigo
   def log_in_new_coupon
     @search = params[:search]
-    sale = Sale.where(id: @search, state: "pago")
+    sale = Sale.where(id: @search)
+    sale.each do |sale|
+      @sale_state = sale.state
+    end
     respond_to do |format|
       if sale.ids.empty?
-          format.html { redirect_to coupons_url, alert: 'La venta no existe.' }
-          format.json { head :no_content }
+        format.html { redirect_to coupons_url, alert: 'La venta no existe.' }
+        format.json { head :no_content }
+      elsif @sale_state == "sinPagar"
+        format.html { redirect_to coupons_url, alert: 'La venta no esta cancelada en su totalidad.' }
+        format.json { head :no_content }
       else
         sale.each do |s|
           @created_at=s.created_at
         end
         created_at_more_3 = @created_at + 3.days
-        if created_at_more_3.strftime('%F') <= Date.today.strftime('%F')
+        puts "#{created_at_more_3}----------------->"
+        if Date.today.strftime('%F') <= created_at_more_3.strftime('%F') 
           @detail_of_products = []
           @coupon = Coupon.new
           format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
@@ -274,6 +282,12 @@ class CouponsController < ApplicationController
     end
   end
 
+  #Estado
+  def utilizado
+    @coupon.utilizado!
+    #Cambiar el redirect de acuerdo a la necesidad
+    redirect_to coupons_url
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -283,6 +297,6 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:amount, :user_id)
+      params.require(:coupon).permit(:amount, :user_id, :state)
     end
 end

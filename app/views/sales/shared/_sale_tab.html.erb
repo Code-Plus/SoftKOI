@@ -26,6 +26,16 @@
       </div>
 
       <%= form_for(@sale) do |f| %>
+
+      <% if @sale.errors.any? %>
+       <div id="error_explanation" class="text-danger modal-errors">
+          <ul>
+             <% @sale.errors.full_messages.each do |message| %>
+             <li><%= message %></li>
+             <% end %>
+          </ul>
+        </div>
+      <% end %>
       
       <%# Input fecha limite %>
       <div class="col-sm-6 required">

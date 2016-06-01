@@ -46,12 +46,6 @@ class Customer < ActiveRecord::Base
     "#{firstname} #{lastname}"
   end
 
-  def doc_label
-    "Documento:  #{document}"
-  end
-    def name_label
-    "Nombre:   #{firstname} #{lastname}"
-  end
 
   def age
     age = (Date.today - birthday) / 365.25
@@ -70,8 +64,8 @@ class Customer < ActiveRecord::Base
     end
 
     def validate_age_typeDocument
-      typeDocument = self.type_document.description
-      unless(typeDocument == "Cédula de ciudadania" && self.age >= 18) || (typeDocument == "Tarjeta de identidad" && self.age < 17 )
+      typeDocument = self.type_document.id
+      unless(typeDocument == 1 && self.age >= 18) || (typeDocument == 2 && self.age < 17 )
         self.errors.add(:base ,"No se tiene la edad requerida para ese tipo de documento")
       end
     end

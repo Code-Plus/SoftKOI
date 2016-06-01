@@ -1,6 +1,6 @@
 class Sale < ActiveRecord::Base
 
-	before_create :set_date
+	before_create :set_date, :default_date
 	before_update :set_updated_at
 
 	belongs_to :user
@@ -16,14 +16,22 @@ class Sale < ActiveRecord::Base
 	accepts_nested_attributes_for :products, allow_destroy: true
 	accepts_nested_attributes_for :payments, allow_destroy: true
 
-	# validates :state, presence: true
-	# validates :amount, presence: true,  numericality: { only_integer: true, greater_than: 0 }
-	# validates :total_amount, presence: true, numericality: { only_integer: true, greater_than: 0 }
-	# validates :discount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-	# validates :user_id, presence: true
-	# validates :customer_id, presence: true
-	# validates_date :limit_date, presence: true, :afer => lambda { Date.current }
+	# validates :customer_id, presence: true,  :on => :update
+	#
+	# validates :state, presence: true,  :on => :update
+	# # validates :amount, presence: true,  numericality: { only_integer: true, greater_than: 0 },  :on => :update
+	# # validates :total_amount, presence: true, numericality: { only_integer: true, greater_than: 0 },  :on => :update
+	# validates :discount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 },  :on => :update
+	# validates :user_id, presence: true,  :on => :update
+	# validates_date :limit_date, presence: true, :afer => lambda { Date.current },  :on => :update
 
+
+
+	#Ventas registradas en la ultima semana
+	scope :registered_last_week, ->{group("sales.created_at::date").where("created_at >= ? ", 1.week.ago ).count}
+
+	#total_amount mayor que 0
+	scope :total_amount_more_0, ->{where("total_amount > 0")}
 
 	include AASM
 
@@ -60,7 +68,12 @@ class Sale < ActiveRecord::Base
 
   # Obtener el valor descontado de una venta
   def get_discounted_amount
-    self.amount * self.discount
+		if self.discount.nil?
+			0
+		else
+			self.amount * self.discount
+		end
+
   end
 
   # Valor total en todos los pagos
@@ -99,8 +112,9 @@ class Sale < ActiveRecord::Base
 
 	# Fecha por defecto
 	def default_date
-		if self.limit_date.nil?
-			self.limit_date = Time.now
+		if self.limit_date.strftime("%F") < Time.now.strftime("%F")
+			new_limit_date = Time.now + 3.days
+			self.limit_date = new_limit_date.strftime("%F")
 		end
 	end
 

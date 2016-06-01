@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	validates :role_id,  presence: true
 	validates :state,  presence: true
 	validates :type_document_id,  presence: true
-	
+
 	before_create :validate_pass
 
 	before_create :set_date
@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:document]
 
+	# Valida que el usuario tenga estado "disponible" para iniciar sesion
+	def active_for_authentication?
+    super and self.disponible?
+  end
 
 	include AASM
 

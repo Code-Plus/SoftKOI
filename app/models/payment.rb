@@ -4,7 +4,7 @@ class Payment < ActiveRecord::Base
   validates :amount , presence: true
   validates :sale_id, presence: true
 
-  before_create :set_date
+  before_create :set_date,:validate_penality
   after_create :validate_amount
   before_update :set_updated_at
   before_validation :validate_due, :validate_age
@@ -36,6 +36,10 @@ class Payment < ActiveRecord::Base
     if total_payment == total_amount_sale
       sale.customer.update(state: "sinDeuda")
       sale.pago!
+    else
+      unless sale.customer.state == "conDeuda"
+        sale.customer.update(state: "conDeuda")
+      end
     end
   end
 
@@ -61,33 +65,33 @@ class Payment < ActiveRecord::Base
   #Validar que un menor de edad no deba
   def validate_age
     customer_age = sale.customer.age
-    unless customer_age > 18
+    if customer_age < 18
       unless self.amount == sale.amount
         self.errors.add(:base ,"Es menor de edad, no esta permitido darle prestamos.")
       end
     end
 
   end
-=begin
+
   #Validar si la fecha actual es menor a la fecha limite de pago de la venta
   #Si no es asi se le cobra un 10% por cada mes que se pase de la fehca limite de pago
   def validate_penality
-  	actually_date = DateTime.now.strftime("%m/%d/%y")
-  	limit_date = sale.limit_date.strftime("%m/%d/%y")
+  	actually_date = DateTime.now.strftime("%F")
+  	limit_date = sale.limit_date.strftime("%F")
   	actually_date_more_30_days = sale.limit_date + 30
-  	actually_date_more_30_days_as_string = actually_date_more_30_days.strftime("%m/%d/%y")
+  	actually_date_more_30_days_as_string = actually_date_more_30_days.strftime("%F")
   	if actually_date > limit_date
       porcent = sale.total_amount * 0.1
       porcent = porcent.to_i
-  		sale.penalty.update(penalty: porcent)
+  		sale.update(penalty: porcent)
   		if limit_date >= actually_date_more_30_days_as_string
   			begin
           res = true
           months = 2
           sum_days_per_months = DateTime.now + (30 * months)
-          if limit_date > sum_days_per_months.strftime("%m/%d/%y")
+          if limit_date > sum_days_per_months.strftime("%F")
             sale.penalty.update(penalty: porcent * months)
-            mouths + = 1
+            mouths += 1
           elsif months == 2
             sale.penalty.update(penalty: porcent * months)
           else
@@ -97,6 +101,6 @@ class Payment < ActiveRecord::Base
   		end
   	end
   end
-=end
+
 
 end

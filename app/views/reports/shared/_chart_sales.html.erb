@@ -1,4 +1,4 @@
-<%= form_tag generate_chart_products_path ,:class => 'navbar-form navbar-left', method: "get" do %>
+<%= form_tag generate_chart_sales_path ,:class => 'navbar-form navbar-left', method: "get" do %>
   <div class="form-group">
     <%= label_tag 'Fecha inicio:', nil, class: 'form-group'%>
     <div class="input-group input-group-md date datepicker" >
@@ -21,10 +21,3 @@
   </div>
   <%= submit_tag 'Generar estadistica',class: 'btn btn-success bold' %>
 <% end %>
-<div class="row">
-  <div class="col-sm-12">
-    <h4 class="bold upper" style="text-decoration:uppercase;">Ventas realizadas la ultima semana</h4>
-    <%= line_chart Product.registered_last_week, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true,width: "100%"}}%>
-  </div>
-
-</div>

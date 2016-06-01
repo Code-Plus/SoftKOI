@@ -99,6 +99,7 @@ Rails.application.routes.draw do
       post 'sale_discount'
 			get 'generate_pdf'
       get 'customer'
+			get 'generate_chart'
 		end
 	end
 
@@ -160,6 +161,9 @@ Rails.application.routes.draw do
 	#Estados de la venta
 	put "/sales/:id/pago", to: "sales#pago"
 	put "/sales/:id/anulada", to: "sales#anulada"
+
+	#Estdo del cupon
+	put "/coupons/:id/utilizado", to: "sales#utilizado"
 
 	#Cupons venta id
 	get "/coupons/:id/detail_products", to: "coupons#detail_products"

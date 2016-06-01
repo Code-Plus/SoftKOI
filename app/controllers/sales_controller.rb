@@ -3,21 +3,34 @@ class SalesController < ApplicationController
 	load_and_authorize_resource
 
 	def index
-		@sales = Sale.all
+		@sales = Sale.total_amount_more_0
 	end
 
+	#Generar informe
 	def generate_pdf
 		@search = Report.new(params[:search])
-		@outputproducts_to_pdf = @search.search_date_products
+		@sales_to_pdf = @search.search_date_sales
 		@date_from = @search.date_from.to_date
 		@date_to = @search.date_to.to_date
 		respond_to do |format|
 			format.html
 			format.pdf do
-				pdf=OutputproductPdf.new(@outputproducts_to_pdf,@date_from,@date_to)
-				send_data pdf.render, filename: 'salida_productos.pdf',disposition: "inline",type: 'application/pdf'
+				pdf=SalePdf.new(@sales_to_pdf,@date_from,@date_to)
+				send_data pdf.render, filename: 'ventas.pdf',disposition: "inline",type: 'application/pdf'
 			end
 		end
+	end
+
+	#Generar estadisticas
+	def generate_chart
+		@search = Report.new(params[:search])
+		@products_to_pdf = @search.search_date_sales
+		@date_from = @search.date_from.to_date
+		@date_to = @search.date_to.to_date
+		@element = "Ventas"
+		@verb = "registradas"
+		@element_by_query = "Venta"
+		redirect_to url_for(:controller => :reports, :action => :generate_chart, :param1 => @date_from, :param2 => @date_to, :param3 =>@element, :param4 => @verb, :param5 => @element_by_query)
 	end
 
 	# Estados
@@ -64,14 +77,24 @@ class SalesController < ApplicationController
 	# Asociar cliente a la venta
 	def create_customer_association
 		set_sale
-
+		@message ="no"
 		unless @sale.blank? || params[:customer_id].blank?
 			@sale.customer_id = params[:customer_id]
+			customer_info = Customer.where(id: @sale.customer_id)
+			customer_info.each do |customer|
+				if customer.state == "conDeuda"
+					@message = "si"
+				end
+			end
 			@sale.save
 		end
 
+		#No me esta saliendo el flash
 		respond_to do |format|
 			format.js { ajax_refresh }
+			if @message == "si"
+				format.js { flash[:notice] = "El cliente tiene deudas pendientes" }
+			end
 		end
 	end
 
@@ -157,6 +180,7 @@ class SalesController < ApplicationController
 	def create_custom_customer
 		set_sale
 		populate_products
+		@message = "no"
 
 		custom_customer = Customer.new
 		custom_customer.document = params[:custom_customer][:document]
@@ -172,9 +196,19 @@ class SalesController < ApplicationController
 		@sale.add_customer(custom_customer.id)
 
 		update_totals
+		customer_info = Customer.where(id: custom_customer.id)
+		customer_info.each do |customer|
+			if customer.state == "conDeuda"
+				@message = "si"
+			end
+		end
 
 		respond_to do |format|
 			format.js { ajax_refresh }
+			if @message == "si"
+				format.js { flash[:notice] = "El cliente tiene deudas pendientes" }
+			end
+
 		end
 	end
 

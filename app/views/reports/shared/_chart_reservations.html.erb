@@ -21,10 +21,3 @@
   </div>
   <%= submit_tag 'Generar estadistica',class: 'btn btn-success bold' %>
 <% end %>
-<div class="row">
-  <div class="col-sm-12">
-    <h4 class="bold upper" style="text-decoration:uppercase;">Reservas realizadas la ultima semana</h4>
-    <%= line_chart Reservation.registered_last_week, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true,width: "100%"}}%>
-  </div>
-
-</div>

@@ -18,7 +18,7 @@
 
    <div class="panel panel-default">
       <div class="panel-body table">
-
+        	
          <table id="datatable" class="table table-bordered table-hover table-striped">
             <thead>
                <tr>
@@ -42,6 +42,7 @@
                   <td><%= number_to_currency sale.get_discounted_amount %></td>
                   <td><%= number_to_currency sale.total_amount %></td>
                   <td><%= sale.limit_date.strftime("%d/%m/%Y") %></td>
+
                   <td width="100px">
                      <% if sale.state == "sinpagar" %>
                         <span class="label label-danger span-table">Pendiente</span>
@@ -49,6 +50,7 @@
                         <span class="label label-success span-table">Cancelada</span>
                      <% end %>
                   </td>
+
                   <td>
                      <%= link_to sale, class:'btn btn-primary bold btn-sm' do %>
                      <i class="fa fa-search"></i>&nbsp; Detalles
