@@ -35,10 +35,12 @@
 
                 <%= text_field(:item, :quantity, :class => 'form-control price_control', :readonly => 'readonly') %>
 
-                <%= link_to url_for(:controller => 'sales', :action => 'add_item', :product_id => e.object.id,
-                  :sale_id => @sale.id), :remote => true, :class => 'sale_product_quantity' do %>
-                  <i class="ion-android-add-circle"></i>
-                <% end %>
+                <%if @item.product.stock > 0%>
+                  <%= link_to url_for(:controller => 'sales', :action => 'add_item', :product_id => e.object.id,
+                    :sale_id => @sale.id), :remote => true, :class => 'sale_product_quantity' do %>
+                    <i class="ion-android-add-circle"></i>
+                  <% end %>
+                <%end%>
 
               </div>
 
