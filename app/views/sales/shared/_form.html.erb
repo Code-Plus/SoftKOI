@@ -15,7 +15,6 @@
       <%= render :partial => 'sales/shared/sale_tab' %>
       <%= render :partial => 'sales/shared/modals' %>
     </div>
-
     <div class="col-sm-3">
       <div class="panel panel-default">
         <div class="panel-body">
@@ -23,7 +22,7 @@
           <div class="customer_info">
             <%= render :partial => 'sales/shared/customer_info', :object => @sale %>
           </div>
-          
+
           <%# Info del cliente una vez asociado %>
           <div class="added_customer">
             <%= render :partial => 'sales/shared/added_customer' %>

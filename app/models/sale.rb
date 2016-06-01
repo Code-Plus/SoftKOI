@@ -16,7 +16,6 @@ class Sale < ActiveRecord::Base
 	accepts_nested_attributes_for :products, allow_destroy: true
 	accepts_nested_attributes_for :payments, allow_destroy: true
 
-
 	# validates_date :limit_date, presence: true, :afer => lambda { Date.current }
 
 	#Ventas registradas en la ultima semana

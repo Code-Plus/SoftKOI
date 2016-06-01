@@ -48,8 +48,9 @@ class PaymentsController < ApplicationController
     @sale = Sale.find(params[:payments][:sale_id])
     payment_create = Payment.create(amount: params[:payments][:amount], sale_id: params[:payments][:sale_id])
     respond_to do |format|
-      format.html{redirect_to url_for(:controller => :payments ,format: :pdf ,:action => :generate_sale_pdf, :param1 => @sale, :param2 =>payment_create)}
+      format.js { render :js => "window.location.href='/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'"}
     end
+
   end
 
   def new
