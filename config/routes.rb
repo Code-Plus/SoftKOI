@@ -87,6 +87,7 @@ Rails.application.routes.draw do
   end
 
 	resources :sales do
+		get 'make_payment_index' => "sales#make_payment_index"
 		collection do
       get 'create_line_item'
       get 'update_totals'
@@ -100,6 +101,7 @@ Rails.application.routes.draw do
 			get 'generate_pdf'
       get 'customer'
 			get 'generate_chart'
+
 		end
 	end
 
@@ -167,5 +169,8 @@ Rails.application.routes.draw do
 
 	#Cupons venta id
 	get "/coupons/:id/detail_products", to: "coupons#detail_products"
+
+
+
 
 end

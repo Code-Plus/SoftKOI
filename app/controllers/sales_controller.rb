@@ -6,6 +6,9 @@ class SalesController < ApplicationController
 		@sales = Sale.total_amount_more_0
 	end
 
+	def make_payment_index
+
+	end
 	#Generar informe
 	def generate_pdf
 		@search = Report.new(params[:search])
