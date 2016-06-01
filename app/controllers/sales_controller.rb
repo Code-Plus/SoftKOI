@@ -65,15 +65,22 @@ class SalesController < ApplicationController
 
 	# Traer productos y clientes disponibles
 	def edit
-		set_sale
+		if Sale.joins(:payments).where(payments: {sale_id: @sale}).empty?
+			set_sale
 
-		populate_products
-		populate_customers
+			populate_products
+			populate_customers
 
-		@sale.items.build
-		@sale.payments.build
+			@sale.items.build
+			@sale.payments.build
 
-		@custom_customer = Customer.new
+			@custom_customer = Customer.new
+		else
+			respond_to do |format|
+				format.html { redirect_to sales_url, alert: 'La venta no se puede editar.' }
+			end
+		end
+
 	end
 
 
