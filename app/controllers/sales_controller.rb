@@ -167,6 +167,9 @@ class SalesController < ApplicationController
 		limit_date = Date.parse(limit_date)
 		@sale.limit_date = limit_date.strftime("%F")
 		@sale.save
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
 	end
 
 

@@ -32,8 +32,7 @@
   <input type="text" class="form-control price_output bold" readonly value="<%= number_to_currency(@sale.total_amount, unit:'') %>">
 </div>
 
-
-<% if @sale.total_amount > 0 && @sale.customer_id != nil %>
+<% if @sale.total_amount > 0 && @sale.customer_id != nil && @sale.limit_date.to_date.strftime("%F") > Time.now.strftime("%F") %>
   <hr class="hidden-print" style="border-top: 2px solid #ccc; margin: 15px 0px !important;" />
   <div class="btn btn-success btn-block bold hidden-print" data-toggle="modal" data-target="#makePayment">
     INGRESAR PAGO
