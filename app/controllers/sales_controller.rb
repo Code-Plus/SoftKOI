@@ -159,6 +159,16 @@ class SalesController < ApplicationController
 		end
 	end
 
+	#Actualizar el limit date
+	def update_limit_date
+		set_sale
+		limit_date = params[:limit_date]
+
+		limit_date = Date.parse(limit_date)
+		@sale.limit_date = limit_date.strftime("%F")
+		@sale.save
+	end
+
 
 	# Reducir cantidad de un producto asociado o eliminarlo
 	def remove_item

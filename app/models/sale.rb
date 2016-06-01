@@ -138,7 +138,7 @@ class Sale < ActiveRecord::Base
 	def default_date
 		if self.limit_date.strftime("%F") < Time.now.strftime("%F")
 			new_limit_date = Time.now + 3.days
-			self.limit_date = new_limit_date.strftime("%F")
+			self.limit_date = new_limit_date.strftime("%Y/%m/%d")
 		end
 	end
 

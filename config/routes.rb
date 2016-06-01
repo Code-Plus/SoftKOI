@@ -101,7 +101,7 @@ Rails.application.routes.draw do
 			get 'generate_pdf'
       get 'customer'
 			get 'generate_chart'
-
+			get 'update_limit_date'
 		end
 	end
 

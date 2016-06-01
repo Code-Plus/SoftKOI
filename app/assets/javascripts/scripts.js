@@ -20,7 +20,7 @@ $(document).ready(function() {
 	$('.datepicker').datepicker({
    	autoclose: true,
 		orientation: "bottom auto",
-		format: "dd/mm/yyyy"
+		format: "yyyy/mm/dd"
 	});
 
 	//datetimepicker
