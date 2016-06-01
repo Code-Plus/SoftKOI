@@ -1,3 +1,5 @@
+<%= @element_by_query%>
+
 <%= form_tag generate_chart_input_products_path ,:class => 'navbar-form navbar-left', method: "get" do %>
   <div class="form-group">
     <%= label_tag 'Fecha inicio:', nil, class: 'form-group'%>
@@ -26,5 +28,4 @@
     <h4 class="bold upper" style="text-decoration:uppercase;">Entrada de productos realizadas la ultima semana</h4>
     <%= line_chart InputProduct.registered_last_week, {library: {hAxis: {title: "Fecha"}, vAxis: {title: "Cantidad"} ,discrete: true,width: "100%"}}%>
   </div>
-
 </div>
