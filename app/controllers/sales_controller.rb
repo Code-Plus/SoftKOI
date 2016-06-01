@@ -236,39 +236,39 @@ class SalesController < ApplicationController
 
 
 	# Actualizar valores de la venta (valor, valor total, descuento)
-  def update_totals
+	def update_totals
 
-    set_sale
+		set_sale
 
-    @sale.amount = 0
+		@sale.amount = 0
 
-    for line_item in @sale.items
-      @sale.amount += line_item.total_price
-    end
+		for line_item in @sale.items
+			@sale.amount += line_item.total_price
+		end
 
-    total_amount = @sale.amount
+		total_amount = @sale.amount
 
-    if @sale.discount.blank?
-      @sale.total_amount = total_amount
-    else
-      discount_amount = total_amount * @sale.discount
-      @sale.total_amount = total_amount - discount_amount
-    end
+		if @sale.discount.blank?
+			@sale.total_amount = total_amount
+		else
+			discount_amount = total_amount * @sale.discount
+			@sale.total_amount = total_amount - discount_amount
+		end
 
-    @sale.save
-  end
+		@sale.save
+	end
 
 
-  # Agregar comentarios a la venta
-  def add_comment
-    set_sale
-    @sale.comment = params[:sale_comments][:comment]
-    @sale.save
+	# Agregar comentarios a la venta
+	def add_comment
+		set_sale
+		@sale.comment = params[:sale_comments][:comment]
+		@sale.save
 
-    respond_to do |format|
-      format.js { ajax_refresh }
-    end
-  end
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
 
 
 	private
@@ -308,23 +308,23 @@ class SalesController < ApplicationController
 
 	# Reducir el stock de un producto
 	def remove_item_from_stock(product_id)
-    product = Product.find(product_id)
+		product = Product.find(product_id)
 		if product.stock - 1 < 0
 			render :json => "No hay suficientes productos"
 		else
 			product.stock -= 1
-	    product.save
+			product.save
 		end
 
-  end
+	end
 
 
-  # Devolver producto a stock
-  def return_item_to_stock(product_id)
-    product = Product.find(product_id)
-    product.stock += 1
-    product.save
-  end
+	# Devolver producto a stock
+	def return_item_to_stock(product_id)
+		product = Product.find(product_id)
+		product.stock += 1
+		product.save
+	end
 
 
 	# Parametros permitidos para guardar en la venta
@@ -337,7 +337,7 @@ class SalesController < ApplicationController
 			:user_id,
 			:comment,
 			:customer_id,
-		  items_attributes: [:id, :product_id, :price, :total_price, :quantity])
+			items_attributes: [:id, :product_id, :price, :total_price, :quantity])
 	end
 
 end
