@@ -23,7 +23,7 @@ class Sale < ActiveRecord::Base
 	scope :registered_last_week, ->{group("sales.created_at::date").where("created_at >= ? ", 1.week.ago ).count}
 
 	#total_amount mayor que 0
-	scope :total_amount_more_0, ->{where("total_amount > 0")}
+	scope :total_amount_more_0, ->{joins(:payments).where(payments: {sale_id: ids}).where("total_amount > 0")}
 
 	include AASM
 
