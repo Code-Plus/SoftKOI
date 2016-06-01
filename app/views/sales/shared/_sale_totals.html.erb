@@ -34,7 +34,7 @@
 
 <hr class="hidden-print" style="border-top: 2px solid #ccc; margin: 15px 0px !important;" />
 
-<% unless @sale.total_amount.blank? %>
+<% if @sale.total_amount > 0 && @sale.customer_id != nil %>
   <div class="btn btn-success btn-block bold hidden-print" data-toggle="modal" data-target="#makePayment">
     INGRESAR PAGO
   </div>
