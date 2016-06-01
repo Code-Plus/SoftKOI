@@ -4,7 +4,36 @@
 	<%= form_for :payments, :url => url_for(:controller => "payments", :action => "make_payment"),
 		:method => "get", :remote => true do |f| %>
 
-		<h4>Valor total venta: <strong><%= number_to_currency @sale.remaining_balance %></strong></h4>
+		<div class="row">
+			<div class="col-md-6">
+				<%if @sale.paid_total > 0%>
+					<div class="input-group">
+						<h4>Abonado: <strong><%= number_to_currency @sale.paid_total %></strong></h4>
+					</div>
+
+					<div class="input-group">
+						<h4>Valor restante: <strong><%= number_to_currency @sale.calculate_total_payment %></strong></h4>
+					</div>
+				<%else%>
+					<h4>Valor a pagar: <strong><%= number_to_currency @sale.remaining_balance %></strong></h4>
+				<%end%>
+			</div>
+				<div class="col-md-6">
+					<%if @sale.paid_total > 0%>
+						<div class="input-group">
+							<h4>Valor de la venta: <strong><%= number_to_currency @sale.total_amount  %></strong></h4>
+						</div>
+					<%end%>
+
+					<%if @sale.penalty > 0%>
+					<div class="input-group">
+						<h4>Multa: <strong><%= number_to_currency @sale.penalty  %></strong></h4>
+					</div>
+					<%end%>
+				</div>
+		</div>
+
+
 		<hr>
 		<label>Pago</label>
 

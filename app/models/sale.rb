@@ -46,16 +46,49 @@ class Sale < ActiveRecord::Base
 	def remaining_balance
     if self.total_amount.blank?
       balance = 0
+		elsif self.penalty -  paid_total > 0
+			balance = self.total_amount
     else
-      balance = self.total_amount - paid_total
+			balance = self.total_amount - paid_total
     end
 
-    if balance < 0
+    if balance <= 0
       return 0
     else
       return balance
     end
   end
+
+	#Calcular lo que se debe de una venta
+	def calculate_total_payment
+		if self.total_amount.blank?
+			balance = 0
+		else
+			balance = (self.total_amount + self.penalty) - paid_total
+		end
+
+		if balance <= 0
+      return 0
+    else
+      return balance
+    end
+	end
+	#Obtener el valor que ha pagado de las multas
+	def remaining_balance_penalty
+		if self.total_amount.blank? || self.penalty == 0
+			balance = 0
+		elsif self.penalty -  paid_total <= 0
+			balance = 0
+		else
+			balance = self.penalty - paid_total
+		end
+
+		if balance <= 0
+      return 0
+    else
+      return balance
+    end
+	end
 
   # Obtener el valor descontado de una venta
   def get_discounted_amount

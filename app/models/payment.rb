@@ -26,9 +26,9 @@ class Payment < ActiveRecord::Base
   def validate_amount
     amount = sale.total_amount
     sales_id = sale.id
-    #sale_penalty = sale.penalty
+    sale_penalty = sale.penalty
     total_payment = 0
-    total_amount_sale = amount# + sale_penalty
+    total_amount_sale = amount + sale_penalty
     payments_query = Payment.where(sale_id: sales_id)
     payments_query.each do |payment|
       total_payment += payment.amount

@@ -31,7 +31,7 @@ class PaymentPdf < Prawn::Document
     font("Courier") do
       text "Comprobante de pago generado desde  SOFTKOI APP.", :align => :center
       move_down 20
-      text "Este comprobante fue generado la fecha: #{Date.today}", :align =>:center
+      text "Este comprobante fue generado el día: #{Date.today}", :align =>:center
       text "Usuario encargado: #{@user_do_payment}", :align =>:center
       text "Codigo de venta: #{@sale_id}", :align =>:center
     end
@@ -60,7 +60,7 @@ class PaymentPdf < Prawn::Document
     font("Courier") do
       column_box([70, cursor], :columns => 1, :width => bounds.width) do
         text "Subtotal: #{@sale_amount}                               Ha pagado: #{@pay_amount} "
-        text "Descuento: #{@sale_total_amount * @sale_discount}                                 Debe: #{@sale_total_amount - @pay_amount}"
+        text "Descuento: #{@sale_total_amount * @sale_discount}                                 Debe: #{@sale_total_amount + @sale_penalty - @pay_amount}"
         text "Total de la venta: #{@sale_total_amount} "
         unless @sale_total_amount - @pay_amount == 0
         text "Fecha limite: #{@sale_limit_date}"
