@@ -16,15 +16,15 @@ class Sale < ActiveRecord::Base
 	accepts_nested_attributes_for :products, allow_destroy: true
 	accepts_nested_attributes_for :payments, allow_destroy: true
 
-	before_update do
-		validates :customer_id, presence: true
-		#validates :state, presence: true
-		#validates :amount, presence: true,  numericality: { only_integer: true, greater_than: 0 }
-		#validates :total_amount, presence: true, numericality: { only_integer: true, greater_than: 0 }
-		#validates :discount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-		#validates :user_id, presence: true
-		#validates_date :limit_date, presence: true, :afer => lambda { Date.current }
-	end
+	validates :customer_id, presence: true,  :on => :update
+
+	validates :state, presence: true,  :on => :update
+	validates :amount, presence: true,  numericality: { only_integer: true, greater_than: 0 },  :on => :update
+	validates :total_amount, presence: true, numericality: { only_integer: true, greater_than: 0 },  :on => :update
+	validates :discount, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 },  :on => :update
+	validates :user_id, presence: true,  :on => :update
+	validates_date :limit_date, presence: true, :afer => lambda { Date.current },  :on => :update
+
 
 
 	#Ventas registradas en la ultima semana

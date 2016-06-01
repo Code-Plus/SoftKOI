@@ -34,9 +34,9 @@
 			</div>
 			<input type="hidden" id="category__id" value="<%="#{@category.id}"%>">
 			<div class="inline">
-				<% if @category.may_disponible?%>
+				<% if @category.may_disponible? && @category.type_product.may_noDisponible?%>
 					<%= link_to "Habilitar", "/category/#{@category.id}/habilitar", method: :put, class: 'btn btn-primary bold' %>
-				<% else %>
+				<% elsif @category.may_noDisponible? %>
 					<div class= "btn btn-primary bold class_inhabilitar" >Inhabilitar</div>
 				  <%# link_to "Inhabilitar", "", class: 'btn btn-primary bold class_inhabilitar' %>
 				<% end %>
