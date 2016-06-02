@@ -44,7 +44,7 @@
                     <td><%= sale.limit_date.strftime("%d/%m/%Y") %></td>
 
                     <td width="100px">
-                       <% if sale.state == "sinpagar" %>
+                       <% if sale.state == "sinPagar" %>
                           <span class="label label-danger span-table">Pendiente</span>
                        <% else %>
                           <span class="label label-success span-table">Cancelada</span>
@@ -55,9 +55,12 @@
                        <%= link_to sale, class:'btn btn-primary bold btn-sm' do %>
                        <i class="fa fa-search"></i>&nbsp; Detalles
                        <% end %>
-                       <div class="btn btn-success bold btn-sm btn_payments" data-amount-saleid="<%= sale.id %>" data-toggle="modal" data-target="#make_payment_index">
-                         INGRESAR PAGO
-                       </div>
+                       <% if sale.state == "sinPagar" %>
+                         <div class="btn btn-success bold btn-sm btn_payments" data-amount-saleid="<%= sale.id %>" data-toggle="modal" data-target="#make_payment_index">
+                           INGRESAR PAGO
+                         </div>
+                       <% end %>
+
                     </td>
                  </tr>
                <% end %>
