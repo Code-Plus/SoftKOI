@@ -13,6 +13,7 @@ class PaymentPdf < Prawn::Document
     @pay_amount =pay_amount
     @sale_customer = sale_customer
     @sale_penalty = sale_penalty
+    #@coupon = coupon
     header
     text_content
     table_content
@@ -62,6 +63,11 @@ class PaymentPdf < Prawn::Document
         text "Subtotal: #{@sale_amount}                               Ha pagado: #{@pay_amount} "
         text "Descuento: #{@sale_total_amount * @sale_discount}                                 Debe: #{@sale_total_amount + @sale_penalty - @pay_amount}"
         text "Total de la venta: #{@sale_total_amount} "
+        # if @coupon.nil?
+        #   text "Bono: No aplica #{@coupon}"
+        # else
+        #   text "Bono: Si"
+        # end
         unless @sale_total_amount - @pay_amount == 0
         text "Fecha limite: #{@sale_limit_date}"
         end

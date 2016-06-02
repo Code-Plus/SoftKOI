@@ -130,9 +130,13 @@ class Sale < ActiveRecord::Base
     self.save
   end
 
+	#Parsear el limit_date
+	def limit_date_parse
+		date = self.limit_date
+		date = date.to_date
+		return date
+	end
 	private
-
-
 
 	# Fecha por defecto
 	def default_date

@@ -171,6 +171,9 @@ class SalesController < ApplicationController
 		limit_date = Date.parse(limit_date)
 		@sale.limit_date = limit_date.strftime("%F")
 		@sale.save
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
 	end
 
 
@@ -216,21 +219,20 @@ class SalesController < ApplicationController
 		custom_customer.email = params[:custom_customer][:email]
 		custom_customer.type_document_id = params[:custom_customer][:type_document_id]
 
-		custom_customer.save
-		@sale.add_customer(custom_customer.id)
+		if custom_customer.save
+			@sale.add_customer(custom_customer.id)
 
-		update_totals
-		customer_info = Customer.where(id: custom_customer.id)
-		customer_info.each do |customer|
-			if customer.state == "conDeuda"
+			update_totals
+			customer_info = Customer.where(id: custom_customer.id)
+		else
 				@message = "si"
-			end
 		end
 
+
 		respond_to do |format|
-			format.js { ajax_refresh }
 			if @message == "si"
-				format.js { flash[:notice] = "El cliente tiene deudas pendientes" }
+				format.html { redirect_to '/sales/'"#{@sale.id}"'/edit' }
+				format.js { ajax_refresh }
 			end
 
 		end

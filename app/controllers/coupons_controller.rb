@@ -116,7 +116,7 @@ class CouponsController < ApplicationController
         end
         created_at_more_3 = @created_at + 3.days
         puts "#{created_at_more_3}----------------->"
-        if Date.today.strftime('%F') <= created_at_more_3.strftime('%F') 
+        if Date.today.strftime('%F') <= created_at_more_3.strftime('%F')
           @detail_of_products = []
           @coupon = Coupon.new
           format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
@@ -233,7 +233,7 @@ class CouponsController < ApplicationController
                     Sale.last.destroy
                   end
                   Coupon.last.destroy
-                  format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, la cantidad de productos a cambiar es invalida.' }
+                  format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, la cantidad de productos a cambiar es inválida.' }
                   format.json { head :no_content }
                 end
               end
@@ -286,7 +286,7 @@ class CouponsController < ApplicationController
   def utilizado
     @coupon.utilizado!
     #Cambiar el redirect de acuerdo a la necesidad
-    redirect_to coupons_url
+    redirect_to sales_url
   end
 
   private
