@@ -58,8 +58,6 @@ $(document).ready(function() {
 			url:'/sales/'+id_vent+'/make_payment_index',
 			data:{sale_id:id_vent},
 			type:'get'
-		}).done(function(done){
-
 		}).error(function(error){
 			console.log('Error a conectar con el servidor revisar payment');
 		});
