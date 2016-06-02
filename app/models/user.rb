@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
 	validates :firstname,  presence: true
 	validates :lastname,  presence: true
 	validates :email, presence: true, uniqueness: true
-	validates :phone,  numericality: {greater_than: 0}
-	validates :cellphone, numericality: {greater_than: 0}
+
 	validates :role_id,  presence: true
 	validates :state,  presence: true
 	validates :type_document_id,  presence: true
