@@ -50,6 +50,22 @@ $(document).ready(function() {
 		$(this).trigger("hover");
 	});
 
+	//payments
+
+	$('.btn_payments').click(function(){
+		var id_vent = $(this).attr('data-amount-saleid');
+		var total_amoun = $(this).attr('data-amount-saletotal');
+		$.ajax({
+			url:'/sales/'+id_vent+'/make_payment_index',
+			data:{amount:total_amoun},
+			type:'get'
+		}).done(function(done){
+			
+		}).error(function(error){
+			console.log('Error a conectar con el servidor revisar payment');
+		});
+	});
+
 	// Agenda
 	$('.day').click(function(){
 		var data_of_tb = $(this).children('.event_description').children('.events_descriptions_data').text();

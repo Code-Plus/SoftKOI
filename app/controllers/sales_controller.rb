@@ -7,7 +7,11 @@ class SalesController < ApplicationController
 	end
 
 	def make_payment_index
-
+		sale_id = params[:sale_id]
+		sale_amount = params[:amount]
+		puts"#{sale_id}=================================================================>"
+		puts"<====================================================================>"
+		puts"#{sale_amount}=================================================================>"
 	end
 	#Generar informe
 	def generate_pdf

@@ -1,23 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div style="margin: 0px 60px;">
 
-<h1>Listing Payments</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Pagado</th>
-      <th>Venta</th>
-      <th>Total a Pagar</th>
-    </tr>
-  </thead>
+  <p id="notice"><%= notice %></p>
+  <% content_for :title do -%>
+  Listar pagos
+  <%end -%>
+  <% content_for :menus do -%>
+    <p style="margin: 3px 3px 3px 23px; width:150px;">Función no disponible</p>
+  <% end %>
 
-  <tbody>
-    <% @payments.each do |payment| %>
-      <tr>
-        <td><%= payment.amount %></td>
-        <td><%= payment.sale.id %></td>
-        <td><%= payment.sale.total_amount %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% content_for :button do -%>
+
+
+
+
+  <% end -%>
+  <div class="">
+
+  </div>
+  <div class="panel">
+    <div class="panel-body table">
+      <table id="datatable">
+        <thead>
+          <tr>
+            <th>Estado</th>
+            <th>Venta</th>
+            <th>Total a Pagar</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @payments.each do |payment| %>
+            <tr>
+              <td><%= payment.amount %></td>
+              <td><%= payment.sale.id %></td>
+              <td><%= payment.sale.total_amount %></td>
+              <td><a class="btn_payments" data-amount-saleid="<%= payment.sale.id %>" data-amount-saletotal="<%= payment.sale.total_amount %>">Abonar</a></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+     <%= render 'dialog' %>
+</div>

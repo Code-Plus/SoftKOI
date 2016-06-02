@@ -35,8 +35,9 @@
 		</li>
 
 		<li id="PagosM" class="Mnormal McolorHoo" menu-name="">
-		<a class="Modulos" href="#">
+		<%= link_to payments_path, class: classname(payments_path) do%>
 			<%= image_tag("5-small.png") %><span>Pagos</span></a>
+		<% end %>
 		</li>
 
 		<li id="UsuariosM" class="Mnormal McolorHoo" menu-name="users">

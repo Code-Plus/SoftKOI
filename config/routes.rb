@@ -87,7 +87,7 @@ Rails.application.routes.draw do
   end
 
 	resources :sales do
-		get 'make_payment_index' => "sales#make_payment_index"
+		get '/make_payment_index' => "sales#make_payment_index"
 		collection do
       get 'create_line_item'
       get 'update_totals'
