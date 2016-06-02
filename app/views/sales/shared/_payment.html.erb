@@ -39,7 +39,7 @@
 
 		<div class="input-group" style="padding-bottom:10px;">
   		<span class="input-group-addon input-sm"><i class="fa fa-money"></i></span>
-  		<%= f.text_field :amount, :class => "form-control", :value => @sale.remaining_balance %>
+  		<%= f.text_field :amount, :class => "form-control", :value => @sale.calculate_total_payment %>
 		</div>
 
 		<%= label_tag '¿Bono? (Código del bono)', nil, class: 'form-group'%>

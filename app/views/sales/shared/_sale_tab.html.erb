@@ -36,12 +36,12 @@
           </ul>
         </div>
       <% end %>
-      
+
       <%# Input fecha limite %>
       <div class="col-sm-6 required">
         <%= f.label :limit_date, :class => "control-label" %><br>
-        <div class="input-group input-group-sm date datepicker">
-          <%= f.text_field :limit_date, :class => "form-control input-sm", value: Time.now.strftime("%d/%m/%Y") %>
+        <div class="input-group input-group-md date datepicker">
+          <%= f.text_field :limit_date, :class => "form-control " %>
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-calendar"></i>
           </span>
@@ -81,5 +81,19 @@
         }
       });
     }
+  });
+
+  //Actualizar el limit date
+  $('#sale_limit_date').change(function(){
+    var limit_date = $('#sale_limit_date').val();
+    var sale_id = parseInt($('#search_sale_id')[0].value);
+    $.ajax({
+      type: "GET",
+      url: '/sales/update_limit_date',
+      data: {limit_date: limit_date,sale_id: sale_id},
+      success: function(){
+
+      }
+    });
   });
 </script>

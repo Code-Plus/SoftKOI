@@ -18,7 +18,7 @@
 
    <div class="panel panel-default">
       <div class="panel-body table">
-        	
+
          <table id="datatable" class="table table-bordered table-hover table-striped">
             <thead>
                <tr>
@@ -35,29 +35,31 @@
 
             <tbody>
                <% @sales.each do |sale| %>
-               <tr>
-                  <td><%= sale.created_at.strftime("%d/%m/%Y") %></td>
-                  <td><%= sale.customer.blank? ? ' - ' : sale.customer.name %></td>
-                  <td><%= number_to_currency sale.amount %></td>
-                  <td><%= number_to_currency sale.get_discounted_amount %></td>
-                  <td><%= number_to_currency sale.total_amount %></td>
-                  <td><%= sale.limit_date.strftime("%d/%m/%Y") %></td>
+                 <tr>
+                    <td><%= sale.created_at.strftime("%d/%m/%Y") %></td>
+                    <td><%= sale.customer.blank? ? ' - ' : sale.customer.name %></td>
+                    <td><%= number_to_currency sale.amount %></td>
+                    <td><%= number_to_currency sale.get_discounted_amount %></td>
+                    <td><%= number_to_currency sale.total_amount %></td>
+                    <td><%= sale.limit_date.strftime("%d/%m/%Y") %></td>
 
-                  <td width="100px">
-                     <% if sale.state == "sinpagar" %>
-                        <span class="label label-danger span-table">Pendiente</span>
-                     <% else %>
-                        <span class="label label-success span-table">Cancelada</span>
-                     <% end %>
-                  </td>
+                    <td width="100px">
+                       <% if sale.state == "sinpagar" %>
+                          <span class="label label-danger span-table">Pendiente</span>
+                       <% else %>
+                          <span class="label label-success span-table">Cancelada</span>
+                       <% end %>
+                    </td>
 
-                  <td>
-                     <%= link_to sale, class:'btn btn-primary bold btn-sm' do %>
-                     <i class="fa fa-search"></i>&nbsp; Detalles
-                     <% end %>
-                  </td>
-
-               </tr>
+                    <td>
+                       <%= link_to sale, class:'btn btn-primary bold btn-sm' do %>
+                       <i class="fa fa-search"></i>&nbsp; Detalles
+                       <% end %>
+                       <%= link_to sale_make_payment_index_path(sale), remote: true, :class => 'btn btn-success bold btn-sm' do%>
+                          Ingresar pago
+                       <% end %>
+                    </td>
+                 </tr>
                <% end %>
             </tbody>
          </table>

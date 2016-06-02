@@ -6,6 +6,9 @@ class SalesController < ApplicationController
 		@sales = Sale.total_amount_more_0
 	end
 
+	def make_payment_index
+
+	end
 	#Generar informe
 	def generate_pdf
 		@search = Report.new(params[:search])
@@ -62,15 +65,22 @@ class SalesController < ApplicationController
 
 	# Traer productos y clientes disponibles
 	def edit
-		set_sale
+		if Sale.joins(:payments).where(payments: {sale_id: @sale}).empty?
+			set_sale
 
-		populate_products
-		populate_customers
+			populate_products
+			populate_customers
 
-		@sale.items.build
-		@sale.payments.build
+			@sale.items.build
+			@sale.payments.build
 
-		@custom_customer = Customer.new
+			@custom_customer = Customer.new
+		else
+			respond_to do |format|
+				format.html { redirect_to sales_url, alert: 'La venta no se puede editar.' }
+			end
+		end
+
 	end
 
 
@@ -144,6 +154,19 @@ class SalesController < ApplicationController
 
 		update_totals
 
+		respond_to do |format|
+			format.js { ajax_refresh }
+		end
+	end
+
+	#Actualizar el limit date
+	def update_limit_date
+		set_sale
+		limit_date = params[:limit_date]
+
+		limit_date = Date.parse(limit_date)
+		@sale.limit_date = limit_date.strftime("%F")
+		@sale.save
 		respond_to do |format|
 			format.js { ajax_refresh }
 		end

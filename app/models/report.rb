@@ -3,8 +3,8 @@ class Report
 
   def initialize(params)
     params ||={}
-    @date_from = parsed_date(params[:date_from], Date.today.strftime('%d/%m/%Y').to_s)
-    @date_to = parsed_date(params[:date_to], Date.today.strftime('%d/%m/%Y').to_s)
+    @date_from = parsed_date(params[:date_from], Date.today.strftime('%Y/%m/%d').to_s)
+    @date_to = parsed_date(params[:date_to], Date.today.strftime('%Y/%m/%d').to_s)
   end
 
   def search_date_products
