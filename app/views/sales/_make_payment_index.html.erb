@@ -1,4 +1,51 @@
 <%= form_for :payments ,url: url_for(controller: "payments", action: "make_payment"),
 		:method => "get", :html => { :role => "form" }, :remote => true do |f| %>
+		<%if @sale.nil?%>
+		<%else%>
 
+			<div class="row">
+				<div class="col-md-6">
+					<%if @sale.paid_total > 0%>
+						<div class="input-group">
+							<h4>Abonado: <strong><%= number_to_currency @sale.paid_total %></strong></h4>
+						</div>
+
+						<div class="input-group">
+							<h4>Valor restante: <strong><%= number_to_currency @sale.calculate_total_payment %></strong></h4>
+						</div>
+					<%else%>
+						<h4>Valor a pagar: <strong><%= number_to_currency @sale.remaining_balance %></strong></h4>
+					<%end%>
+				</div>
+					<div class="col-md-6">
+						<%if @sale.paid_total > 0%>
+							<div class="input-group">
+								<h4>Valor de la venta: <strong><%= number_to_currency @sale.total_amount  %></strong></h4>
+							</div>
+						<%end%>
+
+						<%if @sale.penalty > 0%>
+						<div class="input-group">
+							<h4>Multa: <strong><%= number_to_currency @sale.penalty  %></strong></h4>
+						</div>
+						<%end%>
+					</div>
+			</div>
+
+			<hr>
+			<label>Pago en efectivo</label>
+
+			<div class="input-group" style="padding-bottom:10px;">
+	  		<span class="input-group-addon input-sm"><i class="fa fa-money"></i></span>
+	  		<%= f.text_field :amount, :class => "form-control", :value => @sale.calculate_total_payment %>
+			</div>
+
+			<%= label_tag '¿Bono? (Código del bono)', nil, class: 'form-group'%>
+	    <%=text_field_tag 'search_coupon', nil, class: "form-control"%>
+
+			<%= f.hidden_field :sale_id, :value => @sale.id %>
+
+			<br>
+			<%= submit_tag "Registrar", :class => "btn btn-success bold"%>
+	<%end%>
 <%end%>

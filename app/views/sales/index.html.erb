@@ -55,9 +55,9 @@
                        <%= link_to sale, class:'btn btn-primary bold btn-sm' do %>
                        <i class="fa fa-search"></i>&nbsp; Detalles
                        <% end %>
-                       <%= link_to sale_make_payment_index_path(sale), remote: true, :class => 'btn btn-success bold btn-sm' do%>
-                          Ingresar pago
-                       <% end %>
+                       <div class="btn btn-success bold btn-sm btn_payments" data-amount-saleid="<%= sale.id %>" data-toggle="modal" data-target="#make_payment_index">
+                         INGRESAR PAGO
+                       </div>
                     </td>
                  </tr>
                <% end %>
@@ -65,4 +65,18 @@
          </table>
       </div>
    </div>
+</div>
+
+<div class="modal fade" id="make_payment_index" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Realizar pago</h4>
+      </div>
+      <div class="modal-body" style="padding-top:0px !important;">
+        <%= render :partial => 'sales/make_payment_index', :object => @sale %>
+      </div>
+    </div>
+  </div>
 </div>
