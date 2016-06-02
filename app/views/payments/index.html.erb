@@ -20,7 +20,7 @@
   </div>
   <div class="panel">
     <div class="panel-body table">
-      <table id="datatable">
+      <table id="datatable" class="table table-bordered table-striped">
         <thead>
           <tr>
             <th>Estado</th>
@@ -36,7 +36,7 @@
               <td><%= payment.amount %></td>
               <td><%= payment.sale.id %></td>
               <td><%= payment.sale.total_amount %></td>
-              <td><a class="btn_payments" data-amount-saleid="<%= payment.sale.id %>" data-amount-saletotal="<%= payment.sale.total_amount %>">Abonar</a></td>
+              <!-- <td><div class="btn btn-success btn_payments" style="height:30px;" data-amount-saleid="<%= payment.sale.id %>" data-amount-saletotal="<%= payment.sale.total_amount %>">Abonar</div></td> -->
             </tr>
           <% end %>
         </tbody>
