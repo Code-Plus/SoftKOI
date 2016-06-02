@@ -41,8 +41,8 @@
                                     <th>
                                     <%= text_field_tag 'info_product_id[]',product.product.id, class: "form-control hidden"%>
                                     <%=product.product.name%></th>
-                                    <th><%=product.product.price%></th>
-                                    <th><%=(product.quantity.to_i)*(product.product.price.to_i)%></th>
+                                    <th><%=number_to_currency product.product.price%></th>
+                                    <th><%=number_to_currency (product.quantity.to_i)*(product.product.price.to_i)%></th>
                                     <th><%=product.quantity%></th>
                                    <th><%if product.product.can_change == true%>
                                      <center><%= number_field_tag 'info_product_quantity[]','0', class: "form-control"%></center>
