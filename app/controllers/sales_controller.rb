@@ -8,10 +8,10 @@ class SalesController < ApplicationController
 
 	def make_payment_index
 		sale_id = params[:sale_id]
-		sale_amount = params[:amount]
-		puts"#{sale_id}=================================================================>"
-		puts"<====================================================================>"
-		puts"#{sale_amount}=================================================================>"
+		@sale = Sale.where(id: sale_id)
+		@sale.each do |sale|
+			@sale = sale
+		end
 	end
 	#Generar informe
 	def generate_pdf
