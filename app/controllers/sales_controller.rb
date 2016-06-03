@@ -227,7 +227,6 @@ class SalesController < ApplicationController
 		respond_to do |format|
 			if @message == "si"
 				format.html { redirect_to '/sales/'"#{@sale.id}"'/edit' }
-
 			end
 			format.js { ajax_refresh }
 		end

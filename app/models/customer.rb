@@ -12,7 +12,7 @@ class Customer < ActiveRecord::Base
   validates :document, presence: true, uniqueness: true
   validates :firstname, presence: true
   validates :lastname, presence: true
-  validates :phone , length: {maximum: 7} , numericality: { only_integer: true }
+  validates :phone , length: {maximum: 8} , numericality: { only_integer: true }
   validates	:cellphone , length: {maximum: 12} , numericality: { only_integer: true }
   validates_date :birthday, :before => lambda { 15.years.ago } ,:before_message => "Debe ser mayor de 15 años",presence: true
   validates :email, email: true

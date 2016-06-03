@@ -64,7 +64,9 @@ class PaymentsController < ApplicationController
           format.js { render :js => "window.location.href='/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'"}
         end
       else
-        puts "El bono ya fue canjeado"
+        respond_to do |format|
+          format.js { render :js => "toastr['error']('El bono ya ha sido canjeado')"}
+        end
       end
     end
   end
