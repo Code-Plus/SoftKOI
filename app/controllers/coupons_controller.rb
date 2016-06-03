@@ -250,9 +250,10 @@ class CouponsController < ApplicationController
         end
       end
       if @sale.amount.nil?
-        format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, la cantidad de productos a cambiar es inválida.' }
-      else
         format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
+
+      else
+        format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, no hay productos seleccionado.' }
       end
 
     end
