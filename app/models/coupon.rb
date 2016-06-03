@@ -18,6 +18,14 @@ class Coupon < ActiveRecord::Base
         transitions from: :noUtilizado, to: :utilizado
       end
     end
+
+  def name
+    usuario  = User.where(id: self.user_id)
+    usuario.each do |user_create_coupon|
+      usuario = user_create_coupon.name
+    end
+    return usuario
+  end
   private
   def set_date
     self.created_at = Time.now.in_time_zone("Bogota")

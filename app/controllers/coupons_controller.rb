@@ -110,12 +110,14 @@ class CouponsController < ApplicationController
       elsif @sale_state == "sinPagar"
         format.html { redirect_to coupons_url, alert: 'La venta no esta cancelada en su totalidad.' }
         format.json { head :no_content }
+      elsif @sale_state == "anulada"
+        format.html { redirect_to coupons_url, alert: 'La venta no existe.' }
+        format.json { head :no_content }
       else
         sale.each do |s|
           @created_at=s.created_at
         end
         created_at_more_3 = @created_at + 3.days
-        puts "#{created_at_more_3}----------------->"
         if Date.today.strftime('%F') <= created_at_more_3.strftime('%F')
           @detail_of_products = []
           @coupon = Coupon.new
@@ -123,11 +125,7 @@ class CouponsController < ApplicationController
         else
            format.html { redirect_to coupons_url, alert: 'Se agoto la fecha limite para realizar el cambio.' }
            format.json { head :no_content }
-          # @detail_of_products = []
-          # @coupon = Coupon.new
-          format.html { redirect_to '/coupons/'"#{@search}"'/detail_products' }
         end
-
       end
     end
   end
@@ -143,8 +141,8 @@ class CouponsController < ApplicationController
     count = 0
     sale_amount = 0
     limit_date = Date.today + 3.days
-    sale_old = Sale.where(id: sales_id.to_i)
-    sale_old.each do |s|
+    @sale_old = Sale.where(id: sales_id.to_i)
+    @sale_old.each do |s|
       @sale_old_id = s.id
       @sale_old_customer= s.customer_id
     end
@@ -184,8 +182,8 @@ class CouponsController < ApplicationController
             end
           end
         end
-
-        #@sale_old.update state: "anulada"
+    
+        @sale_old.anulada!
         @sale.customer_id = @sale_old_customer
         @sale.amount = sale_amount
         @sale.total_amount = sale_amount
@@ -255,7 +253,6 @@ class CouponsController < ApplicationController
       else
         format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, no hay productos seleccionado.' }
       end
-
     end
 
 

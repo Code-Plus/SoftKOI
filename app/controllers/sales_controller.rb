@@ -97,18 +97,13 @@ class SalesController < ApplicationController
 			customer_info = Customer.where(id: @sale.customer_id)
 			customer_info.each do |customer|
 				if customer.state == "conDeuda"
-					@message = "si"
+					flash[:alert] = "El cliente tiene deudas pendientes"
 				end
 			end
 			@sale.save
 		end
-
-		#No me esta saliendo el flash
 		respond_to do |format|
-			format.js { ajax_refresh }
-			if @message == "si"
-				format.js { flash[:notice] = "El cliente tiene deudas pendientes" }
-			end
+			format.js {ajax_refresh}
 		end
 	end
 
@@ -232,9 +227,9 @@ class SalesController < ApplicationController
 		respond_to do |format|
 			if @message == "si"
 				format.html { redirect_to '/sales/'"#{@sale.id}"'/edit' }
-				format.js { ajax_refresh }
-			end
 
+			end
+			format.js { ajax_refresh }
 		end
 	end
 
