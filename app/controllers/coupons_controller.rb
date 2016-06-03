@@ -145,7 +145,6 @@ class CouponsController < ApplicationController
     @sale_old.each do |s|
       @sale_old_id = s.id
       @sale_old_customer= s.customer_id
-      s.anulada!
     end
 
     for i  in 0..products_ids.length-1
@@ -217,7 +216,6 @@ class CouponsController < ApplicationController
                     @sale.user_id = current_user.id
                     @sale.discount = 0
                     @sale.limit_date = limit_date.strftime('%F')
-                    @sale_old.update state: "anulada"
                     @sale.save
                   end
                   @item_created = Item.create product_id: p.id, sale_id: @sale.id ,quantity: new_item_quantity
@@ -247,9 +245,19 @@ class CouponsController < ApplicationController
           @sale.save
         end
       end
-      if @sale.amount.nil?
+
+      if @sale.nil?
         format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
+        @sale_old.each do |sale_old|
+          sale_old.anulada!
+        end
       else
+        unless @coupon.nil?
+          @sale_old.each do |sale_old|
+            sale_old.anulada!
+          end
+          format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
+        end
         format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, no hay productos seleccionados.' }
       end
     end
