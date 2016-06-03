@@ -57,20 +57,11 @@ class PaymentsController < ApplicationController
     else
       coupon = Coupon.find(@coupon_id)
       if coupon.state == "noUtilizado"
-        substraction_paid = coupon.amount.to_i + cash_payment.to_i
-        if substraction_paid < @sale.total_amount
-          restored = @sale.total_amount - substraction_paid
-          payment_create = Payment.create(amount: params[:payments][:amount], sale_id: params[:payments][:sale_id])
-          coupon.update state: "utilizado"
-          respond_to do |format|
-            format.js { render :js => "window.location.href='/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'"}
-          end
-        else
-          payment_create = Payment.create(amount: params[:payments][:amount], sale_id: params[:payments][:sale_id])
-          coupon.update state: "utilizado"
-          respond_to do |format|
-            format.js { render :js => "window.location.href='/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'"}
-          end
+        sum_paid = coupon.amount.to_i + cash_payment.to_i
+        payment_create = Payment.create(amount: sum_paid, sale_id: params[:payments][:sale_id])
+        coupon.update state: "utilizado"
+        respond_to do |format|
+          format.js { render :js => "window.location.href='/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'"}
         end
       else
         puts "El bono ya fue canjeado"

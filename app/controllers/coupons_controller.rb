@@ -145,6 +145,7 @@ class CouponsController < ApplicationController
     @sale_old.each do |s|
       @sale_old_id = s.id
       @sale_old_customer= s.customer_id
+      s.anulada!
     end
 
     for i  in 0..products_ids.length-1
@@ -182,8 +183,6 @@ class CouponsController < ApplicationController
             end
           end
         end
-    
-        @sale_old.anulada!
         @sale.customer_id = @sale_old_customer
         @sale.amount = sale_amount
         @sale.total_amount = sale_amount
@@ -244,20 +243,20 @@ class CouponsController < ApplicationController
         unless @sale.nil?
           @sale.amount = sale_amount
           @sale.total_amount = sale_amount
+          @sale.state = "pago"
           @sale.save
         end
       end
       if @sale.amount.nil?
         format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
+<<<<<<< HEAD
 
       else
         format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, no hay productos seleccionado.' }
       end
+=======
+>>>>>>> b037640c91376037a4e51804b5be4244dae92960
     end
-
-
-
-
   end
 
   #Redirecciona a la pagina de cambio
