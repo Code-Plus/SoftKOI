@@ -249,13 +249,9 @@ class CouponsController < ApplicationController
       end
       if @sale.amount.nil?
         format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
-<<<<<<< HEAD
-
       else
-        format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, no hay productos seleccionado.' }
+        format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, no hay productos seleccionados.' }
       end
-=======
->>>>>>> b037640c91376037a4e51804b5be4244dae92960
     end
   end
 
