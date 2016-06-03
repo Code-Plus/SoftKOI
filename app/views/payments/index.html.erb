@@ -11,22 +11,16 @@
 
   <% content_for :button do -%>
 
-
-
-
   <% end -%>
-  <div class="">
-
-  </div>
   <div class="panel">
     <div class="panel-body table">
-      <table id="datatable">
+      <table id="datatable" class="table table-bordered table-striped">
         <thead>
           <tr>
             <th>Estado</th>
             <th>Venta</th>
             <th>Total a Pagar</th>
-            <th>Opciones</th>
+            <th>Fecha</th>
           </tr>
         </thead>
 
@@ -36,7 +30,7 @@
               <td><%= payment.amount %></td>
               <td><%= payment.sale.id %></td>
               <td><%= payment.sale.total_amount %></td>
-              <td><a class="btn_payments" data-amount-saleid="<%= payment.sale.id %>" data-amount-saletotal="<%= payment.sale.total_amount %>">Abonar</a></td>
+              <td><%= payment.created_at.strftime("%F")%></td>
             </tr>
           <% end %>
         </tbody>

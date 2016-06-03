@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   after_action :day_of_event, only:[:index]
   # after_action :day_of_event, only:[:create]
+  load_and_authorize_resource
 
 
   def index

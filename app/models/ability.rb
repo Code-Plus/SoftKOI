@@ -6,8 +6,7 @@ class Ability
     if user.role.name == 'Empleado'
 
       can [:update_password, :update_profile, :edit], [User]
-      can :read, Sale
-
+      
       if user.can_inventory == true
         can :manage, Product
         can :manage, Category
@@ -20,9 +19,10 @@ class Ability
         can :manage, Sale
       end
 
-      # if user.can_changes == true
-      #    can :manage, Change
-      # end
+      if user.can_changes == true
+          can :manage, Coupons
+      end
+
 
       if user.can_consoles == true
         can :manage, Console

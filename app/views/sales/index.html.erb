@@ -5,7 +5,6 @@
    <% end -%>
 
    <% content_for :menus do -%>
-      <li><h5 class="drop-title"><%= link_to "Abonos", "#" %></h5></li>
       <li><h5 class="drop-title"><%= link_to "Clientes", customers_path %></h5></li>
    <% end -%>
 
@@ -57,8 +56,12 @@
                        <% end %>
                        <% if sale.state == "sinPagar" %>
                          <div class="btn btn-success bold btn-sm btn_payments" data-amount-saleid="<%= sale.id %>" data-toggle="modal" data-target="#make_payment_index">
-                           INGRESAR PAGO
+                           Ingresar pago
                          </div>
+                        <%else%>
+                        <div class="btn btn-danger bold btn-sm btn_payments" >
+                            Cancelada
+                        </div>
                        <% end %>
 
                     </td>
