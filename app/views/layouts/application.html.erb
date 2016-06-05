@@ -64,8 +64,8 @@
 					</div>
 			  </span>
 				<%if current_user.role.name == "Administrador" %>
-					<div class="imgsize">
-						<a class="ALETCalendario"href="#" class="has-tooltip" data-toggle="tooltip"  data-placement="bottom" title="Copia de seguridad"><%= image_tag("backup.svg") %></a>
+					<div class="imgsize" class="has-tooltip" data-toggle="tooltip"  data-placement="bottom" title="Copia de seguridad">
+						<a class="ALETCalendario"href="#" ><%= image_tag("backup.svg") %></a>
 					</div>
 						<li class="nav-item btn-group" data-behavior="notifications">
 							<a class="dropdown-toggle nav-link last"href="#" type="button" data-behavior="notifications-link" id="DropdownMenu1" data-toggle="dropdown" aria-haspopup="true">
