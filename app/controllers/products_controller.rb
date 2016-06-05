@@ -121,7 +121,6 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.js {render 'scripts.js.erb'}
     end
-    puts "ESTOY EN EL ajaxscripts ------------------------------"
   end
 
 

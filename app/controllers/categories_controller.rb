@@ -53,7 +53,7 @@ class CategoriesController < ApplicationController
   #Cambia el estado a no disponible
     def noDisponible
       answer = params[:answer]
-      if answer.to_i == 1
+      unless answer.to_i != 1
         @category.noDisponible!
       end
       redirect_to categories_url

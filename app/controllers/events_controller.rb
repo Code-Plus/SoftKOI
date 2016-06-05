@@ -51,25 +51,12 @@ class EventsController < ApplicationController
 
   def day_of_event
     unless @events.nil?
-      cont = 0
       @events.each do |event|
         if event.start_time.strftime("%F") == DateTime.now.strftime("%F")
-          activities = PublicActivity::Activity.where(trackable_id: event.id).first
-
-          if activities.present?
-            puts "#{activities.trackable_id }------------_>activities"
-            puts "IN-----------_Z"
-            puts "#{activities.trackable_id == event.id && cont == 0}-------------->activities"
-            if activities.trackable_id == event.id && cont == 0
-              event.create_activity key: 'es su evento para hoy', read_at: nil
-              cont += cont
-            end
-          else
-            event.create_activity key: 'es su evento para hoy', read_at: nil
-          end
+          event.create_activity key: 'es su evento para hoy', read_at: nil
         end
       end
-     end
+    end
   end
 
 
