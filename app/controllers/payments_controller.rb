@@ -52,7 +52,8 @@ class PaymentsController < ApplicationController
     if @coupon_id.empty?
       payment_create = Payment.create(amount: params[:payments][:amount], sale_id: params[:payments][:sale_id])
       respond_to do |format|
-        format.js { render :js => "window.location.href='/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'"}
+        format.js { render :js => "window.open('/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'),'_blank',window.location.href='/sales'"}
+
       end
     else
       coupon = Coupon.find(@coupon_id)
