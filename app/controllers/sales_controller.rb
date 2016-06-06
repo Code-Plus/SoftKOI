@@ -1,6 +1,7 @@
 class SalesController < ApplicationController
 
 	load_and_authorize_resource
+	before_action :set_penalty, only:[:index]
 
 	def index
 		@sales = Sale.total_amount_more_0
@@ -360,4 +361,37 @@ class SalesController < ApplicationController
 			items_attributes: [:id, :product_id, :price, :total_price, :quantity])
 	end
 
+	def set_penalty
+		actually_date = DateTime.now.strftime("%F")
+
+		@sales.each do |sale|
+			months = 2
+			res = 0
+			limit_date = sale.limit_date.strftime("%F")
+			actually_date_more_30_days = sale.limit_date + 30.days
+			actually_date_more_30_days_as_string = actually_date_more_30_days.strftime("%F")
+			if actually_date > limit_date
+				porcent = sale.total_amount * 0.1
+				porcent = porcent.to_i
+				if sale.penalty < porcent
+					sale.update(penalty: porcent)
+				end
+				if actually_date >= actually_date_more_30_days_as_string
+					begin
+						sum_days = 30 * months
+						limit_date_sum_per_months = sale.limit_date + sum_days.days
+						if limit_date_sum_per_months.strftime("%F") < DateTime.now.strftime("%F")
+							sale.update(penalty: porcent * months)
+							months += 1
+						elsif months == 2
+							res = 1
+							sale.update(penalty: porcent * months)
+						else
+							res = 1
+						end
+					end while res < 1
+				end
+			end
+		end
+	end
 end
