@@ -1,15 +1,11 @@
 class CouponsController < ApplicationController
-  before_action :set_coupon, only: [:show, :edit, :update, :destroy]
+  before_action :set_coupon, only: [:show]
 
-  # GET /coupons
-  # GET /coupons.json
   def index
     @coupons = Coupon.all
     @search = Coupon.new(params[:search])
   end
 
-  # GET /coupons/1
-  # GET /coupons/1.json
   def show
   end
 
@@ -57,17 +53,10 @@ class CouponsController < ApplicationController
     end
   end
 
-  # GET /coupons/new
   def new
     @coupon = Coupon.new
   end
 
-  # GET /coupons/1/edit
-  def edit
-  end
-
-  # POST /coupons
-  # POST /coupons.json
   def create
     @coupon = Coupon.new(coupon_params)
 
@@ -82,19 +71,6 @@ class CouponsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /coupons/1
-  # PATCH/PUT /coupons/1.json
-  def update
-    respond_to do |format|
-      if @coupon.update(coupon_params)
-        format.html { redirect_to @coupon, notice: 'Coupon was successfully updated.' }
-        format.json { render :show, status: :ok, location: @coupon }
-      else
-        format.html { render :edit }
-        format.json { render json: @coupon.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   #Ingresa el codigo de una venta y generar el formulario con ese codigo
   def log_in_new_coupon
@@ -253,10 +229,10 @@ class CouponsController < ApplicationController
         end
       else
         unless @coupon.nil?
+          format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
           @sale_old.each do |sale_old|
             sale_old.anulada!
           end
-          format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
         end
         format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, no hay productos seleccionados.' }
       end
@@ -275,17 +251,6 @@ class CouponsController < ApplicationController
     end
     @products_sale = Item.where(sale_id: @sale_id)
 
-  end
-
-
-  # DELETE /coupons/1
-  # DELETE /coupons/1.json
-  def destroy
-    @coupon.destroy
-    respond_to do |format|
-      format.html { redirect_to coupons_url, notice: 'Coupon was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   #Estado
