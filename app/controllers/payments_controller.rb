@@ -51,8 +51,18 @@ class PaymentsController < ApplicationController
     cash_payment = params[:payments][:amount]
     sale_do_payment = Sale.find(params[:payments][:sale_id])
 
-    if Coupon.exists? id: @coupon_id || @coupon_id.empty?
-      if cash_payment.to_i > sale_do_payment.calculate_total_payment
+    unless cash_payment != nil
+      cash_payment = 0
+    end
+
+    if (Coupon.exists? id: @coupon_id) || (@coupon_id.empty?)
+      if @coupon_id.empty?
+        sum_paid = cash_payment.to_i
+      else
+        coupon = Coupon.find(@coupon_id)
+        sum_paid = coupon.amount.to_i + cash_payment.to_i
+      end
+      if sum_paid > sale_do_payment.calculate_total_payment
         respond_to do |format|
           format.js { render :js => "toastr['error']('No puede pagar mas de lo que debe.')"}
         end
@@ -61,12 +71,10 @@ class PaymentsController < ApplicationController
           payment_create = Payment.create(amount: params[:payments][:amount], sale_id: params[:payments][:sale_id])
           respond_to do |format|
             format.js { render :js => "window.open('/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'),'_blank',window.location.href='/sales'"}
-
           end
         else
-          coupon = Coupon.find(@coupon_id)
+
           if coupon.state == "noUtilizado"
-            sum_paid = coupon.amount.to_i + cash_payment.to_i
             payment_create = Payment.create(amount: sum_paid, sale_id: params[:payments][:sale_id])
             coupon.update state: "utilizado"
             respond_to do |format|
@@ -84,8 +92,6 @@ class PaymentsController < ApplicationController
         format.js { render :js => "toastr['error']('El bono no existe')"}
       end
     end
-
-
   end
 
   def new
