@@ -5,14 +5,7 @@ class User < ActiveRecord::Base
 	belongs_to :type_document
 	has_many :calendar
 
-	validates :document, presence: true, uniqueness: true
-	validates :firstname,  presence: true
-	validates :lastname,  presence: true
-	validates :email, presence: true, uniqueness: true
 
-	validates :role_id,  presence: true
-	validates :state,  presence: true
-	validates :type_document_id,  presence: true
 
 	before_create :validate_pass
 
