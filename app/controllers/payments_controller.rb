@@ -69,8 +69,7 @@ class PaymentsController < ApplicationController
         coupon = Coupon.find(@coupon_id)
         sum_paid = coupon.amount.to_i + cash_payment.to_i
       end
-      puts "#{sum_paid}-------------------->sum_paid"
-      puts "#{customer_due_actually}----------->customer_due"
+
       #Validar que no quede debiendo mas de $50.000
       query_sale.each do |sale_olds|
         customer_due += sale_olds.total_amount
@@ -84,7 +83,6 @@ class PaymentsController < ApplicationController
        end
       end
       customer_pay += sum_paid
-
 
       if sum_paid > sale_do_payment.calculate_total_payment
         respond_to do |format|

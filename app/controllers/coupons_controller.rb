@@ -204,8 +204,7 @@ class CouponsController < ApplicationController
                     Sale.last.destroy
                   end
                   Coupon.last.destroy
-                  format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, la cantidad de productos a cambiar es inválida.' }
-                  format.json { head :no_content }
+                  @coupon_create = "no"
                 end
               end
             end
@@ -221,8 +220,10 @@ class CouponsController < ApplicationController
           @sale.save
         end
       end
-
-      if @sale.nil?
+      if @coupon_create == "no"
+        format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, la cantidad de productos a cambiar es inválida.' }
+        format.json { head :no_content }
+      elsif @sale.nil?
          #format.js { render :js => "window.open('/coupons/generate_sale_pdf.pdf?param1="+@coupon.id+"&param2="+@sale.id+"&param3="+@sale_old_id+"&param4="+@coupon.amount+"'),'_blank',window.location.href='/coupons'"}
          format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
         @sale_old.each do |sale_old|

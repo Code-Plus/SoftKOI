@@ -2,10 +2,11 @@ class SalesController < ApplicationController
 
 	load_and_authorize_resource
 	before_action :set_penalty, only:[:index]
-	before_action :limit_date_customer, only:[:index]
+	before_action :limit_date_customer,only:[:index]
+	before_action :delete_sales_without_payments ,only:[:index]
 
 	def index
-		@sales = Sale.total_amount_more_0
+		@sales = Sale.all
 	end
 
 	def make_payment_index
@@ -415,5 +416,18 @@ class SalesController < ApplicationController
 		end
 	end
 
+	def delete_sales_without_payments
+		unless @sales.nil?
+			@sales.each do |sale|
+
+				unless sale.state == "pago" && sale.state == "anulada"
+					puts "#{sale.state}---------->stado"
+					unless Payment.exists? sale_id: sale.id
+						sale.destroy
+					end
+				end
+			end
+		end
+	end
 
 end

@@ -44,9 +44,11 @@
 
                     <td width="100px">
                        <% if sale.state == "sinPagar" %>
-                          <span class="label label-danger span-table">Pendiente</span>
+                          <span class="label label-info span-table">Pendiente</span>
+                        <%elsif sale.state == "anulada" %>
+                          <span class="label label-danger span-table">Anulada</span>
                        <% else %>
-                          <span class="label label-success span-table">Cancelada</span>
+                          <span class="label label-warning span-table">Cancelada</span>
                        <% end %>
                     </td>
 
@@ -55,13 +57,9 @@
                        <i class="fa fa-search"></i>&nbsp; Detalles
                        <% end %>
                        <% if sale.state == "sinPagar" %>
-                         <div class="btn btn-success bold btn-sm btn_payments" data-amount-saleid="<%= sale.id %>" data-toggle="modal" data-target="#make_payment_index">
+                         <div class="btn btn-info bold btn-sm btn_payments" data-amount-saleid="<%= sale.id %>" data-toggle="modal" data-target="#make_payment_index">
                            Ingresar pago
                          </div>
-                        <%else%>
-                        <div class="btn btn-danger bold btn-sm btn_payments" >
-                            Cancelada
-                        </div>
                        <% end %>
 
                     </td>
