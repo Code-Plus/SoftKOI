@@ -1,14 +1,13 @@
 class ProductsController < ApplicationController
 
   before_action :set_product, only: [:edit, :update, :disponible, :noDisponible]
+  after_action :products_low, only:[:index]
   load_and_authorize_resource
 
   def index
     @products = Product.all.order(stock: :desc)
     @search = Report.new(params[:search])
   end
-
-
 
   def generate_pdf
     @search = Report.new(params[:search])
@@ -123,6 +122,16 @@ class ProductsController < ApplicationController
     end
   end
 
+
+  def products_low
+    unless @products.nil?
+      @products.each do |product|
+        if product.stock <= product.stock_min
+          product.create_activity key: 'se esta agotando', read_at: nil
+        end
+      end
+    end
+  end
 
   private
 

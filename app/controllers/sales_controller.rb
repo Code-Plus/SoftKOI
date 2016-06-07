@@ -1,6 +1,8 @@
 class SalesController < ApplicationController
 
 	load_and_authorize_resource
+	before_action :set_penalty, only:[:index]
+	before_action :limit_date_customer, only:[:index]
 
 	def index
 		@sales = Sale.total_amount_more_0
@@ -291,6 +293,19 @@ class SalesController < ApplicationController
 	end
 
 
+	#Notificacion cuando una venta llega a su fecha limite de pago
+	def limit_date_customer
+		@sales.each do |sale|
+			if sale.state == "sinPagar"
+				if sale.limit_date.strftime("%F") < Time.now.strftime("%F")
+					sale.customer.create_activity key: 'ha excedido su fecha limite de pago', read_at: nil
+				elsif sale.limit_date.strftime("%F") == Time.now.strftime("%F")
+					sale.customer.create_activity key: 'tiene que pagar hoy', read_at: nil
+				end
+			end
+		end
+	end
+
 	private
 
 	# Actualizar secciones de la vista de ventas
@@ -359,5 +374,42 @@ class SalesController < ApplicationController
 			:customer_id,
 			items_attributes: [:id, :product_id, :price, :total_price, :quantity])
 	end
+
+	#Generar multa a una venta cuando excede la fecha limite de pago
+	def set_penalty
+		actually_date = DateTime.now.strftime("%F")
+		@sales.each do |sale|
+			if sale.state == "sinPagar"
+				months = 2
+				res = 0
+				limit_date = sale.limit_date.strftime("%F")
+				actually_date_more_30_days = sale.limit_date + 30.days
+				actually_date_more_30_days_as_string = actually_date_more_30_days.strftime("%F")
+				if actually_date > limit_date
+					porcent = sale.total_amount * 0.1
+					porcent = porcent.to_i
+					if sale.penalty < porcent
+						sale.update(penalty: porcent)
+					end
+					if actually_date >= actually_date_more_30_days_as_string
+						begin
+							sum_days = 30 * months
+							limit_date_sum_per_months = sale.limit_date + sum_days.days
+							if limit_date_sum_per_months.strftime("%F") < DateTime.now.strftime("%F")
+								sale.update(penalty: porcent * months)
+								months += 1
+							elsif months == 2
+								res = 1
+								sale.update(penalty: porcent * months)
+							else
+								res = 1
+							end
+						end while res < 1
+					end
+				end
+			end
+		end
+	end
+
 
 end

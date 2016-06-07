@@ -50,21 +50,51 @@ class PaymentsController < ApplicationController
     @sale = Sale.find(params[:payments][:sale_id])
     cash_payment = params[:payments][:amount]
     sale_do_payment = Sale.find(params[:payments][:sale_id])
+    customer_due = 0
+    customer_pay = 0
+    sales_id = @sale.id
+    customer_info = @sale.customer_id
+    query_sale = Sale.where(customer_id: customer_info)
 
     unless cash_payment != nil
       cash_payment = 0
     end
 
     if (Coupon.exists? id: @coupon_id) || (@coupon_id.empty?)
+      #Validar si el cupon existe para juntar su valor con el efectivo
       if @coupon_id.empty?
         sum_paid = cash_payment.to_i
       else
         coupon = Coupon.find(@coupon_id)
         sum_paid = coupon.amount.to_i + cash_payment.to_i
       end
+
+      #Validar que no quede debiendo mas de $50.000
+      query_sale.each do |sale_olds|
+        customer_due += sale_olds.total_amount
+       if Payment.where(sale_id: sale_olds.id).exists?
+         query_payment = Payment.where(sale_id: sale_olds.id)
+         query_payment.each do |pay|
+           customer_pay += pay.amount
+         end
+       else
+         customer_pay = 0
+       end
+      end
+      customer_pay += sum_paid
+
+
       if sum_paid > sale_do_payment.calculate_total_payment
         respond_to do |format|
           format.js { render :js => "toastr['error']('No puede pagar mas de lo que debe.')"}
+        end
+      elsif customer_due - customer_pay > 50000
+        respond_to do |format|
+          format.js { render :js => "toastr['error']('El cliente ha excedido el limite de prestamo.')"}
+        end
+      elsif (customer_due - customer_pay > 0) && @sale.customer.age < 18
+        respond_to do |format|
+          format.js { render :js => "toastr['error']('El cliente es menor de edad, no puede tener deudas.')"}
         end
       else
         if @coupon_id.empty?
@@ -85,6 +115,7 @@ class PaymentsController < ApplicationController
               format.js { render :js => "toastr['error']('El bono ya ha sido canjeado')"}
             end
           end
+
         end
       end
     else

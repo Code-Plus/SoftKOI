@@ -1,7 +1,6 @@
 class OutputProductsController < ApplicationController
 
   load_and_authorize_resource
-  after_action :products_low, only:[:create]
 
   def index
     @output_products = OutputProduct.all.order(created_at: :desc)
@@ -54,12 +53,6 @@ class OutputProductsController < ApplicationController
         format.html { render :new }
         format.json { render json: @output_product.errors.full_messages, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def products_low
-    if @output_product.product.stock <= @output_product.product.stock_min
-      @output_product.product.create_activity key: 'se esta agotando', read_at: nil
     end
   end
 
