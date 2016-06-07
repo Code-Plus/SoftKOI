@@ -298,9 +298,13 @@ class SalesController < ApplicationController
 		@sales.each do |sale|
 			if sale.state == "sinPagar"
 				if sale.limit_date.strftime("%F") < Time.now.strftime("%F")
-					sale.customer.create_activity key: 'ha excedido su fecha limite de pago', read_at: nil
+					unless sale.customer == nil
+						sale.customer.create_activity key: 'ha excedido su fecha limite de pago', read_at: nil
+					end
 				elsif sale.limit_date.strftime("%F") == Time.now.strftime("%F")
-					sale.customer.create_activity key: 'tiene que pagar hoy', read_at: nil
+					unless sale.customer == nil
+						sale.customer.create_activity key: 'tiene que pagar hoy', read_at: nil
+					end
 				end
 			end
 		end

@@ -52,9 +52,10 @@ class PaymentsController < ApplicationController
     sale_do_payment = Sale.find(params[:payments][:sale_id])
     customer_due = 0
     customer_pay = 0
+    customer_due_actually = sale_do_payment.total_amount.to_i
     sales_id = @sale.id
     customer_info = @sale.customer_id
-    query_sale = Sale.where(customer_id: customer_info)
+    query_sale = Sale.where(customer_id: customer_info, state: "sinPagar")
 
     unless cash_payment != nil
       cash_payment = 0
@@ -68,7 +69,8 @@ class PaymentsController < ApplicationController
         coupon = Coupon.find(@coupon_id)
         sum_paid = coupon.amount.to_i + cash_payment.to_i
       end
-
+      puts "#{sum_paid}-------------------->sum_paid"
+      puts "#{customer_due_actually}----------->customer_due"
       #Validar que no quede debiendo mas de $50.000
       query_sale.each do |sale_olds|
         customer_due += sale_olds.total_amount
@@ -92,7 +94,7 @@ class PaymentsController < ApplicationController
         respond_to do |format|
           format.js { render :js => "toastr['error']('El cliente ha excedido el limite de prestamo.')"}
         end
-      elsif (customer_due - customer_pay > 0) && @sale.customer.age < 18
+      elsif (customer_due_actually - customer_pay > 0) && @sale.customer.age < 18
         respond_to do |format|
           format.js { render :js => "toastr['error']('El cliente es menor de edad, no puede tener deudas.')"}
         end
@@ -108,7 +110,7 @@ class PaymentsController < ApplicationController
             payment_create = Payment.create(amount: sum_paid, sale_id: params[:payments][:sale_id])
             coupon.update state: "utilizado"
             respond_to do |format|
-              format.js { render :js => "window.location.href='/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'"}
+              format.js { render :js => "window.open('/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'),'_blank',window.location.href='/sales'"}
             end
           else
             respond_to do |format|
