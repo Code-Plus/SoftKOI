@@ -46,12 +46,18 @@ class PaymentsController < ApplicationController
 	end
 
   def make_payment
+    letter_in_payment = "no"
     @coupon_id = params[:search_coupon]
     @sale = Sale.find(params[:payments][:sale_id])
     cash_payment = params[:payments][:amount]
+    if (cash_payment == "0") || (cash_payment.to_i > 0) || (cash_payment.to_i <0)
+      letter_in_payment = "no"
+    else
+      letter_in_payment = "yes"
+    end
     sale_do_payment = Sale.find(params[:payments][:sale_id])
     customer_due = 0
-    customer_pay = 0
+    @customer_pay = 0
     customer_due_actually = sale_do_payment.total_amount.to_i
     sales_id = @sale.id
     customer_info = @sale.customer_id
@@ -61,68 +67,78 @@ class PaymentsController < ApplicationController
       cash_payment = 0
     end
 
-    if (Coupon.exists? id: @coupon_id) || (@coupon_id.empty?)
-      #Validar si el cupon existe para juntar su valor con el efectivo
-      if @coupon_id.empty?
-        sum_paid = cash_payment.to_i
-      else
-        coupon = Coupon.find(@coupon_id)
-        sum_paid = coupon.amount.to_i + cash_payment.to_i
+    if letter_in_payment == "yes"
+      respond_to do |format|
+        format.js { render :js => "toastr['error']('Caracteres invalidos.')"}
       end
-
-      #Validar que no quede debiendo mas de $50.000
-      query_sale.each do |sale_olds|
-        customer_due += sale_olds.total_amount
-       if Payment.where(sale_id: sale_olds.id).exists?
-         query_payment = Payment.where(sale_id: sale_olds.id)
-         query_payment.each do |pay|
-           customer_pay += pay.amount
-         end
-       else
-         customer_pay = 0
-       end
-      end
-      customer_pay += sum_paid
-
-      if sum_paid > sale_do_payment.calculate_total_payment
-        respond_to do |format|
-          format.js { render :js => "toastr['error']('No puede pagar mas de lo que debe.')"}
-        end
-      elsif customer_due - customer_pay > 50000
-        respond_to do |format|
-          format.js { render :js => "toastr['error']('El cliente ha excedido el limite de prestamo.')"}
-        end
-      elsif (customer_due_actually - customer_pay > 0) && @sale.customer.age < 18
-        respond_to do |format|
-          format.js { render :js => "toastr['error']('El cliente es menor de edad, no puede tener deudas.')"}
-        end
-      else
+    else
+      if (Coupon.exists? id: @coupon_id) || (@coupon_id.empty?)
+        #Validar si el cupon existe para juntar su valor con el efectivo
         if @coupon_id.empty?
-          payment_create = Payment.create(amount: params[:payments][:amount], sale_id: params[:payments][:sale_id])
+          sum_paid = cash_payment.to_i
+        else
+          coupon = Coupon.find(@coupon_id)
+          sum_paid = coupon.amount.to_i + cash_payment.to_i
+        end
+
+        #Validar que no quede debiendo mas de $50.000
+        query_sale.each do |sale_olds|
+          customer_due += sale_olds.total_amount
+         if Payment.where(sale_id: sale_olds.id).exists?
+           query_payment = Payment.where(sale_id: sale_olds.id)
+           query_payment.each do |pay|
+               @customer_pay += pay.amount
+           end
+         else
+          @customer_pay = 0
+         end
+        end
+        @customer_pay += sum_paid
+
+        puts "#{@customer_pay}------------>PAgo"
+        puts "#{customer_due}-----------_>deuda"
+        puts "#{customer_due - @customer_pay}------------------>resta"
+        if sum_paid > sale_do_payment.calculate_total_payment
           respond_to do |format|
-            format.js { render :js => "window.open('/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'),'_blank',window.location.href='/sales'"}
+            format.js { render :js => "toastr['error']('No puede pagar mas de lo que debe.')"}
+          end
+        elsif customer_due - @customer_pay > 50000
+          respond_to do |format|
+            format.js { render :js => "toastr['error']('El cliente ha excedido el limite de prestamo.')"}
+          end
+        elsif (customer_due_actually - @customer_pay > 0) && @sale.customer.age < 18
+          respond_to do |format|
+            format.js { render :js => "toastr['error']('El cliente es menor de edad, no puede tener deudas.')"}
           end
         else
-
-          if coupon.state == "noUtilizado"
-            payment_create = Payment.create(amount: sum_paid, sale_id: params[:payments][:sale_id])
-            coupon.update state: "utilizado"
+          if @coupon_id.empty?
+            payment_create = Payment.create(amount: params[:payments][:amount], sale_id: params[:payments][:sale_id])
             respond_to do |format|
               format.js { render :js => "window.open('/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'),'_blank',window.location.href='/sales'"}
             end
           else
-            respond_to do |format|
-              format.js { render :js => "toastr['error']('El bono ya ha sido canjeado')"}
-            end
-          end
 
+            if coupon.state == "noUtilizado"
+              payment_create = Payment.create(amount: sum_paid, sale_id: params[:payments][:sale_id])
+              coupon.update state: "utilizado"
+              respond_to do |format|
+                format.js { render :js => "window.open('/payments/generate_sale_pdf.pdf?param1="+@sale.id.to_s+"&amp;param2="+payment_create.id.to_s+"'),'_blank',window.location.href='/sales'"}
+              end
+            else
+              respond_to do |format|
+                format.js { render :js => "toastr['error']('El bono ya ha sido canjeado')"}
+              end
+            end
+
+          end
+        end
+      else
+        respond_to do |format|
+          format.js { render :js => "toastr['error']('El bono no existe')"}
         end
       end
-    else
-      respond_to do |format|
-        format.js { render :js => "toastr['error']('El bono no existe')"}
-      end
     end
+
   end
 
   def new

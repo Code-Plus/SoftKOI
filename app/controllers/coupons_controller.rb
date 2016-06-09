@@ -57,20 +57,6 @@ class CouponsController < ApplicationController
     @coupon = Coupon.new
   end
 
-  def create
-    @coupon = Coupon.new(coupon_params)
-
-    respond_to do |format|
-      if @coupon.save
-        format.html { redirect_to @coupon, notice: 'Coupon was successfully created.' }
-        format.json { render :show, status: :created, location: @coupon }
-      else
-        format.html { render :new }
-        format.json { render json: @coupon.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
 
   #Ingresa el codigo de una venta y generar el formulario con ese codigo
   def log_in_new_coupon
@@ -185,7 +171,6 @@ class CouponsController < ApplicationController
                 @new_item_coupon.save
               else
                 new_item_quantity = i.quantity - value_product
-                #Validar que no puede ser negativo-------------------------------------->VALIDACION
                 if new_item_quantity >= 0
                   if @sale.nil?
                     @sale = Sale.new
