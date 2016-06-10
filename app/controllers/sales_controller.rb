@@ -2,10 +2,11 @@ class SalesController < ApplicationController
 
 	load_and_authorize_resource
 	before_action :set_penalty, only:[:index]
-	before_action :limit_date_customer, only:[:index]
+	before_action :limit_date_customer,only:[:index]
+	before_action :delete_sales_without_payments ,only:[:index]
 
 	def index
-		@sales = Sale.total_amount_more_0
+		@sales = Sale.all
 	end
 
 	def make_payment_index
@@ -204,32 +205,34 @@ class SalesController < ApplicationController
 	def create_custom_customer
 		set_sale
 		populate_products
-		@message = "no"
-
-		custom_customer = Customer.new
-		custom_customer.document = params[:custom_customer][:document]
-		custom_customer.firstname = params[:custom_customer][:firstname]
-		custom_customer.lastname = params[:custom_customer][:lastname]
-		custom_customer.phone = params[:custom_customer][:phone]
-		custom_customer.cellphone = params[:custom_customer][:cellphone]
-		custom_customer.birthday = params[:custom_customer][:birthday]
-		custom_customer.email = params[:custom_customer][:email]
-		custom_customer.type_document_id = params[:custom_customer][:type_document_id]
-
-		if custom_customer.save
-			@sale.add_customer(custom_customer.id)
-
-			update_totals
-			customer_info = Customer.where(id: custom_customer.id)
-		else
-				@message = "si"
-		end
-
 
 		respond_to do |format|
-			if @message == "si"
-				format.html { redirect_to '/sales/'"#{@sale.id}"'/edit' }
+			custom_customer = Customer.new
+			custom_customer.document = params[:custom_customer][:document]
+			custom_customer.firstname = params[:custom_customer][:firstname]
+			custom_customer.lastname = params[:custom_customer][:lastname]
+			unless params[:custom_customer][:phone].nil?
+				custom_customer.phone = params[:custom_customer][:phone]
 			end
+			unless params[:custom_customer][:cellphone].nil?
+				custom_customer.cellphone = params[:custom_customer][:cellphone]
+			end
+			custom_customer.cellphone = params[:custom_customer][:cellphone]
+			custom_customer.birthday = params[:custom_customer][:birthday]
+			custom_customer.email = params[:custom_customer][:email]
+			custom_customer.type_document_id = params[:custom_customer][:type_document_id]
+
+			if custom_customer.save
+				@sale.add_customer(custom_customer.id)
+
+				update_totals
+				customer_info = Customer.where(id: custom_customer.id)
+			else
+					flash[:alert] = "Datos incorrectos al registrar el cliente"
+			end
+
+
+
 			format.js { ajax_refresh }
 		end
 	end
@@ -415,5 +418,18 @@ class SalesController < ApplicationController
 		end
 	end
 
+	def delete_sales_without_payments
+		unless @sales.nil?
+			@sales.each do |sale|
+
+				unless sale.state == "pago" && sale.state == "anulada"
+					puts "#{sale.state}---------->stado"
+					unless Payment.exists? sale_id: sale.id
+						sale.destroy
+					end
+				end
+			end
+		end
+	end
 
 end

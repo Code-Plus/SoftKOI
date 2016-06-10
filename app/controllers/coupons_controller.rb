@@ -57,20 +57,6 @@ class CouponsController < ApplicationController
     @coupon = Coupon.new
   end
 
-  def create
-    @coupon = Coupon.new(coupon_params)
-
-    respond_to do |format|
-      if @coupon.save
-        format.html { redirect_to @coupon, notice: 'Coupon was successfully created.' }
-        format.json { render :show, status: :created, location: @coupon }
-      else
-        format.html { render :new }
-        format.json { render json: @coupon.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
 
   #Ingresa el codigo de una venta y generar el formulario con ese codigo
   def log_in_new_coupon
@@ -185,7 +171,6 @@ class CouponsController < ApplicationController
                 @new_item_coupon.save
               else
                 new_item_quantity = i.quantity - value_product
-                #Validar que no puede ser negativo-------------------------------------->VALIDACION
                 if new_item_quantity >= 0
                   if @sale.nil?
                     @sale = Sale.new
@@ -204,8 +189,7 @@ class CouponsController < ApplicationController
                     Sale.last.destroy
                   end
                   Coupon.last.destroy
-                  format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, la cantidad de productos a cambiar es inválida.' }
-                  format.json { head :no_content }
+                  @coupon_create = "no"
                 end
               end
             end
@@ -221,8 +205,10 @@ class CouponsController < ApplicationController
           @sale.save
         end
       end
-
-      if @sale.nil?
+      if @coupon_create == "no"
+        format.html { redirect_to coupons_url, alert: 'No se pudo realizar el cambio, la cantidad de productos a cambiar es inválida.' }
+        format.json { head :no_content }
+      elsif @sale.nil?
          #format.js { render :js => "window.open('/coupons/generate_sale_pdf.pdf?param1="+@coupon.id+"&param2="+@sale.id+"&param3="+@sale_old_id+"&param4="+@coupon.amount+"'),'_blank',window.location.href='/coupons'"}
          format.html{redirect_to url_for(:controller => :coupons,format: :pdf ,:action => :generate_pdf, :param1 => @coupon, :param2 => @sale, :param3 => @sale_old_id, :param4 => @coupon.amount)}
         @sale_old.each do |sale_old|
