@@ -62,6 +62,7 @@ class PaymentsController < ApplicationController
         coupon = Coupon.find(@coupon_id)
         sum_paid = coupon.amount.to_i + cash_payment.to_i
       end
+
       if sum_paid > sale_do_payment.calculate_total_payment
         respond_to do |format|
           format.js { render :js => "toastr['error']('No puede pagar mas de lo que debe.')"}
@@ -85,6 +86,7 @@ class PaymentsController < ApplicationController
               format.js { render :js => "toastr['error']('El bono ya ha sido canjeado')"}
             end
           end
+
         end
       end
     else

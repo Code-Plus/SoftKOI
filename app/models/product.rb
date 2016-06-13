@@ -1,5 +1,8 @@
 class Product < ActiveRecord::Base
-    include PublicActivity::Model
+  include PublicActivity::Model
+  tracked only: [:products_low]
+
+  
   belongs_to :category
   has_many :output_products
   has_many :input_products

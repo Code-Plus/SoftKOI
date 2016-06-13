@@ -7,9 +7,6 @@ class InputProduct < ActiveRecord::Base
   before_validation :validate_state_product
   before_update :set_updated_at
 
-  include PublicActivity::Model
-  tracked only: [:products_low]
-
   #Getter de los valores de productos para el stock
   def product=(value)
     @product=value

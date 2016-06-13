@@ -7,8 +7,7 @@ class OutputProduct < ActiveRecord::Base
   before_create :set_date
   before_update :set_updated_at
 
-  include PublicActivity::Model
-  tracked only: [:products_low]
+
 
   def product=(value)
     @product=value

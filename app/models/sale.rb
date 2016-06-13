@@ -1,6 +1,7 @@
 class Sale < ActiveRecord::Base
 	include PublicActivity::Model
-	
+  tracked only: [:limit_date_customer]
+
 	before_create :set_date, :default_date
 	before_update :set_updated_at
 

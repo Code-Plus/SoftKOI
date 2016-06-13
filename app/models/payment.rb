@@ -70,10 +70,5 @@ class Payment < ActiveRecord::Base
         self.errors.add(:base ,"Es menor de edad, no esta permitido darle prestamos.")
       end
     end
-
   end
-
-
-
-
 end
