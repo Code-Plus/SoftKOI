@@ -14,6 +14,8 @@
 
 * Ruby version: 2.3.0
 * Rails version: 4.2.4
+* Frontend: Bootstrap Flatly
+* DB: PostgreSQL
 
 ### Members
 
