@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   # Ajax para precio de reserva
   get '/reservations/price_interval', to: 'reservations#reserve_ajax', as: 'interval_price'
 
+	get 'ManualdeUsuarioSOFTKOI.pdf', to: 'user_manuals#view_manual'
+
 	devise_for :users
   resources :item_coupons
 	resources :categories
